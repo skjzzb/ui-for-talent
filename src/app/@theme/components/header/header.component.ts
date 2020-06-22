@@ -6,6 +6,9 @@ import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { ProfileComponent } from '../../../profile/profile.component';
+
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
@@ -45,7 +48,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private themeService: NbThemeService,
               private userService: UserData,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              private dialog : MatDialog) {
   }
 
   ngOnInit() {
@@ -90,5 +94,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  onClick()  {
+       this.dialog.open(ProfileComponent)
   }
 }

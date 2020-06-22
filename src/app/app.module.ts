@@ -20,14 +20,33 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+//material
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import {  MatCheckboxModule } from "@angular/material/checkbox";
+import { MatInputModule } from "@angular/material/input";
+import {  MatMenuModule  } from "@angular/material/menu";
+import {  MatRadioModule, } from "@angular/material/radio";
+import { ProfileComponent } from './profile/profile.component';
+import { RouterModule } from '@angular/router';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ProfileComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    //material
+    MatDialogModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatMenuModule,
+    MatRadioModule,
+    MatIconModule,
+    
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
@@ -39,6 +58,9 @@ import {
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    // RouterModule.forRoot([
+    // {path:"profile",component :ProfileComponent},
+    // ])
   ],
   bootstrap: [AppComponent],
 })
