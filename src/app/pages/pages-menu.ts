@@ -17,6 +17,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
+    title: 'Vacancy',
+    icon: 'bookmark',
+    children: [
+      {
+        title: 'New',
+        link: '/pages/vacancy/add-vacancy',
+      },
+    ],
+  },
+  {
     title: 'Layout',
     icon: 'layout-outline',
     children: [
