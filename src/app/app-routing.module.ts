@@ -12,12 +12,14 @@ import {
 } from '@nebular/auth';
 
 export const routes: Routes = [
+ 
   {
     path: 'pages',
    // canActivate: [AuthGuard],
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
   },
+ 
   {
     path: 'oauth2',
     loadChildren: () => import('./oauth2/oauth2.module').then(m => m.OAuth2PlaygroundModule),
