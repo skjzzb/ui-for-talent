@@ -1,8 +1,3 @@
-/**
- * @license
- * Copyright Akveo. All Rights Reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- */
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -28,7 +23,7 @@ import { MatInputModule } from "@angular/material/input";
 import {  MatMenuModule  } from "@angular/material/menu";
 import {  MatRadioModule, } from "@angular/material/radio";
 import { ProfileComponent } from './profile/profile.component';
-import { RouterModule } from '@angular/router';
+//import { RouterModule } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
