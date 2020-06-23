@@ -1,22 +1,8 @@
-<<<<<<< HEAD
-import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
-import { CoreModule } from "./@core/core.module";
-import { ThemeModule } from "./@theme/theme.module";
-import { AppComponent } from "./app.component";
-import { AppRoutingModule } from "./app-routing.module";
-=======
-/**
- * @license
- * Copyright Akveo. All Rights Reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- */
+
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
@@ -24,8 +10,6 @@ import { AppComponent } from './app.component';
 import { VacancyModule } from './pages/vacancy/vacancy.module'
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './services/auth-guard.service';
-
->>>>>>> 3b6dfc38efeada460d63ddda47933665aa81bf93
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -54,7 +38,6 @@ import { MatIconModule } from "@angular/material/icon";
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
-<<<<<<< HEAD
     //material
     MatDialogModule,
     MatButtonModule,
@@ -64,9 +47,8 @@ import { MatIconModule } from "@angular/material/icon";
     MatRadioModule,
     MatIconModule,
 
-=======
     VacancyModule,
->>>>>>> 3b6dfc38efeada460d63ddda47933665aa81bf93
+
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
