@@ -1,0 +1,97 @@
+<nb-card status="success">
+    <nb-card-header>Nebula</nb-card-header>
+    <nb-card-body>
+      <form>
+        <div class="form-group row">
+          <label for="ID" class="label col-sm-3 col-form-label">Vacancy Id</label>
+          <div class="col-sm-9">
+            <input type="text" nbInput fullWidth placeholder="123" disabled/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="Job Title" class="label col-sm-3 col-form-label">Job Title</label>
+          <div class="col-sm-9">
+            <input type="text" nbInput fullWidth id="jobTitle" placeholder="Job Title">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="Project" class="label col-sm-3 col-form-label">Project</label>
+          <div class="col-sm-6">
+            <nb-select placeholder="Select Project" [(selected)]="selectedItem">
+              <nb-option value="">Option empty</nb-option>
+              <nb-option value="0">Option 0</nb-option>
+              <nb-option value="1">Option 1</nb-option>
+              <nb-option value="2">Option 2</nb-option>
+              <nb-option value="3">Option 3</nb-option>
+              <nb-option value="4">Option 4</nb-option>
+            </nb-select>
+          </div>
+        </div>
+        
+        <!-- <div class="form-group row">
+          <label for="inputPassword2" class="label col-sm-3 col-form-label">Password</label>
+          <div class="col-sm-9">
+            <input type="password" nbInput fullWidth id="inputPassword2" placeholder="Password">
+          </div>
+        </div> -->
+        <div class="form-group row">
+          <label class="col-sm-3 label">Radios</label>
+          <div class="col-sm-9">
+            <nb-radio-group>
+              <nb-radio>Option 1</nb-radio>
+              <nb-radio>Option 2</nb-radio>
+              <nb-radio disabled>Disabled Option</nb-radio>
+            </nb-radio-group>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 label">Position Open Date</label>
+          <div class="col-sm-9">
+            <input nbInput
+                   placeholder="Open Date"
+                   [nbDatepicker]="formpicker">
+                  <nb-datepicker #formpicker></nb-datepicker>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 label">Position Close Date</label>
+          <div class="col-sm-9">
+            <input nbInput
+                   placeholder="Close Date"
+                   [nbDatepicker]="formpicker">
+                  <nb-datepicker #formpicker></nb-datepicker>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="Job Description" class="label col-sm-3 col-form-label">Job Description</label>
+          <div class="col-sm-6">
+            <nb-select placeholder="Select Technology" [(selected)]="selectedItem">
+              <nb-option value="">Option empty</nb-option>
+              <nb-option value="0">Option 0</nb-option>
+              <nb-option value="1">Option 1</nb-option>
+              <nb-option value="2">Option 2</nb-option>
+              <nb-option value="3">Option 3</nb-option>
+              <nb-option value="4">Option 4</nb-option>
+            </nb-select>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <div class="offset-sm-3 col-sm-9">
+            <button type="submit" nbButton status="primary">Sign in</button>
+          </div>
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer>By Wikipedia</nb-card-footer>
+  </nb-card>
+  
+  <nb-card status="danger">
+    <nb-card-header>Nebula</nb-card-header>
+    <nb-card-body>
+      A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
+      Originally, nebula was a name for any diffuse astronomical object,
+      including galaxies beyond the Milky Way.
+    </nb-card-body>
+    <nb-card-footer>By Wikipedia</nb-card-footer>
+  </nb-card>
