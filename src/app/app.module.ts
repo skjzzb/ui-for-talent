@@ -1,11 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { CoreModule } from './@core/core.module';
-import { ThemeModule } from './@theme/theme.module';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
+import { CoreModule } from "./@core/core.module";
+import { ThemeModule } from "./@theme/theme.module";
+import { AppComponent } from "./app.component";
+import { AppRoutingModule } from "./app-routing.module";
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -14,17 +14,17 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
-} from '@nebular/theme';
-//material
-import {MatDialogModule} from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
-import {  MatCheckboxModule } from "@angular/material/checkbox";
+} from "@nebular/theme";
+// material
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatInputModule } from "@angular/material/input";
-import {  MatMenuModule  } from "@angular/material/menu";
-import {  MatRadioModule, } from "@angular/material/radio";
-import { ProfileComponent } from './profile/profile.component';
-//import { RouterModule } from '@angular/router';
-import {MatIconModule} from '@angular/material/icon';
+import { MatMenuModule } from "@angular/material/menu";
+import { MatRadioModule } from "@angular/material/radio";
+import { ProfileComponent } from "./profile/profile.component";
+// import { RouterModule } from '@angular/router';
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [AppComponent, ProfileComponent],
@@ -41,7 +41,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatMenuModule,
     MatRadioModule,
     MatIconModule,
-    
+
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
@@ -49,7 +49,7 @@ import {MatIconModule} from '@angular/material/icon';
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
     NbChatModule.forRoot({
-      messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
+      messageGoogleMapKey: "AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY",
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
@@ -59,5 +59,4 @@ import {MatIconModule} from '@angular/material/icon';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
