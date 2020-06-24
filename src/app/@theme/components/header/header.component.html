@@ -25,7 +25,14 @@
                [picture]="user?.picture"
                >
       </nb-user> -->
-      <button (click)="onClick()" class="btn btn-primary"> <i class="material-icons">perm_identity</i> </button>
+      <nb-user  [name]="user?.name"
+                [onlyPicture]="userPictureOnly"
+                [picture]="user?.picture"
+                title="full-stack developer"
+                [nbContextMenu]="items"
+                nbContextMenuTag="my-context-menu">
+      </nb-user>
+      <!-- <button (click)="onClick()" class="btn btn-primary"> <i class="material-icons">perm_identity</i> </button> -->
     </nb-action>
   </nb-actions>
 </div>
