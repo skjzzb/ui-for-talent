@@ -1,4 +1,6 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, Inject } from "@angular/core";
+import { NB_WINDOW,  } from '@nebular/theme';
+import { filter } from 'rxjs/operators';
 import {
   NbMediaBreakpointsService,
   NbMenuService,
@@ -23,6 +25,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
+
+  items = [
+    { title: 'Profile' },
+    { title: 'Logout' },
+  ];
 
   themes = [
     {
@@ -54,7 +61,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private userService: UserData,
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private nbMenuService: NbMenuService, 
+    @Inject(NB_WINDOW) private window
   ) {}
 
   ngOnInit() {
@@ -83,6 +92,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
       )
       .subscribe((themeName) => (this.currentTheme = themeName));
+
+      this.nbMenuService.onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === 'my-context-menu'),
+        map(({ item: { title } }) => title),
+      )
+      .subscribe((title ) => 
+      {
+        if(title === 'Profile')
+          // this.window.alert(`wow !! ${title} was clicked!`);
+          this.dialog.open(ProfileComponent);
+        else
+          this.window.alert(`yehhh !!${title} was clicked!`)
+      });
+  
   }
 
   ngOnDestroy() {
