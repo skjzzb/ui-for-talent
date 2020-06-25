@@ -45,7 +45,7 @@ import { Oauth2RoutingModule } from './oauth2-routing.module';
           },
 
           redirect: {
-            success: '/oauth2',
+            success: '/pages',
           },
         }),
       ],
