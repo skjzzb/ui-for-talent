@@ -49,7 +49,6 @@
     "@nebular/theme": "5.0.0",
     "@swimlane/ngx-charts": "^13.0.2",
     "angular2-chartjs": "0.4.1",
-    "angular2-multiselect-dropdown": "^4.6.3",
     "axios": "^0.19.2",
     "bootstrap": "4.3.1",
     "bootstrap-select": "^1.13.17",

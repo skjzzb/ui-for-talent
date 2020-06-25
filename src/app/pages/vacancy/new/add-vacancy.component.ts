@@ -60,7 +60,7 @@ class AddVacancyComponent {
         //sb["0"]=subtech.technologyId;
         //sb["1"]=subtech.technologyName;
         //this.selectedsubbtechnology.map(subtech => this.selectedsubbtechnology.push(subtech))
-        this.selectedsubbtechnology.push(subtech);
+       // this.selectedsubbtechnology.push(subtech);
         console.log(subtech)
         // this.counter++;
       }
