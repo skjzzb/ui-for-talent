@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NbTreeGridModule } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -44,6 +44,6 @@ import { VacancyComponent } from './vacancy.component';
     // ...routedComponents,
     VacancyComponent,
     AddVacancyComponent
-  ],
+  ]
 })
 export class VacancyModule { }
