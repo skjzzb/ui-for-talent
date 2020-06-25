@@ -105,6 +105,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.dialog.open(ProfileComponent);
         else
           this.window.alert(`yehhh !!${title} was clicked!`)
+          
       });
   
   }
