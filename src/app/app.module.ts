@@ -17,7 +17,7 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from "@nebular/theme";
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // material
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
@@ -26,7 +26,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatRadioModule } from "@angular/material/radio";
 import { ProfileComponent } from "./profile/profile.component";
- import { RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
@@ -37,6 +37,8 @@ import { MatIconModule } from "@angular/material/icon";
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     //material
     MatDialogModule,
     MatButtonModule,
@@ -45,6 +47,7 @@ import { MatIconModule } from "@angular/material/icon";
     MatMenuModule,
     MatRadioModule,
     MatIconModule,
+   
     VacancyModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),

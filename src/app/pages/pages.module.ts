@@ -9,6 +9,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { VacancyModule } from './vacancy/vacancy.module'
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 
+
 @NgModule({
   imports: [
     PagesRoutingModule,
@@ -17,7 +18,8 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
     DashboardModule,
     ECommerceModule,
     MiscellaneousModule,
-    VacancyModule
+    VacancyModule,
+   
   ],
   declarations: [
     PagesComponent,
