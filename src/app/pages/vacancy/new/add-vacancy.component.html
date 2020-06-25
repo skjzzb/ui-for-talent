@@ -62,20 +62,24 @@
                   <nb-datepicker #formpicker></nb-datepicker>
           </div>
         </div>
-        <div class="form-group row">
+         <div class="form-group row">
+          <label for="Job Description" class="label col-sm-3 col-form-label">Select Technology</label>
+          <div class="col-sm-6">
+             <nb-select placeholder="Select Technology" [(selected)]="selectedItem"  >
+              <nb-option *ngFor="let d of technology" (click)="onSelectTechnology()" value="{{d.technologyId}}">{{d.technologyName}}</nb-option>
+            </nb-select>  
+          </div>
+         </div>
+
+         <div class="form-group row">
           <label for="Job Description" class="label col-sm-3 col-form-label">Job Description</label>
           <div class="col-sm-6">
-            <nb-select placeholder="Select Technology" [(selected)]="selectedItem">
-              <nb-option value="">Option empty</nb-option>
-              <nb-option value="0">Option 0</nb-option>
-              <nb-option value="1">Option 1</nb-option>
-              <nb-option value="2">Option 2</nb-option>
-              <nb-option value="3">Option 3</nb-option>
-              <nb-option value="4">Option 4</nb-option>
-            </nb-select>
+             <nb-select placeholder="Select Technology" multiple >
+              <nb-option *ngFor="let d of selectedsubbtechnology" value="{{d.subTechnologyId}}">{{d.subTechnologyName}}</nb-option>
+            </nb-select>  
           </div>
-        </div>
-        
+         </div>
+
         <div class="form-group row">
           <div class="offset-sm-3 col-sm-9">
             <button type="submit" nbButton status="primary">Sign in</button>
