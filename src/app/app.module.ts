@@ -28,6 +28,8 @@ import { MatRadioModule } from "@angular/material/radio";
 import { ProfileComponent } from "./profile/profile.component";
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from "@angular/material/icon";
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 @NgModule({
   declarations: [AppComponent, ProfileComponent],
@@ -47,7 +49,8 @@ import { MatIconModule } from "@angular/material/icon";
     MatMenuModule,
     MatRadioModule,
     MatIconModule,
-   
+    MatFormFieldModule,
+
     VacancyModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
