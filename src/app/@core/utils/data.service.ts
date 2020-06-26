@@ -18,9 +18,9 @@ export class DataService {
     getTechnologyData() {
       return axios.get(`${API_URL}/technology`,);
     }
-      getSubTechnologyData()
+      getSubTechnologyData(id)
       {
-        return axios.get(`${API_URL}/subtechnology`,);
+        return axios.get(`${API_URL}/subtechnology/technology/${id}`,);
       }
 
 }
