@@ -55,7 +55,7 @@ class AddVacancyComponent  {
     var length:0;
     for(var subtech of this.subtechnology)
     { 
-      if(this.selectedItem==subtech.technologyId)
+      if(this.selectedItem == subtech.technologyId)
       {
     
         //let sb:{};
@@ -70,6 +70,7 @@ class AddVacancyComponent  {
     
     }console.log(this.selectedsubbtechnology)
   }
+  
  
 }
 
