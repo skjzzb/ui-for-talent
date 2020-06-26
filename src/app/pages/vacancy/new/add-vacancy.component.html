@@ -74,9 +74,17 @@
        <div class="form-group row">
         <label for="Job Description" class="label col-sm-3 col-form-label">Job Description</label>
         <div class="col-sm-6">
-           <nb-select placeholder="Select Technology" multiple >
-            <nb-option *ngFor="let d of selectedsubbtechnology" value="{{d.subTechnologyId}}">{{d.subTechnologyName}}</nb-option>
+           <nb-select placeholder="Select Technology"  multiple >
+            <nb-option *ngFor="let d of subtechnology" value="{{d.subTechnologyName}}">{{d.subTechnologyName}}</nb-option>
           </nb-select>  
+
+          <!-- <div id="multiselect-diacritics" class="control-section">
+            <div id='content'>
+                <ejs-multiselect id='diacritics' [dataSource]='data' [allowFiltering]='true' [ignoreAccent]='true' placeholder='e.g. gul'>
+                </ejs-multiselect>
+            </div>
+        </div> -->
+
         </div>
        </div>
 
@@ -99,7 +107,3 @@
   </nb-card-body>
   <nb-card-footer>By Wikipedia</nb-card-footer>
 </nb-card>
-
-
-
-

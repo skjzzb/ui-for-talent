@@ -2,16 +2,13 @@ import {  Component,ViewEncapsulation} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { DataService } from '../../../@core/utils/data.service';
 
-
 @Component({
   selector: 'nb-add-vacancy',
   styleUrls: ['./add-vacancy.component.scss'],
   templateUrl: './add-vacancy.component.html',
   encapsulation: ViewEncapsulation.None
 })
-class AddVacancyComponent  {
-
- 
+class AddVacancyComponent {
   selectedItem = '2';
   selectedtechnology:any[];
   source: LocalDataSource = new LocalDataSource();
@@ -50,15 +47,15 @@ class AddVacancyComponent  {
     )
     console.log(this.subtechnology)
   }
+
   onSelectTechnology()
-  { 
-    this.counter=1;
-    var length:0;
-    for(var subtech of this.subtechnology)
-    { 
-      if(this.selectedItem == subtech.technologyId)
-      {
-    
+  {
+     
+    //for(var subtech of this.subtechnology)
+    //{ 
+      //if(this.selectedItem==subtech.technologyId)
+      //{
+      
         //let sb:{};
         //sb["0"]=subtech.technologyId;
         //sb["1"]=subtech.technologyName;
@@ -72,7 +69,5 @@ class AddVacancyComponent  {
   this.retrieveAllSubTechnologyData(); 
     }
   }
-  
- 
-}
-export {AddVacancyComponent}
+
+  export {AddVacancyComponent}
