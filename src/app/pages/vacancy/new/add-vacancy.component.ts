@@ -1,4 +1,4 @@
-import {  Component} from '@angular/core';
+import {  Component,ViewEncapsulation} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { DataService } from '../../../@core/utils/data.service';
 
@@ -7,23 +7,24 @@ import { DataService } from '../../../@core/utils/data.service';
   selector: 'nb-add-vacancy',
   styleUrls: ['./add-vacancy.component.scss'],
   templateUrl: './add-vacancy.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 class AddVacancyComponent  {
 
  
   selectedItem = '2';
+  selectedtechnology:any[];
   source: LocalDataSource = new LocalDataSource();
   technology:[];
   subtechnology:any[];
   selectedsubbtechnology:any[];
-  counter:1
-
+  
   constructor(private service: DataService) {
   }
 
   ngOnInit(): void {
     this.retrieveData();
-    this.retrieveAllSubTechnologyData();
+    //this.retrieveAllSubTechnologyData();
   }
 
   retrieveData()
@@ -40,7 +41,7 @@ class AddVacancyComponent  {
 
   retrieveAllSubTechnologyData()
   {
-    this.service.getSubTechnologyData()
+    this.service.getSubTechnologyData(this.selectedItem)
     .then(
       response => {
           console.log(response);
@@ -63,15 +64,15 @@ class AddVacancyComponent  {
         //sb["1"]=subtech.technologyName;
         //this.selectedsubbtechnology.map(subtech => this.selectedsubbtechnology.push(subtech))
        // this.selectedsubbtechnology.push(subtech);
-        //this.selectedsubbtechnology.push(subtech);
-       console.log(subtech)
-        // this.counter++;
-      }
-    
-    }console.log(this.selectedsubbtechnology)
+        //this.selectedsubbtechnology.push(subtech.subTechnologyName);
+        
+       // this.selectedsubbtechnology.push(Object.assign({}, subtech));
+      // console.log(subtech)
+  //    }
+  this.retrieveAllSubTechnologyData(); 
+    }
   }
   
  
 }
-
 export {AddVacancyComponent}
