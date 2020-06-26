@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { NbTreeGridModule } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { RouterModule } from '@angular/router';
+import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import {
   NbActionsModule,
   NbButtonModule,
@@ -35,6 +38,9 @@ import { VacancyComponent } from './vacancy.component';
     RouterModule,
     NbTreeGridModule,
     ThemeModule,
+    ReactiveFormsModule,
+    MultiSelectModule,
+    FormsModule,
     // VacancyComponent,
     VacancyRoutingModule,
     Ng2SmartTableModule,
