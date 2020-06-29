@@ -24,6 +24,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'New',
         link: '/pages/vacancy/add-vacancy',
       },
+      {
+        title: 'List of Vacancy',
+        link: '/pages/vacancy/list-of-vacancy',
+      },
     ],
   },
   {

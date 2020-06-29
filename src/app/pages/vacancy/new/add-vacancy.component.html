@@ -1,53 +1,36 @@
 <nb-card status="success">
     <nb-card-header>Add Vacancy</nb-card-header>
     <nb-card-body>
-      <form>
+      <form #myForm="ngForm" (ngSubmit)="addVacancy(myForm)" role="form">
         <div class="form-group row">
           <label for="ID" class="label col-sm-3 col-form-label">Vacancy Id</label>
           <div class="col-sm-9">
-            <input type="text" nbInput fullWidth placeholder="123" disabled/>
+            <input type="text" ngModel name="vacancyId" nbInput fullWidth placeholder="0" disabled/>
           </div>
         </div>
         <div class="form-group row">
           <label for="Job Title" class="label col-sm-3 col-form-label">Job Title</label>
           <div class="col-sm-9">
-            <input type="text" nbInput fullWidth id="jobTitle" placeholder="Job Title">
+            <input type="text" ngModel name="jobTitle" nbInput fullWidth id="jobTitle" placeholder="Job Title">
           </div>
         </div>
         <div class="form-group row">
           <label for="Project" class="label col-sm-3 col-form-label">Project</label>
           <div class="col-sm-6">
-            <nb-select placeholder="Select Project" [(selected)]="selectedItem">
-              <nb-option value="">Option empty</nb-option>
-              <nb-option value="0">Option 0</nb-option>
-              <nb-option value="1">Option 1</nb-option>
-              <nb-option value="2">Option 2</nb-option>
-              <nb-option value="3">Option 3</nb-option>
-              <nb-option value="4">Option 4</nb-option>
+            <nb-select placeholder="Select Project" ngModel name="projectName" [(selected)]="selectedProject">
+              <nb-option value="Cv processing">Cv processing</nb-option>
+              <nb-option value="Smgr">Smgr</nb-option>
+              <nb-option value="Address Book">Address Book</nb-option>
             </nb-select>
           </div>
         </div>
         
-        <!-- <div class="form-group row">
-          <label for="inputPassword2" class="label col-sm-3 col-form-label">Password</label>
-          <div class="col-sm-9">
-            <input type="password" nbInput fullWidth id="inputPassword2" placeholder="Password">
-          </div>
-        </div> -->
-        <div class="form-group row">
-          <label class="col-sm-3 label">Radios</label>
-          <div class="col-sm-9">
-            <nb-radio-group>
-              <nb-radio>Option 1</nb-radio>
-              <nb-radio>Option 2</nb-radio>
-              <nb-radio disabled>Disabled Option</nb-radio>
-            </nb-radio-group>
-          </div>
-        </div>
+        
         <div class="form-group row">
           <label class="col-sm-3 label">Position Open Date</label>
           <div class="col-sm-9">
-            <input nbInput
+            <input nbInput ngModel
+                  name="posOpenDate"
                    placeholder="Open Date"
                    [nbDatepicker]="formpicker">
                   <nb-datepicker #formpicker></nb-datepicker>
@@ -56,10 +39,11 @@
         <div class="form-group row">
           <label class="col-sm-3 label">Position Close Date</label>
           <div class="col-sm-9">
-            <input nbInput
+            <input nbInput ngModel
+                  name="posOnBoardDate"
                    placeholder="Close Date"
-                   [nbDatepicker]="formpicker">
-                  <nb-datepicker #formpicker></nb-datepicker>
+                   [nbDatepicker]="formpicker1">
+                  <nb-datepicker #formpicker1></nb-datepicker>
           </div>
         </div>
          <div class="form-group row">
@@ -73,20 +57,19 @@
 
          <div class="form-group row">
           <label for="Job Description" class="label col-sm-3 col-form-label">Job Description</label>
-          <div class="col-sm-6">
-             <nb-select placeholder="Select Technology"  multiple >
+          <div class="col-sm-9">
+             <nb-select ngModel name="jd" placeholder="Select Technology"  multiple >
               <nb-option *ngFor="let d of subtechnology" value="{{d.subTechnologyName}}">{{d.subTechnologyName}}</nb-option>
             </nb-select>  
-
-            <!-- <div id="multiselect-diacritics" class="control-section">
-              <div id='content'>
-                  <ejs-multiselect id='diacritics' [dataSource]='data' [allowFiltering]='true' [ignoreAccent]='true' placeholder='e.g. gul'>
-                  </ejs-multiselect>
-              </div>
-          </div> -->
-
           </div>
          </div>
+
+         <div class="form-group row">
+          <label for="number of Vacancy" class="label col-sm-3 col-form-label">Number of Vacancy</label>
+          <div class="col-sm-6">
+            <input type="number" ngModel name="noOfVacancy" nbInput id="numberOfVacancy" placeholder="0">
+          </div>
+        </div>
 
         <div class="form-group row">
           <div class="offset-sm-3 col-sm-9">

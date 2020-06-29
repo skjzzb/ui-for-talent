@@ -23,5 +23,18 @@ export class DataService {
         return axios.get(`${API_URL}/subtechnology/technology/${id}`,);
       }
 
+      getVacancyData() {
+        //http://localhost:8081/v1
+        return axios.get(`${API_URL}/vacancy`,);
+      }
+
+      DeteteVacancy(id) {
+        return axios.delete(`${API_URL}/vacancy/${id}`,);
+      }
+
+      addVacancy(vacancy) {
+        return axios.post(`${API_URL}/vacancy`,vacancy);
+      }
+
 }
 

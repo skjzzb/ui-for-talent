@@ -1,6 +1,8 @@
 import {  Component,ViewEncapsulation} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { DataService } from '../../../@core/utils/data.service';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'nb-add-vacancy',
@@ -10,13 +12,14 @@ import { DataService } from '../../../@core/utils/data.service';
 })
 class AddVacancyComponent {
   selectedItem = '2';
-  selectedtechnology:any[];
+  selectedProject:string;
+  selectedtechnology:string[];
   source: LocalDataSource = new LocalDataSource();
   technology:[];
   subtechnology:any[];
   selectedsubbtechnology:any[];
   
-  constructor(private service: DataService) {
+  constructor(private service: DataService,private location: Location) {
   }
 
   ngOnInit(): void {
@@ -48,6 +51,12 @@ class AddVacancyComponent {
     console.log(this.subtechnology)
   }
 
+  onSelectSubTechnology(subTechnologyName)
+  {
+      this.selectedtechnology.push(subTechnologyName);
+      console.log(this.selectedtechnology)
+  }
+
   onSelectTechnology()
   {
      
@@ -68,6 +77,22 @@ class AddVacancyComponent {
   //    }
   this.retrieveAllSubTechnologyData(); 
     }
+
+
+    addVacancy(dataFromUI:any)
+  {
+  let vacancy=dataFromUI.form.value;
+  vacancy.jd=vacancy.jd.toString()
+  console.log(vacancy);
+   this.service.addVacancy(vacancy)
+   .then(
+     Response => {
+      window.confirm('Vacancy is added')
+      window.location.reload()
+     }
+   )
+  }
+  
   }
 
   export {AddVacancyComponent}

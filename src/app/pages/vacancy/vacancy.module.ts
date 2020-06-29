@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { NbTreeGridModule } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { RouterModule } from '@angular/router';
-import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
@@ -22,6 +21,7 @@ import { AddVacancyComponent } from './new/add-vacancy.component';
 import { ThemeModule } from '../../@theme/theme.module';
 import { VacancyRoutingModule, routedComponents } from './vacancy-routing.module';
 import { VacancyComponent } from './vacancy.component';
+import { ListOfVacancyComponent } from './list-of-vacancy/list-of-vacancy.component';
 
 @NgModule({
   imports: [
@@ -39,7 +39,6 @@ import { VacancyComponent } from './vacancy.component';
     NbTreeGridModule,
     ThemeModule,
     ReactiveFormsModule,
-    MultiSelectModule,
     FormsModule,
     // VacancyComponent,
     VacancyRoutingModule,
@@ -49,7 +48,8 @@ import { VacancyComponent } from './vacancy.component';
   declarations: [
     // ...routedComponents,
     VacancyComponent,
-    AddVacancyComponent
+    AddVacancyComponent,
+    ListOfVacancyComponent
   ]
 })
 export class VacancyModule { }
