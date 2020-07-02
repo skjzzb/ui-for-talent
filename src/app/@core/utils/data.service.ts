@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import axios from 'axios';
 
 const API_URL = 'https://cv-processing-api.herokuapp.com/v1';
+const API_URL1 = "http://localhost:8081/v1";
 @Injectable({
   providedIn: 'root'
 })
@@ -33,6 +34,8 @@ export class DataService {
       }
 
       addVacancy(vacancy) {
+        console.log(vacancy.shortSummary)
+        console.log(vacancy.noOfVacancy)
         return axios.post(`${API_URL}/vacancy`,vacancy);
       }
 

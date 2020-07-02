@@ -53,6 +53,10 @@ export class ListOfVacancyComponent implements OnInit {
       noOfVacancy:{
         title:'Number of Vacancy',
         type:'number'
+      },
+      shortSummary:{
+        title:'Short Summary',
+        type:'string'
       }
     },
   };

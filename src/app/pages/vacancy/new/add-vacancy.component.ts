@@ -83,7 +83,6 @@ class AddVacancyComponent {
   {
   let vacancy=dataFromUI.form.value;
   vacancy.jd=vacancy.jd.toString()
-  console.log(vacancy);
    this.service.addVacancy(vacancy)
    .then(
      Response => {
