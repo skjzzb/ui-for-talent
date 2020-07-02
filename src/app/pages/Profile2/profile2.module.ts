@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NbTreeGridModule } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { RouterModule } from '@angular/router';
+import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
@@ -17,11 +18,10 @@ import {
   NbUserModule,
 } from '@nebular/theme';
 
-import { AddVacancyComponent } from './new/add-vacancy.component';
+import { EditProfileComponent } from './Edit/edit-profile.component';
 import { ThemeModule } from '../../@theme/theme.module';
-import { VacancyRoutingModule, routedComponents } from './vacancy-routing.module';
-import { VacancyComponent } from './vacancy.component';
-import { ListOfVacancyComponent } from './list-of-vacancy/list-of-vacancy.component';
+import { Profile2RoutingModule, routedComponents } from './profile2-routing.module';
+import { Profile2Component } from './profile2.component';
 
 @NgModule({
   imports: [
@@ -39,17 +39,15 @@ import { ListOfVacancyComponent } from './list-of-vacancy/list-of-vacancy.compon
     NbTreeGridModule,
     ThemeModule,
     ReactiveFormsModule,
+    MultiSelectModule,
     FormsModule,
-    // VacancyComponent,
-    VacancyRoutingModule,
+    Profile2RoutingModule,
     Ng2SmartTableModule,
-    // AddVacancyComponent
+
   ],
   declarations: [
-    // ...routedComponents,
-    VacancyComponent,
-    AddVacancyComponent,
-    ListOfVacancyComponent
+    Profile2Component,
+    EditProfileComponent
   ]
 })
-export class VacancyModule { }
+export class Profile2Module { }

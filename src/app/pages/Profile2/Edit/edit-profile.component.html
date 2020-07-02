@@ -1,0 +1,78 @@
+
+  <div class="col-md-12">
+    <nb-card status="success">
+      <nb-card-header>Edit Profile</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-md-8">
+            <form>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="firstName" class="label">First Name</label>
+                  <input type="text" nbInput fullWidth id="firstName" placeholder="First Name">
+                </div>
+                <div class="col-md-4">
+                  <label for="lastName" class="label">Last Name</label>
+                  <input type="text" nbInput fullWidth id="lastName" placeholder="Last Name">
+                </div>
+                <div class="col-md-4">
+                  <label for="userName" class="label">User Name</label>
+                  <input type="text" nbInput fullWidth id="userName" placeholder="User Name">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="contactNo" class="label">Contact No</label>
+                  <input type="text" nbInput fullWidth id="contactNo" placeholder="Contact No">
+                </div>
+                <div class="col-md-6">
+                  <label for="email" class="label">Eamil</label>
+                  <input type="email" nbInput fullWidth id="email" placeholder="Email">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="address" class="label">Address</label>
+                  <textarea id="address" nbInput fullWidth placeholder="Address"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="city" class="label">City</label>
+                  <input type="text" nbInput fullWidth id="city" placeholder="City">
+                </div>
+                <div class="col-md-4">
+                  <label for="country" class="label">Country</label>
+                  <input type="text" nbInput fullWidth id="country" placeholder="Country">
+                </div>
+                <div class="col-md-4">
+                  <label for="postcode" class="label">Postcode</label>
+                  <input type="text" nbInput fullWidth id="postcode" placeholder="Postcode">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="aboutMe" class="label">About Me</label>
+                  <textarea id="aboutMe" nbInput fullWidth placeholder="About Me"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="row action-btn">
+                  <button type="submit" nbButton status="danger">Update</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-4">
+            <label class="label" for="fileInput">
+              <img style="width: 300px;" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
+            </label>
+            <br/>
+            <h6>CEO / CO-FOUNDER</h6> 
+            <p>Don't be scared of the truth because we need to restart the human foundation in truth And I love you like
+              Kanye loves Kanye I love Rick Owens’ bed design but the back is...</p>
+          </div>
+        </div>   
+      </nb-card-body>
+    </nb-card>
+  </div>

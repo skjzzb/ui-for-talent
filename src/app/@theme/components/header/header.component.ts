@@ -15,6 +15,7 @@ import { Subject } from "rxjs";
 
 import { MatDialog } from "@angular/material/dialog";
 import { ProfileComponent } from "../../../profile/profile.component";
+import { EditProfileComponent } from '../../../pages/Profile2/Edit/edit-profile.component';
 
 @Component({
   selector: "ngx-header",
@@ -102,7 +103,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       {
         if(title === 'Profile')
           // this.window.alert(`wow !! ${title} was clicked!`);
-          this.dialog.open(ProfileComponent);
+          this.dialog.open(EditProfileComponent);
         else
           this.window.alert(`yehhh !!${title} was clicked!`)
           

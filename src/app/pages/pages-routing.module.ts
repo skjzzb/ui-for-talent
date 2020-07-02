@@ -24,6 +24,11 @@ const routes: Routes = [{
         .then(m => m.VacancyModule),
     },
     {
+      path: 'profile2',
+      loadChildren: () => import('./Profile2/profile2.module')
+        .then(m => m.Profile2Module),
+    },
+    {
       path: 'layout',
       loadChildren: () => import('./layout/layout.module')
         .then(m => m.LayoutModule),
