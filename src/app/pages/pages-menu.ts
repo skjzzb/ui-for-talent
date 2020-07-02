@@ -21,7 +21,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'bookmark',
     children: [
       {
-        title: 'New',
+        title: 'Add Vacancy',
         link: '/pages/vacancy/add-vacancy',
       },
       {

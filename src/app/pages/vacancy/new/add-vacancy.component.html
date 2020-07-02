@@ -4,7 +4,7 @@
     <nb-card-body>
       <div class="row">
         <div class="col-md-12">
-          <form>
+          <form  #myForm="ngForm" (ngSubmit)="addVacancy(myForm)" role="form" >
             <div class="row">
               <div class="col-md-4">
                 <label for="ID" class="label">Vacancy Id</label>
@@ -64,7 +64,7 @@
             <div class="row">
               <div class="col-md-6">
                 <label for="No of Job Vacancy" class="label">No of Job Vacancy</label>
-                <input type="number"  fullWidth  name="noOfVacancy" nbInput id="numberOfVacancy" placeholder="0"> 
+                <input type="number" ngModel fullWidth  name="noOfVacancy" nbInput id="numberOfVacancy" placeholder="0"> 
               </div>
             </div>
             <br>
