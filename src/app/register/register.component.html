@@ -1,6 +1,8 @@
-<nb-card status="success">
+<h1 id="title" class="title">Sign Up</h1>
+<p class="sub-title">Hello! Sign Up here with your email.</p>
+<!-- <nb-card status="success">
   <nb-card-header>Signup Here</nb-card-header>
-  <nb-card-body>
+  <nb-card-body> -->
     <div class="col-md-12">
         <img
           id="profile-img"
@@ -76,7 +78,11 @@
             </div>
           </div>
           <div class="form-group">
-            <button nbButton status="success">Sign Up</button>
+            <button nbButton fullWidth
+            status="primary"
+            size="large"
+            [class.btn-pulse]="submitted"
+          >Sign Up</button>
           </div>
     
           <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
@@ -88,7 +94,7 @@
           Your registration is successful!
         </div>
     </div>
-</nb-card-body>
-</nb-card>
+<!-- </nb-card-body>
+</nb-card> -->
 
   
