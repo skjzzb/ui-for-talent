@@ -1,7 +1,9 @@
-<nb-card status="success">
+<h1 id="title" class="title">Login</h1>
+<p class="sub-title">Hello! Log in with your Username.</p>
+<!-- <nb-card status="success">
   <nb-card-header>Login Here</nb-card-header>
-  <nb-card-body>
-    <div class="col-md-12">
+  <nb-card-body> -->
+    <div class="form-control-group">
       <div>
         <img
           id="profile-img"
@@ -15,8 +17,9 @@
           #f="ngForm"
           novalidate
         >
-          <div class="form-group">
+          <div class="form-control-group">
             <label for="username" class="label">Username</label>
+            
             <input
               type="text"
               class="form-control"
@@ -25,6 +28,8 @@
               required
               #username="ngModel"
               nbInput  fullWidth
+              placeholder="Username"
+             fieldSize="large"
             />
             <div
               class="alert alert-danger"
@@ -34,7 +39,7 @@
               Username is required!
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-control-group">
             <label for="password"   class="label">Password</label>
             <input
               type="password"
@@ -45,6 +50,8 @@
               minlength="6"
               #password="ngModel"
               nbInput  fullWidth
+              placeholder="Password"
+             fieldSize="large"
             />
             <div
               class="alert alert-danger"
@@ -57,20 +64,26 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-md-6">
-                <button  nbButton status="success">
+          
+          
+            
+                <button  nbButton
+                fullWidth
+                status="primary"
+                size="large"
+              
+                [class.btn-pulse]="submitted">
                   Login
                 </button>
-              </div>
-              <div>
-                <div class="col-md-6">
-                  <a href="/auth/register" nbButton status="primary" routerLink="/auth/register">Sign Up</a>
-                </div>
+           
+              
+            
+            <div class="row" style="padding-top: 25px;">
+              <div class="col-md-6">
+                <a href="/auth/register"  status="primary" routerLink="/auth/register">Sign Up</a>
               </div>
             </div>
-          </div>
+          
           <div class="form-group">
             <div
               class="alert alert-danger"
@@ -89,7 +102,7 @@
         </div>
       </div>
     </div>
-  </nb-card-body>
-</nb-card>
+  <!-- </nb-card-body>
+</nb-card> -->
 
 
