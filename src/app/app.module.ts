@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { VacancyModule } from './pages/vacancy/vacancy.module'
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './services/auth-guard.service';
+
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -18,6 +20,20 @@ import {
   NbWindowModule,
 } from "@nebular/theme";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+
+import {
+  NbActionsModule,
+  NbButtonModule,
+  NbCardModule,
+  NbCheckboxModule,
+   NbIconModule,
+  NbInputModule,
+  NbRadioModule,
+  NbSelectModule,
+  NbUserModule,
+} from '@nebular/theme';
+
 // material
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
@@ -28,11 +44,12 @@ import { MatRadioModule } from "@angular/material/radio";
 import { ProfileComponent } from "./profile/profile.component";
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from "@angular/material/icon";
-import {MatFormFieldModule} from '@angular/material/form-field';
-
-
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './logout/logout.component';
+import { MatFormFieldModule } from "@angular/material/form-field";
 @NgModule({
-  declarations: [AppComponent, ProfileComponent],
+  declarations: [AppComponent, ProfileComponent, LoginComponent, RegisterComponent, LogoutComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -50,7 +67,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatRadioModule,
     MatIconModule,
     MatFormFieldModule,
-
     VacancyModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
@@ -61,7 +77,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     NbChatModule.forRoot({
       messageGoogleMapKey: "AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY",
     }),
-    
+    NbActionsModule,
+    NbButtonModule,
+    NbCardModule,
+    NbCheckboxModule,
+    NbIconModule,
+    NbInputModule,
+    NbRadioModule,
+    NbSelectModule,
+    NbUserModule,
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
     // RouterModule.forRoot([
@@ -70,7 +94,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   ],
   providers: [
     // ...
-    AuthGuard
+    AuthGuard,authInterceptorProviders
   ],
   bootstrap: [AppComponent],
 })
