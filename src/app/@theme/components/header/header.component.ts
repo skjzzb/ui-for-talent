@@ -1,3 +1,5 @@
+import { LogoutComponent } from './../../../logout/logout.component';
+import { TokenStorageService } from './../../../_services/token-storage.service';
 import { Component, OnDestroy, OnInit, Inject } from "@angular/core";
 import { NB_WINDOW,  } from '@nebular/theme';
 import { filter } from 'rxjs/operators';
@@ -12,9 +14,10 @@ import { UserData } from "../../../@core/data/users";
 import { LayoutService } from "../../../@core/utils";
 import { map, takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
-
 import { MatDialog } from "@angular/material/dialog";
 import { ProfileComponent } from "../../../profile/profile.component";
+import { EditProfileComponent } from '../../../pages/Profile2/Edit/edit-profile.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "ngx-header",
@@ -55,6 +58,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userMenu = [{ title: "Profile" }, { title: "Log out" }];
 
   constructor(
+    private router: Router,
+    private tokenStorageService: TokenStorageService,
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
     private themeService: NbThemeService,
@@ -101,11 +106,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((title ) => 
       {
         if(title === 'Profile')
-          // this.window.alert(`wow !! ${title} was clicked!`);
-          this.dialog.open(ProfileComponent);
-        else
-          this.window.alert(`yehhh !!${title} was clicked!`)
-          
+          this.dialog.open(EditProfileComponent);
+        else{
+             this.logout();
+        }   
       });
   
   }
@@ -133,5 +137,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onClick() {
     this.dialog.open(ProfileComponent);
+  }
+  logout() {
+    this.tokenStorageService.signOut();
+    window.sessionStorage.clear();
+    window.location.reload();
+
   }
 }
