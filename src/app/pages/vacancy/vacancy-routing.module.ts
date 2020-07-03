@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AddVacancyComponent } from './new/add-vacancy.component';
 import { VacancyComponent } from './vacancy.component';
+import { ListOfVacancyComponent } from './list-of-vacancy/list-of-vacancy.component';
 // import { SmartTableComponent } from './smart-table/smart-table.component';
 // import { TreeGridComponent } from './tree-grid/tree-grid.component';
 
@@ -14,10 +15,10 @@ const routes: Routes = [{
       path: 'add-vacancy',
       component: AddVacancyComponent,
     },
-    // {
-    //   path: 'tree-grid',
-    //   component: TreeGridComponent,
-    // },
+     {
+       path: 'list-of-vacancy',
+       component: ListOfVacancyComponent,
+     },
   ],
 }];
 
@@ -28,5 +29,6 @@ const routes: Routes = [{
 export class VacancyRoutingModule { }
 
 export const routedComponents = [
-    AddVacancyComponent
+    AddVacancyComponent,
+    ListOfVacancyComponent
 ];
