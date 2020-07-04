@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-md-4">
                   <label for="userName" class="label">User Name</label>
-                  <input type="text" nbInput fullWidth id="userName" placeholder="User Name">
+                  <input type="text" nbInput fullWidth id="userName" name="userdetails.username" [(ngModel)]="userdetails.username" placeholder="User Name">
                 </div>
               </div>
               <div class="row">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-6">
                   <label for="email" class="label">Eamil</label>
-                  <input type="email" nbInput fullWidth id="email" placeholder="Email">
+                  <input type="email" nbInput fullWidth id="email" name="userdetails.email"  [(ngModel)]="userdetails.email" placeholder="Email" readonly>
                 </div>
               </div>
               <div class="row">
@@ -38,12 +38,12 @@
               </div>
               <div class="row">
                 <div class="col-md-4">
-                  <label for="city" class="label">City</label>
-                  <input type="text" nbInput fullWidth id="city" placeholder="City">
-                </div>
-                <div class="col-md-4">
                   <label for="country" class="label">Country</label>
                   <input type="text" nbInput fullWidth id="country" placeholder="Country">
+                </div>
+                <div class="col-md-4">
+                  <label for="city" class="label">City</label>
+                  <input type="text" nbInput fullWidth id="city" placeholder="City">
                 </div>
                 <div class="col-md-4">
                   <label for="postcode" class="label">Postcode</label>

@@ -74,10 +74,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
 
-    this.userService
-      .getUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => (this.user = users.nick));
+    this.user =  JSON.parse(sessionStorage.getItem('user_info'))
+    // this.userService
+    //   .getUsers()
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe((users: any) => (this.user = users.nick));
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService
@@ -135,9 +136,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  onClick() {
-    this.dialog.open(ProfileComponent);
-  }
   logout() {
     this.tokenStorageService.signOut();
     window.sessionStorage.clear();
