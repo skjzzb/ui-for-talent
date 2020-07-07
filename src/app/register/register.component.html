@@ -17,20 +17,19 @@
           novalidate
         >
           <div class="form-group">
-            <label for="username" class="label">Username</label>
+            <label for="name" class="label">Name</label>
             <input
               type="text"
               class="form-control"
-              name="username"
-              [(ngModel)]="form.username"
+              name="name"
+              [(ngModel)]="form.name"
               required
-              minlength="3"
-              maxlength="20"
+             
               #username="ngModel"
               nbInput  fullWidth
             />
             <div class="alert-danger" *ngIf="f.submitted && username.invalid">
-              <div *ngIf="username.errors.required">Username is required</div>
+              <div *ngIf="username.errors.required">Name is required</div>
               <div *ngIf="username.errors.minlength">
                 Username must be at least 3 characters
               </div>
@@ -45,7 +44,7 @@
               type="email"
               class="form-control"
               name="email"
-              [(ngModel)]="form.email"
+              [(ngModel)]="form.username"
               required
               email
               #email="ngModel"

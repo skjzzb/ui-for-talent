@@ -1,7 +1,10 @@
-import {  Component,ViewEncapsulation} from '@angular/core';
+import {  Component,ViewEncapsulation, OnInit, OnDestroy} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { DataService } from '../../../@core/utils/data.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { from } from 'rxjs';
+import { resolve } from 'dns';
 
 
 @Component({
@@ -10,7 +13,7 @@ import { Location } from '@angular/common';
   templateUrl: './add-vacancy.component.html',
   encapsulation: ViewEncapsulation.None
 })
-class AddVacancyComponent {
+class AddVacancyComponent implements OnInit,OnDestroy{
   selectedItem = '2';
   selectedProject:string;
   selectedtechnology:string[];
@@ -19,12 +22,21 @@ class AddVacancyComponent {
   subtechnology:any[];
   selectedsubbtechnology:any[];
   
-  constructor(private service: DataService,private location: Location) {
+  constructor(private router:Router ,private service: DataService,private location: Location) {
   }
 
   ngOnInit(): void {
     this.retrieveData();
     //this.retrieveAllSubTechnologyData();
+  }
+  ngOnDestroy(): void{
+    this.selectedItem='';
+    this.selectedProject='';
+    this.selectedtechnology=[];
+    //this.source=null;
+    this.technology=[];
+    this.subtechnology=[];
+    this.selectedsubbtechnology=[];
   }
 
   retrieveData()
@@ -78,20 +90,31 @@ class AddVacancyComponent {
   this.retrieveAllSubTechnologyData(); 
     }
 
-
-    addVacancy(dataFromUI:any)
+  addVacancy(dataFromUI:any)
   {
   let vacancy=dataFromUI.form.value;
   console.log()
   vacancy.jd=vacancy.jd.toString()
+  //if (window.confirm('Are you sure you want to add?')) {
    this.service.addVacancy(vacancy)
    .then(
      Response => {
-      window.confirm('Vacancy is added')
-      window.location.reload()
-     }
+      if (window.confirm("vacancy is added. do you want to add more record ?"))
+      {
+        //this.router.navigate([this]);
+        //this.ngOnInit()
+      }else
+      {
+        this.router.navigate(['/pages/vacancy/list-of-vacancy']);
+      }
+      //this.ngOnDestroy()
+      //this.ngOnInit()
+      //window.location.reload()
+    }
    )
+
   }
+ 
   
   }
 
