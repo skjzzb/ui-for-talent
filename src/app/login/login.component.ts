@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         this.roles = this.tokenStorage.getUser().roles;
         if (this.isLoggedIn) {
           this.router.navigate(['pages']);
-          //console.log('Not authenticated')
+          sessionStorage.setItem('user_info', JSON.stringify(data))
         }
        // this.reloadPage();
       },

@@ -7,17 +7,9 @@
           <div class="col-md-8">
             <form>
               <div class="row">
-                <div class="col-md-4">
-                  <label for="firstName" class="label">First Name</label>
-                  <input type="text" nbInput fullWidth id="firstName" placeholder="First Name">
-                </div>
-                <div class="col-md-4">
-                  <label for="lastName" class="label">Last Name</label>
-                  <input type="text" nbInput fullWidth id="lastName" placeholder="Last Name">
-                </div>
-                <div class="col-md-4">
-                  <label for="userName" class="label">User Name</label>
-                  <input type="text" nbInput fullWidth id="userName" placeholder="User Name">
+                <div class="col-md-12">
+                  <label for="name" class="label">Name</label>
+                  <input type="text" nbInput fullWidth id="name" name="userdetails.name" [(ngModel)]="userdetails.name" placeholder="Name">
                 </div>
               </div>
               <div class="row">
@@ -27,7 +19,7 @@
                 </div>
                 <div class="col-md-6">
                   <label for="email" class="label">Eamil</label>
-                  <input type="email" nbInput fullWidth id="email" placeholder="Email">
+                  <input type="email" nbInput fullWidth id="email" name="userdetails.username"  [(ngModel)]="userdetails.username" placeholder="Email" readonly>
                 </div>
               </div>
               <div class="row">
@@ -37,15 +29,21 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <label for="city" class="label">City</label>
                   <input type="text" nbInput fullWidth id="city" placeholder="City">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
+                  <label for="city" class="label">State</label>
+                  <input type="text" nbInput fullWidth id="city" placeholder="City">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
                   <label for="country" class="label">Country</label>
                   <input type="text" nbInput fullWidth id="country" placeholder="Country">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <label for="postcode" class="label">Postcode</label>
                   <input type="text" nbInput fullWidth id="postcode" placeholder="Postcode">
                 </div>

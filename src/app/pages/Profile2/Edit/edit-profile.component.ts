@@ -11,11 +11,15 @@ import { LocalDataSource } from 'ng2-smart-table';
 class EditProfileComponent {
   
   url : any
+  userdetails : any
 
   constructor() {   }
 
 
-  ngOnInit(): void {   }
+  ngOnInit(): void {
+    this.userdetails =  JSON.parse(sessionStorage.getItem('user_info'))
+    console.log(this.userdetails)
+  }
  
   }
 
