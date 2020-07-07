@@ -6,6 +6,7 @@ import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { VacancyModule } from './pages/vacancy/vacancy.module'
+import { CandidateModule } from './pages/candidate/candidate.module'
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './services/auth-guard.service';
 
@@ -68,6 +69,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatIconModule,
     MatFormFieldModule,
     VacancyModule,
+    CandidateModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),

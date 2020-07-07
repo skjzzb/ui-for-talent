@@ -39,4 +39,9 @@ export class DataService {
         return axios.post(`${API_URL}/vacancy`,vacancy);
       }
 
+      updateVacancy(data,vacancyId)
+      {
+        return axios.put(`${API_URL}/vacancy/${vacancyId}`,data)
+      }
+
 }

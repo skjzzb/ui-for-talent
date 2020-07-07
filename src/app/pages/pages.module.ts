@@ -7,8 +7,10 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { VacancyModule } from './vacancy/vacancy.module'
+import { CandidateModule } from './candidate/candidate.module'
 import { Profile2Module } from './Profile2/profile2.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
+import { from } from 'rxjs';
 
 
 @NgModule({
@@ -20,6 +22,7 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
     ECommerceModule,
     MiscellaneousModule,
     VacancyModule,
+    CandidateModule,
     Profile2Module
   ],
   declarations: [
