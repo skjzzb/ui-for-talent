@@ -18,7 +18,7 @@
           novalidate
         >
           <div class="form-control-group">
-            <label for="username" class="label">Username</label>
+            <label for="username" class="label">Email</label>
             
             <input
               type="text"
@@ -27,8 +27,11 @@
               [(ngModel)]="form.username"
               required
               #username="ngModel"
+              required
+              email
+              
               nbInput  fullWidth
-              placeholder="Username"
+              placeholder="Email"
              fieldSize="large"
             />
             <div
@@ -36,7 +39,7 @@
               role="alert"
               *ngIf="f.submitted && username.invalid"
             >
-              Username is required!
+              Email is required!
             </div>
           </div>
           <div class="form-control-group">
