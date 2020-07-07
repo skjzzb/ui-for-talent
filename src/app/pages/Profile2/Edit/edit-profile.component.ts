@@ -18,6 +18,7 @@ class EditProfileComponent {
 
   ngOnInit(): void {
     this.userdetails =  JSON.parse(sessionStorage.getItem('user_info'))
+    console.log(this.userdetails)
   }
  
   }
