@@ -31,6 +31,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: 'Candidate',
+    icon: 'person-outline',
+    children: [
+      {
+        title: 'List of Candidate',
+        link: '/pages/candidate/list-of-candidate',
+      },
+    ],
+  },
+  {
     title: 'Layout',
     icon: 'layout-outline',
     children: [

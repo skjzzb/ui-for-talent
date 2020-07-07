@@ -11,15 +11,13 @@ import { type } from 'os';
 export class ListOfVacancyComponent implements OnInit {
 
   settings = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
+    //mode:"external",
+    actions:{add:false},
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmSave:true,
     },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
@@ -59,6 +57,10 @@ export class ListOfVacancyComponent implements OnInit {
         type:'string'
       }
     },
+    pager:
+    {
+    perPage: 5
+    }
   };
 
   source: LocalDataSource = new LocalDataSource();
@@ -83,7 +85,7 @@ export class ListOfVacancyComponent implements OnInit {
 
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
-      console.log(event.data.vacancyId)
+     // console.log(event.data.vacancyId)
       this.service.DeteteVacancy(event.data.vacancyId)
       .then(
         response => {
@@ -95,4 +97,29 @@ export class ListOfVacancyComponent implements OnInit {
       event.confirm.reject();
     }
   }
+
+ 
+  updateRecord(event) {
+    //this.ngOnInit();
+     var data = {"vacancyId" : event.newData.vacancyId,
+                 "jobTitle" : event.newData.jobTitle,
+                 "projectName" : event.newData.projectName,
+                 "posOpenDate" : event.newData.posOpenDate,
+                  "posOnBoardDate" : event.newData.posOnBoardDate,
+                  "jd" : event.newData.jd,
+                  "noOfVacancy" : event.newData.noOfVacancy,
+                  "shortSummary" : event.newData.shortSummary,
+                };
+                console.log(data)
+
+         this.service.updateVacancy(data,event.newData.vacancyId)
+         .then(
+           response => {
+              console.log(response);
+              event.confirm.resolve();
+           }
+         )
+        
+  }
+
 }
