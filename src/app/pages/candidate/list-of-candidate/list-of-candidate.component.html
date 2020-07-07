@@ -1,0 +1,12 @@
+<nb-card-header>
+    <span>Candidate List</span>
+<br><br>
+    <nb-select [(selected)]="type" placeholder="select job title" >
+      <nb-option *ngFor="let v of vacancy" [value]="v.vacancyId">{{ v.jobTitle }}</nb-option>
+    </nb-select>
+  </nb-card-header>
+  <!-- <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card> -->
