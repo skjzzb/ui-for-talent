@@ -44,4 +44,18 @@ export class DataService {
         return axios.put(`${API_URL}/vacancy/${vacancyId}`,data)
       }
 
+      getCandidateByVacancyId(id)
+      {
+        return axios.get(`${API_URL}/candidiate/vacancy/${id}`);
+      }
+
+      updateCandidate(data)
+      {
+        return axios.post(`${API_URL}/candidiate/update`,data)
+      }
+
+      DeteteCandidate(id) {
+        return axios.delete(`${API_URL}/candidiate/${id}`,);
+      }
+
 }
