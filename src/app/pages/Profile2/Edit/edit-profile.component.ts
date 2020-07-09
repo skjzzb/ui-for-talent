@@ -21,7 +21,7 @@ class EditProfileComponent {
 
   ngOnInit(): void {
     this.logindetails =  JSON.parse(sessionStorage.getItem('user_info'))
-    console.log(this.logindetails)
+  //  console.log(this.logindetails)
    
    
     let obResult = this.dataService.getUserDetails(this.logindetails.id)
