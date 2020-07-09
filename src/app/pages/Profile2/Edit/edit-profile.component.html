@@ -1,7 +1,8 @@
 
   <div class="col-md-12">
-    <nb-card status="success">
+    <nb-card  status="success">
       <nb-card-header>Edit Profile</nb-card-header>
+      <div class="smooth-scroll list-unstyled" > </div>
       <nb-card-body>
         <div class="row">
           <div class="col-md-8">
@@ -49,21 +50,24 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-9">
                   <label for="aboutMe" class="label">About Me</label>
                   <textarea id="aboutMe" nbInput fullWidth id="userdetails.profile.aboutMe"  name="userdetails.profile.aboutMe"  [(ngModel)]="userdetails.profile.aboutMe" placeholder="About Me"></textarea>
                 </div>
-              </div>
-              <div class="col-md-12">
-                <div class="row action-btn">
-                  <button type="submit" nbButton status="danger">Update</button>
+                <br><br> <br><br> <br><br> 
+                <div class="col-md-3" >
+                  <br> <br> 
+                  <div class="row action-btn">
+                    <button type="submit" nbButton status="danger">Update</button>
+                  </div>
                 </div>
               </div>
             </form>
           </div>
           <div class="col-md-4">
+            
             <label class="label" for="fileInput">
-              <img style="width: 300px;" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
+              <img style="width: 325px;" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
             </label>
             <br/>
             <h6>{{logindetails.name}}</h6> 

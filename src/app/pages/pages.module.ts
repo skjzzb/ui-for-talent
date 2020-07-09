@@ -12,7 +12,6 @@ import { Profile2Module } from './Profile2/profile2.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { from } from 'rxjs';
 
-
 @NgModule({
   imports: [
     PagesRoutingModule,

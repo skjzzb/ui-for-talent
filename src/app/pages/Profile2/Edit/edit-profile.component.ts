@@ -14,28 +14,63 @@ class EditProfileComponent {
   
   url : any
   logindetails : any
-  userdetails : any
-
-  constructor( private dataService : DataService) {   }
+  userdetails = {
+    "id": 0,
+    "username": "",
+    "name": "",
+    "password": "",
+    "roles": [
+        {
+            "id": 0,
+            "name": ""
+        }
+    ],
+    "profile": {
+        "profId": 0,
+        "address": "",
+        "city": "",
+        "state": "",
+        "country": "",
+        "pinCode": "",
+        "aboutMe": "",
+        "contactNo": "",
+        "profilePicture": null
+    }
+}
+  
+info : any
+  
+  constructor( private dataService : DataService) { 
+    
+    }
 
 
   ngOnInit(): void {
+   
     this.logindetails =  JSON.parse(sessionStorage.getItem('user_info'))
-  //  console.log(this.logindetails)
+   // console.log(this.logindetails)
    
    
     let obResult = this.dataService.getUserDetails(this.logindetails.id)
-    obResult.subscribe(data =>{
-     // console.log(data)
-      this.userdetails = data;
-      console.log(this.userdetails)
+    obResult.subscribe(data   =>{
+      this.info =  data ;
+      if( this.info.profile != null)
+      {
+        this.userdetails.id = this.info.id
+        this.userdetails.username = this.info.username
+        this.userdetails.name = this.info.name
+        this.userdetails.roles = this.info.roles
+        this.userdetails.password = this.info.password
+        this.userdetails.profile = this.info.profile
+      }
     })
     
   }
- 
+
   onUpdate(){
     let obResult = this.dataService.addOrEditProfile(this.userdetails.profile,this.logindetails.id)
     obResult.subscribe(data=>{
+      console.log(data)
       window.location.reload()
     })
 
