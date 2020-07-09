@@ -20,46 +20,10 @@ export class DataService {
     this.logindetails =  JSON.parse(sessionStorage.getItem('user_info'))
     this.token = this.logindetails.accessToken
   }
-  getData() {
-    return axios.get(`${API_URL}/doc`,
-    );
-  }
+ 
+  
 
-    getTechnologyData() {
-      return axios.get(`${API_URL}/technology`,);
-    }
-      getSubTechnologyData(id)
-      {
-        return axios.get(`${API_URL}/subtechnology/technology/${id}`,);
-      }
-
-      getVacancyData() {
-        return axios.get(`${API_URL}/vacancy`,);
-      }
-
-      DeteteVacancy(id) {
-        return axios.delete(`${API_URL}/vacancy/${id}`,);
-      }
-
-      addVacancy(vacancy) {
-        console.log(vacancy.shortSummary)
-        console.log(vacancy.noOfVacancy)
-        return axios.post(`${API_URL}/vacancy`,vacancy);
-      }
-
-      updateVacancy(data,vacancyId)
-      {
-        return axios.put(`${API_URL}/vacancy/${vacancyId}`,data)
-      }
-
-      getUserDetails(userId)
-      {
-        return this.http.get(`http://authentication-api-cv.herokuapp.com/api/user/${userId}`)
-      }
-      addOrEditProfile(profObj, userId)
-      {
-        return this.http.put(`http://authentication-api-cv.herokuapp.com/api/profile/${userId}`, profObj)
-      }
-
+      
+      
  
 }
