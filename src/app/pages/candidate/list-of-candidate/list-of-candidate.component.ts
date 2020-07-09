@@ -51,6 +51,11 @@ export class ListOfCandidateComponent implements OnInit {
         type: 'string',
         filter: false
       },
+      yearOfExperience:{
+        title:'Year Of Experience',
+        type: 'number',
+        filter: false
+      },
       reqMatchingPercent:{
         title:'Matching Percent',
         type: 'html',
@@ -66,7 +71,9 @@ export class ListOfCandidateComponent implements OnInit {
 
           return `<div class="`+this.color+`">${value}%</div>`
         },
-        filter: false
+        filter: false,
+        sort:true,
+        sortDirection:'desc'
       },
     },
     pager:

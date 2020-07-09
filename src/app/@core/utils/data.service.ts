@@ -26,7 +26,7 @@ export class DataService {
 
       getVacancyData() {
         //http://localhost:8081/v1
-        return axios.get(`${API_URL}/vacancy`,);
+        return axios.get(`${API_URL}/vacancy?sort=avalible`,);
       }
 
       DeteteVacancy(id) {

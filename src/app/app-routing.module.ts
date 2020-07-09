@@ -19,7 +19,7 @@ export const routes: Routes = [
   // { path: 'register', component: RegisterComponent },
   {
     path: 'pages',
-   canActivate: [AuthGuard],
+   //canActivate: [AuthGuard],
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
   },
