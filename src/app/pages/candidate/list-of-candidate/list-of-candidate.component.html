@@ -1,12 +1,17 @@
+<nb-card status="success">
 <nb-card-header>
     <span>Candidate List</span>
-<br><br>
+</nb-card-header>
+  </nb-card>
+
     <nb-select [(selected)]="type" placeholder="select job title" >
-      <nb-option *ngFor="let v of vacancy" [value]="v.vacancyId">{{ v.jobTitle }}</nb-option>
+      <nb-option *ngFor="let v of vacancy" (click)="onSelectVacancy()" [value]="v.vacancyId">{{ v.jobTitle }}</nb-option>
     </nb-select>
-  </nb-card-header>
-  <!-- <nb-card-body>
-    <ng2-smart-table [settings]="settings" [source]="source">
+  <br>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (editConfirm)="onUpdateRecord($event)" (deleteConfirm)="onDeleteConfirm($event)">
     </ng2-smart-table>
   </nb-card-body>
-</nb-card> -->
+
+<!-- <div style="color: crimson;">hii</div> -->
