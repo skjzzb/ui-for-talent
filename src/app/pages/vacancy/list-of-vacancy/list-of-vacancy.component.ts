@@ -62,6 +62,10 @@ export class ListOfVacancyComponent implements OnInit {
         type:'number',
         width:'10%'
       },
+      experienceRequired:{
+        title:'Experience Required',
+        type:'number'
+      },
       shortSummary:{
         title:'Summary',
         type:'html',
@@ -73,9 +77,8 @@ export class ListOfVacancyComponent implements OnInit {
          //return `<div><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-double-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/><path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/></svg> </div>`
       },
         filter:false,
-        width:'40%'
-        
-      }
+        width:'40%' 
+      },
     },
     pager:
     {
@@ -134,6 +137,7 @@ export class ListOfVacancyComponent implements OnInit {
                   "jd" : event.newData.jd,
                   "noOfVacancy" : event.newData.noOfVacancy,
                   "shortSummary" : event.newData.shortSummary,
+                  "experienceRequired":event.newData.experienceRequired,
                 };
                 console.log(data)
 
