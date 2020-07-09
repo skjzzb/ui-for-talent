@@ -18,6 +18,7 @@ import {
   NbUserModule,
 } from '@nebular/theme';
 
+
 import { EditProfileComponent } from './Edit/edit-profile.component';
 import { ThemeModule } from '../../@theme/theme.module';
 import { Profile2RoutingModule, routedComponents } from './profile2-routing.module';
