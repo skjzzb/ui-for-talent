@@ -1,3 +1,5 @@
+import { NbAuthService, NbAuthOAuth2Token ,NbTokenLocalStorage, NbTokenStorage,NbAuthTokenParceler} from '@nebular/auth';
+import { HttpClient } from '@angular/common/http';
 import { LogoutComponent } from './../../../logout/logout.component';
 import { TokenStorageService } from './../../../_services/token-storage.service';
 import { Component, OnDestroy, OnInit, Inject } from "@angular/core";
@@ -19,6 +21,7 @@ import { ProfileComponent } from "../../../profile/profile.component";
 import { EditProfileComponent } from '../../../pages/Profile2/Edit/edit-profile.component';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: "ngx-header",
   styleUrls: ["./header.component.scss"],
@@ -28,7 +31,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
+  acesstoken: any;
 
+  token: NbAuthOAuth2Token;
   items = [
     { title: 'Profile' },
     { title: 'Logout' },
@@ -56,8 +61,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentTheme = "default";
 
   userMenu = [{ title: "Profile" }, { title: "Log out" }];
-
+  googleurl ="https://www.googleapis.com/oauth2/v3/userinfo?access_token=";
+  key ='auth_app_token';
   constructor(
+    private parceler: NbAuthTokenParceler,
+    private authService: NbAuthService,
+    private http: HttpClient,
     private router: Router,
     private tokenStorageService: TokenStorageService,
     private sidebarService: NbSidebarService,
@@ -73,6 +82,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
+    // console.log(this.authService.getToken());
+    // console.log('-------->>>>>');
+    // console.log(this.token);
+    // console.log('-------->>>>>');
+    // console.log(JSON.parse(th()));
+
+    this.acesstoken =  JSON.parse(localStorage.getItem(this.key));
+    console.log(this.acesstoken.value.access_token);
+   
+    const raw = localStorage.getItem(this.key);
+    console.log( this.parceler.unwrap(raw));
+
+    console.log(raw);
 
     this.user =  JSON.parse(sessionStorage.getItem('user_info'))
     // this.userService
@@ -113,6 +135,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }   
       });
   
+  }
+  getGProfile(){
+    return this.http.get(this.googleurl);
+    
+    
   }
 
   ngOnDestroy() {

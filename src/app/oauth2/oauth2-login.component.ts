@@ -28,8 +28,10 @@ export class OAuth2LoginComponent implements OnDestroy {
         this.token = null;
         if (token && token.isValid()) {
           this.token = token;
+          console.log(token);
         }
       });
+      this.login();
   }
 
   login() {
