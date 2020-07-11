@@ -11,6 +11,7 @@ import {
   NbSidebarService,
   NbThemeService,
 } from "@nebular/theme";
+import {  NbAuthResult } from '@nebular/auth';
 
 import { UserData } from "../../../@core/data/users";
 import { LayoutService } from "../../../@core/utils";
@@ -20,8 +21,22 @@ import { MatDialog } from "@angular/material/dialog";
 import { ProfileComponent } from "../../../profile/profile.component";
 import { EditProfileComponent } from '../../../pages/Profile2/Edit/edit-profile.component';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/Rx' ;
 
+interface DataResponse {
+  sub: string ;
+  name: string;
+  given_name: string;
+  family_name: string;
+  picture: string;
+  locale: string;
+  
 
+}
 @Component({
   selector: "ngx-header",
   styleUrls: ["./header.component.scss"],
@@ -32,8 +47,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userPictureOnly: boolean = false;
   user: any;
   acesstoken: any;
-
+  atoken: any;
+  tookn: String;
+  tokn: String[];
+  tempArray: DataResponse[] = [];
+  dat:DataResponse[] = [];
   token: NbAuthOAuth2Token;
+  item=[];
   items = [
     { title: 'Profile' },
     { title: 'Logout' },
@@ -57,6 +77,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       name: "Corporate",
     }
   ];
+ // public data;
 
   currentTheme = "default";
 
@@ -77,8 +98,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private breakpointService: NbMediaBreakpointsService,
     private dialog: MatDialog,
     private nbMenuService: NbMenuService, 
+    
     @Inject(NB_WINDOW) private window
-  ) {}
+  ) {
+    
+ 
+    
+  }
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
@@ -89,19 +115,35 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // console.log(JSON.parse(th()));
 
     this.acesstoken =  JSON.parse(localStorage.getItem(this.key));
-    console.log(this.acesstoken.value.access_token);
-   
-    const raw = localStorage.getItem(this.key);
-    console.log( this.parceler.unwrap(raw));
+    this.atoken=this.acesstoken.value;
+    this.acesstoken=(this.atoken.toString());
 
-    console.log(raw);
+    this.tookn=this.atoken.toString();
+    this.tokn=this.tookn.split(":");
+    this.tokn=this.tokn[1].split('"')
+  
+    var tempArray: DataResponse[] = [];
+    this.googleurl=this.googleurl+this.tokn[1]
+    console.log(this.googleurl);
 
+
+    this.http.get(this.googleurl).toPromise().then(data=>{
+      console.log(data);
+
+      for (let key in data) {
+        if (data.hasOwnProperty(key))
+           this.item.push(data[key]);   
+           
+        }
+      }
+    );
+     
+
+
+ 
+            
     this.user =  JSON.parse(sessionStorage.getItem('user_info'))
-    // this.userService
-    //   .getUsers()
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe((users: any) => (this.user = users.nick));
-
+ 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService
       .onMediaQueryChange()
@@ -131,16 +173,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if(title === 'Profile')
           this.dialog.open(EditProfileComponent);
         else{
+          if(localStorage.getItem(this.key))
+             this.lgout();
+          else
              this.logout();
         }   
       });
   
   }
   getGProfile(){
-    return this.http.get(this.googleurl);
+    return this.http.get(this.acesstoken).map((response:Response)=>response.json);
     
     
   }
+
 
   ngOnDestroy() {
     this.destroy$.next();
@@ -168,5 +214,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     window.sessionStorage.clear();
     window.location.reload();
 
+  }
+  lgout() {
+    this.authService.logout('google')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((authResult: NbAuthResult) => {
+      });
   }
 }

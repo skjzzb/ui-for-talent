@@ -25,9 +25,9 @@
                [picture]="user?.picture"
                >
       </nb-user> -->
-      <nb-user  [name]="user?.username"
-                [onlyPicture]="userPictureOnly"
-                [picture]="user?.picture"
+      <nb-user  [name]="user?.username||this.item[1]"
+                [onlyPicture]="userPictureOnly||this.item[4]"
+                [picture]="user?.picture||this.item[4]"
                 title="full-stack developer"
                 [nbContextMenu]="items"
                 nbContextMenuTag="my-context-menu">
