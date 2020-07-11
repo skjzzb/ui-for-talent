@@ -18,7 +18,7 @@ export class AuthService {
   constructor(private http: HttpClient,private tokenStorageService: TokenStorageService) { }
   isLogin()
   {
-    return !!this.tokenStorageService.getToken();
+    return !!this.tokenStorageService.getToken()||!!localStorage.getItem('auth_app_token');
    
   }
  

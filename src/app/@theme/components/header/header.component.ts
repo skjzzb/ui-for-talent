@@ -1,3 +1,9 @@
+//
+import { NbAuthService, NbAuthOAuth2Token ,NbTokenLocalStorage, NbTokenStorage,NbAuthTokenParceler} from '@nebular/auth';
+import { HttpClient } from '@angular/common/http';
+import {  NbAuthResult } from '@nebular/auth';
+
+//
 import { LogoutComponent } from './../../../logout/logout.component';
 import { TokenStorageService } from './../../../_services/token-storage.service';
 import { Component, OnDestroy, OnInit, Inject } from "@angular/core";
@@ -28,7 +34,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
+//add
+acesstoken: any;
+atoken: any;
+tookn: String;
+tokn: String[];
 
+token: NbAuthOAuth2Token;
+item=[];
+//end
   items = [
     { title: 'Profile' },
     { title: 'Logout' },
@@ -56,8 +70,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentTheme = "default";
 
   userMenu = [{ title: "Profile" }, { title: "Log out" }];
-
+  googleurl ="https://www.googleapis.com/oauth2/v3/userinfo?access_token=";
+  key ='auth_app_token';
   constructor(
+    private parceler: NbAuthTokenParceler,
+    private authService: NbAuthService,
+    private http: HttpClient,
     private router: Router,
     private tokenStorageService: TokenStorageService,
     private sidebarService: NbSidebarService,
@@ -73,7 +91,36 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
+//Start
+    this.acesstoken =  JSON.parse(localStorage.getItem(this.key));
+    //console.log(this.acesstoken.value);
+    //console.log(this.acesstoken);
+    if(localStorage.getItem(this.key))
+    {
+     this.atoken=this.acesstoken.value;
+    this.acesstoken=(this.atoken.toString());
+  
+    this.tookn=this.atoken.toString();
+    this.tokn=this.tookn.split(":");
+    this.tokn=this.tokn[1].split('"')
+  
+    //var tempArray: DataResponse[] = [];
+    this.googleurl=this.googleurl+this.tokn[1]
+    console.log(this.googleurl);
 
+
+    this.http.get(this.googleurl).toPromise().then(data=>{
+      console.log(data);
+
+      for (let key in data) {
+        if (data.hasOwnProperty(key))
+           this.item.push(data[key]);   
+           
+        }
+      }
+    );
+    }
+    ///End
     this.user =  JSON.parse(sessionStorage.getItem('user_info'))
     // this.userService
     //   .getUsers()
@@ -109,7 +156,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if(title === 'Profile')
           this.dialog.open(EditProfileComponent);
         else{
+          if(localStorage.getItem(this.key))
+          {
+             this.lgout();
+          }
+          else
+          {
              this.logout();
+          }
         }   
       });
   
@@ -123,7 +177,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   changeTheme(themeName: string) {
     this.themeService.changeTheme(themeName);
   }
-
+  logintype()
+  {
+    if(localStorage.getItem(this.key))
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
   toggleSidebar(): boolean {
     this.sidebarService.toggle(true, "menu-sidebar");
     this.layoutService.changeLayoutSize();
@@ -140,6 +204,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.tokenStorageService.signOut();
     window.sessionStorage.clear();
     window.location.reload();
+
+  }
+  lgout() {
+    this.authService.logout('google')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((authResult: NbAuthResult) => {
+      });
+      window.location.reload();
 
   }
 }

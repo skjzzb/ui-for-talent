@@ -30,6 +30,7 @@ export class OAuth2LoginComponent implements OnDestroy {
           this.token = token;
         }
       });
+      this.login();
   }
 
   login() {
