@@ -45,8 +45,6 @@ export class DataService {
     }
 
     addVacancy(vacancy) {
-      console.log(vacancy.shortSummary)
-      console.log(vacancy.noOfVacancy)
       return axios.post(`${API_URL}/vacancy`,vacancy);
     }
 
@@ -60,9 +58,10 @@ export class DataService {
       return axios.get(`${API_URL}/candidiate/vacancy/${id}`);
     }
 
-    updateCandidate(data)
+    updateCandidate(data,vid)
     {
-      return axios.post(`${API_URL}/candidiate/update`,data)
+      console.log(data)
+      return axios.put(`${API_URL}/candidate/update/${vid}`,data)
     }
 
     DeteteCandidate(id) {

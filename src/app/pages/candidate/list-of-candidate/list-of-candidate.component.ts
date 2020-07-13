@@ -115,19 +115,18 @@ export class ListOfCandidateComponent implements OnInit {
 
     onUpdateRecord(event) {
       //this.ngOnInit();
-      console.log("working..")
+      console.log("working...."+this.type)
         var data = {"id" : event.newData.id,
                     "candidateName" : event.newData.candidateName,
                     "contactNo" : event.newData.contactNo,
                     "email" : event.newData.email,
                      "technologyStack" : event.newData.technologyStack,
                      "reqMatchingPercent" : event.newData.reqMatchingPercent,
-                   };
-                   console.log(data)
-            this.service.updateCandidate(data)
+                    "yearOfExperience" : event.newData.yearOfExperience,
+                    };
+            this.service.updateCandidate(data,this.type)
             .then(
               response => {
-                 console.log(response);
                  event.confirm.resolve();
               }
             )          

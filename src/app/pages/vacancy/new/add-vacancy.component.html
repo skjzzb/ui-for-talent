@@ -45,6 +45,18 @@
             <br>
             <div class="row">
               <div class="col-md-6">
+                <label for="No of Job Vacancy" class="label">No of Job Vacancy</label>
+                <input type="number" ngModel  name="noOfVacancy" nbInput fullWidth  id="numberOfVacancy" placeholder="0"> 
+              </div>
+
+              <div class="col-md-6">
+                <label for="Experience Required" class="label">Experience Required</label>
+                <input type="number" ngModel name="experienceRequired" nbInput fullWidth id="experienceRequired" placeholder="0" max="50" > 
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
                 <label for="Select Technology" class="label">Select Technology</label>
                 <nb-select placeholder="Select Technology" fullWidth [(selected)]="selectedItem"  >
                   <nb-option *ngFor="let d of technology" (click)="onSelectTechnology()" value="{{d.technologyId}}">{{d.technologyName}}</nb-option>
@@ -52,28 +64,23 @@
               </div>
               <div class="col-md-6">
                 <label for="Sub-Technology" class="label">Select Sub-Technology</label>
-                <nb-select ngModel name="jd" fullWidth placeholder="Select Sub-Technology"  multiple >
-                  <nb-option *ngFor="let d of subtechnology" value="{{d.subTechnologyName}}">{{d.subTechnologyName}}</nb-option>
+                <nb-select fullWidth placeholder="Select Sub-Technology" [(selected)]="ClickedSubtechnology" > 
+                  <nb-option *ngFor="let d of subtechnology" (click)="onClickSubtechnology()" value="{{d.subTechnologyName}}">{{d.subTechnologyName}}</nb-option>
                 </nb-select>  
               </div>
             </div>
             <br>
             <div class="row">
               <div class="col-md-12">
-                <label for="Short Summary" class="label">Job Short Summary</label>
-                <textarea ngModel name="shortSummary" id="shortSummary" nbInput fullWidth placeholder=" Short Summary"></textarea>
+                <label for="Short Summary" class="label">Selected job discrption</label>
+                <textarea [(ngModel)]="jd" name="jd" nbInput fullWidth placeholder="first select sub-technology" readonly ></textarea>
               </div>
             </div>
             <br>
             <div class="row">
-              <div class="col-md-6">
-                <label for="No of Job Vacancy" class="label">No of Job Vacancy</label>
-                <input type="number" ngModel fullWidth  name="noOfVacancy" nbInput id="numberOfVacancy" placeholder="0"> 
-              </div>
-
-              <div class="col-md-6">
-                <label for="No of Job Vacancy" class="label">Experience Required</label>
-                <input type="number" ngModel fullWidth  name="experienceRequired" nbInput id="experienceRequired" placeholder="0" max="50" > 
+              <div class="col-md-12">
+                <label for="Short Summary" class="label">Short Summary</label>
+                <textarea ngModel name="shortSummary" nbInput id="shortSummary" fullWidth placeholder="Short Summary"></textarea>
               </div>
             </div>
             <br>

@@ -14,7 +14,17 @@ export class ListOfVacancyComponent implements OnInit {
 
   settings = {
     //mode:"external",
-    actions:{add:false},
+    actions:{add: false,},
+    // readmore:{
+    //    custom:[
+    //   {
+    //    name: 'yourAction',
+    //    title: '<i class="ion-document" title="YourAction"></i>',
+    //    filter:false,
+    //  },
+    //  ],
+    //  position:'right',
+    // },
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
@@ -67,14 +77,14 @@ export class ListOfVacancyComponent implements OnInit {
         type:'number'
       },
       shortSummary:{
-        title:'Summary',
-        type:'html',
-        valuePrepareFunction: (value) => {
-         this.usingSplit = value.split(' ');
-         let x=0,y=1,z=2;
-         return `<div>${value}</div>`
-        //return `<div>${this.usingSplit[x]} ${this.usingSplit[y]} ${this.usingSplit[z]} <i (click)="onSelectTechnology()" class="nb-edit"></i> </div>`
-         //return `<div><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-double-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/><path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/></svg> </div>`
+         title:'Summary',
+         type:'html',
+         valuePrepareFunction: (value) => {
+         // this.usingSplit = value.split(' ');
+         // let x=0,y=1,z=2;
+          return `<div>${value}</div>`
+         //return `<div>${this.usingSplit[x]} ${this.usingSplit[y]} ${this.usingSplit[z]} <i (click)="onSelectTechnology()" class="nb-edit"></i> </div>`
+          //return `<div><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-double-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/><path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/></svg> </div>`
       },
         filter:false,
         width:'40%' 
