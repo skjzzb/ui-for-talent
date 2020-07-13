@@ -17,8 +17,11 @@ export class DataService {
   token : any
  
   constructor(private http: HttpClient) { 
+    if(sessionStorage.getItem('user_info'))
+    {
     this.logindetails =  JSON.parse(sessionStorage.getItem('user_info'))
     this.token = this.logindetails.accessToken
+    }
   }
   getData() {
     //console.log('executed service')
