@@ -38,7 +38,11 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
-
+import {
+  NbAuthModule,
+  NbOAuth2AuthStrategy,
+  NbOAuth2ResponseType,
+} from '@nebular/auth';
 const NB_MODULES = [
   NbLayoutModule,
   NbMenuModule,
@@ -71,7 +75,27 @@ const PIPES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES],
+  imports: [CommonModule, ...NB_MODULES,
+    NbAuthModule.forRoot({
+      strategies: [
+        NbOAuth2AuthStrategy.setup({
+          name: 'google',
+          clientId: '689963141476-573mvrd35ton237lq542r820dgasaa9r.apps.googleusercontent.com',
+          clientSecret: '',
+          authorize: {
+            endpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
+            responseType: NbOAuth2ResponseType.TOKEN,
+            scope: 'https://www.googleapis.com/auth/userinfo.profile',
+            redirectUri: 'http://localhost:4200/oauth2/callback',
+          },
+
+          redirect: {
+            success: '/pages',
+          },
+        }),
+      ],
+    }),
+  ],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES],
 })

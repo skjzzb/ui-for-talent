@@ -1,3 +1,4 @@
+import  Swal  from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../@core/utils/data.service';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -133,7 +134,23 @@ export class ListOfCandidateComponent implements OnInit {
     }
 
     onDeleteConfirm(event): void {
-      if (window.confirm('Are you sure you want to delete?')) {
+      if (Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })) {
        console.log(event.data.id)
         this.service.DeteteCandidate(event.data.id)
         .then(
