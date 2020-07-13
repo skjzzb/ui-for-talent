@@ -24,6 +24,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { ProfileComponent } from "../../../profile/profile.component";
 import { EditProfileComponent } from '../../../pages/Profile2/Edit/edit-profile.component';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: "ngx-header",
@@ -76,7 +77,6 @@ item=[];
     private parceler: NbAuthTokenParceler,
     private authService: NbAuthService,
     private http: HttpClient,
-    private router: Router,
     private tokenStorageService: TokenStorageService,
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
@@ -159,10 +159,29 @@ item=[];
           if(localStorage.getItem(this.key))
           {
              this.lgout();
+             Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Google Logout',
+              showConfirmButton: false,
+              
+              timer: 3500,
+              
+
+              
+          });
           }
           else
           {
              this.logout();
+             Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Logout Sucess',
+              showConfirmButton: false,
+              timer: 3500,
+              
+            })
           }
         }   
       });

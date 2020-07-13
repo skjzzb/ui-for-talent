@@ -12,7 +12,9 @@
     align-items: center;
     width: calc(#{nb-theme(sidebar-width)} - #{nb-theme(header-padding)});
   }
-
+  .swal2-popup {
+    font-size: 1.6rem !important;
+  }
   nb-action {
     height: auto;
     display: flex;
