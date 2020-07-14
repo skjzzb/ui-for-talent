@@ -50,12 +50,14 @@ export class ListOfCandidateComponent implements OnInit {
       technologyStack:{
         title:'Technology Stack',
         type: 'string',
-        filter: false
+        filter: false,
+        width:'20%',
       },
       yearOfExperience:{
         title:'Year Of Experience',
         type: 'number',
-        filter: false
+        filter: false,
+        width:'10%'
       },
       reqMatchingPercent:{
         title:'Matching Percent',
@@ -74,7 +76,8 @@ export class ListOfCandidateComponent implements OnInit {
         },
         filter: false,
         sort:true,
-        sortDirection:'desc'
+        sortDirection:'desc',
+        width:'10%'
       },
     },
     pager:
@@ -116,19 +119,18 @@ export class ListOfCandidateComponent implements OnInit {
 
     onUpdateRecord(event) {
       //this.ngOnInit();
-      console.log("working..")
+      console.log("working...."+this.type)
         var data = {"id" : event.newData.id,
                     "candidateName" : event.newData.candidateName,
                     "contactNo" : event.newData.contactNo,
                     "email" : event.newData.email,
                      "technologyStack" : event.newData.technologyStack,
                      "reqMatchingPercent" : event.newData.reqMatchingPercent,
-                   };
-                   console.log(data)
-            this.service.updateCandidate(data)
+                    "yearOfExperience" : event.newData.yearOfExperience,
+                    };
+            this.service.updateCandidate(data,this.type)
             .then(
               response => {
-                 console.log(response);
                  event.confirm.resolve();
               }
             )          

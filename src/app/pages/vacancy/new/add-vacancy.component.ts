@@ -1,10 +1,8 @@
-import {  Component,ViewEncapsulation, OnInit, OnDestroy} from '@angular/core';
+import {  Component,ViewEncapsulation, OnInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { DataService } from '../../../@core/utils/data.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { from } from 'rxjs';
-import { resolve } from 'dns';
 
 
 @Component({
@@ -13,14 +11,16 @@ import { resolve } from 'dns';
   templateUrl: './add-vacancy.component.html',
   encapsulation: ViewEncapsulation.None
 })
-class AddVacancyComponent implements OnInit,OnDestroy{
-  selectedItem = '2';
+class AddVacancyComponent implements OnInit{
+  selectedItem = '';
   selectedProject:string;
   selectedtechnology:string[];
   source: LocalDataSource = new LocalDataSource();
   technology:[];
   subtechnology:any[];
-  selectedsubbtechnology:any[];
+  ClickedSubtechnology;
+  jd=null;
+  //selectedsubbtechnology:any[];
   
   constructor(private router:Router ,private service: DataService,private location: Location) {
   }
@@ -29,26 +29,15 @@ class AddVacancyComponent implements OnInit,OnDestroy{
     this.retrieveData();
     //this.retrieveAllSubTechnologyData();
   }
-  ngOnDestroy(): void{
-    this.selectedItem='';
-    this.selectedProject='';
-    this.selectedtechnology=[];
-    //this.source=null;
-    this.technology=[];
-    this.subtechnology=[];
-    this.selectedsubbtechnology=[];
-  }
 
   retrieveData()
   {
     this.service.getTechnologyData()
     .then(
       response => {
-          console.log(response);
           this.technology=response.data;
       }
     )
-    console.log(this.technology)
   }
 
   retrieveAllSubTechnologyData()
@@ -56,17 +45,54 @@ class AddVacancyComponent implements OnInit,OnDestroy{
     this.service.getSubTechnologyData(this.selectedItem)
     .then(
       response => {
-          console.log(response);
           this.subtechnology=response.data;
       }
     )
     console.log(this.subtechnology)
   }
 
-  onSelectSubTechnology(subTechnologyName)
+  onClickSubtechnology()
   {
-      this.selectedtechnology.push(subTechnologyName);
-      console.log(this.selectedtechnology)
+    if(this.jd==null || this.jd=='')
+    {
+      this.jd=this.ClickedSubtechnology
+    }else
+    {
+      let flag;
+      let usingSplit=this.jd.split(', ');
+      for (let index = 0; index < usingSplit.length; index++) 
+      {
+        if(this.ClickedSubtechnology==usingSplit[index])
+        {
+          if(this.ClickedSubtechnology==usingSplit[0])
+          { if(usingSplit.length==1)
+            this.jd=this.jd.replace(this.ClickedSubtechnology.toString(),'');
+            else
+            this.jd=this.jd.replace(this.ClickedSubtechnology.toString()+', ','');
+            flag=true;
+            break
+          }else
+          {
+            console.log('inside true..')
+            flag=true;
+            break
+          }
+
+        }else
+        {
+          flag=false
+        }
+      }
+
+      console.log(flag)
+      if(flag==true)
+        {
+          this.jd=this.jd.replace(', '+this.ClickedSubtechnology.toString(),'');
+        }else
+        {
+          this.jd=this.jd.concat(', '+this.ClickedSubtechnology.toString());
+        }
+    }
   }
 
   onSelectTechnology()
@@ -92,17 +118,19 @@ class AddVacancyComponent implements OnInit,OnDestroy{
 
   addVacancy(dataFromUI:any)
   {
+    //this.ngOnInit();
   let vacancy=dataFromUI.form.value;
-  console.log()
-  vacancy.jd=vacancy.jd.toString()
-  //if (window.confirm('Are you sure you want to add?')) {
+  //vacancy.jd=vacancy.jd.toString()
+  console.log(vacancy);
    this.service.addVacancy(vacancy)
    .then(
      Response => {
       if (window.confirm("vacancy is added. do you want to add more record ?"))
       {
-        //this.router.navigate([this]);
-        //this.ngOnInit()
+        this.selectedItem=null;
+        //this.selectedtechnology=null;
+        this.ClickedSubtechnology=null;
+        dataFromUI.form.reset();
       }else
       {
         this.router.navigate(['/pages/vacancy/list-of-vacancy']);
@@ -112,10 +140,7 @@ class AddVacancyComponent implements OnInit,OnDestroy{
       //window.location.reload()
     }
    )
-
-  }
- 
-  
+  } 
   }
 
   export {AddVacancyComponent}

@@ -15,6 +15,7 @@ import {
   NbRadioModule,
   NbSelectModule,
   NbUserModule,
+  NbPopoverModule,
 } from '@nebular/theme';
 
 import { AddVacancyComponent } from './new/add-vacancy.component';
@@ -43,6 +44,7 @@ import { ListOfVacancyComponent } from './list-of-vacancy/list-of-vacancy.compon
     // VacancyComponent,
     VacancyRoutingModule,
     Ng2SmartTableModule,
+    NbPopoverModule
     // AddVacancyComponent
   ],
   declarations: [
