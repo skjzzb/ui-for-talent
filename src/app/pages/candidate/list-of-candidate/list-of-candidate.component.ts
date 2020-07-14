@@ -50,12 +50,14 @@ export class ListOfCandidateComponent implements OnInit {
       technologyStack:{
         title:'Technology Stack',
         type: 'string',
-        filter: false
+        filter: false,
+        width:'20%',
       },
       yearOfExperience:{
         title:'Year Of Experience',
         type: 'number',
-        filter: false
+        filter: false,
+        width:'10%'
       },
       reqMatchingPercent:{
         title:'Matching Percent',
@@ -74,7 +76,8 @@ export class ListOfCandidateComponent implements OnInit {
         },
         filter: false,
         sort:true,
-        sortDirection:'desc'
+        sortDirection:'desc',
+        width:'10%'
       },
     },
     pager:
