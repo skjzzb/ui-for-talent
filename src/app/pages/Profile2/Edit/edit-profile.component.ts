@@ -3,6 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { DataService } from '../../../@core/utils/data.service';
 import { error } from 'console';
 import { NbWindowService } from '@nebular/theme';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -42,7 +43,7 @@ class EditProfileComponent {
   
 info : any
   
-  constructor( private dataService : DataService, private windowService: NbWindowService) { 
+  constructor( private dataService : DataService, private windowService: NbWindowService, private dialog : MatDialog) { 
     
     }
 
@@ -75,10 +76,10 @@ info : any
       console.log(data)
     //  window.location.reload()
     })
-    this.windowService.open(EditProfileComponent);
+    //this.windowService.open(EditProfileComponent);
+    this.dialog.closeAll()
+    this.dialog.open(EditProfileComponent)
   }
   
   }
-
-  
   export {EditProfileComponent}
