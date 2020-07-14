@@ -1,3 +1,4 @@
+import  Swal  from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../@core/utils/data.service';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -49,12 +50,14 @@ export class ListOfCandidateComponent implements OnInit {
       technologyStack:{
         title:'Technology Stack',
         type: 'string',
-        filter: false
+        filter: false,
+        width:'20%',
       },
       yearOfExperience:{
         title:'Year Of Experience',
         type: 'number',
-        filter: false
+        filter: false,
+        width:'10%'
       },
       reqMatchingPercent:{
         title:'Matching Percent',
@@ -73,7 +76,8 @@ export class ListOfCandidateComponent implements OnInit {
         },
         filter: false,
         sort:true,
-        sortDirection:'desc'
+        sortDirection:'desc',
+        width:'10%'
       },
     },
     pager:
@@ -115,26 +119,41 @@ export class ListOfCandidateComponent implements OnInit {
 
     onUpdateRecord(event) {
       //this.ngOnInit();
-      console.log("working..")
+      console.log("working...."+this.type)
         var data = {"id" : event.newData.id,
                     "candidateName" : event.newData.candidateName,
                     "contactNo" : event.newData.contactNo,
                     "email" : event.newData.email,
                      "technologyStack" : event.newData.technologyStack,
                      "reqMatchingPercent" : event.newData.reqMatchingPercent,
-                   };
-                   console.log(data)
-            this.service.updateCandidate(data)
+                    "yearOfExperience" : event.newData.yearOfExperience,
+                    };
+            this.service.updateCandidate(data,this.type)
             .then(
               response => {
-                 console.log(response);
                  event.confirm.resolve();
               }
             )          
     }
 
     onDeleteConfirm(event): void {
-      if (window.confirm('Are you sure you want to delete?')) {
+      if (Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })) {
        console.log(event.data.id)
         this.service.DeteteCandidate(event.data.id)
         .then(
