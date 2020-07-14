@@ -2,6 +2,8 @@ import {  Component,ViewEncapsulation} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { DataService } from '../../../@core/utils/data.service';
 import { error } from 'console';
+import { NbWindowService } from '@nebular/theme';
+
 
 
 @Component({
@@ -40,7 +42,7 @@ class EditProfileComponent {
   
 info : any
   
-  constructor( private dataService : DataService) { 
+  constructor( private dataService : DataService, private windowService: NbWindowService) { 
     
     }
 
@@ -71,9 +73,9 @@ info : any
     let obResult = this.dataService.addOrEditProfile(this.userdetails.profile,this.logindetails.id)
     obResult.subscribe(data=>{
       console.log(data)
-      window.location.reload()
+    //  window.location.reload()
     })
-
+    this.windowService.open(EditProfileComponent);
   }
   
   }

@@ -32,7 +32,7 @@ export class DataService {
   }
     getSubTechnologyData(id)
     {
-      return axios.get(`${API_URL}/subtechnology/technology/${id}`,);
+      return axios.get(`${API_URL}/subtechnology/technology/${id}/`,);
     }
 
     getVacancyData() {

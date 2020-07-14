@@ -1,7 +1,7 @@
 import { LogoutComponent } from './../../../logout/logout.component';
 import { TokenStorageService } from './../../../_services/token-storage.service';
 import { Component, OnDestroy, OnInit, Inject } from "@angular/core";
-import { NB_WINDOW,  } from '@nebular/theme';
+import { NB_WINDOW, NbWindowService,  } from '@nebular/theme';
 import { filter } from 'rxjs/operators';
 import {
   NbMediaBreakpointsService,
@@ -68,6 +68,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private breakpointService: NbMediaBreakpointsService,
     private dialog: MatDialog,
     private nbMenuService: NbMenuService, 
+    private windowService: NbWindowService,
     @Inject(NB_WINDOW) private window
   ) {}
 
@@ -107,7 +108,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((title ) => 
       {
         if(title === 'Profile')
-          this.dialog.open(EditProfileComponent);
+        this.dialog.open(EditProfileComponent)
+        //this.windowService.open(EditProfileComponent);
         else{
              this.logout();
         }   
