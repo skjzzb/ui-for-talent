@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Candidate } from './pages-menu';
 import { Vacancy } from './pages-menu';
 import { dashboard } from './pages-menu';
+import { users } from './pages-menu';
 import { MENU_ITEMS } from './pages-menu';
 import { NbMenuItem } from '@nebular/theme';
 import { canvas } from 'leaflet';
@@ -40,7 +41,7 @@ export class PagesComponent {
     this.dataService.getFeatureByRole(this.roles[0])
     .then(
       data => {
-        console.log(data.data)
+      //  console.log(data.data)
         this.feature=data.data
         this.constructNbMenuItem();
       },
@@ -54,7 +55,7 @@ export class PagesComponent {
   constructNbMenuItem()
   {
 
-    console.log(this.feature.dashboard)
+    //console.log(this.feature.dashboard)
     if(this.feature.dashboard)
     this.MENU_ITEMS2.push(dashboard)
 
@@ -68,7 +69,8 @@ export class PagesComponent {
     this.MENU_ITEMS2.push(Vacancy)
     if(this.feature.candidate)
     this.MENU_ITEMS2.push(Candidate)
-
+    if(this.feature.userList)
+    this.MENU_ITEMS2.push(users)
     this.menu=this.MENU_ITEMS2
   }
 

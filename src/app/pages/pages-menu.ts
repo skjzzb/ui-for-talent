@@ -315,3 +315,14 @@ export var Candidate =
       link: '/pages/dashboard',
       home: true,
     }
+
+    export var users ={
+        title: 'Users',
+        icon: 'people-outline',
+        children: [
+          {
+            title: 'List of Users',
+            link: '/pages/users/users-list',
+          },
+        ],
+    }
