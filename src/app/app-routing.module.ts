@@ -1,10 +1,10 @@
+import { ApplicationFormComponent } from './application-form/application-form.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AuthGuard } from './services/auth-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-
 import {
   NbAuthComponent,
   NbLoginComponent,
@@ -17,6 +17,13 @@ import {
 export const routes: Routes = [
   // { path: 'login', component: LoginComponent },
   // { path: 'register', component: RegisterComponent },
+  {
+    path: 'form',
+    component: NbAuthComponent,
+    children: [
+      {path: '', component: ApplicationFormComponent },
+    ]
+  },
   {
     path: 'pages',
     canActivate: [AuthGuard],
@@ -56,6 +63,8 @@ export const routes: Routes = [
         path: 'reset-password',
         component: NbResetPasswordComponent,
       },
+   
+
       // {
       //   path: 'pages',
       //   canActivate: [AuthGuard],

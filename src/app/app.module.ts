@@ -49,8 +49,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { ApplicationFormComponent } from './application-form/application-form.component';
 @NgModule({
-  declarations: [AppComponent, ProfileComponent, LoginComponent, RegisterComponent, LogoutComponent],
+  declarations: [AppComponent, ProfileComponent, LoginComponent, RegisterComponent, LogoutComponent, ApplicationFormComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
