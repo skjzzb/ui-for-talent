@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule } from '@nebular/theme';
+import { NbMenuModule, NbWindowModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -11,6 +11,7 @@ import { CandidateModule } from './candidate/candidate.module'
 import { Profile2Module } from './Profile2/profile2.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { from } from 'rxjs';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
   imports: [
@@ -22,7 +23,9 @@ import { from } from 'rxjs';
     MiscellaneousModule,
     VacancyModule,
     CandidateModule,
-    Profile2Module
+    Profile2Module,
+    UsersModule,
+    NbWindowModule
   ],
   declarations: [
     PagesComponent,

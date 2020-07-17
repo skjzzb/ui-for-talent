@@ -34,6 +34,11 @@ const routes: Routes = [{
         .then(m => m.Profile2Module),
     },
     {
+      path: 'users',
+      loadChildren: () => import('./users/users.module')
+        .then(m => m.UsersModule),
+    },
+    {
       path: 'layout',
       loadChildren: () => import('./layout/layout.module')
         .then(m => m.LayoutModule),
