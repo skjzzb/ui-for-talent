@@ -31,6 +31,16 @@ export var MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: 'Users',
+    icon: 'people-outline',
+    children: [
+      {
+        title: 'List of Users',
+        link: '/pages/users/users-list',
+      },
+    ],
+  },
+  {
     title: 'Candidate',
     icon: 'person-outline',
     children: [

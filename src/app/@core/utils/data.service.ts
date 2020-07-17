@@ -35,7 +35,7 @@ export class DataService {
   }
     getSubTechnologyData(id)
     {
-      return axios.get(`${API_URL}/subtechnology/technology/${id}`,);
+      return axios.get(`${API_URL}/subtechnology/technology/${id}/`,);
     }
 
     getVacancyData() {
@@ -71,12 +71,16 @@ export class DataService {
     }
     getUserDetails(userId)
     {
-      return this.http.get(`http://authentication-api-cv.herokuapp.com/api/user/${userId}`)
+      return this.http.get(`https://authentication-api-cv.herokuapp.com/api/user/${userId}`)
     }
 
      addOrEditProfile(profObj, userId)
     {
-      return this.http.put(`http://authentication-api-cv.herokuapp.com/api/profile/${userId}`, profObj)
+      return this.http.put(`https://authentication-api-cv.herokuapp.com/api/profile/${userId}`, profObj)
+    }
+    getListOfUsers()
+    {
+      return this.http.get(`https://authentication-api-cv.herokuapp.com/api/user/`)
     }
 
     getFeatureByRole(name:any)
