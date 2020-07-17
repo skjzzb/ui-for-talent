@@ -39,7 +39,6 @@ export class DataService {
     }
 
     getVacancyData() {
-      //http://localhost:8081/v1
       return axios.get(`${API_URL}/vacancy?sort=avalible`,);
     }
 
@@ -79,7 +78,11 @@ export class DataService {
     {
       return this.http.put(`http://authentication-api-cv.herokuapp.com/api/profile/${userId}`, profObj)
     }
- 
+
+    getFeatureByRole(name:any)
+    {
+      return axios.get(`${API_URL}/feature/${name}`);
+    }
 }
 
 

@@ -21,7 +21,21 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
       if (this.isLoggedIn) {
-        this.router.navigate(['pages']);
+        if(this.roles[0]=='ROLE_USER')
+        this.router.navigate(['page']);
+        else if(this.roles[0]=='ROLE_PANEL')
+          {
+            this.router.navigate(['pages']);
+          }else if(this.roles[0]=='ROLE_HR')
+          {
+            this.router.navigate(['pages']);
+          }else if(this.roles[0]=='ROLE_ADMIN')
+          {
+            this.router.navigate(['pages']);
+          }
+          else{
+            this.router.navigate(['pages']);
+          }
         //console.log('Not authenticated')
       }
     }
@@ -37,8 +51,27 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         if (this.isLoggedIn) {
+          if(this.roles[0]=='ROLE_USER')
+          {
           this.router.navigate(['pages']);
           sessionStorage.setItem('user_info', JSON.stringify(data))
+          }else if(this.roles[0]=='ROLE_PANEL')
+          {
+            this.router.navigate(['pages']);
+          sessionStorage.setItem('user_info', JSON.stringify(data))
+          }else if(this.roles[0]=='ROLE_HR')
+          {
+            this.router.navigate(['pages']);
+          sessionStorage.setItem('user_info', JSON.stringify(data))
+          }else if(this.roles[0]=='ROLE_ADMIN')
+          {
+            this.router.navigate(['pages']);
+          sessionStorage.setItem('user_info', JSON.stringify(data))
+          }
+          else{
+            this.router.navigate(['pages']);
+          sessionStorage.setItem('user_info', JSON.stringify(data))
+          }
         }
        // this.reloadPage();
       },

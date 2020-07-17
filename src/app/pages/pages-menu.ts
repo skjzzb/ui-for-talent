@@ -1,6 +1,6 @@
 import { NbMenuItem } from '@nebular/theme';
 
-export const MENU_ITEMS: NbMenuItem[] = [
+export var MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'E-commerce',
     icon: 'shopping-cart-outline',
@@ -269,3 +269,39 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
 ];
+
+export var Vacancy =
+{
+  title: 'Vacancy',
+  icon: 'bookmark',
+  children: [
+    {
+      title: 'Add Vacancy',
+      link: '/pages/vacancy/add-vacancy',
+      home: true,
+    },
+    {
+      title: 'List of Vacancy',
+      link: '/pages/vacancy/list-of-vacancy',
+    },
+  ],
+}
+
+export var Candidate = 
+  {
+    title: 'Candidate',
+    icon: 'person-outline',
+    children: [
+      {
+        title: 'List of Candidate',
+        link: '/pages/candidate/list-of-candidate',
+      },
+    ],
+  }
+
+  export var dashboard = {
+      title: 'E-commerce',
+      icon: 'shopping-cart-outline',
+      link: '/pages/dashboard',
+      home: true,
+    }
