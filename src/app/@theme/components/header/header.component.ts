@@ -156,7 +156,7 @@ item=[];
       {
         if(title === 'Profile')
         this.dialog.open(EditProfileComponent)
-        //this.windowService.open(EditProfileComponent);
+       // this.windowService.open(EditProfileComponent);
         else{
           if(localStorage.getItem(this.key))
           {

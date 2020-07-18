@@ -68,11 +68,8 @@ class UsersListComponent {
     let obResult = this.dataService.getListOfUsers();
     obResult.subscribe(data=>{
       this.userInfo = data
-      //console.log(this.userInfo)
       this.copydata()
-    })
-    //console.log(this.userInfo)
-    
+    }) 
   }
 
   copydata()
@@ -93,10 +90,8 @@ class UsersListComponent {
      {
        source.contactNo =  element.profile.contactNo
      } 
-     //console.log(this.source)
      this.rows.push(source)
    });
-  console.log(this.rows)
   this.source.load(this.rows)
   }
   }
