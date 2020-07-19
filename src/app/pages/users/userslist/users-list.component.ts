@@ -101,8 +101,9 @@ class UsersListComponent {
 
   onCustomAction(event) {
     sessionStorage.setItem('userId_from_userlist',`${event.data.userId}` )
-    alert(`Name : ${event.data.name} , Existing Role : ${event.data.role} `)
-    this.dialog.open(ProfileComponent)
+   var confirmAlert = confirm(`Name : ${event.data.name} , Existing Role : ${event.data.role} `)
+    if(confirmAlert == true)
+      this.dialog.open(ProfileComponent)
   }
 
   }
