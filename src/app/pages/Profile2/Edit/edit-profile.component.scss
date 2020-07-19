@@ -136,6 +136,21 @@ nb-checkbox {
     width: 90%;
     height: auto;
   }
+  .responsive_2 {
+    width: auto;
+    height: 100%;
+
+  }
+  .PopupWindow {
+    position: absolute;
+    width: 600px; height: 400px;
+    left: 50%; top: 50%;
+    margin: -155px 0 0 -300px;
+    border: solid 2px #cccccc;
+    background-color: #ffffff;
+    overflow-y:scroll;
+    z-index:10;
+}
 
   .infinite-cards {
     nb-card {

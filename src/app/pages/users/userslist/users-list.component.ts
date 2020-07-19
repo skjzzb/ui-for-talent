@@ -3,6 +3,8 @@ import { LocalDataSource, ViewCell } from 'ng2-smart-table';
 import { DataService } from '../../../@core/utils/data.service';
 import { NbWindowService, NbDialogService } from '@nebular/theme';
 import { MatDialog } from '@angular/material/dialog';
+import { ProfileComponent } from '../../../profile/profile.component';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'nb-users-list',
@@ -18,16 +20,17 @@ class UsersListComponent {
   rows:any[] = []
 
   settings = {
-    actions:{add: false},
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-      confirmSave:true,
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
+ //   hideSubHeader: true,
+    actions:{
+      custom: [
+        {
+          name: 'yourAction',
+          title: '<i class="ion-person" title="YourAction"></i>'
+        },
+      ],
+      add: false,
+      edit: false,
+      delete: false
     },
     columns: {
       name: {
@@ -59,20 +62,16 @@ class UsersListComponent {
 
   source: LocalDataSource = new LocalDataSource();
   
-  constructor(private dataService: DataService) {
-  }
-
- 
+  constructor(private dataService: DataService ,  private windowService: NbWindowService, 
+              private dialog : MatDialog) {  }
 
   ngOnInit(): void {
     let obResult = this.dataService.getListOfUsers();
     obResult.subscribe(data=>{
       this.userInfo = data
-      //console.log(this.userInfo)
+      console.log(this.userInfo)
       this.copydata()
-    })
-    //console.log(this.userInfo)
-    
+    }) 
   }
 
   copydata()
@@ -83,21 +82,28 @@ class UsersListComponent {
         "name" : "",
         "email" : "",
         "contactNo" : "",
-        "role" : ""
+        "role" : "",
+        "userId" : ""
       }
 
       source.email =  element.username
       source.name = element.name
       source.role = element.roles[0].name
+      source.userId = element.id
      if(element.profile != null)
      {
        source.contactNo =  element.profile.contactNo
      } 
-     //console.log(this.source)
      this.rows.push(source)
    });
-  console.log(this.rows)
   this.source.load(this.rows)
   }
+
+  onCustomAction(event) {
+    sessionStorage.setItem('userId_from_userlist',`${event.data.userId}` )
+    alert(`Name : ${event.data.name} , Existing Role : ${event.data.role} `)
+    this.dialog.open(ProfileComponent)
+  }
+
   }
   export {UsersListComponent}
