@@ -93,7 +93,7 @@ export class DataService {
     }
     setRole(userId, roleObj)
     {
-      return this.http.post(`http://authentication-api-cv.herokuapp.com/api/set-role/${userId}`, roleObj)
+      return this.http.post(`https://authentication-api-cv.herokuapp.com/api/set-role/${userId}`, roleObj)
     }
 }
 
