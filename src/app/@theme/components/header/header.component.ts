@@ -167,10 +167,7 @@ item=[];
               title: 'Google Logout',
               showConfirmButton: false,
               
-              timer: 3500,
-              
-
-              
+              timer: 3500,  
           });
           }
           else

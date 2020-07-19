@@ -87,6 +87,14 @@ export class DataService {
     {
       return axios.get(`${API_URL}/feature/${name}`);
     }
+    getListOfAllRoles()
+    {
+      return this.http.get(`https://authentication-api-cv.herokuapp.com/api/roles`)
+    }
+    setRole(userId, roleObj)
+    {
+      return this.http.post(`http://authentication-api-cv.herokuapp.com/api/set-role/${userId}`, roleObj)
+    }
 }
 
 
