@@ -35,9 +35,8 @@ import { Router } from '@angular/router';
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
-  margin: 4px 2px;
   cursor: pointer;
-  height: 50px;
+  height: 35px;
   width: 100px;
 }
 .button2 {border-radius: 4px;}
