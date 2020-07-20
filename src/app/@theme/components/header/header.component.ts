@@ -38,6 +38,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 //add
 acesstoken: any;
 atoken: any;
+role: String;
+
 tookn: String;
 tokn: String[];
 
@@ -123,6 +125,8 @@ item=[];
     }
     ///End
     this.user =  JSON.parse(sessionStorage.getItem('user_info'))
+    this.role=this.user.roles[0];
+    console.log(this.role);
     // this.userService
     //   .getUsers()
     //   .pipe(takeUntil(this.destroy$))
