@@ -64,9 +64,10 @@ export class ProfileComponent implements OnInit  {
      obResult.subscribe((data)=>{
        console.log(data)
        alert(`${this.roleObj.name} is set successfully..`)
+       window.location.reload()
      })
      this.dialog.closeAll()
-    
+   
     // this.router.navigate(['/pages/users']);
   }
 }
