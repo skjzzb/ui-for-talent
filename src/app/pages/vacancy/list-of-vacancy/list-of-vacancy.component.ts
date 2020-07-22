@@ -2,23 +2,15 @@ import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@an
 import { LocalDataSource, ViewCell } from 'ng2-smart-table';
 import { DataService } from '../../../@core/utils/data.service';
 import { NbWindowService, NbDialogService } from '@nebular/theme';
+import { NgxPopoverCardComponent } from '../../modal-overlays/popovers/popover-examples.component';
+//import { NgxPopoverCardComponent } from './popover-examples.component';
 
 @Component({
   selector: 'button-view',
   template: `
   <div>
-  <ng-template #dialog let-data let-ref="dialogRef">
-
-  <div style="width: 120%;height: 100%;background-color: #fff;margin-top: auto; margin-left: auto; text-align: center;" >
-  <div style="background-color: green;text-align: left;color: white; font-size: larger;"> Detail Summary</div>
-  <br>
-  <div >{{renderValue}}</div>
-  <br>
-  <button nbButton (click)="ref.close()">Close Dialog</button>
-  </div>
-</ng-template>
   <p>{{first3words}}
-  <button (click)="onClick(dialog)">
+  <button type="button" (click)="onClick()">
   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-double-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
     <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
     <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
@@ -26,10 +18,12 @@ import { NbWindowService, NbDialogService } from '@nebular/theme';
   </button>
   </p></div>`,
 })
-export class ButtonViewComponent implements ViewCell, OnInit {
+export class ButtonViewComponent implements OnInit {
   renderValue: string;
   usingSplit:string[];
   first3words:string; 
+
+  CardComponent
 
   @Input() value: string;
   @Input() rowData: any;
@@ -38,7 +32,7 @@ export class ButtonViewComponent implements ViewCell, OnInit {
 
   constructor(private windowService: NbWindowService,private dialogService: NbDialogService)
   {
-
+    
   }
 
   ngOnInit() {
@@ -47,9 +41,31 @@ export class ButtonViewComponent implements ViewCell, OnInit {
     this.first3words=this.usingSplit[0]+' '+this.usingSplit[1]+' '+this.usingSplit[2]+' ';
   }
 
-  onClick(dialog: TemplateRef<any>) {
-    this.dialogService.open(dialog, { context: this.renderValue });
+  onClick()
+  {
+    this.CardComponent = NgxPopoverCardComponent;
+    this.dialogService.open(this.CardComponent, {context: {
+      renderValue: this.renderValue,
+    },
+  });
+  
   }
+
+//   onClick(dialog: TemplateRef<any>) {  dialog
+
+//     <ng-template #dialog let-data let-ref="dialogRef">
+
+//   <div style="width: 120%;height: 100%;background-color: #fff;margin-top: auto; margin-left: auto; text-align: center;" >
+//   <div style="background-color: green;text-align: left;color: white; font-size: larger;"> Detail Summary</div>
+//   <br>
+//   <div >{{renderValue}}</div>
+//   <br>
+//   <button nbButton (click)="ref.close()">Close Dialog</button>
+//   </div>
+// </ng-template>
+
+//     this.dialogService.open(dialog, { context: this.renderValue });
+//   }
 }
 
 
