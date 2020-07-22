@@ -35,7 +35,6 @@ import { Router } from '@angular/router';
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
-  cursor: pointer;
   height: 35px;
   width: 100px;
 }
@@ -55,7 +54,6 @@ export class ButtonViewComponent implements ViewCell, OnInit {
 
   userId : any
   roleList : any
-  radioGroupValue : any
 
   roleObj = {
     "id" : 0,
@@ -182,7 +180,7 @@ class UsersListComponent {
     },
     pager:
     {
-    perPage: 5
+    perPage: 3
     }
   };
 

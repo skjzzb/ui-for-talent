@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit  {
 
   ngOnInit() {
     this.userId = JSON.parse(sessionStorage.getItem('userId_from_userlist'))
-
+    
     let obResult = this.dataService.getListOfAllRoles()
     obResult.subscribe((data)=>{
       this.roleList = data
