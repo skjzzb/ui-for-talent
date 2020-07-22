@@ -4,6 +4,7 @@ import { DataService } from '../../../@core/utils/data.service';
 import { error } from 'console';
 import { NbWindowService } from '@nebular/theme';
 import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 
@@ -43,7 +44,7 @@ class EditProfileComponent {
   
 info : any
   
-  constructor( private dataService : DataService, private windowService: NbWindowService, private dialog : MatDialog) { 
+  constructor( private dataService : DataService, private windowService: NbWindowService, private dialog : MatDialog,private sanitizer: DomSanitizer) { 
     
     }
 
@@ -52,7 +53,7 @@ info : any
    
     this.logindetails =  JSON.parse(sessionStorage.getItem('user_info'))
    // console.log(this.logindetails)
-   
+   this.getProfilePhoto()
    
     let obResult = this.dataService.getUserDetails(this.logindetails.id)
     obResult.subscribe(data   =>{
@@ -67,7 +68,24 @@ info : any
         this.userdetails.profile = this.info.profile
       }
     })
-    
+  }
+
+  getProfilePhoto()
+  {
+    let profId=13
+    this.dataService.getUserProfilePhoto(profId)
+    .then(
+      response => {
+        //let TYPED_ARRAY = new Uint8Array(response.data);
+        //const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
+        //let base64String = btoa(STRING_CHAR);
+        //this.url = this.sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + base64String);
+        //let objectURL = 'data:image/png;base64,' + response.data;
+        //this.url = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+          this.url=response.data;
+          //console.log(this.url)
+      }
+    )
   }
 
   onUpdate(){
