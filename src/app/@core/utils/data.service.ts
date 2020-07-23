@@ -73,6 +73,10 @@ export class DataService {
     {
       return this.http.get(`https://authentication-api-cv.herokuapp.com/api/user/${userId}`)
     }
+    getGUserDetails(userName)
+    {
+      return this.http.get(`https://authentication-api-cv.herokuapp.com/gapi/user/${userName}`)
+    }
 
      addOrEditProfile(profObj, userId)
     {
