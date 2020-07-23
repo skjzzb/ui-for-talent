@@ -1,7 +1,10 @@
+import { DataService } from './../../../@core/utils/data.service';
+import { AuthService } from './../../../_services/auth.service';
 //
 import { NbAuthService, NbAuthOAuth2Token ,NbTokenLocalStorage, NbTokenStorage,NbAuthTokenParceler} from '@nebular/auth';
 import { HttpClient } from '@angular/common/http';
 import {  NbAuthResult } from '@nebular/auth';
+
 
 //
 import { LogoutComponent } from './../../../logout/logout.component';
@@ -73,10 +76,12 @@ item=[];
   currentTheme = "default";
 
   userMenu = [{ title: "Profile" }, { title: "Log out" }];
-  googleurl ="https://www.googleapis.com/oauth2/v3/userinfo?access_token=";
+  googleurl ="https://www.googleapis.com/oauth2/v2/userinfo?access_token=";
   key ='auth_app_token';
   constructor(
     private parceler: NbAuthTokenParceler,
+    private gauthService: AuthService,
+    private dataService : DataService,
     private authService: NbAuthService,
     private http: HttpClient,
     private tokenStorageService: TokenStorageService,
@@ -107,10 +112,13 @@ item=[];
     this.tokn=this.tokn[1].split('"')
   
     //var tempArray: DataResponse[] = [];
+    
+
     this.googleurl=this.googleurl+this.tokn[1]
     console.log(this.googleurl);
 
-
+   // console.log(this.http.get('https://www.googleapis.com/oauth2/v1/userinfo?alt=json'))
+    
     this.http.get(this.googleurl).toPromise().then(data=>{
       console.log(data);
       for (let key in data) {
@@ -118,13 +126,31 @@ item=[];
            this.item.push(data[key]);   
            
         }
+        localStorage.setItem('email', this.item[1]);
+
       }
     );
+if(!this.dataService.getGUserDetails(this.item[1]))
+{
+    this.gauthService.gregister(this.item[1],this.item[3]).subscribe(
+      data => {
+        console.log(data);
+        // this.isSuccessful = true;
+        // this.isSignUpFailed = false;
+      },
+      err => {
+        // this.errorMessage = err.error.message;
+        // this.isSignUpFailed = true;
+      }
+    );
+    }   
+    else
+    {}
     }
     ///End
     this.user =  JSON.parse(sessionStorage.getItem('user_info'))
-    this.role=this.user.roles[0];
-    console.log(this.role);
+    if(!localStorage.getItem(this.key))
+    { this.role=this.user.roles[0];}
     // this.userService
     //   .getUsers()
     //   .pipe(takeUntil(this.destroy$))
@@ -157,8 +183,10 @@ item=[];
       .subscribe((title ) => 
       {
         if(title === 'Profile')
+        {
         this.dialog.open(EditProfileComponent)
        // this.windowService.open(EditProfileComponent);
+      }
         else{
           if(localStorage.getItem(this.key))
           {

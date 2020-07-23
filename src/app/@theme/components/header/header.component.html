@@ -35,10 +35,10 @@
       </nb-user>
       </nb-action >
      <nb-action class="user-action" *ngIf='logintype()'>
-      <nb-user   [name]="this.item[1]"
-      [onlyPicture]="this.item[4]"
-      [picture]="this.item[4]"
-      title="full-stack developer"
+      <nb-user   [name]="this.item[3]"
+      [onlyPicture]="this.item[6]"
+      [picture]="this.item[6]"
+      title="{{item[1]}}"
       [nbContextMenu]="items"
       nbContextMenuTag="my-context-menu">
 </nb-user>

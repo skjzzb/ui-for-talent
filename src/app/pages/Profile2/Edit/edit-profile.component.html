@@ -1,4 +1,4 @@
-<div style=" overflow-y:scroll; margin-left: 20px; height: 650px; width: auto;">
+<div *ngIf='!logintype()' style=" overflow-y:scroll; margin-left: 20px; height: 650px; width: auto;">
       <div class="col-md-12">
         <nb-card   status="success">
           <nb-card-header>Edit Profile</nb-card-header>
@@ -80,4 +80,84 @@
       </div>
 </div>   
 
-  
+<div *ngIf='logintype()' style=" overflow-y:scroll; margin-left: 20px; height: 650px; width: auto;">
+  <div class="col-md-12">
+    <nb-card   status="success">
+      <nb-card-header>Edit Profile</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-md-8">
+            <form (ngSubmit)="gonUpdate()">
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="name" class="label">Name</label>
+                  <input type="text" nbInput fullWidth id="name" name="logindetails.name" [(ngModel)]="logindetails.name"  placeholder="Name" readonly>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-5">
+                  <label for="contactNo" class="label">Contact No</label>
+                  <input type="text" nbInput fullWidth name="userdetails.profile.contactNo"  [(ngModel)]="userdetails.profile.contactNo" placeholder="Contact No">
+                </div>
+                <div class="col-md-7">
+                  <label for="email" class="label">Eamil</label>
+                  <input type="email" nbInput fullWidth id="email" name="logindetails.username"  [(ngModel)]="logindetails.username"  placeholder="Email" readonly>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="address" class="label">Address</label>
+                  <textarea id="address" nbInput fullWidth id="userdetails.profile.address" name="userdetails.profile.address"  [(ngModel)]="userdetails.profile.address" placeholder="Address"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="city" class="label">City</label>
+                  <input type="text" nbInput fullWidth id="userdetails.profile.city" name="userdetails.profile.city"  [(ngModel)]="userdetails.profile.city" placeholder="City">
+                </div>
+                <div class="col-md-6">
+                  <label for="city" class="label">State</label>
+                  <input type="text" nbInput fullWidth id="userdetails.profile.state" name="userdetails.profile.state"  [(ngModel)]="userdetails.profile.state" placeholder="State">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="country" class="label">Country</label>
+                  <input type="text" nbInput fullWidth id="userdetails.profile.country" name="userdetails.profile.country"  [(ngModel)]="userdetails.profile.country"  placeholder="Country">
+                </div>
+                <div class="col-md-6">
+                  <label for="postcode" class="label">Postcode</label>
+                  <input type="text" nbInput fullWidth id="userdetails.profile.pinCode" name="userdetails.profile.pinCode"  [(ngModel)]="userdetails.profile.pinCode" placeholder="Postcode">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="aboutMe" class="label">About Me</label>
+                  <textarea id="aboutMe" nbInput fullWidth id="userdetails.profile.aboutMe"  name="userdetails.profile.aboutMe"  [(ngModel)]="userdetails.profile.aboutMe" placeholder="About Me"></textarea>
+                </div>
+              </div>
+              <div>
+                <div class="col-md-12" >
+                  <div class="row action-btn">
+                    <button type="submit" nbButton status="danger">Update</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-4">
+            <label class="label" for="fileInput">
+              <img class="responsive"  [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
+            </label>
+            <br/>
+            <div>
+              <h6>{{logindetails.name}}</h6> 
+              <p>{{userdetails.profile.aboutMe}}</p>
+            </div>
+          </div>
+        </div>   
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>   
+
