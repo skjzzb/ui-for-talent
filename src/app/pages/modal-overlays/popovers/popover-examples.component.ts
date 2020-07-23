@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NbDialogRef } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-popover-tabs',
@@ -47,12 +48,10 @@ export class NgxPopoverFormComponent {
   template: `
     <nb-card class="popover-card">
       <nb-card-header status="warning">
-        Hello!
+       Short Summary
       </nb-card-header>
       <nb-card-body>
-        Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-        there live the blind texts.
-        Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+      {{renderValue}}
       </nb-card-body>
     </nb-card>
   `,
@@ -64,4 +63,12 @@ export class NgxPopoverFormComponent {
   `],
 })
 export class NgxPopoverCardComponent {
+   renderValue: any;
+  
+constructor()
+{
+console.log(this.renderValue);
 }
+
+
+  }

@@ -87,6 +87,15 @@ export class DataService {
       return this.http.get(`https://authentication-api-cv.herokuapp.com/api/user/`)
     }
 
+    editProfilePhoto(profObj, userId)
+    {
+      return this.http.put(`https://authentication-api-cv.herokuapp.com/api/upload/${userId}`, profObj)
+    }
+    getUserProfilePhoto(profId)
+    {
+      return axios.get(`https://authentication-api-cv.herokuapp.com/api/image/${profId}`)
+    }
+
     getFeatureByRole(name:any)
     {
       return axios.get(`${API_URL}/feature/${name}`);
