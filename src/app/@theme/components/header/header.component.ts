@@ -102,6 +102,7 @@ item=[];
 //Start
     this.acesstoken =  JSON.parse(localStorage.getItem(this.key));
     //console.log(this.acesstoken.value);
+    //console.log(this.acesstoken);
     if(localStorage.getItem(this.key))
     {
      this.atoken=this.acesstoken.value;
@@ -121,6 +122,7 @@ item=[];
     
     this.http.get(this.googleurl).toPromise().then(data=>{
       console.log(data);
+
       for (let key in data) {
         if (data.hasOwnProperty(key))
            this.item.push(data[key]);   

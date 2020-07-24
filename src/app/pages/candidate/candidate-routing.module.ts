@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CandidateComponent } from './candidate.component';
 import { ListOfCandidateComponent } from './list-of-candidate/list-of-candidate.component';
+import { InterviewComponent } from './interview/interview.component';
 
 
 const routes: Routes = [{
@@ -13,6 +14,10 @@ const routes: Routes = [{
        path: 'list-of-candidate',
        component: ListOfCandidateComponent,
      },
+     {
+      path: 'interview',
+      component: InterviewComponent,
+    }
   ],
 }];
 
@@ -23,5 +28,6 @@ const routes: Routes = [{
 export class CandidateRoutingModule { }
 
 export const routedComponents = [
-    ListOfCandidateComponent
+    ListOfCandidateComponent,
+    InterviewComponent
 ];

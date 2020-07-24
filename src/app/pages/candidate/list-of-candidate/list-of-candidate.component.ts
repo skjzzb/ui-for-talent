@@ -1,7 +1,66 @@
 import  Swal  from 'sweetalert2';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { DataService } from '../../../@core/utils/data.service';
 import { LocalDataSource } from 'ng2-smart-table';
+import { NgxPopoverCardComponent, NgxPopoverFormComponent } from '../../modal-overlays/popovers/popover-examples.component';
+import { NbWindowService, NbDialogService } from '@nebular/theme';
+import { InterviewComponent } from '../interview/interview.component';
+import { ProfileComponent } from '../../../profile/profile.component';
+
+@Component({
+  selector: 'button-view',
+  template: `
+  <div>
+  <style>
+.button {
+  background-color: #008CBA; /* Blue */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  height: 50px;
+  width: 150px;
+}
+.button2 {border-radius: 4px;}
+</style>
+  <button class="button button2" type="button" (click)="onClick()"> Schedule Interview
+  </button>
+  </div>`,
+})
+export class ButtonViewComponent implements OnInit {
+  renderValue: string;
+  CardComponent
+
+  @Input() value: string;
+  @Input() rowData: any;
+
+  @Output() save: EventEmitter<any> = new EventEmitter();
+
+  constructor(private windowService: NbWindowService,private dialogService: NbDialogService)
+  {
+    
+  }
+
+  ngOnInit() {
+    this.renderValue = this.value.toString();
+  }
+
+  onClick()
+  {
+    console.log(this.rowData)
+    this.CardComponent = InterviewComponent;
+    this.dialogService.open(this.CardComponent, {context: {
+      rowData: this.rowData,
+    },
+  });
+  
+  }
+
+}
+
+
 
 @Component({
   selector: 'ngx-list-of-candidate',
@@ -79,10 +138,20 @@ export class ListOfCandidateComponent implements OnInit {
         sortDirection:'desc',
         width:'10%'
       },
+      setInterview:{
+        title:'Schedule Interview',
+        type:'custom',
+        renderComponent:ButtonViewComponent,
+        onComponentInitFunction(instance) {
+         instance.save.subscribe(row => {
+         });
+       },width:'20%',
+       filter:false,
+       },
     },
     pager:
     {
-    perPage: 5
+    perPage: 4
     }
   };
 
