@@ -18,6 +18,9 @@ class EditProfileComponent {
   
   url : any
   logindetails : any
+  profile:String;
+  glogindetails : any
+
   userdetails = {
     "id": 0,
     "username": "",
@@ -41,8 +44,31 @@ class EditProfileComponent {
         "profilePicture": null
     }
 }
-  
+guserdetails = {
+  "id": 0,
+  "username": "",
+  "name": "",
+  "roles": [
+      {
+          "id": 0,
+          "name": ""
+      }
+  ],
+  "profile": {
+      "profId": 0,
+      "address": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "pinCode": "",
+      "aboutMe": "",
+      "contactNo": "",
+      "profilePicture": ""
+  }
+}  
 info : any
+info1 : any
+email: any;
   
   constructor( private dataService : DataService, private windowService: NbWindowService, private dialog : MatDialog,private sanitizer: DomSanitizer) { 
     
@@ -50,24 +76,61 @@ info : any
 
 
   ngOnInit(): void {
+    this.profile=localStorage.getItem('profile');
    
     this.logindetails =  JSON.parse(sessionStorage.getItem('user_info'))
-   // console.log(this.logindetails)
-   this.getProfilePhoto()
-   
-    let obResult = this.dataService.getUserDetails(this.logindetails.id)
-    obResult.subscribe(data   =>{
-      this.info =  data ;
-      if( this.info.profile != null)
+    this.glogindetails=this.dataService.getGUserDetails(this.email);
+  //  console.log(this.glogindetails);
+    if(localStorage.getItem('auth_app_token'))
+    {
+      this.email=localStorage.getItem('email');
+      let reData=this.dataService.getGUserDetails(this.email)
+      if(this.dataService.getGUserDetails(this.email))
       {
-        this.userdetails.id = this.info.id
-        this.userdetails.username = this.info.username
-        this.userdetails.name = this.info.name
-        this.userdetails.roles = this.info.roles
-        this.userdetails.password = this.info.password
-        this.userdetails.profile = this.info.profile
+        this.dataService.getGUserDetails(this.email).subscribe(data =>{
+          this.info1=data;
+          console.log(data);
+          this.glogindetails.id = this.info1.id
+        this.glogindetails.username = this.info1.username
+        this.glogindetails.name = this.info1.name
+      if( this.info1.profile != null)
+      {
+        this.guserdetails.id = this.info1.id
+        this.guserdetails.username = this.info1.username
+        this.guserdetails.name = this.info1.name
+        this.guserdetails.roles = this.info1.roles
+       // this.userdetails.password = this.info1.password
+        this.guserdetails.profile = this.info1.profile
+        this.guserdetails.profile.profilePicture=localStorage.getItem('profile');
       }
-    })
+      
+
+        })
+      }
+      else{
+        
+
+
+      }
+
+
+    }
+   // console.log(this.logindetails)
+   //this.getProfilePhoto()
+   
+    // let obResult = this.dataService.getUserDetails(this.logindetails.id)
+    // obResult.subscribe(data   =>{
+    //   this.info =  data ;
+    //   if( this.info.profile != null)
+    //   {
+    //     this.userdetails.id = this.info.id
+    //     this.userdetails.username = this.info.username
+    //     this.userdetails.name = this.info.name
+    //     this.userdetails.roles = this.info.roles
+    //     this.userdetails.password = this.info.password
+    //     this.userdetails.profile = this.info.profile
+    //   }
+    // })
   }
 
   getProfilePhoto()
@@ -97,6 +160,27 @@ info : any
     //this.windowService.open(EditProfileComponent);
     this.dialog.closeAll()
     this.dialog.open(EditProfileComponent)
+  }
+  gonUpdate(){
+    let obResult = this.dataService.gaddOrEditProfile(this.guserdetails.profile,this.glogindetails.id)
+    obResult.subscribe(data=>{
+      console.log(data)
+    //  window.location.reload()
+    })
+    //this.windowService.open(EditProfileComponent);
+    this.dialog.closeAll()
+    this.dialog.open(EditProfileComponent)
+  }
+  logintype()
+  {
+    if(localStorage.getItem('auth_app_token'))
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
   
   }
