@@ -112,6 +112,11 @@ export class DataService {
     {
       return this.http.post(`https://authentication-api-cv.herokuapp.com/api/set-role/${userId}`, roleObj)
     }
+
+    addMultipleResume(vacancyId,listOfFiles)
+    {
+      return axios.put(`${API_URL}/${vacancyId}`,listOfFiles)
+    }
 }
 
 

@@ -4,6 +4,7 @@ import { Candidate } from './pages-menu';
 import { Vacancy } from './pages-menu';
 import { dashboard } from './pages-menu';
 import { users } from './pages-menu';
+import { uploadResume } from './pages-menu';
 import { MENU_ITEMS } from './pages-menu';
 import { NbMenuItem } from '@nebular/theme';
 import { canvas } from 'leaflet';
@@ -71,6 +72,8 @@ export class PagesComponent {
     this.MENU_ITEMS2.push(Candidate)
     if(this.feature.userList)
     this.MENU_ITEMS2.push(users)
+    if(true)
+    this.MENU_ITEMS2.push(uploadResume)
     this.menu=this.MENU_ITEMS2
   }
 
