@@ -36,10 +36,10 @@ export class AuthService {
       password: user.password
     }, httpOptions);
   }
-  gregister(username,name): Observable<any> {
+  gregister(uname,nm): Observable<any> {
     return this.http.post(AUTH_API + 'gsignup', {
-      username: username,
-      name: name,
+      username: uname,
+      name: nm,
       
     }, httpOptions);
   }

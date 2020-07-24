@@ -18,6 +18,9 @@ class EditProfileComponent {
   
   url : any
   logindetails : any
+  profile:String;
+  glogindetails : any
+
   userdetails = {
     "id": 0,
     "username": "",
@@ -60,7 +63,7 @@ guserdetails = {
       "pinCode": "",
       "aboutMe": "",
       "contactNo": "",
-      "profilePicture": null
+      "profilePicture": ""
   }
 }  
 info : any
@@ -73,8 +76,11 @@ email: any;
 
 
   ngOnInit(): void {
+    this.profile=localStorage.getItem('profile');
    
     this.logindetails =  JSON.parse(sessionStorage.getItem('user_info'))
+    this.glogindetails=this.dataService.getGUserDetails(this.email);
+  //  console.log(this.glogindetails);
     if(localStorage.getItem('auth_app_token'))
     {
       this.email=localStorage.getItem('email');
@@ -83,6 +89,10 @@ email: any;
       {
         this.dataService.getGUserDetails(this.email).subscribe(data =>{
           this.info1=data;
+          console.log(data);
+          this.glogindetails.id = this.info1.id
+        this.glogindetails.username = this.info1.username
+        this.glogindetails.name = this.info1.name
       if( this.info1.profile != null)
       {
         this.guserdetails.id = this.info1.id
@@ -91,7 +101,9 @@ email: any;
         this.guserdetails.roles = this.info1.roles
        // this.userdetails.password = this.info1.password
         this.guserdetails.profile = this.info1.profile
+        this.guserdetails.profile.profilePicture=localStorage.getItem('profile');
       }
+      
 
         })
       }
@@ -104,21 +116,21 @@ email: any;
 
     }
    // console.log(this.logindetails)
-   this.getProfilePhoto()
+   //this.getProfilePhoto()
    
-    let obResult = this.dataService.getUserDetails(this.logindetails.id)
-    obResult.subscribe(data   =>{
-      this.info =  data ;
-      if( this.info.profile != null)
-      {
-        this.userdetails.id = this.info.id
-        this.userdetails.username = this.info.username
-        this.userdetails.name = this.info.name
-        this.userdetails.roles = this.info.roles
-        this.userdetails.password = this.info.password
-        this.userdetails.profile = this.info.profile
-      }
-    })
+    // let obResult = this.dataService.getUserDetails(this.logindetails.id)
+    // obResult.subscribe(data   =>{
+    //   this.info =  data ;
+    //   if( this.info.profile != null)
+    //   {
+    //     this.userdetails.id = this.info.id
+    //     this.userdetails.username = this.info.username
+    //     this.userdetails.name = this.info.name
+    //     this.userdetails.roles = this.info.roles
+    //     this.userdetails.password = this.info.password
+    //     this.userdetails.profile = this.info.profile
+    //   }
+    // })
   }
 
   getProfilePhoto()
@@ -150,7 +162,7 @@ email: any;
     this.dialog.open(EditProfileComponent)
   }
   gonUpdate(){
-    let obResult = this.dataService.addOrEditProfile(this.userdetails.profile,this.logindetails.id)
+    let obResult = this.dataService.gaddOrEditProfile(this.guserdetails.profile,this.glogindetails.id)
     obResult.subscribe(data=>{
       console.log(data)
     //  window.location.reload()

@@ -82,6 +82,10 @@ export class DataService {
     {
       return this.http.put(`https://authentication-api-cv.herokuapp.com/api/profile/${userId}`, profObj)
     }
+    gaddOrEditProfile(profObj, userId)
+    {
+      return this.http.put(`https://authentication-api-cv.herokuapp.com/gapi/profile/${userId}`, profObj)
+    }
     getListOfUsers()
     {
       return this.http.get(`https://authentication-api-cv.herokuapp.com/api/user/`)

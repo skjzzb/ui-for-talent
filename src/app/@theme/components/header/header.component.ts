@@ -74,7 +74,9 @@ item=[];
   ];
 
   currentTheme = "default";
-
+  email:String;
+  uname:String;
+  nam:String;
   userMenu = [{ title: "Profile" }, { title: "Log out" }];
   googleurl ="https://www.googleapis.com/oauth2/v2/userinfo?access_token=";
   key ='auth_app_token';
@@ -96,7 +98,11 @@ item=[];
     private windowService: NbWindowService,
     @Inject(NB_WINDOW) private window
   ) {}
-
+   user1 ={
+    'username':"",
+    'name':""
+  }
+ 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
 //Start
@@ -129,12 +135,31 @@ item=[];
            
         }
         localStorage.setItem('email', this.item[1]);
+        localStorage.setItem('name', this.item[3]);
+        localStorage.setItem('profile', this.item[6]);
+
+       this.uname=this.item[1];
+  this.nam=this.item[3];
+
 
       }
     );
-if(!this.dataService.getGUserDetails(this.item[1]))
+  
+    this.email=localStorage.getItem('email');
+    this.nam=localStorage.getItem('name');
+    console.log(this.email);
+    console.log(this.nam);
+this.dataService.getGUserDetails(this.email).toPromise().then(data=>{
+   console.log(data)
+});
+
+//console.log(this.dataService.getGUserDetails(this.email))
+if(!this.dataService.getGUserDetails(this.email).toPromise().then(data=>{ return data;}))
 {
-    this.gauthService.gregister(this.item[1],this.item[3]).subscribe(
+  console.log(this.user1.name.toString()+''+this.user1.username.toString());
+  
+  
+    this.gauthService.gregister(this.email,this.nam).subscribe(
       data => {
         console.log(data);
         // this.isSuccessful = true;
@@ -147,7 +172,10 @@ if(!this.dataService.getGUserDetails(this.item[1]))
     );
     }   
     else
-    {}
+    {
+
+      console.log('Else is Running')
+    }
     }
     ///End
     this.user =  JSON.parse(sessionStorage.getItem('user_info'))
