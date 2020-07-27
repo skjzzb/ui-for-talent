@@ -12,30 +12,16 @@ import { Router } from '@angular/router';
   template: `
   <div>
   <ng-template #dialog let-data let-ref="dialogRef">
-  <div style="width: 120%;height: 100%;background-color: #fff;margin-top: auto; margin-left: auto; text-align: center;" >
-  <div style="background-color: green;text-align: left;color: white; font-size: larger;"> Assign Role </div>
-  <br>
-  
- <input name="role" type="radio" value="1" (change)="onItemChange($event.target.value)"/> ROLE_USER <br>
- <input name="role" type="radio" value="2" (change)="onItemChange($event.target.value)"/> ROLE_MODERATOR  <br>
- <input name="role" type="radio" value="3" (change)="onItemChange($event.target.value)"/> ROLE_ADMIN <br>
- <input name="role" type="radio" value="4" (change)="onItemChange($event.target.value)"/> ROLE_HR  <br>
- <input name="role" type="radio" value="5" (change)="onItemChange($event.target.value)"/> ROLE_PANEL  <br>
-  <br>
-  <button style="border-radius: 4px"  type="click" (click)="onSelectRole()">Set Role</button>
-  <hr>
-  </div>
-</ng-template>
+  </ng-template>
 <style>
 .button {
-  background-color: #4CAF50; /* Green */
+  background-color: #008CBA; /* Blue */
   border: none;
   color: white;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
-  cursor: pointer;
   height: 35px;
   width: 100px;
 }
@@ -55,7 +41,6 @@ export class ButtonViewComponent implements ViewCell, OnInit {
 
   userId : any
   roleList : any
-  radioGroupValue : any
 
   roleObj = {
     "id" : 0,
@@ -86,41 +71,7 @@ export class ButtonViewComponent implements ViewCell, OnInit {
     this.dialog.open(ProfileComponent)
   }
 
-  // onSelectRole(){
-  //   console.log(this.roleObj.id)
-  //   if(this.roleObj.id == 1)
-  //    {
-  //      console.log("hfdgsjfgsdh")
-  //      this.roleObj.name = 'ROLE_USER'
-  //    }
-  //    if(this.roleObj.id == 2)
-  //    {
-  //     this.roleObj.name = 'ROLE_MODERATOR'
-  //    }
-  //    if (this.roleObj.id == 3)
-  //    {
-  //     this.roleObj.name = 'ROLE_ADMIN'
-  //    }
-  //    if (this.roleObj.id == 4)
-  //    {
-  //     this.roleObj.name = 'ROLE_HR'
-  //    }
-  //    if (this.roleObj.id == 5)
-  //    {
-  //     this.roleObj.name = 'ROLE_PANEL'
-  //    }
-  //    console.log(this.roleObj)
-    
-  //    let obResult = this.dataService.setRole(this.userId, this.roleObj)
-  //    obResult.subscribe((data)=>{
-  //      console.log(data)
-  //      alert(`${this.roleObj.name} is set successfully..`)
-  //    })
-  // }
   
-//   onItemChange(value){
-//     this.roleObj.id = value
-//  }
   
 }
 
@@ -163,11 +114,6 @@ class UsersListComponent {
         type: 'string',
         //width:'10%'
       },
-      // role: {
-      //   title: 'Role',
-      //   type: 'string',
-      //   //width:'10%'
-      // },
       role:{
         title:'Role',
         type:'custom',
@@ -182,7 +128,7 @@ class UsersListComponent {
     },
     pager:
     {
-    perPage: 5
+    perPage: 3
     }
   };
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 
 @Component({
@@ -40,7 +40,15 @@ export class NgxPopoverTabsComponent {
     </div>
   `,
 })
-export class NgxPopoverFormComponent {
+export class NgxPopoverFormComponent implements OnInit {
+  rowData : any
+
+  constructor(){
+   
+  }
+  ngOnInit(): void {
+     console.log(this.rowData)
+  }
 }
 
 @Component({
