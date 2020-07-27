@@ -41,6 +41,16 @@ export var MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: 'Upload Resume',
+    icon: 'file-text-outline',
+    children: [
+      {
+        title: 'Upload Resume',
+        link: '/pages/uploadResume/upload-resume',
+      },
+    ],
+  },
+  {
     title: 'Candidate',
     icon: 'person-outline',
     children: [
@@ -326,3 +336,14 @@ export var Candidate =
           },
         ],
     }
+
+    export var uploadResume ={
+      title: 'Upload Resume',
+      icon: 'file-text-outline',
+      children: [
+        {
+          title: 'Upload Resume',
+          link: '/pages/uploadResume/upload-resume',
+        },
+      ],
+  }
