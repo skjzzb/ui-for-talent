@@ -1,17 +1,15 @@
 <div>
     <nb-card status="success">
       <nb-card-header>Schedule Interview</nb-card-header>
-      <div style=" overflow-y:scroll; margin-left: 20px;  height: 650px; width: auto;">
+      <!-- <div style=" overflow-y:scroll; margin-left: 20px;  height: 650px; width: auto;"> -->
         <nb-card-body>
           <h6>Level-1 (Technical)</h6>
-          <form>
+          <form  #myForm="ngForm" (ngSubmit)="scheduleInterview(myForm)" role="form">
             <div class="row">
               <div class="col-md-4"> 
                 <label class="label">Select Panel</label>
                 <nb-select placeholder="Select Panel" fullWidth ngModel name="panel" [(selected)]="selectedPanel">
-                  <nb-option value="Cv processing">Cv processing</nb-option>
-                  <nb-option value="Smgr">Smgr</nb-option>
-                  <nb-option value="Address Book">Address Book</nb-option>
+                  <nb-option *ngFor="let d of panel" value="{{d.username}}">{{d.name}}</nb-option>
                 </nb-select>
               </div>
               <div class="col-md-4"> 
@@ -26,6 +24,7 @@
                 <label class="label">Scheduled On</label>
                 <input nbInput fullWidth
                 name="scheduledOn"
+                ngModel
                 placeholder="Scheduled On"
                 [nbDatepicker]="formpicker">
                 <nb-datepicker #formpicker></nb-datepicker> 
@@ -47,97 +46,7 @@
               </div>
             </div>
           </form>
-          <hr>
-          <h6>Level-2 (Manager)</h6>
-          <form>
-            <div class="row">
-              <div class="col-md-4"> 
-                <label class="label">Select Panel</label>
-                <nb-select placeholder="Select Panel" fullWidth ngModel name="panel" [(selected)]="selectedPanel">
-                  <nb-option value="Cv processing">Cv processing</nb-option>
-                  <nb-option value="Smgr">Smgr</nb-option>
-                  <nb-option value="Address Book">Address Book</nb-option>
-                </nb-select>
-              </div>
-              <div class="col-md-4"> 
-                <label class="label">Select Mode of Interview</label>
-                <nb-select placeholder="Select Mode of Interview" fullWidth ngModel name="mode" [(selected)]="selectedMode">
-                  <nb-option value="Cv processing">Face to Face</nb-option>
-                  <nb-option value="Smgr">Google Meet</nb-option>
-                  <nb-option value="Address Book">Zoom</nb-option>
-                </nb-select>
-              </div>
-              <div class="col-md-4">
-                <label class="label">Scheduled On</label>
-                <input nbInput fullWidth
-                name="scheduledOn"
-                placeholder="Scheduled On"
-                [nbDatepicker]="formpicker">
-                <nb-datepicker #formpicker></nb-datepicker> 
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <label class="label">Status</label>
-                <input type="text" name="status" nbInput fullWidth placeholder="Status" >
-              </div>
-              <div class="col-md-8">
-                <label class="label">Interview Evalution Report</label>
-                <input type="text" name="report" nbInput fullWidth placeholder="Interview Evalution Report" >
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="row action-btn">
-                <button nbButton status="danger">Schedule Round 2</button>
-              </div>
-            </div>
-          </form>
-          <hr>
-          <h6>Level-3 (HR)</h6>
-          <form>
-            <div class="row">
-              <div class="col-md-4"> 
-                <label class="label">Select Panel</label>
-                <nb-select placeholder="Select Panel" fullWidth ngModel name="panel" [(selected)]="selectedPanel">
-                  <nb-option value="Cv processing">Cv processing</nb-option>
-                  <nb-option value="Smgr">Smgr</nb-option>
-                  <nb-option value="Address Book">Address Book</nb-option>
-                </nb-select>
-              </div>
-              <div class="col-md-4"> 
-                <label class="label">Select Mode of Interview</label>
-                <nb-select placeholder="Select Mode of Interview" fullWidth ngModel name="mode" [(selected)]="selectedMode">
-                  <nb-option value="Cv processing">Face to Face</nb-option>
-                  <nb-option value="Smgr">Google Meet</nb-option>
-                  <nb-option value="Address Book">Zoom</nb-option>
-                </nb-select>
-              </div>
-              <div class="col-md-4">
-                <label class="label">Scheduled On</label>
-                <input nbInput fullWidth
-                name="scheduledOn"
-                placeholder="Scheduled On"
-                [nbDatepicker]="formpicker">
-                <nb-datepicker #formpicker></nb-datepicker> 
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <label class="label">Status</label>
-                <input type="text" name="status" nbInput fullWidth placeholder="Status" >
-              </div>
-              <div class="col-md-8">
-                <label class="label">Interview Evalution Report</label>
-                <input type="text" name="report" nbInput fullWidth placeholder="Interview Evalution Report" >
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="row action-btn">
-                <button nbButton status="danger">Schedule Round 3</button>
-              </div>
-            </div>
-          </form>
         </nb-card-body>
-      </div>
+      <!-- </div> -->
     </nb-card>
 </div>

@@ -17,14 +17,35 @@ export class InterviewComponent implements OnInit {
 
   selectedPanel : any
   selectedMode : any
-  
+  panel : any
+  scheduledOn : any
   rowData : any
+
+  interview = {
+    "panelEmail" : "",
+    "candidateEmail" : "",
+    "scheduledOn" : "",
+    "level" : "Level-1"
+  }
   constructor(private service:DataService) { 
   }
 
   ngOnInit(): void {
-    console.log(this.rowData)
+    //console.log(this.rowData)
+    this.service.getAllPanel().subscribe(data=>{
+      this.panel = data
+      //console.log(this.panel)
+    })
     
+  }
+
+  scheduleInterview(dataFromUI)
+  {
+
+    this.interview.panelEmail = dataFromUI.form.value.panel
+    this.interview.candidateEmail = this.rowData.email
+    this.interview.scheduledOn = dataFromUI.form.value.scheduledOn
+    console.log(this.interview)
   }
 
 

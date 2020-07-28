@@ -117,6 +117,14 @@ export class DataService {
     {
       return axios.put(`${API_URL}/${vacancyId}`,listOfFiles)
     }
+    getAllhr()
+    {
+      return this.http.get("https://authentication-api-cv.herokuapp.com/api/get-all-users/hr")
+    }
+    getAllPanel()
+    {
+      return this.http.get("https://authentication-api-cv.herokuapp.com/api/get-all-users/panel")
+    }
 }
 
 
