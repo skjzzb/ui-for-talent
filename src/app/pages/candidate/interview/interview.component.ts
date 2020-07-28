@@ -20,11 +20,13 @@ export class InterviewComponent implements OnInit {
   panel : any
   scheduledOn : any
   rowData : any
+  time : any
 
   interview = {
     "panelEmail" : "",
     "candidateEmail" : "",
     "scheduledOn" : "",
+    "time" : "",
     "level" : "Level-1"
   }
   constructor(private service:DataService) { 
@@ -45,6 +47,7 @@ export class InterviewComponent implements OnInit {
     this.interview.panelEmail = dataFromUI.form.value.panel
     this.interview.candidateEmail = this.rowData.email
     this.interview.scheduledOn = dataFromUI.form.value.scheduledOn
+    this.interview.time = dataFromUI.form.value.time
     console.log(this.interview)
   }
 
