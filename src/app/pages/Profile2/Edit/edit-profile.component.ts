@@ -103,8 +103,6 @@ email: any;
         this.guserdetails.profile = this.info1.profile
         this.guserdetails.profile.profilePicture=localStorage.getItem('profile');
       }
-      
-
         })
       }
       else{
@@ -112,25 +110,23 @@ email: any;
 
 
       }
-
-
     }
-   // console.log(this.logindetails)
-   //this.getProfilePhoto()
-   
-    // let obResult = this.dataService.getUserDetails(this.logindetails.id)
-    // obResult.subscribe(data   =>{
-    //   this.info =  data ;
-    //   if( this.info.profile != null)
-    //   {
-    //     this.userdetails.id = this.info.id
-    //     this.userdetails.username = this.info.username
-    //     this.userdetails.name = this.info.name
-    //     this.userdetails.roles = this.info.roles
-    //     this.userdetails.password = this.info.password
-    //     this.userdetails.profile = this.info.profile
-    //   }
-    // })
+    if (this.logindetails != null)
+    {
+    let obResult = this.dataService.getUserDetails(this.logindetails.id)
+    obResult.subscribe(data   =>{
+      this.info =  data ;
+      if( this.info.profile != null)
+      {
+        this.userdetails.id = this.info.id
+        this.userdetails.username = this.info.username
+        this.userdetails.name = this.info.name
+        this.userdetails.roles = this.info.roles
+        this.userdetails.password = this.info.password
+        this.userdetails.profile = this.info.profile
+      }
+    })
+    }
   }
 
   getProfilePhoto()
@@ -154,22 +150,16 @@ email: any;
   onUpdate(){
     let obResult = this.dataService.addOrEditProfile(this.userdetails.profile,this.logindetails.id)
     obResult.subscribe(data=>{
-      console.log(data)
-    //  window.location.reload()
+      this.dialog.closeAll()
+      this.dialog.open(EditProfileComponent)
     })
-    //this.windowService.open(EditProfileComponent);
-    this.dialog.closeAll()
-    this.dialog.open(EditProfileComponent)
   }
   gonUpdate(){
     let obResult = this.dataService.gaddOrEditProfile(this.guserdetails.profile,this.glogindetails.id)
     obResult.subscribe(data=>{
-      console.log(data)
-    //  window.location.reload()
+      this.dialog.closeAll()
+      this.dialog.open(EditProfileComponent)
     })
-    //this.windowService.open(EditProfileComponent);
-    this.dialog.closeAll()
-    this.dialog.open(EditProfileComponent)
   }
   logintype()
   {
