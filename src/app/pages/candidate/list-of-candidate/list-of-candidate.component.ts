@@ -138,6 +138,46 @@ export class ListOfCandidateComponent implements OnInit {
         sortDirection:'desc',
         width:'10%'
       },
+      shortSummaryMatchingPercent:{
+        title:' Short Summeary Matching Percent',
+        type: 'html',
+        valuePrepareFunction: (value) => {
+          if(value>75)
+          {
+            this.color='text-success';
+          }else if(value>50)
+          {
+            this.color='text-warning';
+          }else
+          this.color='text-danger';
+
+          return `<div class="`+this.color+`">${value}%</div>`
+        },
+        filter: false,
+        sort:true,
+        sortDirection:'desc',
+        width:'10%'
+      },
+      technologyStackMatchingPercent:{
+        title:'Technology Stack Matching Percent',
+        type: 'html',
+        valuePrepareFunction: (value) => {
+          if(value>75)
+          {
+            this.color='text-success';
+          }else if(value>50)
+          {
+            this.color='text-warning';
+          }else
+          this.color='text-danger';
+
+          return `<div class="`+this.color+`">${value}%</div>`
+        },
+        filter: false,
+        sort:true,
+        sortDirection:'desc',
+        width:'10%'
+      },
       setInterview:{
         title:'Schedule Interview',
         type:'custom',
@@ -181,6 +221,7 @@ export class ListOfCandidateComponent implements OnInit {
       .then(
         response => {
            this.source.load(response.data);
+           console.log(response.data)
            }
       )  
       console.log(this.source)
@@ -196,6 +237,8 @@ export class ListOfCandidateComponent implements OnInit {
                      "technologyStack" : event.newData.technologyStack,
                      "reqMatchingPercent" : event.newData.reqMatchingPercent,
                     "yearOfExperience" : event.newData.yearOfExperience,
+                    "shortSummaryMatchingPercent" : event.newData.shortSummaryMatchingPercent,
+                    "technologyStackMatchingPercent" : event.newData.technologyStackMatchingPercent
                     };
             this.service.updateCandidate(data,this.type)
             .then(
