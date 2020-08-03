@@ -50,6 +50,16 @@ export var MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+   {
+    title: 'Level',
+    icon: 'person-outline',
+    children: [
+      {
+        title: 'List of Levels',
+        link: '/pages/level/list-of-level',
+      },
+    ],
+  },
   {
     title: 'Layout',
     icon: 'layout-outline',

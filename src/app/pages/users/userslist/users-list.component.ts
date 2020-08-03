@@ -133,7 +133,7 @@ export class ButtonViewComponent implements ViewCell, OnInit {
   templateUrl: './users-list.component.html',
   encapsulation: ViewEncapsulation.None
 })
-class UsersListComponent {
+export class UsersListComponent implements OnInit{
 
   usingSplit:[];
   userInfo : any;
@@ -142,11 +142,12 @@ class UsersListComponent {
 
   settings = {
  //   hideSubHeader: true,
-    actions:{
-      add: false,
-      edit: false,
-      delete: false
-    },
+   actions:{add:false,
+             edit:false},
+     delete: {
+       deleteButtonContent: '<i class="nb-trash"></i>',
+       confirmDelete: true,
+     },
     columns: {
       name: {
         title: 'Name',
@@ -209,7 +210,7 @@ class UsersListComponent {
         "email" : "",
         "contactNo" : "",
         "role" : "",
-        "userId" : ""
+        "userId" : 0
       }
 
       source.email =  element.username
@@ -225,5 +226,42 @@ class UsersListComponent {
   this.source.load(this.rows)
   }
 
+  onDeleteConfirm(event): void {
+      /*if (Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      }))*/
+      {
+     console.log(event.data.userId)
+       /* this.dataService.deleteUser(event.data.id)
+        .then(
+          response => {
+             console.log(response);
+             event.confirm.resolve();
+          }
+        )
+      } else {
+        event.confirm.reject();
+      }*/
+      let obResult1 = this.dataService.deleteUser(event.data.userId);
+      obResult1.subscribe(data=>{
+      this.userInfo = data
+      console.log(this.userInfo)
+    }) 
+    }
   }
-  export {UsersListComponent}
+  }
+ // export {UsersListComponent}

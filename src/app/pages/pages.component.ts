@@ -4,6 +4,7 @@ import { Candidate } from './pages-menu';
 import { Vacancy } from './pages-menu';
 import { dashboard } from './pages-menu';
 import { users } from './pages-menu';
+//import { level } from './pages-menu';
 import { MENU_ITEMS } from './pages-menu';
 import { NbMenuItem } from '@nebular/theme';
 import { canvas } from 'leaflet';
@@ -72,6 +73,8 @@ export class PagesComponent {
     if(this.feature.userList)
     this.MENU_ITEMS2.push(users)
     this.menu=this.MENU_ITEMS2
+  /*  if(this.feature.level)
+    this.MENU_ITEMS2.push(level)*/
   }
 
 }

@@ -5,8 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
-import { VacancyModule } from './pages/vacancy/vacancy.module'
-import { CandidateModule } from './pages/candidate/candidate.module'
+import { VacancyModule } from './pages/vacancy/vacancy.module';
+import { CandidateModule } from './pages/candidate/candidate.module';
+//import { LevelModule } from './pages/level/level.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './services/auth-guard.service';
 
@@ -48,6 +49,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
+//import { LevelsComponent } from './levels/levels.component';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { ApplicationFormComponent } from './application-form/application-form.component';
 @NgModule({

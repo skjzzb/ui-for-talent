@@ -68,6 +68,19 @@
                   <nb-option *ngFor="let d of subtechnology" (click)="onClickSubtechnology()" value="{{d.subTechnologyName}}">{{d.subTechnologyName}}</nb-option>
                 </nb-select>  
               </div>
+
+              <div class="col-md-6">
+                <label for="Select level" class="label">Select Level</label>
+                <nb-select placeholder="Select Level" fullWidth [(selected)]="ClickedLevel"  >
+                <nb-option *ngFor="let l of level" (click)="onSelectLevel()" value="{{l.description}}">{{l.description}}</nb-option>
+                </nb-select>  
+              </div>
+
+              <div class="col-md-6">
+                <label for="Short Summary" class="label">Selected Levels</label>
+                <textarea [(ngModel)]="levelList" name="levelList" nbInput fullWidth placeholder="first select levels" readonly ></textarea>
+              </div>
+
             </div>
             <br>
             <div class="row">

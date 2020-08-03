@@ -13,13 +13,20 @@ import { Router } from '@angular/router';
 })
 class AddVacancyComponent implements OnInit{
   selectedItem = '';
+  selectedItem1='';
   selectedProject:string;
   selectedtechnology:string[];
   source: LocalDataSource = new LocalDataSource();
   technology:[];
   subtechnology:any[];
+  vacancy:any[];
   ClickedSubtechnology;
+  ClickedLevel;
   jd=null;
+  level:any[];
+  levelList=null;
+ // description:any;
+  data:any;
   //selectedsubbtechnology:any[];
   
   constructor(private router:Router ,private service: DataService,private location: Location) {
@@ -27,6 +34,7 @@ class AddVacancyComponent implements OnInit{
 
   ngOnInit(): void {
     this.retrieveData();
+    this.retrieveLevelData();
     //this.retrieveAllSubTechnologyData();
   }
 
@@ -36,6 +44,16 @@ class AddVacancyComponent implements OnInit{
     .then(
       response => {
           this.technology=response.data;
+      }
+    )
+  }
+
+  retrieveLevelData(){
+      this.service.getLevelData()
+    .subscribe(
+      (response:any) => {
+          this.level=response;
+          console.log(response);
       }
     )
   }
@@ -56,6 +74,7 @@ class AddVacancyComponent implements OnInit{
     if(this.jd==null || this.jd=='')
     {
       this.jd=this.ClickedSubtechnology
+      console.log(this.jd);
     }else
     {
       let flag;
@@ -95,6 +114,53 @@ class AddVacancyComponent implements OnInit{
     }
   }
 
+   onSelectLevel(){
+ 
+      if(this.levelList==null || this.levelList=='')
+    {
+      this.levelList=this.ClickedLevel
+      console.log(this.ClickedLevel);
+    }else
+    {
+      let flag;
+      let usingSplit=this.levelList.split(', ');
+      console.log(usingSplit);
+      for (let index = 0; index < usingSplit.length; index++) 
+      {
+        if(this.ClickedLevel==usingSplit[index])
+        {
+          if(this.ClickedLevel==usingSplit[0])
+          { if(usingSplit.length==1)
+            this.levelList=this.levelList.replace(this.ClickedLevel.toString(),'');
+            else
+            this.levelList=this.levelList.replace(this.ClickedLevel.toString()+', ','');
+            flag=true;
+            break
+          }else
+          {
+            console.log('inside true..')
+            flag=true;
+            break
+          }
+
+        }else
+        {
+          flag=false
+        }
+      }
+
+      console.log(flag)
+      if(flag==true)
+        {
+          this.levelList=this.levelList.replace(', '+this.ClickedLevel.toString(),'');
+        }else
+        {
+          this.levelList=this.levelList.concat(', '+this.ClickedLevel.toString());
+        }
+    }
+    }
+
+
   onSelectTechnology()
   {
      
@@ -116,6 +182,8 @@ class AddVacancyComponent implements OnInit{
   this.retrieveAllSubTechnologyData(); 
     }
 
+   
+
   addVacancy(dataFromUI:any)
   {
     //this.ngOnInit();
@@ -130,6 +198,7 @@ class AddVacancyComponent implements OnInit{
         this.selectedItem=null;
         //this.selectedtechnology=null;
         this.ClickedSubtechnology=null;
+        this.ClickedLevel=null;
         dataFromUI.form.reset();
       }else
       {
