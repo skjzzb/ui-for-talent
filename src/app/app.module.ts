@@ -5,9 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
-import { VacancyModule } from './pages/vacancy/vacancy.module';
-import { CandidateModule } from './pages/candidate/candidate.module';
-//import { LevelModule } from './pages/level/level.module';
+
+
+import { VacancyModule } from './pages/vacancy/vacancy.module'
+import { UploadResumeModule } from './pages/uploadResume/uploadresume.module'
+import { CandidateModule } from './pages/candidate/candidate.module'
+
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './services/auth-guard.service';
 
@@ -73,6 +76,7 @@ import { ApplicationFormComponent } from './application-form/application-form.co
     MatFormFieldModule,
     VacancyModule,
     CandidateModule,
+    UploadResumeModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),

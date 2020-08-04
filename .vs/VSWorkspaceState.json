@@ -1,15 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\.github\\workflows",
     "\\src",
     "\\src\\app",
     "\\src\\app\\pages",
-    "\\src\\app\\pages\\Levels",
-    "\\src\\app\\pages\\Profile2\\Edit",
+    "\\src\\app\\pages\\candidate",
+    "\\src\\app\\pages\\Level",
+    "\\src\\app\\pages\\Level\\Add",
     "\\src\\app\\pages\\vacancy",
     "\\src\\app\\pages\\vacancy\\new"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\pages\\candidate\\candidate.component.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -1,7 +1,66 @@
 import  Swal  from 'sweetalert2';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { DataService } from '../../../@core/utils/data.service';
 import { LocalDataSource } from 'ng2-smart-table';
+import { NgxPopoverCardComponent, NgxPopoverFormComponent } from '../../modal-overlays/popovers/popover-examples.component';
+import { NbWindowService, NbDialogService } from '@nebular/theme';
+import { InterviewComponent } from '../interview/interview.component';
+import { ProfileComponent } from '../../../profile/profile.component';
+
+@Component({
+  selector: 'button-view',
+  template: `
+  <div>
+  <style>
+.button {
+  background-color: #008CBA; /* Blue */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  height: 50px;
+  width: 150px;
+}
+.button2 {border-radius: 4px;}
+</style>
+  <button class="button button2" type="button" (click)="onClick()"> Schedule Interview
+  </button>
+  </div>`,
+})
+export class ButtonViewComponent implements OnInit {
+  renderValue: string;
+  CardComponent
+
+  @Input() value: string;
+  @Input() rowData: any;
+
+  @Output() save: EventEmitter<any> = new EventEmitter();
+
+  constructor(private windowService: NbWindowService,private dialogService: NbDialogService)
+  {
+    
+  }
+
+  ngOnInit() {
+    this.renderValue = this.value.toString();
+  }
+
+  onClick()
+  {
+    console.log(this.rowData)
+    this.CardComponent = InterviewComponent;
+    this.dialogService.open(this.CardComponent, {context: {
+      rowData: this.rowData,
+    },
+  });
+  
+  }
+
+}
+
+
 
 @Component({
   selector: 'ngx-list-of-candidate',
@@ -79,10 +138,60 @@ export class ListOfCandidateComponent implements OnInit {
         sortDirection:'desc',
         width:'10%'
       },
+      shortSummaryMatchingPercent:{
+        title:' Short Summeary Matching Percent',
+        type: 'html',
+        valuePrepareFunction: (value) => {
+          if(value>75)
+          {
+            this.color='text-success';
+          }else if(value>50)
+          {
+            this.color='text-warning';
+          }else
+          this.color='text-danger';
+
+          return `<div class="`+this.color+`">${value}%</div>`
+        },
+        filter: false,
+        sort:true,
+        sortDirection:'desc',
+        width:'10%'
+      },
+      technologyStackMatchingPercent:{
+        title:'Technology Stack Matching Percent',
+        type: 'html',
+        valuePrepareFunction: (value) => {
+          if(value>75)
+          {
+            this.color='text-success';
+          }else if(value>50)
+          {
+            this.color='text-warning';
+          }else
+          this.color='text-danger';
+
+          return `<div class="`+this.color+`">${value}%</div>`
+        },
+        filter: false,
+        sort:true,
+        sortDirection:'desc',
+        width:'10%'
+      },
+      setInterview:{
+        title:'Schedule Interview',
+        type:'custom',
+        renderComponent:ButtonViewComponent,
+        onComponentInitFunction(instance) {
+         instance.save.subscribe(row => {
+         });
+       },width:'20%',
+       filter:false,
+       },
     },
     pager:
     {
-    perPage: 5
+    perPage: 4
     }
   };
 
@@ -112,6 +221,7 @@ export class ListOfCandidateComponent implements OnInit {
       .then(
         response => {
            this.source.load(response.data);
+           console.log(response.data)
            }
       )  
       console.log(this.source)
@@ -127,6 +237,8 @@ export class ListOfCandidateComponent implements OnInit {
                      "technologyStack" : event.newData.technologyStack,
                      "reqMatchingPercent" : event.newData.reqMatchingPercent,
                     "yearOfExperience" : event.newData.yearOfExperience,
+                    "shortSummaryMatchingPercent" : event.newData.shortSummaryMatchingPercent,
+                    "technologyStackMatchingPercent" : event.newData.technologyStackMatchingPercent
                     };
             this.service.updateCandidate(data,this.type)
             .then(

@@ -24,15 +24,20 @@ const routes: Routes = [{
         .then(m => m.VacancyModule),
     },
     {
+      path: 'uploadResume',
+      loadChildren: () => import('./uploadResume/uploadresume.module')
+        .then(m => m.UploadResumeModule),
+    },
+    {
       path: 'candidate',
       loadChildren: () => import('./candidate/candidate.module')
         .then(m => m.CandidateModule),
     },
-    /*{
+    {
       path: 'level',
       loadChildren: () => import('./level/level.module')
         .then(m => m.LevelModule),
-    },*/
+    },
     {
       path: 'profile2',
       loadChildren: () => import('./Profile2/profile2.module')

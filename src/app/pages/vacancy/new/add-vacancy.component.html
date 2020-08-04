@@ -5,18 +5,40 @@
       <div class="row">
         <div class="col-md-12">
           <form  #myForm="ngForm" (ngSubmit)="addVacancy(myForm)" role="form" >
+           
+            <!-- <div class="form-control-group">
+              <label class="label" for="input-email">Email address:</label>
+              <input nbInput
+                     fullWidth
+                     [(ngModel)]="user.username"
+                     #username="ngModel"
+                     name="username"
+                     id="input-username"
+                     placeholder="Username"
+                     fieldSize="large"
+                     autofocus
+                     [status]="username.dirty ? (username.invalid  ? 'danger' : 'success') : 'basic'"
+                     [required]="getConfigValue('forms.validation.username.required')"
+                     [attr.aria-invalid]="username.invalid && username.touched ? true : null">
+              <ng-container *ngIf="username.invalid && username.touched">
+                <p class="caption status-danger" *ngIf="username.errors?.required">
+                  Username is required!
+                </p>
+              </ng-container>
+            </div>
+            -->
             <div class="row">
               <div class="col-md-4">
                 <label for="ID" class="label">Vacancy Id</label>
-                <input type="text" ngModel name="vacancyId" nbInput  fullWidth  placeholder="0" disabled>
+                <input type="text" ngModel name="vacancyId" nbInput  fullWidth  placeholder="0" disabled required>
               </div>
               <div class="col-md-4">
                 <label for="Job Title" class="label">Job Title</label>
-                <input type="text" ngModel name="jobTitle" nbInput fullWidth id="jobTitle" placeholder="Job Title">
+                <input type="text" ngModel name="jobTitle" onblur="vallidate" nbInput fullWidth id="jobTitle" placeholder="Job Title" required >
               </div>
               <div class="col-md-4">
                 <label for="Project" class="label">Project</label>
-                <nb-select placeholder="Select Project" fullWidth ngModel name="projectName" [(selected)]="selectedProject">
+                <nb-select placeholder="Select Project" fullWidth ngModel name="projectName" [(selected)]="selectedProject" required>
                   <nb-option value="Cv processing">Cv processing</nb-option>
                   <nb-option value="Smgr">Smgr</nb-option>
                   <nb-option value="Address Book">Address Book</nb-option>
@@ -30,7 +52,7 @@
                 <input nbInput fullWidth ngModel
                        name="posOpenDate"
                        placeholder="Open Date"
-                       [nbDatepicker]="formpicker">
+                       [nbDatepicker]="formpicker" required>
                 <nb-datepicker #formpicker></nb-datepicker> 
               </div>
               <div class="col-md-6">
@@ -38,7 +60,7 @@
                 <input nbInput fullWidth ngModel
                        name="posOnBoardDate"
                        placeholder="Close Date"
-                       [nbDatepicker]="formpicker1">
+                       [nbDatepicker]="formpicker1" required>
                 <nb-datepicker #formpicker1></nb-datepicker> 
               </div>
             </div>
@@ -46,12 +68,12 @@
             <div class="row">
               <div class="col-md-6">
                 <label for="No of Job Vacancy" class="label">No of Job Vacancy</label>
-                <input type="number" ngModel  name="noOfVacancy" nbInput fullWidth  id="numberOfVacancy" placeholder="0"> 
+                <input type="number" ngModel  name="noOfVacancy" nbInput fullWidth  id="numberOfVacancy" placeholder="0" required> 
               </div>
 
               <div class="col-md-6">
                 <label for="Experience Required" class="label">Experience Required</label>
-                <input type="number" ngModel name="experienceRequired" nbInput fullWidth id="experienceRequired" placeholder="0" max="50" > 
+                <input type="number" ngModel name="experienceRequired" nbInput fullWidth id="experienceRequired" placeholder="0" max="50" required> 
               </div>
             </div>
             <br>
@@ -68,8 +90,17 @@
                   <nb-option *ngFor="let d of subtechnology" (click)="onClickSubtechnology()" value="{{d.subTechnologyName}}">{{d.subTechnologyName}}</nb-option>
                 </nb-select>  
               </div>
-
-              <div class="col-md-6">
+               </div>
+              <br>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="Short Summary" class="label">Selected job discrption</label>
+                <textarea [(ngModel)]="jd" name="jd" nbInput fullWidth placeholder="first select sub-technology" readonly required ></textarea>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+             <div class="col-md-6">
                 <label for="Select level" class="label">Select Level</label>
                 <nb-select placeholder="Select Level" fullWidth [(selected)]="ClickedLevel"  >
                 <nb-option *ngFor="let l of level" (click)="onSelectLevel()" value="{{l.description}}">{{l.description}}</nb-option>
@@ -80,20 +111,13 @@
                 <label for="Short Summary" class="label">Selected Levels</label>
                 <textarea [(ngModel)]="levelList" name="levelList" nbInput fullWidth placeholder="first select levels" readonly ></textarea>
               </div>
-
-            </div>
-            <br>
-            <div class="row">
-              <div class="col-md-12">
-                <label for="Short Summary" class="label">Selected job discrption</label>
-                <textarea [(ngModel)]="jd" name="jd" nbInput fullWidth placeholder="first select sub-technology" readonly ></textarea>
-              </div>
-            </div>
+             </div>
+           
             <br>
             <div class="row">
               <div class="col-md-12">
                 <label for="Short Summary" class="label">Short Summary</label>
-                <textarea ngModel name="shortSummary" nbInput id="shortSummary" fullWidth placeholder="Short Summary"></textarea>
+                <textarea ngModel name="shortSummary" nbInput id="shortSummary" fullWidth placeholder="Short Summary" required ></textarea>
               </div>
             </div>
             <br>
