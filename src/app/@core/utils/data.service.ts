@@ -125,6 +125,11 @@ export class DataService {
     {
       return this.http.get("https://authentication-api-cv.herokuapp.com/api/get-all-users/panel")
     }
+    
+    setMeeting(obj:any)
+    {
+      return axios.post(`http://localhost:8080/setMeeting`,obj);
+    }
 }
 
 

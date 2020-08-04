@@ -33,7 +33,13 @@
             <div class="row">
               <div class="col-md-6">
                 <label class="label">Time</label>
-                <input type="time" name="time" ngModel nbInput fullWidth placeholder="Time" >
+                  <input type="time" name="time" ngModel nbInput fullWidth placeholder="Time" > 
+                 <!-- <ngb-timepicker [(ngModel)]="time" [seconds]="seconds"></ngb-timepicker>
+                  <button class="btn btn-sm btn-outline-{{seconds ? 'success' : 'danger'}}" (click)="toggleSeconds()">
+                      Seconds - {{seconds ? "ON" : "OFF"}}
+                  </button>
+                  <hr>
+                  <pre>Selected time: {{time | json}}</pre> -->
                </div>
               <div class="col-md-6">
                 <label class="label">Status</label>
