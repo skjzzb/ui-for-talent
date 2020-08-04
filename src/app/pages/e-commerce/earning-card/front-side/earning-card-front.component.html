@@ -1,10 +1,14 @@
 <nb-card-header>
-  <nb-select [selected]="selectedCurrency" (selectedChange)="changeCurrency($event)">
+ <!-- <nb-select [selected]="selectedCurrency" (selectedChange)="changeCurrency($event)">
     <nb-option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</nb-option>
+  </nb-select>-->
+
+  <nb-select [selected]="selectedTechnology" (selectedChange)="changeTechnology($event)">
+    <nb-option *ngFor="let technology of technologies" [value]="technology">{{ technology }}</nb-option>
   </nb-select>
 </nb-card-header>
 <nb-card-body>
-  <div class="chart-info">
+  <!--<div class="chart-info">
     <div>Daily Income</div>
     <div class="h6">{{ earningLiveUpdateCardData.dailyIncome | ngxNumberWithCommas }}</div>
     <div class="delta"
@@ -19,5 +23,21 @@
   </div>
   <ngx-earning-live-update-chart
     [liveUpdateChartData]="liveUpdateChartData">
-  </ngx-earning-live-update-chart>
+  </ngx-earning-live-update-chart>-->
+    <div class="chart-info" >
+      
+    <ngx-charts-bar-vertical 
+    [scheme]="lineChartColorScheme" 
+    [results]="chartData" 
+    [gradient]="lineChartGradient" 
+    [xAxis]="lineChartShowXAxis" 
+    [yAxis]="lineChartShowYAxis" 
+    [legend]="lineChartShowLegend" 
+    [showXAxisLabel]="lineChartShowXAxisLabel" 
+    [showYAxisLabel]="lineChartShowYAxisLabel" 
+    [xAxisLabel]="lineChartXAxisLabel" 
+    [yAxisLabel]="lineChartYAxisLabel" 
+    > </ngx-charts-bar-vertical>
+  
+  </div>
 </nb-card-body>
