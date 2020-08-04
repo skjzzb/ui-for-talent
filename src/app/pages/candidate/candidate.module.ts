@@ -24,6 +24,8 @@ import { CandidateRoutingModule, routedComponents } from './candidate-routing.mo
 import { CandidateComponent } from './candidate.component';
 import { ListOfCandidateComponent } from './list-of-candidate/list-of-candidate.component';
 import { InterviewComponent } from './interview/interview.component';
+import { ListOfInterviewComponent } from './list-of-interview/list-of-interview.component';
+import { ReScheduleInterviewComponent } from './ReScheduleInterview/re-schedule-interview.component';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { InterviewComponent } from './interview/interview.component';
     // ...routedComponents,
     CandidateComponent,
     ListOfCandidateComponent,
-    InterviewComponent
+    InterviewComponent,
+    ListOfInterviewComponent,
+    ReScheduleInterviewComponent
   ]
 })
 export class CandidateModule { }

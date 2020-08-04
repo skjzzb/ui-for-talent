@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { CandidateComponent } from './candidate.component';
 import { ListOfCandidateComponent } from './list-of-candidate/list-of-candidate.component';
 import { InterviewComponent } from './interview/interview.component';
+import { ListOfInterviewComponent } from './list-of-interview/list-of-interview.component';
+import { ReScheduleInterviewComponent } from './ReScheduleInterview/re-schedule-interview.component';
 
 
 const routes: Routes = [{
@@ -17,6 +19,15 @@ const routes: Routes = [{
      {
       path: 'interview',
       component: InterviewComponent,
+    },
+    {
+      path: 'list-of-interview',
+      component: ListOfInterviewComponent,
+    },
+    {
+      path: 're-schedule-interview',
+      component: ReScheduleInterviewComponent,
+      
     }
   ],
 }];
@@ -29,5 +40,7 @@ export class CandidateRoutingModule { }
 
 export const routedComponents = [
     ListOfCandidateComponent,
-    InterviewComponent
+    InterviewComponent,
+    ListOfInterviewComponent,
+    ReScheduleInterviewComponent
 ];

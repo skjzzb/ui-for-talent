@@ -1,4 +1,6 @@
 import { NbMenuItem } from '@nebular/theme';
+import { title } from 'process';
+import { link } from 'fs';
 
 export var MENU_ITEMS: NbMenuItem[] = [
   {
@@ -58,8 +60,13 @@ export var MENU_ITEMS: NbMenuItem[] = [
         title: 'List of Candidate',
         link: '/pages/candidate/list-of-candidate',
       },
+      {
+        title: 'List of Scheduled Interview',
+        link: '/pages/candidate/list-of-interview',
+      },
     ],
   },
+  
   {
     title: 'Layout',
     icon: 'layout-outline',
