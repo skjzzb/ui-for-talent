@@ -4,7 +4,10 @@ import { Candidate } from './pages-menu';
 import { Vacancy } from './pages-menu';
 import { dashboard } from './pages-menu';
 import { users } from './pages-menu';
+import { Level } from './pages-menu';
+
 import { uploadResume } from './pages-menu';
+
 import { MENU_ITEMS } from './pages-menu';
 import { NbMenuItem } from '@nebular/theme';
 import { canvas } from 'leaflet';
@@ -75,6 +78,8 @@ export class PagesComponent {
     if(true)
     this.MENU_ITEMS2.push(uploadResume)
     this.menu=this.MENU_ITEMS2
+    if(this.feature.Level)
+    this.MENU_ITEMS2.push(Level)
   }
 
 }

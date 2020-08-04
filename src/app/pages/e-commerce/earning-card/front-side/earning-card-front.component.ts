@@ -12,10 +12,13 @@ import { LiveUpdateChart, EarningData } from '../../../../@core/data/earning';
 export class EarningCardFrontComponent implements OnDestroy, OnInit {
   private alive = true;
 
-  @Input() selectedCurrency: string = 'Bitcoin';
+  selectedTechnology: string = 'Java'
+  technologies: string[] =['Java', 'Angular', 'MySql'];
 
-  intervalSubscription: Subscription;
-  currencies: string[] = ['Bitcoin', 'Tether', 'Ethereum'];
+  //@Input() selectedCurrency: string = 'Bitcoin';
+
+  //intervalSubscription: Subscription;
+  /*currencies: string[] = ['Java', 'Angular', 'MySql'];
   currentTheme: string;
   earningLiveUpdateCardData: LiveUpdateChart;
   liveUpdateChartData: { value: [string, number] }[];
@@ -69,5 +72,192 @@ export class EarningCardFrontComponent implements OnDestroy, OnInit {
 
   ngOnDestroy() {
     this.alive = false;
+  }*/
+  ngOnInit() {
+    
   }
+
+  changeTechnology(technology){
+    if(this.selectedTechnology !== technology)
+    {
+      this.selectedTechnology = technology
+    }
+    if(this.selectedTechnology === "Angular")
+    {
+      this.chartData = this.dataForAngular
+    }
+    if(this.selectedTechnology === "MySql")
+    {
+      this.chartData = this.dataForMySql
+    }
+    if(this.selectedTechnology === "Java")
+    {
+      this.chartData = this.dataForJava
+    }
+  }
+
+
+  ngOnDestroy() {
+    this.alive = false;
+  }
+  lineChartMulti =[
+   
+   
+    {
+      "name": "0-5 Years",
+      "value": 90,
+      "extra": {
+        "code": "fr"
+      }
+    },
+    {
+      "name": "5-8 Years",
+      "value": 80,
+      "extra": {
+        "code": "uk"
+      }
+    },
+    {
+      "name": "8-15 Years",
+      "value": 23,
+      "extra": {
+        "code": "uk"
+      }
+    },
+    {
+      "name": "15-20 Years",
+      "value": 15,
+      "extra": {
+        "code": "uk"
+      }
+    }
+
+
+    
+  ]
+
+  dataForJava =[
+   
+   
+    {
+      "name": "0-5 Years",
+      "value": 90,
+      "extra": {
+        "code": "fr"
+      }
+    },
+    {
+      "name": "5-8 Years",
+      "value": 80,
+      "extra": {
+        "code": "uk"
+      }
+    },
+    {
+      "name": "8-15 Years",
+      "value": 23,
+      "extra": {
+        "code": "uk"
+      }
+    },
+    {
+      "name": "15-20 Years",
+      "value": 15,
+      "extra": {
+        "code": "uk"
+      }
+    }
+
+
+    
+  ]
+  dataForAngular =[
+   
+   
+    {
+      "name": "0-5 Years",
+      "value": 50,
+      "extra": {
+        "code": "fr"
+      }
+    },
+    {
+      "name": "5-8 Years",
+      "value": 150,
+      "extra": {
+        "code": "uk"
+      }
+    },
+    {
+      "name": "8-15 Years",
+      "value": 75,
+      "extra": {
+        "code": "uk"
+      }
+    },
+    {
+      "name": "15-20 Years",
+      "value": 45,
+      "extra": {
+        "code": "uk"
+      }
+    }
+
+
+    
+  ]
+  dataForMySql =[
+   
+   
+    {
+      "name": "0-5 Years",
+      "value": 200,
+      "extra": {
+        "code": "fr"
+      }
+    },
+    {
+      "name": "5-8 Years",
+      "value": 50,
+      "extra": {
+        "code": "uk"
+      }
+    },
+    {
+      "name": "8-15 Years",
+      "value": 225,
+      "extra": {
+        "code": "uk"
+      }
+    },
+    {
+      "name": "15-20 Years",
+      "value": 75,
+      "extra": {
+        "code": "uk"
+      }
+    }
+
+
+    
+  ]
+
+  chartData=this.dataForJava;
+
+  lineChartView: any[] = [550, 100];
+
+  // options
+  lineChartShowXAxis = true;
+  lineChartShowYAxis = true;
+  lineChartGradient = false;
+  lineChartShowLegend = false;
+  lineChartShowXAxisLabel = false;
+  lineChartXAxisLabel = 'YearOfExperience';
+  lineChartShowYAxisLabel = false;
+  lineChartYAxisLabel = 'candidate';
+  
+  lineChartColorScheme = {
+      domain: ['#1CBCD8', '#FF8D60', '#FF586B', '#AAAAAA']
+  };
+
 }

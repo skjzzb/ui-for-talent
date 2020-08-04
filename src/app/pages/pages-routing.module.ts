@@ -34,6 +34,11 @@ const routes: Routes = [{
         .then(m => m.CandidateModule),
     },
     {
+      path: 'level',
+      loadChildren: () => import('./level/level.module')
+        .then(m => m.LevelModule),
+    },
+    {
       path: 'profile2',
       loadChildren: () => import('./Profile2/profile2.module')
         .then(m => m.Profile2Module),

@@ -1,7 +1,23 @@
 <nb-card-header>
-  <i class="ion-social-usd"></i>
-  <span class="title">Profit</span>
+  <!--<i class="ion-social-usd"></i>-->
+  <span class="title">Vacancy</span>
 </nb-card-header>
 <nb-card-body>
-  <ngx-stats-bar-animation-chart [linesData]="linesData"></ngx-stats-bar-animation-chart>
+  <!--<ngx-stats-bar-animation-chart [linesData]="linesData"></ngx-stats-bar-animation-chart>-->
+  <ngx-charts-bar-vertical-2d 
+  [scheme]="lineChartColorScheme" 
+  [results]="multi" 
+  [gradient]="lineChartGradient" 
+  [xAxis]="lineChartShowXAxis" 
+  [yAxis]="lineChartShowYAxis" 
+  [legend]="lineChartShowLegend" 
+  [showXAxisLabel]="lineChartShowXAxisLabel" 
+  [showYAxisLabel]="lineChartShowYAxisLabel" 
+  [xAxisLabel]="lineChartXAxisLabel" 
+  [yAxisLabel]="lineChartYAxisLabel" 
+ 
+  
+  
+  ></ngx-charts-bar-vertical-2d>
 </nb-card-body>
+<!-- [autoScale]="lineChartAutoScale" -->

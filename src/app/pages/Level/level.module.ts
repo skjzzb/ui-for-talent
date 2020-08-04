@@ -1,8 +1,9 @@
 import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbTreeGridModule, NbDialogModule } from '@nebular/theme';
+import { NbTreeGridModule } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { RouterModule } from '@angular/router';
+import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
@@ -15,19 +16,16 @@ import {
   NbRadioModule,
   NbSelectModule,
   NbUserModule,
-  NbPopoverModule,
 } from '@nebular/theme';
 
-import { AddVacancyComponent } from './new/add-vacancy.component';
+
+import { AddLevelComponent } from './add/add-level.component';
 import { ThemeModule } from '../../@theme/theme.module';
-import { VacancyRoutingModule, routedComponents } from './vacancy-routing.module';
-import { VacancyComponent } from './vacancy.component';
-import { ListOfVacancyComponent } from './list-of-vacancy/list-of-vacancy.component';
-import { NgxPopoverCardComponent } from '../modal-overlays/popovers/popover-examples.component';
+import { LevelRoutingModule, routedComponents } from './level-routing.module';
+import { LevelComponent } from './level.component';
 
 @NgModule({
   imports: [
-    //NbDialogModule.forChild(),
     CommonModule,
     NbActionsModule,
     NbButtonModule,
@@ -42,18 +40,18 @@ import { NgxPopoverCardComponent } from '../modal-overlays/popovers/popover-exam
     NbTreeGridModule,
     ThemeModule,
     ReactiveFormsModule,
+    MultiSelectModule,
     FormsModule,
-   // VacancyComponent,
-    VacancyRoutingModule,
+    LevelRoutingModule,
     Ng2SmartTableModule,
-    NbPopoverModule,
-    //AddVacancyComponent
+  //  NbSidebarModule,
+   // NbLayoutModule,
+  //  LevelComponent,
+   //AddLevelComponent
   ],
   declarations: [
-    // ...routedComponents,
-    VacancyComponent,
-    AddVacancyComponent,
-    ListOfVacancyComponent,
-  ],
+    LevelComponent,
+    AddLevelComponent
+  ]
 })
-export class VacancyModule { }
+export class LevelModule { }

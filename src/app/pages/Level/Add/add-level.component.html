@@ -1,0 +1,26 @@
+<div class="col-md-12">
+  <nb-card status="success">
+    <nb-card-header>Add Level</nb-card-header>
+    <nb-card-body>
+      <form  #myForm="ngForm" (ngSubmit)="addLevel(myForm)" role="form" >
+     <div class="row">
+              <div class="col-md-6">
+                <label for="Level" class="label">Level</label>
+                <input type="text" ngModel  name="level" nbInput fullWidth  id="level" placeholder="0" required> 
+              </div>
+
+              <div class="col-md-6">
+                <label for="description" class="label">description</label>
+                <input type="text" ngModel name="description" nbInput fullWidth id="description" placeholder="0" required> 
+              </div>
+      </div>
+
+      <div class="col-md-12">
+              <div class="row action-btn">
+                <button type="submit" nbButton status="danger">Create New Level </button>
+              </div>
+      </div>
+      </form>
+      </nb-card-body>
+  </nb-card>
+  </div>

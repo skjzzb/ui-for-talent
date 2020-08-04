@@ -66,7 +66,18 @@ export var MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
-  
+
+   {
+    title: 'Level',
+    icon: 'person-outline',
+    children: [
+      {
+        title: 'Add Level',
+        link: '/pages/level/add-level',
+      },
+    ],
+  },
+
   {
     title: 'Layout',
     icon: 'layout-outline',
@@ -344,6 +355,7 @@ export var Candidate =
         ],
     }
 
+
     export var uploadResume ={
       title: 'Upload Resume',
       icon: 'file-text-outline',
@@ -351,6 +363,17 @@ export var Candidate =
         {
           title: 'Upload Resume',
           link: '/pages/uploadResume/upload-resume',
+        },
+      ],
+  }
+
+   export var Level ={
+      title: 'Level',
+      icon: 'file-text-outline',
+      children: [
+        {
+          title: 'Add Level',
+          link: '/pages/level/add-level',
         },
       ],
   }
