@@ -43,11 +43,11 @@ import { NgxPopoverCardComponent } from '../modal-overlays/popovers/popover-exam
     ThemeModule,
     ReactiveFormsModule,
     FormsModule,
-    // VacancyComponent,
+   // VacancyComponent,
     VacancyRoutingModule,
     Ng2SmartTableModule,
-    NbPopoverModule
-    // AddVacancyComponent
+    NbPopoverModule,
+    //AddVacancyComponent
   ],
   declarations: [
     // ...routedComponents,

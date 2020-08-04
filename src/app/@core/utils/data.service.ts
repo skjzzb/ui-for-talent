@@ -113,6 +113,14 @@ export class DataService {
       return this.http.post(`https://authentication-api-cv.herokuapp.com/api/set-role/${userId}`, roleObj)
     }
 
+    deleteUser(userId)
+    {
+      return this.http.delete(`http://localhost:8080/api/profileDelete/${userId}`)
+    }
+    getLevelData(){
+       return this.http.get(`http://localhost:8081/api/getListOfLevels`)
+
+    }
     addMultipleResume(vacancyId,listOfFiles)
     {
       return axios.put(`${API_URL}/${vacancyId}`,listOfFiles)
@@ -124,15 +132,10 @@ export class DataService {
     getAllPanel()
     {
       return this.http.get("https://authentication-api-cv.herokuapp.com/api/get-all-users/panel")
+
+    }
+    addLevelData(level)
+    {
+      return this.http.post(`http://localhost:8081/api/addLevel`,level);
     }
 }
-
-
-
-    
-
-     
-
-      
-
-

@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NbTreeGridModule } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
   NbActionsModule,
@@ -19,13 +19,10 @@ import {
 } from '@nebular/theme';
 
 
+import { AddLevelComponent } from './add/add-level.component';
 import { ThemeModule } from '../../@theme/theme.module';
-import { CandidateRoutingModule, routedComponents } from './candidate-routing.module';
-import { CandidateComponent } from './candidate.component';
-import { ListOfCandidateComponent } from './list-of-candidate/list-of-candidate.component';
-import { InterviewComponent } from './interview/interview.component';
-import { ListOfInterviewComponent } from './list-of-interview/list-of-interview.component';
-
+import { LevelRoutingModule, routedComponents } from './level-routing.module';
+import { LevelComponent } from './level.component';
 
 @NgModule({
   imports: [
@@ -41,21 +38,20 @@ import { ListOfInterviewComponent } from './list-of-interview/list-of-interview.
     NbUserModule,
     RouterModule,
     NbTreeGridModule,
-    MultiSelectModule,
     ThemeModule,
     ReactiveFormsModule,
+    MultiSelectModule,
     FormsModule,
-    // VacancyComponent,
-    CandidateRoutingModule,
+    LevelRoutingModule,
     Ng2SmartTableModule,
-    // AddVacancyComponent
+  //  NbSidebarModule,
+   // NbLayoutModule,
+  //  LevelComponent,
+   //AddLevelComponent
   ],
   declarations: [
-    // ...routedComponents,
-    CandidateComponent,
-    ListOfCandidateComponent,
-    InterviewComponent,
-    ListOfInterviewComponent
+    LevelComponent,
+    AddLevelComponent
   ]
 })
-export class CandidateModule { }
+export class LevelModule { }
