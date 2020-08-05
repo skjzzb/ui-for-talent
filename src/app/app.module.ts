@@ -6,7 +6,7 @@ import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 
-
+import { LevelModule } from './pages/level/level.module'
 import { VacancyModule } from './pages/vacancy/vacancy.module'
 import { UploadResumeModule } from './pages/uploadResume/uploadresume.module'
 import { CandidateModule } from './pages/candidate/candidate.module'
@@ -75,6 +75,7 @@ import { ApplicationFormComponent } from './application-form/application-form.co
     MatIconModule,
     MatFormFieldModule,
     VacancyModule,
+    LevelModule,
     CandidateModule,
     UploadResumeModule,
     NbSidebarModule.forRoot(),

@@ -26,11 +26,16 @@ constructor(private service: DataService) {
    console.log(level);
    this.service.addLevelData(level)
     .subscribe(
-      response => {
-         console.log(response)
+      (response:any) => {
+        this.level=response;
+         console.log(response);
+         dataFromUI.form.reset();
       }
     )
   }
+
+  
 }
+
   //export {AddLevelComponent}
 
