@@ -138,4 +138,23 @@ export class DataService {
     {
       return this.http.post(`http://localhost:8081/api/addLevel`,level);
     }
+    
+    setMeeting(obj:any)
+    {
+      //return axios.post(`http://localhost:8080/setMeeting`,obj);
+      return axios.post(`https://cv-processing-api.herokuapp.com/setMeeting`,obj);
+    }
+
+    getListOfInterview()
+    {
+      //return axios.get(`http://localhost:8080/interview`);
+      return axios.get(`https://cv-processing-api.herokuapp.com/interview`);
+      
+    }
+
+    DeteteInterview(id)
+    {
+      //return axios.delete(`http://localhost:8080/deleteMeeting/${id}`);
+      return axios.delete(`https://cv-processing-api.herokuapp.com/deleteMeeting/${id}`);
+    }
 }
