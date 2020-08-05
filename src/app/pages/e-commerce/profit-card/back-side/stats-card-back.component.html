@@ -1,9 +1,9 @@
 <nb-card-header>
-  <i class="ion-social-usd"></i>
-  <span class="title">Profit</span>
+  <!--<i class="ion-social-usd"></i>-->
+  <span class="title">Rejected Candidate</span>
 </nb-card-header>
 <nb-card-body>
-  <div class="info">
+  <!--<div class="info">
     <div class="period">
       <div class="caption">Jun 1 - Jun 30</div>
       <div class="label">
@@ -17,5 +17,20 @@
       </div>
     </div>
   </div>
-  <ngx-stats-ares-chart [points]="chartData"></ngx-stats-ares-chart>
+  <ngx-stats-ares-chart [points]="chartData"></ngx-stats-ares-chart>-->
+  <ngx-charts-bar-vertical 
+  [scheme]="lineChartColorScheme" 
+  [results]="lineChartMulti" 
+  [gradient]="lineChartGradient" 
+  [xAxis]="lineChartShowXAxis" 
+  [yAxis]="lineChartShowYAxis" 
+  [legend]="lineChartShowLegend" 
+  [showXAxisLabel]="lineChartShowXAxisLabel" 
+  [showYAxisLabel]="lineChartShowYAxisLabel" 
+  [xAxisLabel]="lineChartXAxisLabel" 
+  [yAxisLabel]="lineChartYAxisLabel" 
+  
+  
+  
+  ></ngx-charts-bar-vertical>
 </nb-card-body>

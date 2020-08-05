@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\pages",
+    "\\src\\app\\pages\\candidate",
+    "\\src\\app\\pages\\Level",
+    "\\src\\app\\pages\\Level\\Add",
+    "\\src\\app\\pages\\vacancy",
+    "\\src\\app\\pages\\vacancy\\new"
+  ],
+  "SelectedNode": "\\src\\app\\pages\\candidate\\candidate.component.ts",
+  "PreviewInSolutionExplorer": false
+}
