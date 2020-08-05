@@ -16,7 +16,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ReScheduleInterviewComponent implements OnInit {
 
   
-  constructor(private service:DataService) { 
+  constructor(private service:DataService) {
+    console.log('----------------')
+
   }
 
   ngOnInit(): void {
