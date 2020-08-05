@@ -1,12 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { DataService } from '../../../@core/utils/data.service';
-import { LocalDataSource } from 'ng2-smart-table';
-import { NgxPopoverCardComponent, NgxPopoverFormComponent } from '../../modal-overlays/popovers/popover-examples.component';
-import { NbWindowService, NbDialogService } from '@nebular/theme';
-import { MatDialog } from '@angular/material/dialog';
-import { DomSanitizer } from '@angular/platform-browser';
-
-
+import { TokenStorageService } from '../../../_services/token-storage.service';
 
 @Component({
   selector: 'ngx-interview',
@@ -26,10 +20,12 @@ export class InterviewComponent implements OnInit {
     "panelEmail" : "",
     "candidateEmail" : "",
     "scheduledOn" : "",
-    "time" : "",
-    "level" : "Level-1"
+    "scheduledEndTime" : "",
+    "level" : "Level-1",
+    "hrEmail":""
+
   }
-  constructor(private service:DataService) { 
+  constructor(private service:DataService,private tokenService:TokenStorageService) { 
   }
 
   ngOnInit(): void {
@@ -43,15 +39,35 @@ export class InterviewComponent implements OnInit {
 
   scheduleInterview(dataFromUI)
   {
-
     this.interview.panelEmail = dataFromUI.form.value.panel
     this.interview.candidateEmail = this.rowData.email
-    this.interview.scheduledOn = dataFromUI.form.value.scheduledOn
-    this.interview.time = dataFromUI.form.value.time
-    console.log(this.interview)
-  }
-
-
     
+    console.log(this.interview.hrEmail)
+      var time=dataFromUI.form.value.time
+      let tt:[]= time.split(':')
+    var abc=new Date(dataFromUI.form.value.scheduledOn)//.setTime(this.time)
+    abc.setMinutes(tt.pop())
+    abc.setHours(tt.pop())
+
+    this.interview.scheduledOn=abc.toISOString();
+    
+    abc.setHours(abc.getHours()+1)
+    this.interview.scheduledEndTime=abc.toISOString();
+
+    var gmail;
+    var user=this.tokenService.getUser()
+    if(user==null)
+    {
+     gmail=localStorage.getItem("email");
+    }else
+    {
+    gmail = user.username;
+    }
+    this.interview.hrEmail=gmail;
+
+    console.log(this.interview)
+
+    this.service.setMeeting(this.interview)
+  }
   
 }

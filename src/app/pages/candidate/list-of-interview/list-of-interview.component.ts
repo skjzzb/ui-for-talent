@@ -13,8 +13,6 @@ import { ReScheduleInterviewComponent } from '../ReScheduleInterview/re-schedule
   selector: 'button-view',
   template: `
   <div>
-  <ng-template #dialog let-data let-ref="dialogRef">
-  </ng-template>
 <style>
 .button {
   background-color: #008CBA; /* Blue */
@@ -29,37 +27,39 @@ import { ReScheduleInterviewComponent } from '../ReScheduleInterview/re-schedule
 }
 .button2 {border-radius: 4px;}
 </style>
-  <button  class="button button2" (click)="onClick(dialog)"> Reschedule Interview
+  <button  class="button button2" (click)="onClick()"> Reschedule Interview
   </button>
  </div>`,
 })
 export class ButtonViewComponent implements ViewCell, OnInit {
+  
   renderValue: string;
+  CardComponent
+
   @Input() value: string;
   @Input() rowData: any;
+
   @Output() save: EventEmitter<any> = new EventEmitter();
-  CardComponent: typeof ReScheduleInterviewComponent;
-  dialogService: any;
 
-  constructor()
+  constructor(private windowService: NbWindowService,private dialogService: NbDialogService)
   {
-
-  }
-
-  ngOnInit() {
     
   }
 
-  onClick(dialog: TemplateRef<any>) {
+  ngOnInit() {
+    this.renderValue = this.value.toString();
+  }
+
+  onClick()
+  {
+    console.log(this.rowData)
     this.CardComponent = ReScheduleInterviewComponent;
     this.dialogService.open(this.CardComponent, {context: {
       rowData: this.rowData,
     },
   });
-   
-  }
-
   
+  }
   
 }
 
@@ -96,12 +96,12 @@ export class ListOfInterviewComponent implements OnInit {
       },
       scheduledOn:{
         title:'Scheduled On',
-        type: 'string',
+        type: 'date',
         filter: true,   
       },
       scheduledEndTime:{
         title:'Time',
-        type: 'string',
+        type: 'date',
         filter: true,
       },
       level:{
@@ -147,10 +147,46 @@ export class ListOfInterviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+   this.service.getListOfInterview()
+   .then(
+    response => {
+      console.log(response.data)
+        this.source=response.data
+       }
+  )
+
   }
 
   onDeleteConfirm(event): void {
+    if (Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })) {
+     console.log(event.data.interviewId)
+      this.service.DeteteInterview(event.data.interviewId)
+      .then(
+        response => {
+           console.log(response);
+           event.confirm.resolve();
+        }
+      )
+    } else {
+      event.confirm.reject();
+    }
+  }
   }
 
-}
+
