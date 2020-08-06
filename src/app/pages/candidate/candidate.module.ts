@@ -58,6 +58,7 @@ import { ReScheduleInterviewComponent } from './ReScheduleInterview/re-schedule-
     InterviewComponent,
     ListOfInterviewComponent,
     ReScheduleInterviewComponent
+    
   ]
 })
 export class CandidateModule { }
