@@ -43,7 +43,7 @@
             />
               
             <div *ngIf=" username.invalid && (username.dirty || username.touched)"
-            class="invalid-feedback" style="height: 30px; padding-top: 3px; padding-left: 5px; margin-top: 3px;">
+            style="height: 30px; padding-top: 3px; padding-left: 5px; margin-top: 3px; color: red;" >
         
             <span class="text-danger" *ngIf="username.errors.required">Email is required</span>
             <span class="text-danger" *ngIf="username.errors.pattern">Enter a valid email format-"xxx@example.com"</span>
@@ -65,7 +65,7 @@
              [class.is-invalid]="password.invalid && password.touched" 
             />     
             <div *ngIf=" password.invalid && (password.dirty || password.touched)"
-            class="invalid-feedback" style="height: 30px; padding-top: 3px; padding-left: 5px; margin-top: 3px;">
+           style="height: 30px; padding-top: 3px; padding-left: 5px; margin-top: 3px; color: red;" >
         
             <span class="text-danger" *ngIf="password.errors.required">Password is required</span>
             <span class="text-danger" *ngIf="password.errors.minlength">Minimun length for password is 6</span>

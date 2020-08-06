@@ -25,6 +25,7 @@ class AddVacancyComponent implements OnInit{
   jd=null;
   level:any[];
   levelList=null;
+  
  // description:any;
   data:any;
   //selectedsubbtechnology:any[];
