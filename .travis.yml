@@ -9,11 +9,12 @@ node_js:
 
 before_install:
   - npm i -g npm@latest
+  - npm install -g @angular/cli
 
 install:
   
   - npm install -g firebase-tools
-  - npm i
+  - npm i --no-verfiy
   
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN
