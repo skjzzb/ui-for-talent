@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
        // this.reloadPage();
       },
       err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = "The username or password enterd is incorrect";
         this.isLoginFailed = true;
       }
     );
