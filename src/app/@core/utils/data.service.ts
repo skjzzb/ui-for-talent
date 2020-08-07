@@ -27,6 +27,10 @@ export class DataService {
   getTotalNumberOfVacancy() {
     return axios.get(`${API_URL1}/totalvacancy`,)
   }
+
+  getMonthApplication(){
+    return axios.get(`${API_URL1}/monthApplication`)
+  }
   getData() {
     //console.log('executed service')
     return axios.get(`${API_URL}/doc`,

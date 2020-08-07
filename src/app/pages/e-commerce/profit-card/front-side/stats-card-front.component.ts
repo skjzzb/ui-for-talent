@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { ProfitBarAnimationChartData } from '../../../../@core/data/profit-bar-animation-chart';
 import { takeWhile } from 'rxjs/operators';
+import { DataService } from '../../../../@core/utils/data.service';
 
 @Component({
   selector: 'ngx-stats-card-front',
@@ -13,13 +14,30 @@ export class StatsCardFrontComponent {
 
   linesData: { firstLine: number[]; secondLine: number[] };
 
-  constructor(private profitBarAnimationChartService: ProfitBarAnimationChartData) {
+  constructor(private profitBarAnimationChartService: ProfitBarAnimationChartData,private service: DataService) {
     this.profitBarAnimationChartService.getChartData()
       .pipe(takeWhile(() => this.alive))
       .subscribe((linesData) => {
         this.linesData = linesData;
       });
   }
+
+  ngOnInit(){
+    this.retrieveData();
+  }
+
+  retrieveData(){
+    this.service.getMonthApplication()
+    .then(
+      response => {
+         console.log(response);
+          
+      }
+    )
+
+  }
+
+
   lineChartMulti =[
     {
       "name": "February",
