@@ -23,6 +23,10 @@ export class DataService {
     this.token = this.logindetails.accessToken
     }
   }
+
+  getTotalNumberOfVacancy() {
+    return axios.get(`${API_URL1}/totalvacancy`,)
+  }
   getData() {
     //console.log('executed service')
     return axios.get(`${API_URL}/doc`,

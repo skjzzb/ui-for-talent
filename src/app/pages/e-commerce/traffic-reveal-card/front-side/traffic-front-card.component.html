@@ -1,4 +1,24 @@
 <nb-list>
+<nb-list-item class="item">
+  <span>ProjectName</span>
+  <span>Vacancy</span>
+  <span>Application</span>
+  <span>Level1</span>
+  <span>Level2</span>
+  <span>Level3</span>
+  <span>Offered</span>
+</nb-list-item>
+<nb-list-item class="item" *ngFor="let item of projectDetail">
+<span>{{item.name}}</span>
+<span>{{item.noOfVacancy}}</span>
+<span>{{item.totalApplication}}</span>
+<span>{{item.selectedLevel1}}</span>
+<span>{{item.selectedLevel1}}</span>
+<span>{{item.selectedLevel1}}</span>
+<span>{{item.offered}}</span>
+
+</nb-list-item>
+<!--</nb-list-item>
   <nb-list-item class="item" *ngFor="let item of frontCardData; trackBy: trackByDate">
     <span>{{ item.date }}</span>
     <span>{{ item.value }}</span>
@@ -8,5 +28,5 @@
     </span>
     <ngx-traffic-bar [barData]="item.comparison" [successDelta]="item.delta.up">
     </ngx-traffic-bar>
-  </nb-list-item>
+  </nb-list-item>-->
 </nb-list>
