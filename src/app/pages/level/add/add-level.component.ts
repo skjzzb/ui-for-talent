@@ -18,6 +18,7 @@ level:string;
 
 constructor(private service: DataService) {
   }
+  ngOnInit(): void {}
 
   addLevel(dataFromUI:any)
   {

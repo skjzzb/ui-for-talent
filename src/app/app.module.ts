@@ -55,6 +55,7 @@ import { LogoutComponent } from './logout/logout.component';
 //import { LevelsComponent } from './levels/levels.component';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { ApplicationFormComponent } from './application-form/application-form.component';
+import { LevelModule } from './pages/level/level.module';
 @NgModule({
   declarations: [AppComponent, ProfileComponent, LoginComponent, RegisterComponent, LogoutComponent, ApplicationFormComponent],
   imports: [
@@ -76,6 +77,7 @@ import { ApplicationFormComponent } from './application-form/application-form.co
     MatFormFieldModule,
     VacancyModule,
     CandidateModule,
+    LevelModule,
     UploadResumeModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),

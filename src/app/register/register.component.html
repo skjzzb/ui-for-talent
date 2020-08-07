@@ -24,18 +24,11 @@
               name="name"
               [(ngModel)]="form.name"
               required
-             
               #username="ngModel"
               nbInput  fullWidth
             />
-            <div class="alert-danger" *ngIf="f.submitted && username.invalid">
+            <div  style="height: 30px; padding-top: 3px; padding-left: 5px; margin-top: 3px; color: red;"  *ngIf="username.touched && username.invalid">
               <div *ngIf="username.errors.required">Name is required</div>
-              <div *ngIf="username.errors.minlength">
-                Username must be at least 3 characters
-              </div>
-              <div *ngIf="username.errors.maxlength">
-                Username must be at most 20 characters
-              </div>
             </div>
           </div>
           <div class="form-group">
@@ -50,10 +43,10 @@
               #email="ngModel"
               nbInput  fullWidth
             />
-            <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+            <div style="height: 30px; padding-top: 3px; padding-left: 5px; margin-top: 3px; color: red;"  *ngIf="email.invalid && email.touched">
               <div *ngIf="email.errors.required">Email is required</div>
               <div *ngIf="email.errors.email">
-                Email must be a valid email address
+                Email must be a valid email address.
               </div>
             </div>
           </div>
@@ -69,10 +62,10 @@
               #password="ngModel"
               nbInput  fullWidth
             />
-            <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+            <div  style="height: 30px; padding-top: 3px; padding-left: 5px; margin-top: 3px; color: red;" *ngIf="password.invalid && password.touched">
               <div *ngIf="password.errors.required">Password is required</div>
               <div *ngIf="password.errors.minlength">
-                Password must be at least 6 characters
+                Minimun length for password is 6
               </div>
             </div>
           </div>
