@@ -47,12 +47,15 @@ export class ButtonViewComponent implements ViewCell, OnInit {
   }
 
   ngOnInit() {
+    console.log(this.rowData)
+    console.log("------------")
+    console.log(this.value)
     this.renderValue = this.value.toString();
   }
 
   onClick()
   {
-    console.log(this.rowData)
+    //console.log(this.rowData)
     this.CardComponent = ReScheduleInterviewComponent;
     this.dialogService.open(this.CardComponent, {context: {
       rowData: this.rowData,

@@ -50,8 +50,13 @@ export class InterviewComponent implements OnInit {
     abc.setHours(tt.pop())
 
     this.interview.scheduledOn=abc.toISOString();
-    
+    if(abc.getHours()<24)
     abc.setHours(abc.getHours()+1)
+    else
+    {
+      abc.setHours(0)
+      abc.setDate(abc.getDate()+1)
+    }
     this.interview.scheduledEndTime=abc.toISOString();
 
     var gmail;

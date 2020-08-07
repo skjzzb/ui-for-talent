@@ -334,6 +334,10 @@ export var Candidate =
         title: 'List of Candidate',
         link: '/pages/candidate/list-of-candidate',
       },
+      {
+        title: 'List of Scheduled Interview',
+        link: '/pages/candidate/list-of-interview',
+      },
     ],
   }
 
