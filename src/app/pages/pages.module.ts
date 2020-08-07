@@ -9,7 +9,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { VacancyModule } from './vacancy/vacancy.module';
 import { CandidateModule } from './candidate/candidate.module';
 import { UploadResumeModule } from './uploadResume/uploadresume.module';
-import { LevelModule } from './level/level.module'
+import { LevelModule } from './Level/level.module'
 
 import { Profile2Module } from './Profile2/profile2.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';

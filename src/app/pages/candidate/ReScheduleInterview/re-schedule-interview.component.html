@@ -1,1 +1,55 @@
-Reschedule Interview works!
+<div>
+    <nb-card status="success">
+      <nb-card-header>Schedule Interview</nb-card-header>
+    
+        <nb-card-body>
+          <h6>Re-schedule Interview</h6>
+          <form  #myForm="ngForm" (ngSubmit)="scheduleInterview(myForm)" role="form">
+            <div class="row">
+              <div class="col-md-4"> 
+                <label class="label">Select Panel</label>
+                <nb-select placeholder="Select Panel" name="panelEmail" fullWidth [(selected)]="selectedPanel">
+                  <nb-option *ngFor="let d of panel" value="{{d.username}}">{{d.username}}</nb-option>
+                </nb-select>
+              </div>
+
+              <div class="col-md-4">
+                <label class="label">Candidate Email</label>
+                <input type="text" [(ngModel)]="rowData.candidateEmail" name="candidateEmail" nbInput fullWidth placeholder="Candidate Email" >
+              </div>
+              <div class="col-md-4">
+                <label class="label">hr Email</label>
+                <input type="text" [(ngModel)]="rowData.hrEmail" name="hrEmail" nbInput fullWidth placeholder="Candidate Email" >
+              </div>
+            </div>
+            <div class="row">
+            <div class="col-md-4">
+                <label class="label">Scheduled On</label>
+                <input nbInput fullWidth
+                [(ngModel)]="rowData.scheduledOn"
+                name="scheduledOn"
+                ngModel
+                placeholder="Scheduled On"
+                [nbDatepicker]="formpicker">
+                <nb-datepicker #formpicker></nb-datepicker> 
+              </div>
+            
+              <div class="col-md-4">
+                <label class="label">Time</label>
+                  <input type="time" [(ngModel)]="datetime" name="time" ngModel nbInput fullWidth placeholder="Time" > 
+               </div>
+
+               <div class="col-md-4">
+                <label class="label">Reason</label>
+                  <input type="text" name="reason" ngModel nbInput fullWidth placeholder="Give The Reason for Re-schedule Interview" > 
+               </div>
+              </div> 
+
+              <div class="row action-btn">
+                <button nbButton status="danger">Re-Schedule Interview</button>
+              </div>
+          </form>
+        </nb-card-body>
+      <!-- </div> -->
+    </nb-card>
+</div>

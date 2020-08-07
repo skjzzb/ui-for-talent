@@ -157,4 +157,10 @@ export class DataService {
       //return axios.delete(`http://localhost:8080/deleteMeeting/${id}`);
       return axios.delete(`https://cv-processing-api.herokuapp.com/deleteMeeting/${id}`);
     }
+
+    rescheduledMeeting(obj,reason)
+  {
+    return axios.post(`https://cv-processing-api.herokuapp.com/rescheduledMeeting?reason=${reason}`,obj);
+    //return axios.post(`http://localhost:8080/rescheduledMeeting?reason=${reason}`,obj);
+  }
 }

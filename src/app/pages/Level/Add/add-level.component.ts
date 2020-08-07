@@ -16,7 +16,7 @@ import { NgModule } from '@angular/core';
 export class AddLevelComponent {
 level:string;
 
-constructor(private service: DataService,private location: Location) {
+constructor(private service: DataService) {
   }
 
   addLevel(dataFromUI:any)

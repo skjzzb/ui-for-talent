@@ -35,7 +35,7 @@ const routes: Routes = [{
     },
     {
       path: 'level',
-      loadChildren: () => import('./level/level.module')
+      loadChildren: () => import('./Level/level.module')
         .then(m => m.LevelModule),
     },
     {
