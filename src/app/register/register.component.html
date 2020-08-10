@@ -73,6 +73,7 @@
             <button nbButton fullWidth
             status="primary"
             size="large"
+            [disabled]="password.invalid || email.invalid || username.invalid"
             [class.btn-pulse]="submitted"
           >Sign Up</button>
           </div>

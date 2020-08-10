@@ -20,7 +20,8 @@
         >
         <div class="form-group">
           <div class="alert alert-danger"  *ngIf="f.submitted && isLoginFailed" >
-            Login failed : {{ errorMessage }}
+            <p class="alert-title"><b>Oh snap!</b></p>
+            Login/Email combination is not correct, please try again.
           </div>
         </div>
           <div class="form-control-group">
@@ -39,6 +40,8 @@
              fieldSize="large"
              pattern ="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
              [class.is-invalid]="username.invalid && username.touched" 
+             [status]="username.dirty ? (username.invalid  ? 'danger' : 'primary') : ''"
+           [attr.aria-invalid]="username.invalid && username.touched ? true : null"
              required
             />
               
@@ -62,8 +65,9 @@
               nbInput  fullWidth
               placeholder="Password"
              fieldSize="large"
+             [status]="password.dirty ? (password.invalid  ? 'danger' : 'primary') : ''"
              [class.is-invalid]="password.invalid && password.touched" 
-            />     
+             [attr.aria-invalid]="password.invalid && password.touched ? true : null">  
             <div *ngIf=" password.invalid && (password.dirty || password.touched)"
            style="height: 30px; padding-top: 3px; padding-left: 5px; margin-top: 3px; color: red;" >
         
@@ -75,12 +79,13 @@
             fullWidth
             status="primary"
             size="large"
+            [disabled]="password.invalid || username.invalid"
             [class.btn-pulse]="submitted">
               Login
             </button>
             <div class="row" style="padding-top: 25px;">
               <div class="col-md-6">
-                <a href="/auth/register"  status="primary" routerLink="/auth/register">Sign Up</a>
+                <a href="/auth/register"  routerLink="/auth/register">Sign Up</a>
               </div>
             </div>
             <div class="row" style="padding-top: 25px; padding-left: 45%; ">
