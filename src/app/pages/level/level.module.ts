@@ -19,7 +19,7 @@ import {
 } from '@nebular/theme';
 
 
-import { AddLevelComponent } from './Add/add-level.component';
+import { AddLevelComponent } from './add/add-level.component';
 import { ThemeModule } from '../../@theme/theme.module';
 import { LevelRoutingModule, routedComponents } from './level-routing.module';
 import { LevelComponent } from './level.component';

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddLevelComponent } from "./Add/add-level.component";
+import { AddLevelComponent } from "./add/add-level.component";
 import { LevelComponent } from "./level.component";
 
 const routes: Routes = [{
