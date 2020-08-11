@@ -35,10 +35,10 @@
       </nb-user>
       </nb-action >
      <nb-action class="user-action" *ngIf='logintype()'>
-      <nb-user   [name]="this.item[3]"
-      [onlyPicture]="this.item[6]"
-      [picture]="this.item[6]"
-      title="{{item[1]}}"
+      <nb-user   [name]="this.uname"
+      [onlyPicture]="this.photo"
+      [picture]="this.photo"
+      title="{{nam}}"
       [nbContextMenu]="items"
       nbContextMenuTag="my-context-menu">
 </nb-user>
@@ -48,7 +48,7 @@
     </nb-action>
 
     <!-- <nb-action class="user-action" *ngif='logintype()==true' *nbIsGranted="['view', 'user']" >
-      <!-- <nb-user [nbContextMenu]="userMenu"
+       <nb-user [nbContextMenu]="userMenu"
                [onlyPicture]="userPictureOnly"
                [name]="user?.name"
                [picture]="user?.picture"
@@ -61,8 +61,7 @@
                 [nbContextMenu]="items"
                 nbContextMenuTag="my-context-menu">
       </nb-user>
-      <!-- <a class="logo" (click)="logout()"><span>Logout</span></a> --
-      <!-- <button (click)="onClick()" class="btn btn-primary"> <i class="material-icons">perm_identity</i> </button> -->
+     <button (click)="onClick()" class="btn btn-primary"> <i class="material-icons">perm_identity</i> </button> -->
 
   </nb-actions>
 </div>

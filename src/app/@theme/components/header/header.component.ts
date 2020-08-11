@@ -77,6 +77,7 @@ item=[];
   email:String;
   uname:String;
   nam:String;
+  photo:String;
   userMenu = [{ title: "Profile" }, { title: "Log out" }];
   googleurl ="https://www.googleapis.com/oauth2/v2/userinfo?access_token=";
   key ='auth_app_token';
@@ -120,27 +121,41 @@ item=[];
   
     //var tempArray: DataResponse[] = [];
     
-
+     // console.log(this.tokenStorageService.getUser)
     this.googleurl=this.googleurl+this.tokn[1]
     console.log(this.googleurl);
-
+  
    // console.log(this.http.get('https://www.googleapis.com/oauth2/v1/userinfo?alt=json'))
-    
+//    this.http.get(this.googleurl, {observe: 'response'}).pipe(
+//     map(this.extractData),
+//     catchError(this.handleError)
+//   );
+// }
     this.http.get(this.googleurl).toPromise().then(data=>{
       console.log(data);
 
       for (let key in data) {
         if (data.hasOwnProperty(key))
+        {
            this.item.push(data[key]);   
-           
         }
+        else{
+          this.lgout();
+
+        }  
+        }
+      console.log(this.item[0])
+      console.log(this.item[1])
+      console.log(this.item[2])
+    
         localStorage.setItem('email', this.item[1]);
         localStorage.setItem('name', this.item[3]);
         localStorage.setItem('profile', this.item[6]);
 
-       this.uname=this.item[1];
-  this.nam=this.item[3];
-
+       this.uname=localStorage.getItem('email');
+  this.nam=localStorage.getItem('name');
+  this.photo=localStorage.getItem('profile');
+      
 
       }
     );
@@ -289,6 +304,8 @@ if(!this.dataService.getGUserDetails(this.email).toPromise().then(data=>{ return
       .pipe(takeUntil(this.destroy$))
       .subscribe((authResult: NbAuthResult) => {
       });
+      window.localStorage.clear();
+
       window.location.reload();
 
   }
