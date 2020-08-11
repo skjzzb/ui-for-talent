@@ -15,13 +15,14 @@ export class InterviewComponent implements OnInit {
   scheduledOn : any
   rowData : any
   time : any
-
+  heading : any
+  buttonText : any
   interview = {
     "panelEmail" : "",
     "candidateEmail" : "",
     "scheduledOn" : "",
     "scheduledEndTime" : "",
-    "level" : "Level-1",
+    "level" : "Technical - 1",
     "hrEmail":""
 
   }
@@ -29,12 +30,43 @@ export class InterviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //console.log(this.rowData)
+    console.log(this.rowData)
     this.service.getAllPanel().subscribe(data=>{
       this.panel = data
-      //console.log(this.panel)
     })
-    
+    this.checkInterviewStatus()
+  }
+
+  checkInterviewStatus(){
+    if(this.rowData.interviewStatus === 'Not scheduled any round')
+    {
+      this.heading = 'Schedule Technical - 1'
+      this.buttonText = 'Schedule Technical - 1'
+    }
+    if(this.rowData.interviewStatus === 'Scheduled Technical - 1')
+    this.heading = 'Technical - 1 result is pending'
+    if(this.rowData.interviewStatus == 'Technical - 1 rejected')
+    this.heading = 'Technical - 1 rejected'
+
+    if(this.rowData.interviewStatus == 'Technical - 1 selected')
+    {
+      this.heading = 'Schedule Technical - 2'
+      this.buttonText = 'Schedule Technical - 2'
+    }
+    if(this.rowData.interviewStatus === 'Scheduled Technical - 2')
+    this.heading = 'Technical - 2 result is pending'
+    if(this.rowData.interviewStatus == 'Technical - 2 rejected')
+    this.heading = 'Technical - 2 rejected'
+
+    if(this.rowData.interviewStatus == 'Technical - 2 selected')
+    {
+      this.heading = 'Schedule HR round'
+      this.buttonText = 'Schedule HR round'
+    }
+    if(this.rowData.interviewStatus == 'Schedule HR round')
+    this.heading = 'HR round result is pending'
+
+
   }
 
   scheduleInterview(dataFromUI)
@@ -73,6 +105,46 @@ export class InterviewComponent implements OnInit {
     console.log(this.interview)
 
     this.service.setMeeting(this.interview)
+
+    this.rowData.interviewStatus = 'Scheduled Technical - 1'
+    this.updateCandidateStatus();
+  }
+
+
+  updateCandidateStatus() {
+
+    var data = {
+      "candidateName": "",
+      "contactNo": "",
+      "email": "",
+      "id": 0,
+      "interviewStatus": "",
+      "reqMatchingPercent": 0,
+      "shortSummaryMatchingPercent": 0,
+      "technologyStack": "",
+      "technologyStackMatchingPercent": 0,
+      "yearOfExperience": 0
+    }
+             
+    data.candidateName = this.rowData.candidateName
+    data.contactNo = this.rowData.contactNo
+    data.email = this.rowData.email
+    data.id = this.rowData.id
+    data.interviewStatus = this.rowData.interviewStatus
+    data.reqMatchingPercent = this.rowData.reqMatchingPercent
+    data.shortSummaryMatchingPercent = this.rowData.shortSummaryMatchingPercent
+    data.technologyStack = this.rowData.technologyStack
+    data.technologyStackMatchingPercent = this.rowData.technologyStackMatchingPercent
+    data.yearOfExperience = this.rowData.yearOfExperience
+
+    var vacancyId = localStorage.getItem('vid')
+    localStorage.removeItem('vid')
+    this.service.updateCandidate(data, vacancyId)
+    .then(
+      response =>{
+        console.log(response)
+      }
+    )
   }
   
 }

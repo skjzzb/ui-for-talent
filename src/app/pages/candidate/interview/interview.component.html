@@ -1,18 +1,20 @@
-<div>
+<div *ngIf="rowData.interviewStatus == 'Not scheduled any round' ||
+            rowData.interviewStatus == 'Technical - 1 selected'  ||
+            rowData.interviewStatus == 'Technical - 2 selected'"  >
     <nb-card status="success">
       <nb-card-header>Schedule Interview</nb-card-header>
       <!-- <div style=" overflow-y:scroll; margin-left: 20px;  height: 650px; width: auto;"> -->
         <nb-card-body>
-          <h6>Level-1 (Technical)</h6>
+          <h6>{{heading}}</h6>
           <form  #myForm="ngForm" (ngSubmit)="scheduleInterview(myForm)" role="form">
             <div class="row">
-              <div class="col-md-4"> 
+              <div class="col-md-6"> 
                 <label class="label">Select Panel</label>
                 <nb-select placeholder="Select Panel" fullWidth ngModel name="panel" [(selected)]="selectedPanel">
                   <nb-option *ngFor="let d of panel" value="{{d.username}}">{{d.name}}</nb-option>
                 </nb-select>
               </div>
-              <div class="col-md-4"> 
+              <div class="col-md-6"> 
                 <label class="label">Select Mode of Interview</label>
                 <nb-select placeholder="Select Mode of Interview" fullWidth ngModel name="mode" [(selected)]="selectedMode">
                   <nb-option value="Cv processing">Face to Face</nb-option>
@@ -20,7 +22,9 @@
                   <nb-option value="Address Book">Zoom</nb-option>
                 </nb-select>
               </div>
-              <div class="col-md-4">
+            </div>
+            <div class="row">
+              <div class="col-md-6">
                 <label class="label">Scheduled On</label>
                 <input nbInput fullWidth
                 name="scheduledOn"
@@ -29,8 +33,6 @@
                 [nbDatepicker]="formpicker">
                 <nb-datepicker #formpicker></nb-datepicker> 
               </div>
-            </div>
-            <div class="row">
               <div class="col-md-6">
                 <label class="label">Time</label>
                   <input type="time" name="time" ngModel nbInput fullWidth placeholder="Time" > 
@@ -41,24 +43,24 @@
                   <hr>
                   <pre>Selected time: {{time | json}}</pre> -->
                </div>
-              <div class="col-md-6">
-                <label class="label">Status</label>
-                <input type="text" name="status" nbInput fullWidth placeholder="Status" >
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label class="label">Interview Evalution Report</label>
-                <textarea id="aboutMe" nbInput fullWidth  placeholder="Interview Evalution Report"></textarea>
-              </div>
             </div>
             <div class="col-md-12">
               <div class="row action-btn">
-                <button nbButton status="danger">Schedule Round 1</button>
+                <button nbButton status="danger"> {{buttonText}}</button>
               </div>
             </div>
           </form>
         </nb-card-body>
       <!-- </div> -->
     </nb-card>
+</div>
+
+<div *ngIf="rowData.interviewStatus == 'Scheduled Technical - 1' || 
+            rowData.interviewStatus == 'Technical - 1 rejected'" style="background-color: white;">
+  <nb-card status="success">
+    <nb-card-header>Interview Result</nb-card-header>
+  </nb-card>
+  <nb-card-body>
+    <h6> &nbsp;&nbsp;&nbsp;&nbsp; {{heading}}  &nbsp;&nbsp;&nbsp;&nbsp;</h6>
+  </nb-card-body>
 </div>

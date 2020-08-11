@@ -53,7 +53,7 @@ export class ButtonViewComponent implements OnInit {
     console.log(this.rowData)
     this.CardComponent = InterviewComponent;
     this.dialogService.open(this.CardComponent, {context: {
-      rowData: this.rowData,
+      rowData: this.rowData, 
     },
   });
   
@@ -72,7 +72,8 @@ export class ListOfCandidateComponent implements OnInit {
   type:any;
   vacancy:any;
   color:string;
-
+  candidateData : any
+  rows:any[] = []
 
   settings = {
     actions:{add:false},
@@ -223,107 +224,111 @@ export class ListOfCandidateComponent implements OnInit {
           }
      )
   }
-    candidateData : any
-    rows:any[] = []
-    onSelectVacancy()
-    {
-      this.service.getCandidateByVacancyId(this.type)
+    
+  onSelectVacancy()
+  {
+    this.service.getCandidateByVacancyId(this.type)
+    .then(
+      response => {
+        this.candidateData = response.data
+          localStorage.setItem('vid', this.type)
+          this.copydata();
+          }
+    )  
+    console.log(this.source)
+  }
+
+  copydata()
+  {
+    this.candidateData.forEach(element => {
+
+      var source = {
+        "candidateName" : "",
+        "contactNo" : "",
+        "email" : "",
+        "employmentStatus" : "",
+        "id" : 0,
+        "interviewStatus" : "",
+        "reqMatchingPercent" : 0,
+        "shortSummaryMatchingPercent" : 0,
+        "technologyStack" : "",
+        "technologyStackMatchingPercent" : "",
+        "yearOfExperience" : ""
+      }
+
+      source.candidateName =  element.candidateName
+      source.contactNo = element.contactNo
+      source.email = element.email
+      source.employmentStatus = element.employmentStatus
+      source.id = element.id
+      source.interviewStatus = element.interviewStatus
+      source.reqMatchingPercent = element.reqMatchingPercent
+      source.shortSummaryMatchingPercent = element.shortSummaryMatchingPercent
+      source.technologyStack = element.technologyStack
+      source.technologyStackMatchingPercent = element.technologyStackMatchingPercent
+      source.yearOfExperience = element.yearOfExperience
+
+      if(element.interviewStatus == null)
+      {
+        source.interviewStatus =  'Not scheduled any round'
+      } 
+      this.rows.push(source)
+    });
+    console.log(this.source)
+  this.source.load(this.rows)
+  }
+
+  onUpdateRecord(event) {
+    //this.ngOnInit();
+    console.log("working...."+this.type)
+      var data = {"id" : event.newData.id,
+                  "candidateName" : event.newData.candidateName,
+                  "contactNo" : event.newData.contactNo,
+                  "email" : event.newData.email,
+                  "technologyStack" : event.newData.technologyStack,
+                  "reqMatchingPercent" : event.newData.reqMatchingPercent,
+                  "yearOfExperience" : event.newData.yearOfExperience,
+                  "shortSummaryMatchingPercent" : event.newData.shortSummaryMatchingPercent,
+                  "technologyStackMatchingPercent" : event.newData.technologyStackMatchingPercent,
+                  "interviewStatus" :  event.newData.interviewStatus
+                  };
+          this.service.updateCandidate(data,this.type)
+          .then(
+            response => {
+                event.confirm.resolve();
+            }
+          )          
+  }
+
+  onDeleteConfirm(event): void {
+    if (Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })) {
+      console.log(event.data.id)
+      this.service.DeteteCandidate(event.data.id)
       .then(
         response => {
-          this.candidateData = response.data
-           this.copydata();
-           }
-      )  
-      console.log(this.source)
-    }
-    copydata()
-    {
-      this.candidateData.forEach(element => {
-  
-        var source = {
-          "candidateName" : "",
-          "contactNo" : "",
-          "email" : "",
-          "employmentStatus" : "",
-          "id" : 0,
-          "interviewStatus" : "",
-          "reqMatchingPercent" : 0,
-          "shortSummaryMatchingPercent" : 0,
-          "technologyStack" : "",
-          "technologyStackMatchingPercent" : "",
+            console.log(response);
+            event.confirm.resolve();
         }
-  
-        source.candidateName =  element.candidateName
-        source.contactNo = element.contactNo
-        source.email = element.email
-        source.employmentStatus = element.employmentStatus
-        source.id = element.id
-        source.interviewStatus = element.interviewStatus
-        source.reqMatchingPercent = element.reqMatchingPercent
-        source.shortSummaryMatchingPercent = element.shortSummaryMatchingPercent
-        source.technologyStack = element.technologyStack
-        source.technologyStackMatchingPercent = element.technologyStackMatchingPercent
-
-       if(element.interviewStatus == null)
-       {
-         source.interviewStatus =  'Not scheduled any round'
-       } 
-       this.rows.push(source)
-     });
-     console.log(this.source)
-    this.source.load(this.rows)
+      )
+    } else {
+      event.confirm.reject();
     }
-
-    onUpdateRecord(event) {
-      //this.ngOnInit();
-      console.log("working...."+this.type)
-        var data = {"id" : event.newData.id,
-                    "candidateName" : event.newData.candidateName,
-                    "contactNo" : event.newData.contactNo,
-                    "email" : event.newData.email,
-                     "technologyStack" : event.newData.technologyStack,
-                     "reqMatchingPercent" : event.newData.reqMatchingPercent,
-                    "yearOfExperience" : event.newData.yearOfExperience,
-                    "shortSummaryMatchingPercent" : event.newData.shortSummaryMatchingPercent,
-                    "technologyStackMatchingPercent" : event.newData.technologyStackMatchingPercent
-                    };
-            this.service.updateCandidate(data,this.type)
-            .then(
-              response => {
-                 event.confirm.resolve();
-              }
-            )          
-    }
-
-    onDeleteConfirm(event): void {
-      if (Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.value) {
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
-        }
-      })) {
-       console.log(event.data.id)
-        this.service.DeteteCandidate(event.data.id)
-        .then(
-          response => {
-             console.log(response);
-             event.confirm.resolve();
-          }
-        )
-      } else {
-        event.confirm.reject();
-      }
-    }
+  }
   
 }
