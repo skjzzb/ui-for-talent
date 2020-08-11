@@ -45,6 +45,7 @@ export class ButtonViewComponent implements OnInit {
 
   ngOnInit() {
     this.renderValue = this.value.toString();
+    console.log(this.rowData)
   }
 
   onClick()
@@ -178,6 +179,13 @@ export class ListOfCandidateComponent implements OnInit {
         sortDirection:'desc',
         width:'10%'
       },
+      interviewStatus:{
+        title:'Interview Status',
+        type : 'string',
+        filter: false,
+        width:'20%'
+
+      },
       setInterview:{
         title:'Schedule Interview',
         type:'custom',
@@ -203,7 +211,7 @@ export class ListOfCandidateComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveData();
-    this.color='text-danger';
+    this.color='text-danger'
   }
 
   retrieveData()
@@ -214,17 +222,56 @@ export class ListOfCandidateComponent implements OnInit {
           this.vacancy=response.data
           }
      )
-    }
+  }
+    candidateData : any
+    rows:any[] = []
     onSelectVacancy()
     {
       this.service.getCandidateByVacancyId(this.type)
       .then(
         response => {
-           this.source.load(response.data);
-           console.log(response.data)
+          this.candidateData = response.data
+           this.copydata();
            }
       )  
       console.log(this.source)
+    }
+    copydata()
+    {
+      this.candidateData.forEach(element => {
+  
+        var source = {
+          "candidateName" : "",
+          "contactNo" : "",
+          "email" : "",
+          "employmentStatus" : "",
+          "id" : 0,
+          "interviewStatus" : "",
+          "reqMatchingPercent" : 0,
+          "shortSummaryMatchingPercent" : 0,
+          "technologyStack" : "",
+          "technologyStackMatchingPercent" : "",
+        }
+  
+        source.candidateName =  element.candidateName
+        source.contactNo = element.contactNo
+        source.email = element.email
+        source.employmentStatus = element.employmentStatus
+        source.id = element.id
+        source.interviewStatus = element.interviewStatus
+        source.reqMatchingPercent = element.reqMatchingPercent
+        source.shortSummaryMatchingPercent = element.shortSummaryMatchingPercent
+        source.technologyStack = element.technologyStack
+        source.technologyStackMatchingPercent = element.technologyStackMatchingPercent
+
+       if(element.interviewStatus == null)
+       {
+         source.interviewStatus =  'Not scheduled any round'
+       } 
+       this.rows.push(source)
+     });
+     console.log(this.source)
+    this.source.load(this.rows)
     }
 
     onUpdateRecord(event) {
