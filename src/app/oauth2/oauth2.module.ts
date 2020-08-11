@@ -35,16 +35,16 @@ import { Oauth2RoutingModule } from './oauth2-routing.module';
       strategies: [
         NbOAuth2AuthStrategy.setup({
           name: 'google',
-          //clientId: '689963141476-573mvrd35ton237lq542r820dgasaa9r.apps.googleusercontent.com',
-          clientId: '689963141476-qt0n0dprne6m88lukfu4a6l4jlb7fhuc.apps.googleusercontent.com',//google Login
+          clientId: '689963141476-573mvrd35ton237lq542r820dgasaa9r.apps.googleusercontent.com',
+         // clientId: '689963141476-qt0n0dprne6m88lukfu4a6l4jlb7fhuc.apps.googleusercontent.com',//google Login
 
           clientSecret: '',
           authorize: {
             endpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
             responseType: NbOAuth2ResponseType.TOKEN,
             scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
-            //redirectUri: 'http://localhost:4200/oauth2/callback',
-            redirectUri: 'https://cvprocessing-007.web.app/oauth2/callback',//google login
+            redirectUri: 'http://localhost:4200/oauth2/callback',
+            //redirectUri: 'https://cvprocessing-007.web.app/oauth2/callback',//google login
 
           },
 

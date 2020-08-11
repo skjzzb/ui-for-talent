@@ -5,7 +5,7 @@ import { link } from 'fs';
 export var MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Dashboard',
-    icon: 'shopping-cart-outline',
+    icon: 'home-outline',
     link: '/pages/dashboard',
     home: true,
   },
