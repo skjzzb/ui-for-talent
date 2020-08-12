@@ -3,6 +3,7 @@ import { NbThemeService } from '@nebular/theme';
 import { interval , Subscription } from 'rxjs';
 import { switchMap, takeWhile } from 'rxjs/operators';
 import { LiveUpdateChart, EarningData } from '../../../../@core/data/earning';
+import { DataService } from '../../../../@core/utils/data.service';
 
 @Component({
   selector: 'ngx-earning-card-front',
@@ -11,6 +12,10 @@ import { LiveUpdateChart, EarningData } from '../../../../@core/data/earning';
 })
 export class EarningCardFrontComponent implements OnDestroy, OnInit {
   private alive = true;
+
+  constructor(private service:DataService){
+
+  }
 
   selectedTechnology: string = 'Java'
   technologies: string[] =['Java', 'Angular', 'MySql'];
@@ -73,8 +78,20 @@ export class EarningCardFrontComponent implements OnDestroy, OnInit {
   ngOnDestroy() {
     this.alive = false;
   }*/
+  multi:any[]
   ngOnInit() {
-    
+    this.retrieveDataOfExperience();
+  }
+  
+  retrieveDataOfExperience(){
+    this.service.getExperiece()
+    .then(
+      response => {
+         console.log(response);
+          this.multi=response.data;
+      }
+    )
+
   }
 
   changeTechnology(technology){
@@ -100,41 +117,7 @@ export class EarningCardFrontComponent implements OnDestroy, OnInit {
   ngOnDestroy() {
     this.alive = false;
   }
-  lineChartMulti =[
-   
-   
-    {
-      "name": "0-5 Years",
-      "value": 90,
-      "extra": {
-        "code": "fr"
-      }
-    },
-    {
-      "name": "5-8 Years",
-      "value": 80,
-      "extra": {
-        "code": "uk"
-      }
-    },
-    {
-      "name": "8-15 Years",
-      "value": 23,
-      "extra": {
-        "code": "uk"
-      }
-    },
-    {
-      "name": "15-20 Years",
-      "value": 15,
-      "extra": {
-        "code": "uk"
-      }
-    }
-
-
-    
-  ]
+  
 
   dataForJava =[
    
@@ -251,8 +234,8 @@ export class EarningCardFrontComponent implements OnDestroy, OnInit {
   lineChartShowYAxis = true;
   lineChartGradient = false;
   lineChartShowLegend = false;
-  lineChartShowXAxisLabel = false;
-  lineChartXAxisLabel = 'YearOfExperience';
+  lineChartShowXAxisLabel =false;
+  lineChartXAxisLabel = 'Year';
   lineChartShowYAxisLabel = false;
   lineChartYAxisLabel = 'candidate';
   

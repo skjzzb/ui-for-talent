@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 const API_URL = 'https://cv-processing-api.herokuapp.com/v1';
 const API_URL1 = "http://localhost:8081/v1";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,13 +25,25 @@ export class DataService {
     }
   }
 
-  getTotalNumberOfVacancy() {
-    return axios.get(`${API_URL1}/totalvacancy`,)
+ 
+
+  
+
+  getExperiece(){
+    return axios.get(`${API_URL1}/experienceofcandidate`,)
   }
 
-  getMonthApplication(){
-    return axios.get(`${API_URL1}/monthApplication`)
+  getTechnologyExperience(Technology){
+    return axios.get(`${API_URL1}/experience/${Technology}/`,)
   }
+
+  getVacancyChartData(){
+    return axios.get(`${API_URL1}/monthvacancy`,)
+  }
+  getProjectVacancyChartData(){
+    return axios.get(`${API_URL1}/projectvacancy`,)
+  }
+
   getData() {
     //console.log('executed service')
     return axios.get(`${API_URL}/doc`,

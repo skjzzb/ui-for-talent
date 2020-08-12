@@ -20,9 +20,11 @@
 
   .chart-info {
     position: relative;
+    bottom: 1rem;
     display: flex;
     flex-direction: column;
     margin: 0 nb-theme(card-padding);
+    
   }
 
   .delta {

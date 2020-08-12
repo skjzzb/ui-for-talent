@@ -6,6 +6,7 @@
   <nb-select [selected]="selectedTechnology" (selectedChange)="changeTechnology($event)">
     <nb-option *ngFor="let technology of technologies" [value]="technology">{{ technology }}</nb-option>
   </nb-select>
+  
 </nb-card-header>
 <nb-card-body>
   <!--<div class="chart-info">
@@ -28,7 +29,7 @@
       
     <ngx-charts-bar-vertical 
     [scheme]="lineChartColorScheme" 
-    [results]="chartData" 
+    [results]="multi" 
     [gradient]="lineChartGradient" 
     [xAxis]="lineChartShowXAxis" 
     [yAxis]="lineChartShowYAxis" 
