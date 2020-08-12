@@ -42,6 +42,7 @@ export class InterviewComponent implements OnInit {
     {
       this.heading = 'Schedule Technical - 1'
       this.buttonText = 'Schedule Technical - 1'
+      this.interview.level = 'Technical - 1'
     }
     if(this.rowData.interviewStatus === 'Scheduled Technical - 1')
     this.heading = 'Technical - 1 result is pending'
@@ -52,6 +53,7 @@ export class InterviewComponent implements OnInit {
     {
       this.heading = 'Schedule Technical - 2'
       this.buttonText = 'Schedule Technical - 2'
+      this.interview.level = 'Technical - 2'
     }
     if(this.rowData.interviewStatus === 'Scheduled Technical - 2')
     this.heading = 'Technical - 2 result is pending'
@@ -62,9 +64,14 @@ export class InterviewComponent implements OnInit {
     {
       this.heading = 'Schedule HR round'
       this.buttonText = 'Schedule HR round'
+      this.interview.level = 'HR Round'
     }
     if(this.rowData.interviewStatus == 'Schedule HR round')
     this.heading = 'HR round result is pending'
+    if(this.rowData.interviewStatus == 'HR round selected')
+    this.heading = 'This candidate is selected'
+    if(this.rowData.interviewStatus == 'HR round rejected')
+    this.heading = 'HR round rejected'
 
 
   }
@@ -101,11 +108,13 @@ export class InterviewComponent implements OnInit {
     gmail = user.username;
     }
     this.interview.hrEmail=gmail;
-
     console.log(this.interview)
-
     this.service.setMeeting(this.interview)
-
+    .then(
+      response =>{
+        window.location.reload()
+      }
+    )
     this.rowData.interviewStatus = 'Scheduled Technical - 1'
     this.updateCandidateStatus();
   }

@@ -25,13 +25,16 @@ import { ProfileComponent } from '../../../profile/profile.component';
 }
 .button2 {border-radius: 4px;}
 </style>
-  <button class="button button2" type="button" (click)="onClick()"> Schedule Interview
+ 
+  <button class="button button2" type="button" (click)="onClick()"> {{interviewButton}}
   </button>
   </div>`,
 })
 export class ButtonViewComponent implements OnInit {
   renderValue: string;
   CardComponent
+  interviewButton = "Schedule Interview"
+  colour = "#008CBA"
 
   @Input() value: string;
   @Input() rowData: any;
@@ -46,6 +49,22 @@ export class ButtonViewComponent implements OnInit {
   ngOnInit() {
     this.renderValue = this.value.toString();
     console.log(this.rowData)
+    this.setButtonValue()
+  }
+
+  setButtonValue(){
+    if(this.rowData.interviewStatus == 'Scheduled Technical - 1' ||
+      this.rowData.interviewStatus == 'Technical - 1 rejected' ||
+      this.rowData.interviewStatus == 'Scheduled Technical - 2' ||
+      this.rowData.interviewStatus == 'Technical - 2 rejected' ||
+      this.rowData.interviewStatus == 'Schedule HR round' ||
+      this.rowData.interviewStatus == 'HR round rejected' ||
+      this.rowData.interviewStatus == 'HR round selected'
+      )
+      this.interviewButton = "View Status"
+    
+      
+    
   }
 
   onClick()
