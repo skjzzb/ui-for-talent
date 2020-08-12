@@ -57,7 +57,7 @@ export class ButtonViewComponent implements OnInit {
       this.rowData.interviewStatus == 'Technical - 1 rejected' ||
       this.rowData.interviewStatus == 'Scheduled Technical - 2' ||
       this.rowData.interviewStatus == 'Technical - 2 rejected' ||
-      this.rowData.interviewStatus == 'Schedule HR round' ||
+      this.rowData.interviewStatus == 'Scheduled HR round' ||
       this.rowData.interviewStatus == 'HR round rejected' ||
       this.rowData.interviewStatus == 'HR round selected'
       )

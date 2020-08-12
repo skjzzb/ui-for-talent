@@ -115,8 +115,20 @@ export class InterviewComponent implements OnInit {
         window.location.reload()
       }
     )
-    this.rowData.interviewStatus = 'Scheduled Technical - 1'
-    this.updateCandidateStatus();
+    this.changeInterviewStatus()
+  }
+  changeInterviewStatus()
+  {
+    if(this.rowData.interviewStatus === 'Not scheduled any round')
+      this.rowData.interviewStatus = 'Scheduled Technical - 1'
+    
+    if(this.rowData.interviewStatus == 'Technical - 1 selected')
+      this.rowData.interviewStatus = 'Scheduled Technical - 2'
+  
+    if(this.rowData.interviewStatus == 'Technical - 2 selected')
+       this.rowData.interviewStatus = 'Scheduled HR round'
+
+    this.updateCandidateStatus()
   }
 
 
