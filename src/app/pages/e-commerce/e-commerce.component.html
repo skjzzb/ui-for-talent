@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="currentRole=='ROLE_ADMIN'">
   <div class="col-xxl-5">
     <div class="row">
       <div class="col-md-6">
@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="currentRole=='ROLE_PANEL'">
   <div class="col-xxl-9">
     <ngx-country-orders></ngx-country-orders>
   </div>
@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="currentRole=='ROLE_HR'">
   <div class="col-xxl-9">
     <ngx-ecommerce-visitors-analytics></ngx-ecommerce-visitors-analytics>
   </div>
