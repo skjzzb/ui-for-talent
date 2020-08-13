@@ -66,7 +66,7 @@ export class InterviewComponent implements OnInit {
       this.buttonText = 'Schedule HR round'
       this.interview.level = 'HR Round'
     }
-    if(this.rowData.interviewStatus == 'Schedule HR round')
+    if(this.rowData.interviewStatus == 'Scheduled HR round')
     this.heading = 'HR round result is pending'
     if(this.rowData.interviewStatus == 'HR round selected')
     this.heading = 'This candidate is selected'
