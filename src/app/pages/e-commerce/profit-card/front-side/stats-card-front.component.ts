@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { ProfitBarAnimationChartData } from '../../../../@core/data/profit-bar-animation-chart';
 import { takeWhile } from 'rxjs/operators';
+import { DataService } from '../../../../@core/utils/data.service';
 
 @Component({
   selector: 'ngx-stats-card-front',
@@ -13,58 +14,35 @@ export class StatsCardFrontComponent {
 
   linesData: { firstLine: number[]; secondLine: number[] };
 
-  constructor(private profitBarAnimationChartService: ProfitBarAnimationChartData) {
+  constructor(private profitBarAnimationChartService: ProfitBarAnimationChartData,private service: DataService) {
     this.profitBarAnimationChartService.getChartData()
       .pipe(takeWhile(() => this.alive))
       .subscribe((linesData) => {
         this.linesData = linesData;
       });
   }
-  lineChartMulti =[
-    {
-      "name": "February",
-      "value": 20,
-      "extra": {
-        "code": "de"
+  multi:any[]
+  ngOnInit(){
+    this.retrieveDataOfVacancyChart();
+
+  }
+
+  retrieveDataOfVacancyChart(){
+    this.service.getVacancyChartData()
+    .then(
+      response => {
+         console.log(response);
+          this.multi=response.data;
       }
-    },
-    {
-      "name": "March",
-      "value": 30,
-      "extra": {
-        "code": "us"
-      }
-    },
-    {
-      "name": "April",
-      "value": 12,
-      "extra": {
-        "code": "fr"
-      }
-    },
-    {
-      "name": "May",
-      "value": 20,
-      "extra": {
-        "code": "uk"
-      }
-    },
-    {
-      "name": "June",
-      "value": 12,
-      "extra": {
-        "code": "uk"
-      }
-    },
-    {
-      "name": "July",
-      "value": 10,
-      "extra": {
-        "code": "uk"
-      }
-    }
-    
-  ]
+    )
+
+  }
+
+ 
+
+  
+
+  
 
   lineChartView: any[] = [550, 400];
 
@@ -86,7 +64,7 @@ export class StatsCardFrontComponent {
   lineChartAutoScale = true;
 
 
-  multi = [
+  multi1 = [
    
   
     {

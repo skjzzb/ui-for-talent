@@ -1,6 +1,7 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy,OnInit } from '@angular/core';
 import { StatsBarData } from '../../../../@core/data/stats-bar';
 import { takeWhile } from 'rxjs/operators';
+import { DataService } from '../../../../@core/utils/data.service';
 
 @Component({
   selector: 'ngx-stats-card-back',
@@ -10,10 +11,10 @@ import { takeWhile } from 'rxjs/operators';
 export class StatsCardBackComponent implements OnDestroy {
 
   private alive = true;
-
+  
   chartData: number[];
 
-  constructor(private statsBarData: StatsBarData) {
+  constructor(private statsBarData: StatsBarData,private service: DataService) {
     this.statsBarData.getStatsBarData()
       .pipe(takeWhile(() => this.alive))
       .subscribe((data) => {
@@ -21,11 +22,34 @@ export class StatsCardBackComponent implements OnDestroy {
       });
   }
 
+  backenddata:any
+  
+  multi:any=[]
+  
+  ngOnInit(){
+    this.retrieveDataOfProject();
+    
+  
+    
+    
+  }
+  retrieveDataOfProject(){
+    this.service.getProjectVacancyChartData()
+    .then(
+      response => {
+         console.log(response);
+          this.multi=response.data
+          
+      }
+    )
+
+  }
+
   ngOnDestroy() {
     this.alive = false;
   }
-
-  lineChartMulti =[
+  
+  lineChartMulti: any[] =[
    
    
     {
@@ -66,6 +90,8 @@ export class StatsCardBackComponent implements OnDestroy {
     },
     
   ]
+ 
+  
 
   lineChartView: any[] = [550, 400];
 

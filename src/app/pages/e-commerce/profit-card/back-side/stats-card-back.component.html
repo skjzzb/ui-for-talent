@@ -1,6 +1,7 @@
 <nb-card-header>
   <!--<i class="ion-social-usd"></i>-->
-  <span class="title">Rejected Candidate</span>
+  <span class="title">Vacancy</span>
+  
 </nb-card-header>
 <nb-card-body>
   <!--<div class="info">
@@ -18,9 +19,9 @@
     </div>
   </div>
   <ngx-stats-ares-chart [points]="chartData"></ngx-stats-ares-chart>-->
-  <ngx-charts-bar-vertical 
+  <ngx-charts-bar-vertical-2d
   [scheme]="lineChartColorScheme" 
-  [results]="lineChartMulti" 
+  [results]="multi" 
   [gradient]="lineChartGradient" 
   [xAxis]="lineChartShowXAxis" 
   [yAxis]="lineChartShowYAxis" 
@@ -32,5 +33,5 @@
   
   
   
-  ></ngx-charts-bar-vertical>
+  ></ngx-charts-bar-vertical-2d>
 </nb-card-body>
