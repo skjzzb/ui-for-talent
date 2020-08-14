@@ -69,7 +69,7 @@ export var MENU_ITEMS: NbMenuItem[] = [
 
    {
     title: 'Level',
-    icon: 'person-outline',
+    icon: 'code-outline',
     children: [
       {
         title: 'Add Level',
