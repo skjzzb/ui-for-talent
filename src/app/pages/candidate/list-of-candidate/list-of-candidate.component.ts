@@ -6,7 +6,68 @@ import { NgxPopoverCardComponent, NgxPopoverFormComponent } from '../../modal-ov
 import { NbWindowService, NbDialogService } from '@nebular/theme';
 import { InterviewComponent } from '../interview/interview.component';
 import { ProfileComponent } from '../../../profile/profile.component';
+import { ShowcaseDialogComponent } from '../../modal-overlays/dialog/showcase-dialog/showcase-dialog.component';
+import { EvaluationReportComponent } from '../evaluation-report/evaluation-report';
 
+@Component({
+  selector: 'interview-report-button-view',
+  template: `
+  <div>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  height: 50px;
+  width: 150px;
+}
+.button2 {border-radius: 4px;}
+</style>
+ 
+  <button class="button button2" type="button" (click)="onClick()"> 
+  <i class="fas fa-clock"></i> &nbsp;
+  Evaluation Report
+  </button>
+  </div>`,
+})
+export class InterviewReportButtonViewComponent implements OnInit {
+  renderValue: string;
+  CardComponent
+  interviewButton = "Schedule Interview"
+  colour = "#008CBA"
+
+  @Input() value: string;
+  @Input() rowData: any;
+
+  @Output() save: EventEmitter<any> = new EventEmitter();
+
+  constructor(private windowService: NbWindowService,private dialogService: NbDialogService)
+  {
+    
+  }
+
+  ngOnInit() {
+    this.renderValue = this.value.toString();
+    console.log(this.rowData)
+  }
+
+ 
+  onClick()
+  {
+    console.log(this.rowData)
+    this.CardComponent = EvaluationReportComponent;
+    this.dialogService.open(this.CardComponent, {context: {
+      rowData: this.rowData, 
+    },
+  });
+  }
+
+}
 @Component({
   selector: 'button-view',
   template: `
@@ -34,7 +95,7 @@ export class ButtonViewComponent implements OnInit {
   renderValue: string;
   CardComponent
   interviewButton = "Schedule Interview"
-  colour = "#008CBA"
+  
 
   @Input() value: string;
   @Input() rowData: any;
@@ -61,10 +122,7 @@ export class ButtonViewComponent implements OnInit {
       this.rowData.interviewStatus == 'HR round rejected' ||
       this.rowData.interviewStatus == 'HR round selected'
       )
-      this.interviewButton = "View Status"
-    
-      
-    
+      this.interviewButton = "View Status" 
   }
 
   onClick()
@@ -216,6 +274,17 @@ export class ListOfCandidateComponent implements OnInit {
        },width:'20%',
        filter:false,
        },
+       interviewReport:{
+        title:'Interview Evaluation Report',
+        type:'custom',
+        renderComponent:InterviewReportButtonViewComponent,
+        onComponentInitFunction(instance) {
+         instance.save.subscribe(row => {
+         });
+       },width:'20%',
+       filter:false,
+
+       }
     },
     pager:
     {

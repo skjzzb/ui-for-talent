@@ -1,7 +1,8 @@
-<div *ngIf='!logintype()' style=" overflow-y:scroll; margin-left: 20px; height: 650px; width: auto;">
-      <div class="col-md-12">
-        <nb-card   status="success">
-          <nb-card-header>Edit Profile</nb-card-header>
+<div *ngIf='!logintype()' >
+  <div class="col-md-12">
+    <nb-card   status="success">
+      <nb-card-header>Edit Profile</nb-card-header>
+      <div  style=" overflow-y:scroll; margin-left: 20px; height: 550px; width: auto;">
           <nb-card-body>
             <div class="row">
               <div class="col-md-8">
@@ -65,7 +66,7 @@
               </div>
               <div class="col-md-4">
                 <label class="label" for="fileInput">
-                   <img class="responsive"  [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
+                  <img class="responsive"  [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
                   <!-- <img ng-src="data:image/png;base64,{{url}}" id="photo-id"/> -->
                 </label>
                 <br/>
@@ -76,87 +77,90 @@
               </div>
             </div>   
           </nb-card-body>
-        </nb-card>
       </div>
-</div>   
-
-<div *ngIf='logintype()' style=" overflow-y:scroll; margin-left: 20px; height: 650px; width: auto;">
+    </nb-card>
+  </div>
+</div>
+  
+<div *ngIf='logintype()'>
   <div class="col-md-12">
     <nb-card   status="success">
       <nb-card-header>Edit Profile</nb-card-header>
-      <nb-card-body>
-        <div class="row">
-          <div class="col-md-8">
-            <form (ngSubmit)="gonUpdate()">
-              <div class="row">
-                <div class="col-md-12">
-                  <label for="name" class="label">Name</label>
-                  <input type="text" nbInput fullWidth id="name" name="glogindetails.name" [(ngModel)]="glogindetails.name"  placeholder="Name" readonly>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-5">
-                  <label for="contactNo" class="label">Contact No</label>
-                  <input type="text" nbInput fullWidth name="guserdetails.profile.contactNo"  [(ngModel)]="guserdetails.profile.contactNo" placeholder="Contact No">
-                </div>
-                <div class="col-md-7">
-                  <label for="email" class="label">Eamil</label>
-                  <input type="email" nbInput fullWidth id="email" name="glogindetails.username"  [(ngModel)]="glogindetails.username"  placeholder="Email" readonly>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <label for="address" class="label">Address</label>
-                  <textarea id="address" nbInput fullWidth id="guserdetails.profile.address" name="guserdetails.profile.address"  [(ngModel)]="guserdetails.profile.address" placeholder="Address"></textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label for="city" class="label">City</label>
-                  <input type="text" nbInput fullWidth id="guserdetails.profile.city" name="guserdetails.profile.city"  [(ngModel)]="guserdetails.profile.city" placeholder="City">
-                </div>
-                <div class="col-md-6">
-                  <label for="city" class="label">State</label>
-                  <input type="text" nbInput fullWidth id="guserdetails.profile.state" name="guserdetails.profile.state"  [(ngModel)]="guserdetails.profile.state" placeholder="State">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label for="country" class="label">Country</label>
-                  <input type="text" nbInput fullWidth id="guserdetails.profile.country" name="guserdetails.profile.country"  [(ngModel)]="guserdetails.profile.country"  placeholder="Country">
-                </div>
-                <div class="col-md-6">
-                  <label for="postcode" class="label">Postcode</label>
-                  <input type="text" nbInput fullWidth id="guserdetails.profile.pinCode" name="guserdetails.profile.pinCode"  [(ngModel)]="guserdetails.profile.pinCode" placeholder="Postcode">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <label for="aboutMe" class="label">About Me</label>
-                  <textarea id="aboutMe" nbInput fullWidth id="guserdetails.profile.aboutMe"  name="guserdetails.profile.aboutMe"  [(ngModel)]="guserdetails.profile.aboutMe" placeholder="About Me"></textarea>
-                </div>
-              </div>
-              <div>
-                <div class="col-md-12" >
-                  <div class="row action-btn">
-                    <button type="submit" nbButton status="danger">Update</button>
+      <div style=" overflow-y:scroll; margin-left: 20px; height: 550px; width: auto;">
+          <nb-card-body>
+            <div class="row">
+              <div class="col-md-8">
+                <form (ngSubmit)="gonUpdate()">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="name" class="label">Name</label>
+                      <input type="text" nbInput fullWidth id="name" name="glogindetails.name" [(ngModel)]="glogindetails.name"  placeholder="Name" readonly>
+                    </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <label for="contactNo" class="label">Contact No</label>
+                      <input type="text" nbInput fullWidth name="guserdetails.profile.contactNo"  [(ngModel)]="guserdetails.profile.contactNo" placeholder="Contact No">
+                    </div>
+                    <div class="col-md-7">
+                      <label for="email" class="label">Eamil</label>
+                      <input type="email" nbInput fullWidth id="email" name="glogindetails.username"  [(ngModel)]="glogindetails.username"  placeholder="Email" readonly>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="address" class="label">Address</label>
+                      <textarea id="address" nbInput fullWidth id="guserdetails.profile.address" name="guserdetails.profile.address"  [(ngModel)]="guserdetails.profile.address" placeholder="Address"></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="city" class="label">City</label>
+                      <input type="text" nbInput fullWidth id="guserdetails.profile.city" name="guserdetails.profile.city"  [(ngModel)]="guserdetails.profile.city" placeholder="City">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="city" class="label">State</label>
+                      <input type="text" nbInput fullWidth id="guserdetails.profile.state" name="guserdetails.profile.state"  [(ngModel)]="guserdetails.profile.state" placeholder="State">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="country" class="label">Country</label>
+                      <input type="text" nbInput fullWidth id="guserdetails.profile.country" name="guserdetails.profile.country"  [(ngModel)]="guserdetails.profile.country"  placeholder="Country">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="postcode" class="label">Postcode</label>
+                      <input type="text" nbInput fullWidth id="guserdetails.profile.pinCode" name="guserdetails.profile.pinCode"  [(ngModel)]="guserdetails.profile.pinCode" placeholder="Postcode">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="aboutMe" class="label">About Me</label>
+                      <textarea id="aboutMe" nbInput fullWidth id="guserdetails.profile.aboutMe"  name="guserdetails.profile.aboutMe"  [(ngModel)]="guserdetails.profile.aboutMe" placeholder="About Me"></textarea>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="col-md-12" >
+                      <div class="row action-btn">
+                        <button type="submit" nbButton status="danger">Update</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-4">
+                <label class="label" for="fileInput">
+                  <img class="responsive"  src="{{this.profile}}"> 
+                </label>
+                <br/>
+                <div>
+                  <h6>{{glogindetails.name}}</h6> 
+                  <p>{{guserdetails.profile.aboutMe}}</p>
                 </div>
               </div>
-            </form>
-          </div>
-          <div class="col-md-4">
-            <label class="label" for="fileInput">
-              <img class="responsive"  src="{{this.profile}}"> 
-            </label>
-            <br/>
-            <div>
-              <h6>{{glogindetails.name}}</h6> 
-              <p>{{guserdetails.profile.aboutMe}}</p>
-            </div>
-          </div>
-        </div>   
-      </nb-card-body>
+            </div>   
+          </nb-card-body>
+      </div>
     </nb-card>
   </div>
 </div>   
