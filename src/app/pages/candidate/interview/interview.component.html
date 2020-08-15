@@ -5,7 +5,7 @@
      <h6>Select Interview Level</h6>
      <label for="Select Level" class="label">Select Level</label>
      <nb-select placeholder="Select Level" fullWidth [(selected)]="selectedLevel"  >
-      <nb-option *ngFor="let l of level" (click)="onSelectLevel()" value="{{l.description}}">{{l.description}}</nb-option>
+      <nb-option *ngFor="let l of level" (click)="onSelectLevel()" value="{{l}}">{{l}}</nb-option>
     </nb-select> 
     <div *ngIf="selectedLevel != null">
       <br>  <br>

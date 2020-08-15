@@ -27,8 +27,10 @@ export class InterviewComponent implements OnInit {
     "hrEmail":""
 
   }
-  level : any
+  level : any[] = []
   selectedLevel : any
+  vacancyData : any
+  listOfHr : any
   constructor(private service:DataService,private tokenService:TokenStorageService, private fb: FormBuilder) { 
   }
 
@@ -37,46 +39,12 @@ export class InterviewComponent implements OnInit {
     this.service.getAllPanel().subscribe(data=>{
       this.panel = data
     })
-   // this.checkInterviewStatus()
+
+    this.service.getAllhr().subscribe(data=>{
+      this.listOfHr = data;
+    })
     this.retrieveLevelData()
   }
-
-  // checkInterviewStatus(){
-  //   if(this.rowData.interviewStatus === 'Not scheduled any round')
-  //   {
-  //     this.heading = 'Schedule Technical - 1'
-  //     this.buttonText = 'Schedule Technical - 1'
-  //     this.interview.level = 'Technical - 1'
-  //   }
-  //   if(this.rowData.interviewStatus === 'Scheduled Technical - 1')
-  //   this.heading = 'Technical - 1 result is pending'
-  //   if(this.rowData.interviewStatus == 'Technical - 1 rejected')
-  //   this.heading = 'Technical - 1 rejected'
-
-  //   if(this.rowData.interviewStatus == 'Technical - 1 selected')
-  //   {
-  //     this.heading = 'Schedule Technical - 2'
-  //     this.buttonText = 'Schedule Technical - 2'
-  //     this.interview.level = 'Technical - 2'
-  //   }
-  //   if(this.rowData.interviewStatus === 'Scheduled Technical - 2')
-  //   this.heading = 'Technical - 2 result is pending'
-  //   if(this.rowData.interviewStatus == 'Technical - 2 rejected')
-  //   this.heading = 'Technical - 2 rejected'
-
-  //   if(this.rowData.interviewStatus == 'Technical - 2 selected')
-  //   {
-  //     this.heading = 'Schedule HR round'
-  //     this.buttonText = 'Schedule HR round'
-  //     this.interview.level = 'HR Round'
-  //   }
-  //   if(this.rowData.interviewStatus == 'Scheduled HR round')
-  //   this.heading = 'HR round result is pending'
-  //   if(this.rowData.interviewStatus == 'HR round selected')
-  //   this.heading = 'This candidate is selected'
-  //   if(this.rowData.interviewStatus == 'HR round rejected')
-  //   this.heading = 'HR round rejected'
-  // }
 
   checkIfInterviewIsScheduled(){
     if(this.rowData.interviewStatus.includes("Scheduled") ||
@@ -139,6 +107,7 @@ export class InterviewComponent implements OnInit {
   }
   changeInterviewStatus()
   {
+    console.log(`Scheduled ${this.interview.level}`)
     this.rowData.interviewStatus = `Scheduled ${this.interview.level}`
     this.updateCandidateStatus()
   }
@@ -181,25 +150,21 @@ export class InterviewComponent implements OnInit {
   }
 
   onSelectLevel(){
-    console.log(this.selectedLevel)
+   this.selectedLevel = this.selectedLevel.trim()
+   if(this.selectedLevel == 'HR')
+     this.panel = this.listOfHr
   }
  
-  vacancyData : any
+ 
   retrieveLevelData(){
-    this.service.getLevelData()
-  .subscribe(
-    (response:any) => {
-        this.level=response;
-        console.log(response);
-    }
-  )
   var vacancyId = localStorage.getItem('vid')
   this.service.getVacancyById(vacancyId).subscribe(
   data =>{
     this.vacancyData = data
-    console.log(this.vacancyData.levelList)
     this.level = this.vacancyData.levelList.split(",")
-    
+    for (let index = 0; index < this.level.length; index++) {
+      this.level[index] = this.level[index].trim()
+    }
   }
 ) 
 
