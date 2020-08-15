@@ -139,7 +139,7 @@ export class DataService {
       return this.http.delete(`http://localhost:8080/api/profileDelete/${userId}`)
     }
     getLevelData(){
-       return this.http.get(`http://localhost:8080/api/getListOfLevels`)
+       return this.http.get(`https://cv-processing-api.herokuapp.com/api/getListOfLevels`)
 
     }
     addMultipleResume(vacancyId,listOfFiles)

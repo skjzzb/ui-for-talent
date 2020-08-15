@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { DataService } from '../../../@core/utils/data.service';
 import { TokenStorageService } from '../../../_services/token-storage.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ngx-interview',
@@ -26,7 +27,8 @@ export class InterviewComponent implements OnInit {
     "hrEmail":""
 
   }
-  constructor(private service:DataService,private tokenService:TokenStorageService) { 
+
+  constructor(private service:DataService,private tokenService:TokenStorageService, private fb: FormBuilder) { 
   }
 
   ngOnInit(): void {
@@ -72,8 +74,6 @@ export class InterviewComponent implements OnInit {
     this.heading = 'This candidate is selected'
     if(this.rowData.interviewStatus == 'HR round rejected')
     this.heading = 'HR round rejected'
-
-
   }
 
   scheduleInterview(dataFromUI)

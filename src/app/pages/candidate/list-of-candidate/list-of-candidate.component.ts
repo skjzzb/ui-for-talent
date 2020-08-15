@@ -173,28 +173,28 @@ export class ListOfCandidateComponent implements OnInit {
       candidateName: {
         title: 'Candidate Name',
         type: 'string',
-        filter: false
+        filter: true
       },
       contactNo: {
         title: 'Contact Number',
         type: 'string',
-        filter: false
+        filter: true
       },
       email: {
         title: 'Email',
         type: 'string',
-        filter: false
+        filter: true
       },
       technologyStack:{
         title:'Technology Stack',
         type: 'string',
-        filter: false,
+        filter: true,
         width:'20%',
       },
       yearOfExperience:{
         title:'Year Of Experience',
         type: 'number',
-        filter: false,
+        filter: true,
         width:'10%'
       },
       reqMatchingPercent:{
@@ -212,7 +212,7 @@ export class ListOfCandidateComponent implements OnInit {
 
           return `<div class="`+this.color+`">${value}%</div>`
         },
-        filter: false,
+        filter: true,
         sort:true,
         sortDirection:'desc',
         width:'10%'
@@ -232,7 +232,7 @@ export class ListOfCandidateComponent implements OnInit {
 
           return `<div class="`+this.color+`">${value}%</div>`
         },
-        filter: false,
+        filter: true,
         sort:true,
         sortDirection:'desc',
         width:'10%'
@@ -252,7 +252,7 @@ export class ListOfCandidateComponent implements OnInit {
 
           return `<div class="`+this.color+`">${value}%</div>`
         },
-        filter: false,
+        filter: true,
         sort:true,
         sortDirection:'desc',
         width:'10%'
@@ -260,8 +260,8 @@ export class ListOfCandidateComponent implements OnInit {
       interviewStatus:{
         title:'Interview Status',
         type : 'string',
-        filter: false,
-        width:'20%'
+        filter: true
+        //width:'20%'
 
       },
       setInterview:{
@@ -271,19 +271,24 @@ export class ListOfCandidateComponent implements OnInit {
         onComponentInitFunction(instance) {
          instance.save.subscribe(row => {
          });
-       },width:'20%',
+       },
        filter:false,
        },
-       interviewReport:{
+       evaluationReport:{
         title:'Interview Evaluation Report',
         type:'custom',
         renderComponent:InterviewReportButtonViewComponent,
         onComponentInitFunction(instance) {
          instance.save.subscribe(row => {
          });
-       },width:'20%',
+       },
        filter:false,
 
+       },
+       finalStatus : {
+        title:'Final Status',
+        type : 'string',
+        filter: true,
        }
     },
     pager:
@@ -341,7 +346,8 @@ export class ListOfCandidateComponent implements OnInit {
         "shortSummaryMatchingPercent" : 0,
         "technologyStack" : "",
         "technologyStackMatchingPercent" : "",
-        "yearOfExperience" : ""
+        "yearOfExperience" : "",
+        "finalStatus" : ""
       }
 
       source.candidateName =  element.candidateName
@@ -355,6 +361,7 @@ export class ListOfCandidateComponent implements OnInit {
       source.technologyStack = element.technologyStack
       source.technologyStackMatchingPercent = element.technologyStackMatchingPercent
       source.yearOfExperience = element.yearOfExperience
+      source.finalStatus = element.finalStatus;
 
       if(element.interviewStatus == null)
       {
@@ -378,7 +385,8 @@ export class ListOfCandidateComponent implements OnInit {
                   "yearOfExperience" : event.newData.yearOfExperience,
                   "shortSummaryMatchingPercent" : event.newData.shortSummaryMatchingPercent,
                   "technologyStackMatchingPercent" : event.newData.technologyStackMatchingPercent,
-                  "interviewStatus" :  event.newData.interviewStatus
+                  "interviewStatus" :  event.newData.interviewStatus,
+                  "finalStatus" : event.newData.finalStatus
                   };
           this.service.updateCandidate(data,this.type)
           .then(
