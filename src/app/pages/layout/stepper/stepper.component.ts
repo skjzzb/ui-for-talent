@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DataService } from '../../../@core/utils/data.service';
 
 @Component({
   selector: 'ngx-stepper',
@@ -12,7 +13,9 @@ export class StepperComponent implements OnInit {
   secondForm: FormGroup;
   thirdForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  level : any
+
+  constructor(private fb: FormBuilder, private Service : DataService) {
   }
 
   ngOnInit() {
@@ -27,6 +30,12 @@ export class StepperComponent implements OnInit {
     this.thirdForm = this.fb.group({
       thirdCtrl: ['', Validators.required],
     });
+
+    this.Service.getLevelData().subscribe((
+      data => {
+        this.level = data
+      }
+    ))
   }
 
   onFirstSubmit() {
