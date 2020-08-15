@@ -8,6 +8,7 @@ import { InterviewComponent } from '../interview/interview.component';
 import { ProfileComponent } from '../../../profile/profile.component';
 import { ShowcaseDialogComponent } from '../../modal-overlays/dialog/showcase-dialog/showcase-dialog.component';
 import { EvaluationReportComponent } from '../evaluation-report/evaluation-report';
+import {Router, NavigationExtras} from '@angular/router'
 
 @Component({
   selector: 'interview-report-button-view',
@@ -28,8 +29,8 @@ import { EvaluationReportComponent } from '../evaluation-report/evaluation-repor
 }
 .button2 {border-radius: 4px;}
 </style>
- 
-  <button class="button button2" type="button" (click)="onClick()"> 
+
+  <button class="button button2" type="button" (click)="onClick()">
   <i class="fas fa-clock"></i> &nbsp;
   Evaluation Report
   </button>
@@ -46,9 +47,9 @@ export class InterviewReportButtonViewComponent implements OnInit {
 
   @Output() save: EventEmitter<any> = new EventEmitter();
 
-  constructor(private windowService: NbWindowService,private dialogService: NbDialogService)
+  constructor(private windowService: NbWindowService,private dialogService: NbDialogService,private router:Router)
   {
-    
+
   }
 
   ngOnInit() {
@@ -56,15 +57,18 @@ export class InterviewReportButtonViewComponent implements OnInit {
     console.log(this.rowData)
   }
 
- 
+
   onClick()
   {
-    console.log(this.rowData)
-    this.CardComponent = EvaluationReportComponent;
-    this.dialogService.open(this.CardComponent, {context: {
-      rowData: this.rowData, 
-    },
-  });
+    //const navigationExtras: NavigationExtras = {state: {example: 'This is an example'}};
+    //this.router.navigate(['/pages/candidate/evaluation-report'], navigationExtras);
+     this.router.navigate(['/pages/candidate/evaluation-report',JSON.stringify(this.rowData)]);
+  //   console.log(this.rowData)
+  //   this.CardComponent = EvaluationReportComponent;
+  //   this.dialogService.open(this.CardComponent, {context: {
+  //     rowData: this.rowData,
+  //   },
+  // });
   }
 
 }
@@ -86,7 +90,7 @@ export class InterviewReportButtonViewComponent implements OnInit {
 }
 .button2 {border-radius: 4px;}
 </style>
- 
+
   <button class="button button2" type="button" (click)="onClick()"> {{interviewButton}}
   </button>
   </div>`,
@@ -95,7 +99,7 @@ export class ButtonViewComponent implements OnInit {
   renderValue: string;
   CardComponent
   interviewButton = "Schedule Interview"
-  
+
 
   @Input() value: string;
   @Input() rowData: any;
@@ -104,7 +108,7 @@ export class ButtonViewComponent implements OnInit {
 
   constructor(private windowService: NbWindowService,private dialogService: NbDialogService)
   {
-    
+
   }
 
   ngOnInit() {
@@ -118,18 +122,19 @@ export class ButtonViewComponent implements OnInit {
     this.rowData.interviewStatus.includes("rejected")||
     this.rowData.interviewStatus.includes("HR round selected")
       )
-      this.interviewButton = "View Status" 
+      this.interviewButton = "View Status"
   }
 
   onClick()
   {
+
     console.log(this.rowData)
     this.CardComponent = InterviewComponent;
     this.dialogService.open(this.CardComponent, {context: {
-      rowData: this.rowData, 
+      rowData: this.rowData,
     },
   });
-  
+
   }
 
 }
@@ -296,7 +301,7 @@ export class ListOfCandidateComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service:DataService) { 
+  constructor(private service:DataService) {
   }
 
   ngOnInit(): void {
@@ -313,7 +318,7 @@ export class ListOfCandidateComponent implements OnInit {
           }
      )
   }
-    
+
   onSelectVacancy()
   {
     this.service.getCandidateByVacancyId(this.type)
@@ -323,7 +328,7 @@ export class ListOfCandidateComponent implements OnInit {
           localStorage.setItem('vid', this.type)
           this.copydata();
           }
-    )  
+    )
     console.log(this.source)
   }
 
@@ -362,7 +367,7 @@ export class ListOfCandidateComponent implements OnInit {
       if(element.interviewStatus == null)
       {
         source.interviewStatus =  'Not scheduled any round'
-      } 
+      }
       this.rows.push(source)
     });
     console.log(this.source)
@@ -389,7 +394,7 @@ export class ListOfCandidateComponent implements OnInit {
             response => {
                 event.confirm.resolve();
             }
-          )          
+          )
   }
 
   onDeleteConfirm(event): void {
@@ -422,5 +427,5 @@ export class ListOfCandidateComponent implements OnInit {
       event.confirm.reject();
     }
   }
-  
+
 }

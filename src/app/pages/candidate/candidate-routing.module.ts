@@ -31,7 +31,7 @@ const routes: Routes = [{
       
     },
     {
-      path: 'evaluation-report',
+      path: 'evaluation-report/:rowData',
       component: EvaluationReportComponent,
       
     }
