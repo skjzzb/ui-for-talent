@@ -60,9 +60,9 @@ export class InterviewReportButtonViewComponent implements OnInit {
 
   onClick()
   {
-    const navigationExtras: NavigationExtras = {state: {example: 'This is an example'}};
-    this.router.navigate(['/pages/candidate/evaluation-report'], navigationExtras);
-    // this.router.navigate(['/pages/candidate/evaluation-report'], { state: { rowData: this.rowData } });
+    //const navigationExtras: NavigationExtras = {state: {example: 'This is an example'}};
+    //this.router.navigate(['/pages/candidate/evaluation-report'], navigationExtras);
+     this.router.navigate(['/pages/candidate/evaluation-report',JSON.stringify(this.rowData)]);
   //   console.log(this.rowData)
   //   this.CardComponent = EvaluationReportComponent;
   //   this.dialogService.open(this.CardComponent, {context: {

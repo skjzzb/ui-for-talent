@@ -10,14 +10,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EvaluationReportComponent implements OnInit {
   example: any;
-  constructor(private service:DataService,private tokenService:TokenStorageService,private router: Router) {
-  }
+  constructor(private service:DataService,private tokenService:TokenStorageService,private router: Router,private route :ActivatedRoute){}
+  
 
   ngOnInit(): void {
-    const navigation = this.router.getCurrentNavigation();
-    const state = navigation.extras.state as {example: string};
-    this.example = state.example;
-    console.log("ex"+this.example);
+   // this.example = this.route.snapshot.params['rowData'];
+   // console.log(this.route.snapshot.params['rowData'])
+    this.example = JSON.parse(this.route.snapshot.params["rowData"]);
+    console.log(this.example.email)
+    console.log(this.example)
+
     // console.log("rowdata"+this.route.getCurrentNavigation().extras.state.rowData);
 
   }
