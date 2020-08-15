@@ -1,0 +1,179 @@
+
+<!-- <div class="col-md-12" > -->
+  <nb-card status="info" style=" overflow-y:scroll;  max-width: 95vw ; max-height: 95vh">
+    <nb-card-header>Scheduled Interview</nb-card-header>
+
+      <nb-card-body>
+        <nb-accordion>
+          <nb-accordion-item>
+            <nb-accordion-item-header>
+              <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon>
+              Candidate Details
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="candidate Name" class="label">
+                    <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
+                    Candidate Name
+                  </label>
+                  <input type="text"
+                        id="candidateName"
+                        name="candidateName"
+                        [(ngModel)]="candidate.candidateName"
+                        readonly
+                        nbInput
+                        fullWidth
+                        >
+                </div>
+
+                <div class="col-md-4">
+                  <label for="employment status" class="label">
+                    <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
+                    Employment Status
+                  </label>
+                  <input type="text"
+                        id="employmentStatus"
+                        name="employmentStatus"
+                        [(ngModel)]="candidate.employmentStatus"
+                        readonly
+                        nbInput
+                        fullWidth
+                        >
+                </div>
+                <div class="col-md-4">
+                  <label for="experience" class="label">
+                    <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
+                    Experience
+                  </label>
+                  <input type="text"
+                        id="experience"
+                        name="experience"
+                        [(ngModel)]="candidate.yearOfExperience"
+                        readonly
+                        nbInput
+                        fullWidth
+                        >
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="Skills" class="label" style="font-size: medium;">
+                    <!-- <nb-icon icon="award-outline" status="info" style="size: 5px;"></nb-icon> -->
+                      Skills
+                  </label>
+                  <textarea [(ngModel)]="candidate.technologyStack" [ngModelOptions]="{standalone: true}"  nbInput fullWidth   readonly ></textarea>
+                </div>
+              </div>
+
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+
+          <nb-accordion-item>
+            <nb-accordion-item-header>
+              Vacancy Details
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="Vacancy" class="label">
+                    <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
+                    Vacancy
+                  </label>
+                  <input type="text"
+                        id="jobTitle"
+                        name="jobTitle"
+                        [(ngModel)]="vacancy.jobTitle"
+                        readonly
+                        nbInput
+                        fullWidth
+                        >
+                </div>
+
+                <div class="col-md-4">
+                  <label for="jd" class="label">
+                    <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
+                    Employment Status
+                  </label>
+                  <input type="text"
+                        id="jd"
+                        name="jd"
+                        [(ngModel)]="vacancy.jd"
+                        readonly
+                        nbInput
+                        fullWidth
+                        >
+                </div>
+                <div class="col-md-4">
+                  <label for="projectName" class="label">
+                    <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
+                    Experience
+                  </label>
+                  <input type="text"
+                        id="projectName"
+                        name="projectName"
+                        [(ngModel)]="vacancy.projectName"
+                        readonly
+                        nbInput
+                        fullWidth
+                        >
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="Skills" class="label" style="font-size: medium;">
+                    <!-- <nb-icon icon="award-outline" status="info" style="size: 5px;"></nb-icon> -->
+                      Skills
+                  </label>
+                  <textarea [(ngModel)]="vacancy.shortSummary" [ngModelOptions]="{standalone: true}"  nbInput fullWidth   readonly ></textarea>
+                </div>
+              </div>
+
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+
+          <nb-accordion-item >
+            <nb-accordion-item-header>
+              Edit
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <form  #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" role="form">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label class="label">Interview Evalution Report</label>
+                    <textarea id="evaluation" nbInput fullWidth  placeholder="Interview Evalution Report"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="row action-btn">
+                    <button nbButton status="danger">Schedule Round 1</button>
+                  </div>
+                </div>
+               <div class="row">
+                <div class="col-md-6" *ngFor="let c of concepts"  >
+                  <label class="label">{{c.concept}}</label>
+                  <div *ngFor="let q of c.question" >
+                    <label class="label">{{q}}</label>
+                  <input type="number"
+                        id="jobTitle"
+                        name="jobTitle"
+                        nbInput
+
+                        >
+                      </div>
+                </div>
+               </div>
+              </form>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+
+      </nb-card-body>
+
+
+
+  </nb-card>
+<!-- </div> -->
+
