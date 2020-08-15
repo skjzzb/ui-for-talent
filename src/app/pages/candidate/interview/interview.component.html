@@ -1,67 +1,65 @@
-<div *ngIf="rowData.interviewStatus == 'Not scheduled any round' ||
-            rowData.interviewStatus == 'Technical - 1 selected'  ||
-            rowData.interviewStatus == 'Technical - 2 selected'"  >
-    <nb-card status="success">
-      <nb-card-header>Schedule Interview</nb-card-header>
-      <!-- <div style=" overflow-y:scroll; margin-left: 20px;  height: 650px; width: auto;"> -->
-        <nb-card-body>
-          <h6>{{heading}}</h6>
-          <form  #myForm="ngForm" (ngSubmit)="scheduleInterview(myForm)" role="form">
-            <div class="row">
-              <div class="col-md-6"> 
-                <label class="label">Select Panel</label>
-                <nb-select placeholder="Select Panel" fullWidth ngModel name="panel" [(selected)]="selectedPanel">
-                  <nb-option *ngFor="let d of panel" value="{{d.username}}">{{d.name}}</nb-option>
-                </nb-select>
-              </div>
-              <div class="col-md-6"> 
-                <label class="label">Select Mode of Interview</label>
-                <nb-select placeholder="Select Mode of Interview" fullWidth ngModel name="mode" [(selected)]="selectedMode">
-                  <nb-option value="Cv processing">Face to Face</nb-option>
-                  <nb-option value="Smgr">Google Meet</nb-option>
-                  <nb-option value="Address Book">Zoom</nb-option>
-                </nb-select>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label class="label">Scheduled On</label>
-                <input nbInput fullWidth
-                name="scheduledOn"
-                ngModel
-                placeholder="Scheduled On"
-                [nbDatepicker]="formpicker">
-                <nb-datepicker #formpicker></nb-datepicker> 
-              </div>
-              <div class="col-md-6">
-                <label class="label">Time</label>
-                  <input type="time" name="time" ngModel nbInput fullWidth placeholder="Time" > 
-                 <!-- <ngb-timepicker [(ngModel)]="time" [seconds]="seconds"></ngb-timepicker>
-                  <button class="btn btn-sm btn-outline-{{seconds ? 'success' : 'danger'}}" (click)="toggleSeconds()">
-                      Seconds - {{seconds ? "ON" : "OFF"}}
-                  </button>
-                  <hr>
-                  <pre>Selected time: {{time | json}}</pre> -->
-               </div>
-            </div>
-            <div class="col-md-12">
-              <div class="row action-btn">
-                <button nbButton status="danger"> {{buttonText}}</button>
-              </div>
-            </div>
-          </form>
-        </nb-card-body>
-      <!-- </div> -->
-    </nb-card>
+<div  *ngIf="!checkIfInterviewIsScheduled()">
+  <nb-card status="success">
+   <nb-card-header>Schedule Interview</nb-card-header>
+   <nb-card-body>
+     <h6>Select Interview Level</h6>
+     <label for="Select Level" class="label">Select Level</label>
+     <nb-select placeholder="Select Level" fullWidth [(selected)]="selectedLevel"  >
+      <nb-option *ngFor="let l of level" (click)="onSelectLevel()" value="{{l.description}}">{{l.description}}</nb-option>
+    </nb-select> 
+    <div *ngIf="selectedLevel != null">
+      <br>  <br>
+     <h6>Schedule {{selectedLevel}}</h6>
+      <form  #myForm="ngForm" (ngSubmit)="scheduleInterview(myForm)" role="form">
+        <div class="row">
+          <div class="col-md-6"> 
+            <label class="label">Select Panel</label>
+            <nb-select placeholder="Select Panel" fullWidth ngModel name="panel" [(selected)]="selectedPanel">
+              <nb-option *ngFor="let d of panel" value="{{d.username}}">{{d.name}}</nb-option>
+            </nb-select>
+          </div>
+          <div class="col-md-6"> 
+            <label class="label">Select Mode of Interview</label>
+            <nb-select placeholder="Select Mode of Interview" fullWidth ngModel name="mode" [(selected)]="selectedMode">
+              <nb-option value="Cv processing">Face to Face</nb-option>
+              <nb-option value="Smgr">Google Meet</nb-option>
+              <nb-option value="Address Book">Zoom</nb-option>
+            </nb-select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label class="label">Scheduled On</label>
+            <input nbInput fullWidth
+            name="scheduledOn"
+            ngModel
+            placeholder="Scheduled On"
+            [nbDatepicker]="formpicker">
+            <nb-datepicker #formpicker></nb-datepicker> 
+          </div>
+          <div class="col-md-6">
+            <label class="label">Time</label>
+              <input type="time" name="time" ngModel nbInput fullWidth placeholder="Time" > 
+             <!-- <ngb-timepicker [(ngModel)]="time" [seconds]="seconds"></ngb-timepicker>
+              <button class="btn btn-sm btn-outline-{{seconds ? 'success' : 'danger'}}" (click)="toggleSeconds()">
+                  Seconds - {{seconds ? "ON" : "OFF"}}
+              </button>
+              <hr>
+              <pre>Selected time: {{time | json}}</pre> -->
+           </div>
+        </div>
+        <div class="col-md-12">
+          <div class="row action-btn">
+            <button nbButton status="danger"> Schedule Interview</button>
+          </div>
+        </div>
+      </form>
+    </div>
+   </nb-card-body>
+  </nb-card>
 </div>
 
-<div *ngIf="rowData.interviewStatus == 'Scheduled Technical - 1' || 
-            rowData.interviewStatus == 'Technical - 1 rejected'  ||
-            rowData.interviewStatus == 'Scheduled Technical - 2' ||
-            rowData.interviewStatus == 'Technical - 2 rejected'  ||
-            rowData.interviewStatus == 'Scheduled HR round'      ||
-            rowData.interviewStatus == 'HR round rejected'       ||
-            rowData.interviewStatus == 'HR round selected'  " style="background-color: white;">
+<div *ngIf="checkIfInterviewIsScheduled()" style="background-color: white;">
   <nb-card status="success">
     <nb-card-header>Interview Result</nb-card-header>
   </nb-card>

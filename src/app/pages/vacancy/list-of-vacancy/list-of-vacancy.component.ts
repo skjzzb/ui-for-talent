@@ -125,6 +125,10 @@ export class ListOfVacancyComponent implements OnInit {
         title:'Experience Required',
         type:'number'
       },
+      levelList :{
+        title:'Levels of Interview',
+        type:'string'
+      },
       shortSummary:{
          title:'Summary',
          type:'custom',
@@ -194,6 +198,7 @@ export class ListOfVacancyComponent implements OnInit {
                   "noOfVacancy" : event.newData.noOfVacancy,
                   "shortSummary" : event.newData.shortSummary,
                   "experienceRequired":event.newData.experienceRequired,
+                  "levelList" : event.newData.levelList
                 };
                 console.log(data)
 

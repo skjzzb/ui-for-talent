@@ -114,13 +114,9 @@ export class ButtonViewComponent implements OnInit {
   }
 
   setButtonValue(){
-    if(this.rowData.interviewStatus == 'Scheduled Technical - 1' ||
-      this.rowData.interviewStatus == 'Technical - 1 rejected' ||
-      this.rowData.interviewStatus == 'Scheduled Technical - 2' ||
-      this.rowData.interviewStatus == 'Technical - 2 rejected' ||
-      this.rowData.interviewStatus == 'Scheduled HR round' ||
-      this.rowData.interviewStatus == 'HR round rejected' ||
-      this.rowData.interviewStatus == 'HR round selected'
+    if(this.rowData.interviewStatus.includes("Scheduled") ||
+    this.rowData.interviewStatus.includes("rejected")||
+    this.rowData.interviewStatus.includes("HR round selected")
       )
       this.interviewButton = "View Status" 
   }

@@ -184,4 +184,7 @@ export class DataService {
     return axios.post(`https://cv-processing-api.herokuapp.com/rescheduledMeeting?reason=${reason}`,obj);
     //return axios.post(`http://localhost:8080/rescheduledMeeting?reason=${reason}`,obj);
   }
+  getVacancyById(vacancyId){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/vacancy/${vacancyId}`)
+  }
 }
