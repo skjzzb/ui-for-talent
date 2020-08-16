@@ -24,7 +24,9 @@ export class InterviewComponent implements OnInit {
     "scheduledOn" : "",
     "scheduledEndTime" : "",
     "level" : "",
-    "hrEmail":""
+    "hrEmail":"",
+    "candidateId":"",
+    "vacancyId" : ""
 
   }
   level : any[] = []
@@ -65,9 +67,12 @@ export class InterviewComponent implements OnInit {
 
   scheduleInterview(dataFromUI)
   {
+    var vacancyId = localStorage.getItem('vid')
     this.interview.panelEmail = dataFromUI.form.value.panel
     this.interview.candidateEmail = this.rowData.email
     this.interview.level = this.selectedLevel
+    this.interview.candidateId = this.rowData.id
+    this.interview.vacancyId = vacancyId
     
     console.log(this.interview.hrEmail)
       var time=dataFromUI.form.value.time
@@ -140,7 +145,7 @@ export class InterviewComponent implements OnInit {
     data.finalStatus = this.rowData.finalStatus
 
     var vacancyId = localStorage.getItem('vid')
-    localStorage.removeItem('vid')
+    //localStorage.removeItem('vid')
     this.service.updateCandidate(data, vacancyId)
     .then(
       response =>{
@@ -156,19 +161,18 @@ export class InterviewComponent implements OnInit {
   }
  
  
-  retrieveLevelData(){
-  var vacancyId = localStorage.getItem('vid')
-  this.service.getVacancyById(vacancyId).subscribe(
-  data =>{
-    this.vacancyData = data
-    this.level = this.vacancyData.levelList.split(",")
-    for (let index = 0; index < this.level.length; index++) {
-      this.level[index] = this.level[index].trim()
+  retrieveLevelData()
+  {
+    var vacancyId = localStorage.getItem('vid')
+    this.service.getVacancyById(vacancyId).subscribe(
+    data =>{
+      this.vacancyData = data
+      this.level = this.vacancyData.levelList.split(",")
+      for (let index = 0; index < this.level.length; index++) {
+        this.level[index] = this.level[index].trim()
+      }
     }
-  }
-) 
-
-  
+  )  
 }
 
  
