@@ -1,11 +1,11 @@
-import {  Component,ViewEncapsulation} from '@angular/core';
+import {  Component,ViewEncapsulation,OnInit,TemplateRef} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { DataService } from '../../../@core/utils/data.service';
 import { error } from 'console';
-import { NbWindowService } from '@nebular/theme';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NbWindowService, NbDialogService } from '@nebular/theme';
 
 @Component({
   selector: 'nb-level',
@@ -13,12 +13,16 @@ import { NgModule } from '@angular/core';
   templateUrl: './add-level.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class AddLevelComponent {
+export class AddLevelComponent  {
 level:string;
+levelData:any;
+renderValue:String;
+id:any;
+
 
 constructor(private service: DataService) {
   }
-  ngOnInit(): void {}
+
 
   addLevel(dataFromUI:any)
   {

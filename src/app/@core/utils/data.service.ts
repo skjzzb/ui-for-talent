@@ -117,10 +117,6 @@ export class DataService {
     {
       return this.http.delete(`http://localhost:8080/api/profileDelete/${userId}`)
     }
-    getLevelData(){
-       return this.http.get(`http://localhost:8081/api/getListOfLevels`)
-
-    }
     addMultipleResume(vacancyId,listOfFiles)
     {
       return axios.put(`${API_URL}/${vacancyId}`,listOfFiles)
@@ -136,9 +132,13 @@ export class DataService {
     }
     addLevelData(level)
     {
-      return this.http.post(`http://localhost:8081/api/addLevel`,level);
+      return this.http.post(`http://localhost:8080/api/addLevel`,level);
     }
     
+    getLevelData(){
+      return this.http.get(`http://localhost:8080/api/getListOfLevels`);
+    }
+
     setMeeting(obj:any)
     {
       //return axios.post(`http://localhost:8080/setMeeting`,obj);

@@ -1,13 +1,14 @@
 <div class="col-md-12">
   <nb-card status="success">
     <nb-card-header>Add Level</nb-card-header>
-    <nb-card-body>
-      <form  #myForm="ngForm" (ngSubmit)="addLevel(myForm)" role="form" >
-     <div class="row">
+     <nb-card-body>
+     <form  #myForm="ngForm" (ngSubmit)="addLevel(myForm)" role="form" >
+
+   <div class="row">
 
               <div class="col-md-6">
-                <label for="description" class="label">description</label>
-                <input type="text" ngModel name="description" nbInput fullWidth id="description" placeholder="0" required> 
+                <label for="description" class="label">Interview Level</label>
+                <input type="text" ngModel name="description" nbInput fullWidth id="description" placeholder="Enter interview level" required> 
               </div>
       </div>
       <br><br><br><br><br><br>
