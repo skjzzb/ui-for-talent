@@ -25,8 +25,8 @@ export class InterviewComponent implements OnInit {
     "scheduledEndTime" : "",
     "level" : "",
     "hrEmail":"",
-    // "candidateId":"",
-    // "vacancyId" : ""
+    "candidateId":"",
+    "vacancyId" : ""
 
   }
   level : any[] = []
@@ -71,8 +71,8 @@ export class InterviewComponent implements OnInit {
     this.interview.panelEmail = dataFromUI.form.value.panel
     this.interview.candidateEmail = this.rowData.email
     this.interview.level = this.selectedLevel
-    // this.interview.candidateId = this.rowData.id
-    // this.interview.vacancyId = vacancyId
+    this.interview.candidateId = this.rowData.id
+    this.interview.vacancyId = vacancyId
     
     console.log(this.interview.hrEmail)
       var time=dataFromUI.form.value.time
@@ -105,7 +105,7 @@ export class InterviewComponent implements OnInit {
     this.service.setMeeting(this.interview)
     .then(
       response =>{
-        window.location.reload()
+       // window.location.reload()
       }
     )
     this.changeInterviewStatus()
@@ -145,7 +145,7 @@ export class InterviewComponent implements OnInit {
     data.finalStatus = this.rowData.finalStatus
 
     var vacancyId = localStorage.getItem('vid')
-    //localStorage.removeItem('vid')
+    localStorage.removeItem('vid')
     this.service.updateCandidate(data, vacancyId)
     .then(
       response =>{

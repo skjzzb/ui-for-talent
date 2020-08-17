@@ -324,6 +324,7 @@ export class ListOfCandidateComponent implements OnInit {
     this.service.getCandidateByVacancyId(this.type)
     .then(
       response => {
+        console.log(response.data)
         this.candidateData = response.data
           localStorage.setItem('vid', this.type)
           this.copydata();
@@ -348,7 +349,8 @@ export class ListOfCandidateComponent implements OnInit {
         "technologyStack" : "",
         "technologyStackMatchingPercent" : "",
         "yearOfExperience" : "",
-        "finalStatus" : ""
+        "finalStatus" : "",
+        "vacancy" : null
       }
 
       source.candidateName =  element.candidateName
@@ -363,6 +365,7 @@ export class ListOfCandidateComponent implements OnInit {
       source.technologyStackMatchingPercent = element.technologyStackMatchingPercent
       source.yearOfExperience = element.yearOfExperience
       source.finalStatus = element.finalStatus;
+      source.vacancy = element.vacancy
 
       if(element.interviewStatus == null)
       {
