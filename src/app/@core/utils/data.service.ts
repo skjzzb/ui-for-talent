@@ -187,4 +187,8 @@ export class DataService {
   getVacancyById(vacancyId){
     return this.http.get(`https://cv-processing-api.herokuapp.com/v1/vacancy/${vacancyId}`)
   }
+
+  getAllConfirmedScheduledInterview(){
+    return this.http.get("https://cv-processing-api.herokuapp.com/interview/confirmed")
+  }
 }
