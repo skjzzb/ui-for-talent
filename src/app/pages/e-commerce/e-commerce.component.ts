@@ -1,12 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 
 @Component({
   selector: 'ngx-ecommerce',
   templateUrl: './e-commerce.component.html',
+  styleUrls: ['e-commerce.component.scss'],
 })
 export class ECommerceComponent {
   logindetails : any
   currentRole:String
+  users: { name: string, title: string ,expanded: boolean }[] = [
+    { name: 'Carla Espinosa', title: 'Nurse' ,expanded:false},
+    { name: 'Bob Kelso', title: 'Doctor of Medicine',expanded:false },
+    { name: 'Janitor', title: 'Janitor',expanded:false },
+    { name: 'Perry Cox', title: 'Doctor of Medicine' ,expanded:false},
+    { name: 'Ben Sullivan', title: 'Carpenter and photographer' ,expanded:false},
+  ];
+  @ViewChild('item', { static: true }) accordion;
+  linearMode = true;
+
+  toggleLinearMode() {
+    this.linearMode = !this.linearMode;
+  }
+
 constructor()
 {}
 ngOnInit(): void {

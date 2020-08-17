@@ -342,7 +342,7 @@ export var Candidate =
   }
 
   export var dashboard = {
-      title: 'E-commerce',
+      title: 'Dashboard',
       icon: 'shopping-cart-outline',
       link: '/pages/dashboard',
       home: true,

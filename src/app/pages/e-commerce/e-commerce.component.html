@@ -1,4 +1,4 @@
-<div class="row" *ngIf="currentRole=='ROLE_ADMIN'">
+<!-- <div class="row" *ngIf="currentRole=='ROLE_ADMIN'">
   <div class="col-xxl-5">
     <div class="row">
       <div class="col-md-6">
@@ -35,4 +35,67 @@
   <div class="col-xxl-3">
     <ngx-user-activity></ngx-user-activity>
   </div>
-</div>
+</div> -->
+
+  <nb-card>
+    <nb-card-header>Today Activity</nb-card-header>
+    <nb-card-body>
+    <nb-accordion>
+      
+      <nb-accordion-item *ngFor="let list of users" [expanded]="list.expanded"  nbInfiniteList>
+          <nb-accordion-item-header>
+              <nb-user [name]="list.name" [title]="list.title">
+              </nb-user>
+          </nb-accordion-item-header>
+          <nb-accordion-item-body >
+            <nb-stepper orientation="horizontal">
+              <nb-step [label]="labelOne">
+                <ng-template #labelOne>First step</ng-template>
+                <h4>Step content #1</h4>
+                <p class="lorem">
+                  Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down.
+                  Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up,
+                  gravida vizzle, dang.
+                </p>
+                <button nbButton disabled nbStepperNext>prev</button>
+                <button nbButton nbStepperNext>next</button>
+              </nb-step>
+              <nb-step [label]="labelTwo">
+                <ng-template #labelTwo>Second step</ng-template>
+                <h4>Step content #2</h4>
+                <p class="lorem">
+                  Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down.
+                  Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up,
+                  gravida vizzle, dang.
+                </p>
+                <button nbButton nbStepperPrevious>prev</button>
+                <button nbButton nbStepperNext>next</button>
+              </nb-step>
+              <nb-step label="Third step">
+                <h4>Step content #3</h4>
+                <p class="lorem">
+                  Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down.
+                  Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up,
+                  gravida vizzle, dang.
+                </p>
+                <button nbButton nbStepperPrevious>prev</button>
+                <button nbButton nbStepperNext>next</button>
+              </nb-step>
+              <nb-step [label]="labelFour">
+                <ng-template #labelFour>Fourth step</ng-template>
+                <h4>Step content #4</h4>
+                <p class="lorem">
+                  Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down.
+                  Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up,
+                  gravida vizzle, dang.
+                </p>
+                <button nbButton nbStepperPrevious>prev</button>
+                <button nbButton disabled nbStepperNext>next</button>
+              </nb-step>
+            </nb-stepper>
+          </nb-accordion-item-body>
+      </nb-accordion-item>
+  </nb-accordion>
+    </nb-card-body>
+  </nb-card>
+  
