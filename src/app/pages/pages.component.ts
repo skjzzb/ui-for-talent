@@ -77,9 +77,9 @@ export class PagesComponent {
     this.MENU_ITEMS2.push(users)
     if(true)
     this.MENU_ITEMS2.push(uploadResume)
-    this.menu=this.MENU_ITEMS2
     if(this.feature.Level)
     this.MENU_ITEMS2.push(Level)
+    this.menu=this.MENU_ITEMS2
   }
 
 }
