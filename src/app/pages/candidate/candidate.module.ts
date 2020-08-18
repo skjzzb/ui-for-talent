@@ -27,6 +27,7 @@ import { InterviewComponent } from './interview/interview.component';
 import { ListOfInterviewComponent } from './list-of-interview/list-of-interview.component';
 import { ReScheduleInterviewComponent } from './ReScheduleInterview/re-schedule-interview.component';
 import { EvaluationReportComponent } from './evaluation-report/evaluation-report';
+import { ListOfConfirmedInterviewComponent } from './list-of-confirmed-interview/list-of-confirmed-interview.component';
 
 
 @NgModule({
@@ -59,8 +60,8 @@ import { EvaluationReportComponent } from './evaluation-report/evaluation-report
     InterviewComponent,
     ListOfInterviewComponent,
     ReScheduleInterviewComponent,
-    EvaluationReportComponent
-    
+    EvaluationReportComponent,
+    ListOfConfirmedInterviewComponent
   ]
 })
 export class CandidateModule { }

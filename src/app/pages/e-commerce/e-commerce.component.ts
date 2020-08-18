@@ -53,7 +53,7 @@ ngOnInit(): void {
 
         }
 
-        source.candidateId = element.calEventId
+        source.calEventId = element.calEventId
         source.candidateEmail = element.candidateEmail
         source.candidateId = element.candidateId
         source.candidateResponseStatus = element.candidateResponseStatus
