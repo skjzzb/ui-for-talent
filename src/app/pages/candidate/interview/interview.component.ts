@@ -106,9 +106,10 @@ export class InterviewComponent implements OnInit {
     .then(
       response =>{
        // window.location.reload()
+       this.changeInterviewStatus()
       }
     )
-    this.changeInterviewStatus()
+    
   }
   changeInterviewStatus()
   {

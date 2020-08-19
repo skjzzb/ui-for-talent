@@ -371,6 +371,10 @@ export class ListOfCandidateComponent implements OnInit {
       {
         source.interviewStatus =  'Not scheduled any round'
       }
+      if(element.finalStatus == null)
+      {
+        source.finalStatus = 'NOT_SELECTED'
+      }
       this.rows.push(source)
     });
     console.log(this.source)
