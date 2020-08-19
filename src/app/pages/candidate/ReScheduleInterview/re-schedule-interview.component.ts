@@ -30,7 +30,7 @@ export class ReScheduleInterviewComponent implements OnInit {
     "candidateEmail" : "",
     "scheduledOn" : "",
     "scheduledEndTime" : "",
-    "level" : "Level-1",
+    "level" : "",
     "hrEmail":""
 
   }
@@ -54,16 +54,41 @@ export class ReScheduleInterviewComponent implements OnInit {
     console.log('-------------')
     console.log(dataFromUI.form.value)
 
-    candidateEmail: "deshmukha816@gmail.com"
-hrEmail: "akhilesh.deshmukh@gslab.com"
-reason: "abc"
-scheduledOn: "2020-08-06T06:34:00.000Z"
-time: "12:04:00"
-
+    // {
+    //   "calEventId": "string",
+    //   "candidateEmail": "string",
+    //   "candidateId": 0,
+    //   "candidateResponseStatus": "string",
+    //   "hrEmail": "string",
+    //   "interviewId": 0,
+    //   "interviewStatus": "string",
+    //   "level": "string",
+    //   "panelEmail": "string",
+    //   "panelResponseStatus": "string",
+    //   "scheduledEndTime": "string",
+    //   "scheduledOn": "string",
+    //   "vacancyId": 0
+    // }
+   
     
+//getting this everything from row data
+// calEventId: "2c3c93ucillsg08mfis0g787gg"
+// candidateEmail: "diptibora074@gmail.com"
+// candidateId: 137
+// candidateResponseStatus: "needsAction"
+// hrEmail: "ishwari.pednekar@gmail.com"
+// interviewId: 36
+// interviewStatus: "waiting"
+// level: "Technical - 2"
+// panelEmail: "tanvipednekar888@gmail.com"
+// panelResponseStatus: "needsAction"
+// scheduledEndTime: "4:01:00"
+// scheduledOn: "2020-08-26"
+// vacancyId: 85
     this.interview.panelEmail = this.selectedPanel
     this.interview.candidateEmail = dataFromUI.form.value.candidateEmail
     this.interview.hrEmail= dataFromUI.form.value.hrEmail
+    this.interview.level = this.rowData.level
     
       var time=dataFromUI.form.value.time
       let tt:[]= time.split(':')

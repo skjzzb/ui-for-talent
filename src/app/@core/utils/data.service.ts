@@ -54,6 +54,11 @@ export class DataService {
   getTechnologyData() {
     return axios.get(`${API_URL}/technology`,);
   }
+  getCandidateById(id)
+{
+  return this.http.get(`${API_URL}/candidiate/${id}`);
+
+}
     getSubTechnologyData(id)
     {
       return axios.get(`${API_URL}/subtechnology/technology/${id}/`,);
@@ -203,4 +208,7 @@ export class DataService {
 
   }
 
+  getAllConfirmedScheduledInterview(){
+    return this.http.get("https://cv-processing-api.herokuapp.com/interview/confirmed")
+  }
 }

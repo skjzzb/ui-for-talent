@@ -7,6 +7,7 @@ import { InterviewComponent } from './interview/interview.component';
 import { ListOfInterviewComponent } from './list-of-interview/list-of-interview.component';
 import { ReScheduleInterviewComponent } from './ReScheduleInterview/re-schedule-interview.component';
 import { EvaluationReportComponent } from './evaluation-report/evaluation-report';
+import { ListOfConfirmedInterviewComponent } from './list-of-confirmed-interview/list-of-confirmed-interview.component';
 
 
 const routes: Routes = [{
@@ -33,7 +34,10 @@ const routes: Routes = [{
     {
       path: 'evaluation-report/:rowData',
       component: EvaluationReportComponent,
-      
+    },
+    {
+      path : 'list-of-confirmed-interview',
+      component : ListOfConfirmedInterviewComponent
     }
   ],
 }];
@@ -49,5 +53,6 @@ export const routedComponents = [
     InterviewComponent,
     ListOfInterviewComponent,
     ReScheduleInterviewComponent,
-    EvaluationReportComponent
+    EvaluationReportComponent,
+    ListOfConfirmedInterviewComponent
 ];

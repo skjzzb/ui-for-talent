@@ -61,7 +61,11 @@ export var MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/candidate/list-of-candidate',
       },
       {
-        title: 'List of Scheduled Interview',
+        title: 'List of Confirmed Interview',
+        link: '/pages/candidate/list-of-confirmed-interview',
+      },
+      {
+        title: 'Interview Needs to Re-scheduled',
         link: '/pages/candidate/list-of-interview',
       },
     ],
@@ -335,7 +339,11 @@ export var Candidate =
         link: '/pages/candidate/list-of-candidate',
       },
       {
-        title: 'List of Scheduled Interview',
+        title: 'List of Confirmed Interview',
+        link: '/pages/candidate/list-of-confirmed-interview',
+      },
+      {
+        title: 'Interview Needs to Re-schedule',
         link: '/pages/candidate/list-of-interview',
       },
     ],

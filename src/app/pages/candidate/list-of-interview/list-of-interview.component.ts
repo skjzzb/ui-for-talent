@@ -73,7 +73,9 @@ export class ButtonViewComponent implements ViewCell, OnInit {
 })
 export class ListOfInterviewComponent implements OnInit {
 
-  source: LocalDataSource = new LocalDataSource();
+  scheduledInterview:any[] = []
+  //source: LocalDataSource = new LocalDataSource();
+  source :  any
   settings = {
     actions:{add:false,
             edit: false},
@@ -154,7 +156,41 @@ export class ListOfInterviewComponent implements OnInit {
    .then(
     response => {
       console.log(response.data)
-        this.source=response.data
+        console.log (response.data[0].scheduledOn.substring(0,10))
+        response.data.forEach(element => {
+          var source = {
+            "calEventId": "",
+            "candidateEmail" : "",
+            "candidateId": 0,
+            "candidateResponseStatus": "",
+            "hrEmail" : "",
+            "interviewId": 0,
+            "interviewStatus": "",
+            "level": "",
+            "panelEmail": "",
+            "panelResponseStatus": "",
+            "scheduledEndTime": "",
+            "scheduledOn": "",
+            "vacancyId": 0,
+          }
+
+          source.calEventId = element.calEventId
+          source.candidateEmail = element.candidateEmail
+          source.candidateId = element.candidateId
+          source.candidateResponseStatus = element.candidateResponseStatus
+          source.hrEmail = element.hrEmail
+          source.interviewId = element.interviewId
+          source.interviewStatus = element.interviewStatus
+          source.level = element.level
+          source.panelEmail = element.panelEmail
+          source.panelResponseStatus = element.panelResponseStatus
+          source.scheduledEndTime = element.scheduledEndTime.substring(12,19)
+          source.scheduledOn = element.scheduledOn.substring(0,10)
+          source.vacancyId = element.vacancyId
+
+          this.scheduledInterview.push(source)
+        });
+        this.source=this.scheduledInterview
        }
   )
 
