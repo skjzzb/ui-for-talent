@@ -13,8 +13,10 @@ import { ReScheduleInterviewComponent } from '../ReScheduleInterview/re-schedule
 })
 export class ListOfConfirmedInterviewComponent implements OnInit {
 
+  scheduledInterview:any[] = []
   //source: LocalDataSource = new LocalDataSource();
-  source : any
+  source :  any;
+ 
   settings = {
     actions:{add:false,
             edit: false},
@@ -80,15 +82,50 @@ export class ListOfConfirmedInterviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.service.getAllConfirmedScheduledInterview()
-   .subscribe(
-    response => {
-      console.log(response)
-        this.source=response
-       }
-  )
-
-  }
+    this.service.getAllConfirmedScheduledInterview()
+    .subscribe(
+     response => {
+       console.log(response)
+        var data : any
+        data = response
+        data.forEach(element => {
+           var source = {
+             "calEventId": "",
+             "candidateEmail" : "",
+             "candidateId": 0,
+             "candidateResponseStatus": "",
+             "hrEmail" : "",
+             "interviewId": 0,
+             "interviewStatus": "",
+             "level": "",
+             "panelEmail": "",
+             "panelResponseStatus": "",
+             "scheduledEndTime": "",
+             "scheduledOn": "",
+             "vacancyId": 0,
+           }
+ 
+           source.calEventId = element.calEventId
+           source.candidateEmail = element.candidateEmail
+           source.candidateId = element.candidateId
+           source.candidateResponseStatus = element.candidateResponseStatus
+           source.hrEmail = element.hrEmail
+           source.interviewId = element.interviewId
+           source.interviewStatus = element.interviewStatus
+           source.level = element.level
+           source.panelEmail = element.panelEmail
+           source.panelResponseStatus = element.panelResponseStatus
+           source.scheduledEndTime = element.scheduledEndTime.substring(12,19)
+           source.scheduledOn = element.scheduledOn.substring(0,10)
+           source.vacancyId = element.vacancyId
+ 
+           this.scheduledInterview.push(source)
+         });
+         this.source=this.scheduledInterview
+        }
+   )
+ 
+   }
 
   onDeleteConfirm(event): void {
     if (Swal.fire({
