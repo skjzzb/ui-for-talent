@@ -6,16 +6,17 @@ import { DataService } from '../../@core/utils/data.service';
   templateUrl: './e-commerce.component.html',
   styleUrls: ['e-commerce.component.scss'],
 })
+
 export class ECommerceComponent {
   logindetails : any
+  level:any
+  status:any
+
+
   currentRole:String
-  users: { name: string, title: string ,expanded: boolean }[] = [
-    { name: 'Carla Espinosa', title: 'Nurse' ,expanded:false},
-    { name: 'Bob Kelso', title: 'Doctor of Medicine',expanded:false },
-    { name: 'Janitor', title: 'Janitor',expanded:false },
-    { name: 'Perry Cox', title: 'Doctor of Medicine' ,expanded:false},
-    { name: 'Ben Sullivan', title: 'Carpenter and photographer' ,expanded:false},
-  ];
+  studentID:Number
+  interviewTime:string
+  users: { name: string, title: string ,expanded: false }[]=[];
   @ViewChild('item', { static: true }) accordion;
   linearMode = true;
  
@@ -24,7 +25,9 @@ export class ECommerceComponent {
     this.linearMode = !this.linearMode;
   }
   interviewData: any;
+  candData:any
   confirmedScheduledInterview:any[] = []
+  studentName:any[]=[]
 constructor(private service : DataService)
 {}
 ngOnInit(): void {
@@ -66,13 +69,49 @@ ngOnInit(): void {
         source.scheduledEndTime = element.scheduledEndTime
         source.scheduledOn = element.scheduledOn
         source.vacancyId = element.vacancyId
+        this.studentID=element.candidateId
+        this.interviewTime=element.scheduledOn
+        this.level=element.level
+        if(element.candidateResponseStatus=="accepted")
+        {
+          this.status=1;
+        }
+        else{
+          this.status=0;
+        }
 
+    
+    //console.log(this.candidateData)
+   // console.log(typeof(this.candidateData))
+   let obResult = this.service.getCandidateById(this.studentID)
+   obResult.subscribe(data   =>{
+     this.candData=data
+    
+       //this.users.name = data.candidateName;
+     console.log(this.candData.candidateName)
+     let name=this.candData.candidateName;
+     
+     let title=this.interviewTime.toString();
+     let exp=false;
+     console.log(name)
+     console.log(title)
+     this.users.push({name:name,title:title,expanded:false});
+     
+   })
+   
+// this.studentName=userData.glogindetails;
+ //this.users.push({name: data.candidateName,title:});
+
+
+        this.interviewTime=element.scheduledOn
         this.confirmedScheduledInterview.push(source)
 
       })
       console.log(this.confirmedScheduledInterview)
+      console.log(this.studentName)
     })
 
   
 }
+
 }
