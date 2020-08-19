@@ -1,6 +1,6 @@
 import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbTreeGridModule } from '@nebular/theme';
+import { NbTreeGridModule,NbTreeGridRowToggleComponent } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +16,8 @@ import {
   NbRadioModule,
   NbSelectModule,
   NbUserModule,
+  NbAccordionModule,
+
 } from '@nebular/theme';
 
 
@@ -26,7 +28,7 @@ import { ListOfCandidateComponent } from './list-of-candidate/list-of-candidate.
 import { InterviewComponent } from './interview/interview.component';
 import { ListOfInterviewComponent } from './list-of-interview/list-of-interview.component';
 import { ReScheduleInterviewComponent } from './ReScheduleInterview/re-schedule-interview.component';
-import { EvaluationReportComponent } from './evaluation-report/evaluation-report';
+import { EvaluationReportComponent ,FsIconComponent} from './evaluation-report/evaluation-report';
 
 
 @NgModule({
@@ -40,9 +42,11 @@ import { EvaluationReportComponent } from './evaluation-report/evaluation-report
     NbInputModule,
     NbRadioModule,
     NbSelectModule,
+    NbTreeGridModule,
     NbUserModule,
     RouterModule,
     NbTreeGridModule,
+    NbAccordionModule,
     MultiSelectModule,
     ThemeModule,
     ReactiveFormsModule,
@@ -59,8 +63,9 @@ import { EvaluationReportComponent } from './evaluation-report/evaluation-report
     InterviewComponent,
     ListOfInterviewComponent,
     ReScheduleInterviewComponent,
-    EvaluationReportComponent
-    
+    EvaluationReportComponent,
+    FsIconComponent
+
   ]
 })
 export class CandidateModule { }

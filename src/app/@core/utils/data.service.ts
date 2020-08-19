@@ -16,8 +16,8 @@ export class DataService {
 
   logindetails : any
   token : any
- 
-  constructor(private http: HttpClient) { 
+
+  constructor(private http: HttpClient) {
     if(sessionStorage.getItem('user_info'))
     {
     this.logindetails =  JSON.parse(sessionStorage.getItem('user_info'))
@@ -25,9 +25,9 @@ export class DataService {
     }
   }
 
- 
 
-  
+
+
 
   getExperiece(){
     return axios.get(`${API_URL1}/experienceofcandidate`,)
@@ -159,7 +159,7 @@ export class DataService {
     {
       return this.http.post(`http://localhost:8081/api/addLevel`,level);
     }
-    
+
     setMeeting(obj:any)
     {
       //return axios.post(`http://localhost:8080/setMeeting`,obj);
@@ -170,7 +170,7 @@ export class DataService {
     {
       //return axios.get(`http://localhost:8080/interview`);
       return axios.get(`https://cv-processing-api.herokuapp.com/interview`);
-      
+
     }
 
     DeteteInterview(id)
@@ -187,4 +187,20 @@ export class DataService {
   getVacancyById(vacancyId){
     return this.http.get(`https://cv-processing-api.herokuapp.com/v1/vacancy/${vacancyId}`)
   }
+
+  getTechnologyForPanel(list)
+  {
+    return axios.get(`https://cv-processing-api.herokuapp.com/v1/getTechnologyFromSubtechnology//${list}`);
+  }
+  getTechnologyById(id)
+  {
+    return axios.get(`https://cv-processing-api.herokuapp.com/v1/technology/${id}`);
+
+  }
+  getConceptById(name)
+  {
+    return axios.get(` https://cv-processing-api.herokuapp.com/api/getAllConcept/${name}`);
+
+  }
+
 }

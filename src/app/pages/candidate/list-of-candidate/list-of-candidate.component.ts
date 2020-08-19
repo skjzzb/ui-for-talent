@@ -62,6 +62,7 @@ export class InterviewReportButtonViewComponent implements OnInit {
   {
     //const navigationExtras: NavigationExtras = {state: {example: 'This is an example'}};
     //this.router.navigate(['/pages/candidate/evaluation-report'], navigationExtras);
+    console.log(this.rowData)
      this.router.navigate(['/pages/candidate/evaluation-report',JSON.stringify(this.rowData)]);
   //   console.log(this.rowData)
   //   this.CardComponent = EvaluationReportComponent;
@@ -348,7 +349,8 @@ export class ListOfCandidateComponent implements OnInit {
         "technologyStack" : "",
         "technologyStackMatchingPercent" : "",
         "yearOfExperience" : "",
-        "finalStatus" : ""
+        "finalStatus" : "",
+        "vacancy": null
       }
 
       source.candidateName =  element.candidateName
@@ -363,6 +365,7 @@ export class ListOfCandidateComponent implements OnInit {
       source.technologyStackMatchingPercent = element.technologyStackMatchingPercent
       source.yearOfExperience = element.yearOfExperience
       source.finalStatus = element.finalStatus;
+      source.vacancy = element.vacancy;
 
       if(element.interviewStatus == null)
       {
