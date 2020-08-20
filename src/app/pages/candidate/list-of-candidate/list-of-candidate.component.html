@@ -3,7 +3,7 @@
     <span>Candidate List</span>
 </nb-card-header>
   </nb-card>
-    <nb-select [(selected)]="type" placeholder="select job title" >
+    <nb-select [(selected)]="type" placeholder="Select Job Title" >
       <nb-option *ngFor="let v of vacancy" (click)="onSelectVacancy()" [value]="v.vacancyId">{{ v.jobTitle }}</nb-option>
     </nb-select>
   <br>

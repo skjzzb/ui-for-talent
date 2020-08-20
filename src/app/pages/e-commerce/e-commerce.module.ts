@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'; import { ReactiveFormsModule } from '@angular/forms';
+
+
 import {
   NbButtonModule,
   NbCardModule,
@@ -75,7 +78,9 @@ import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earni
     LeafletModule,
     CommonModule,
     NbAccordionModule,
-    NbStepperModule
+    NbStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports:[CommonModule],
   declarations: [
