@@ -9,9 +9,11 @@ import {
   NbTabsetModule,
   NbUserModule,
   NbIconModule,
+  
   NbSelectModule,
   NbListModule,
   NbAccordionModule,
+  NbSpinnerModule,
   NbStepperModule
 } from '@nebular/theme';
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -72,6 +74,7 @@ import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earni
     NbSelectModule,
     NbListModule,
     ChartModule,
+    NbTabsetModule,
     NbProgressBarModule,
     NgxEchartsModule,
     NgxChartsModule,
@@ -79,6 +82,7 @@ import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earni
     CommonModule,
     NbAccordionModule,
     NbStepperModule,
+    NbSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
   ],

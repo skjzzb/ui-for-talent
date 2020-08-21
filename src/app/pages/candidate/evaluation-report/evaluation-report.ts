@@ -37,7 +37,7 @@ export class EvaluationReportComponent implements OnInit {
   questions: any;
   ratings:any;
   flag=false;
-
+  demo="kake"
   customColumn = 'name';
   defaultColumns = [ 'size', 'kind', 'items' ];
   allColumns = [ this.customColumn, ...this.defaultColumns ];
@@ -91,7 +91,9 @@ export class EvaluationReportComponent implements OnInit {
         }
      })
   }
-
+  opened(){
+    console.log('Hello fromabh')
+  }
   onSubmit(UIform)
   {
     console.log(UIform.form.value);

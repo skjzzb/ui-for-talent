@@ -138,12 +138,38 @@
   </nb-accordion>
 
   <nb-card style="margin-top:20px; margin-bottom:20px">
-    <!-- <nb-card status="danger" > -->
       <nb-card-header>Evaluation</nb-card-header>
       <nb-card-body>
-       <h6 *ngFor="let d of technologies">{{d}}
-         <div *ngFor="let m of concepts"> {{m.question}}</div>
-       </h6>
+        <div style="margin:10px">
+          <form  #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" role="form">
+            <nb-accordion>
+              <nb-accordion-item>
+                <nb-accordion-item-header>
+                  Product Details
+                </nb-accordion-item-header>
+                <nb-accordion-item-body>
+                  <div ng-click="opened()">
+                    <span>{{demo}}</span>
+                  </div>
+                </nb-accordion-item-body>
+              </nb-accordion-item>
+            
+              <nb-accordion-item>
+                <nb-accordion-item-header>
+                  Reviews
+                </nb-accordion-item-header>
+                <nb-accordion-item-body>
+                  A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
+                  Originally, nebula was a name for any diffuse astronomical object,
+                  including galaxies beyond the Milky Way.
+                </nb-accordion-item-body>
+              </nb-accordion-item>
+            
+           
+            </nb-accordion>
+            
+          </form>
+        </div>
       </nb-card-body>
     </nb-card>
 
