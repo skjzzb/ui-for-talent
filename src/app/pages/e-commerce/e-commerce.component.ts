@@ -35,6 +35,9 @@ export class ECommerceComponent {
   confirmedScheduledInterview:any[] = []
   scheduledInterview:any[] = []
   selectedItemNgModel='1';
+  panalResponse:String;
+  panalEmail:String
+  candidatRespose:String
 
   studentName:any[]=[]
 
@@ -175,6 +178,9 @@ notAcceptedStatus(){
          source.scheduledOn = element.scheduledOn.substring(0,10)
          source.vacancyId = element.vacancyId
          this.nStudentID=element.candidateId
+         this.panalEmail=element.panelEmail
+         this.panalResponse=element.panelResponseStatus
+         this.candidatRespose=element.candidateResponseStatus
          this.scheduledInterview.push(source)
 console.log(this.scheduledInterview)
          

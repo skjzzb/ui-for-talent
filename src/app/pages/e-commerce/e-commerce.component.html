@@ -28,9 +28,9 @@
           
           </nb-accordion-item-header>
           <nb-accordion-item-body >
-            <nb-stepper orientation="horizontal" >
+            <nb-stepper orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" >
               
-              <nb-step [label]="list" *ngFor="let list of lvl">
+              <nb-step [label]="list" *ngFor="let list of lvl" >
                 <ng-template #list>{{list}}</ng-template>
                 
               </nb-step>
@@ -60,6 +60,17 @@
               
             </nb-step>
           </nb-stepper>
+          <nb-tabset>
+            <nb-tab tabTitle="Simple Tab #1">
+              <span> Candidate Status</span> 
+            </nb-tab>
+            <nb-tab tabTitle="Simple Tab #2">
+              <span>panal Status</span> 
+            </nb-tab>
+            <nb-tab tabTitle="Simple Tab #3">
+              <span> Action</span>
+            </nb-tab>
+          </nb-tabset>
         </nb-accordion-item-body>
     </nb-accordion-item>
 </nb-accordion>
@@ -67,7 +78,9 @@
   </nb-card>
   
 
-<div class="row" *ngIf="currentRole=='ROLE_ADMIN'">
+<!-- <div class="row" *ngIf="currentRole=='ROLE_ADMIN'"> -->
+  <div class="row" >
+
   <div class="col-xxl-5">
     <div class="row">
       <div class="col-md-6">
@@ -86,7 +99,9 @@
   </div>
 </div>
 
-<div class="row" *ngIf="currentRole=='ROLE_PANEL'">
+<!-- <div class="row" *ngIf="currentRole=='ROLE_PANEL'"> -->
+  <div class="row" >
+
   <div class="col-xxl-9">
     <ngx-country-orders></ngx-country-orders>
   </div>
@@ -95,8 +110,9 @@
     <ngx-progress-section></ngx-progress-section>
   </div>
 </div>
+<!-- <div class="row" *ngIf="currentRole=='ROLE_HR'"> -->
 
-<div class="row" *ngIf="currentRole=='ROLE_HR'">
+<div class="row" >
   <div class="col-xxl-9">
     <ngx-ecommerce-visitors-analytics></ngx-ecommerce-visitors-analytics>
   </div>
