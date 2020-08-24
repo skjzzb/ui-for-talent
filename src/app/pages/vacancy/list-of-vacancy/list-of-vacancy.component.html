@@ -2,13 +2,14 @@
   <nb-card-header >
     List of Vacancy Table
   </nb-card-header>
+  <nb-card-body>
+    <div >
+      <div class="smart-table-container" style = "width: 145%;">
+        <ng2-smart-table [settings]="settings" [source]="source" (editConfirm)="updateRecord($event)" (deleteConfirm)="onDeleteConfirm($event)">
+        </ng2-smart-table>
+      </div>
+  </div>
+  </nb-card-body>
 </nb-card>
-<nb-card-body>
-  <div style = "overflow-y: scroll;">
-    <div class="smart-table-container" style = "width: 145%;">
-      <ng2-smart-table [settings]="settings" [source]="source" (editConfirm)="updateRecord($event)" (deleteConfirm)="onDeleteConfirm($event)">
-      </ng2-smart-table>
-    </div>
-</div>
-</nb-card-body>
+
 <!-- <div style="background-color: green;text-align: left;"></div> -->

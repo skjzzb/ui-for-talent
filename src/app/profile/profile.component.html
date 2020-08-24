@@ -4,7 +4,9 @@
       <form  (ngSubmit)="onSelectRole()">
         <div class="demo-items">
             <nb-radio-group [(value)]="radioGroupValue">
-              <nb-radio *ngFor="let r of roleList" value = "{{r.id}}">  {{r.name}} </nb-radio>
+              <nb-radio *ngFor="let r of roleList" value = "{{r.id}}"  checked="{{r.id}}.checked">  
+                {{r.name}} 
+              </nb-radio>
             </nb-radio-group>
             <br>
             <button type="submit" nbButton status="danger">Set Role</button>
