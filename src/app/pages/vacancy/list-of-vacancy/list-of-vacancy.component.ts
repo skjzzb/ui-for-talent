@@ -3,6 +3,7 @@ import { LocalDataSource, ViewCell } from 'ng2-smart-table';
 import { DataService } from '../../../@core/utils/data.service';
 import { NbWindowService, NbDialogService } from '@nebular/theme';
 import { NgxPopoverCardComponent } from '../../modal-overlays/popovers/popover-examples.component';
+import Swal from 'sweetalert2';
 //import { NgxPopoverCardComponent } from './popover-examples.component';
 
 @Component({
@@ -173,17 +174,30 @@ export class ListOfVacancyComponent implements OnInit {
     }
 
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      this.service.DeteteVacancy(event.data.vacancyId)
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.service.DeteteVacancy(event.data.vacancyId)
       .then(
         response => {
            console.log(response);
            event.confirm.resolve();
+           Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
         }
-      )
-    } else {
-      event.confirm.reject();
-    }
+      )  
+      }
+    })
   }
 
  

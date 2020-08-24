@@ -57,7 +57,7 @@ export class EvaluationReportComponent implements OnInit {
                 this.dataSource = this.dataSourceBuilder.create(this.data);
               }
 
-
+ x = 0
   ngOnInit(): void {
    // this.example = this.route.snapshot.params['rowData'];
    // console.log(this.route.snapshot.params['rowData'])
@@ -80,6 +80,7 @@ export class EvaluationReportComponent implements OnInit {
            {
              console.log(result);
              this.concepts = result.data;
+            
             this.questions =  this.concepts.map(element=>
               {
                 console.log( element.question.split(","));
