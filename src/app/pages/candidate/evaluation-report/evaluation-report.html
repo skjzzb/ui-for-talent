@@ -92,7 +92,7 @@
             <div class="col-md-4">
               <label for="jd" class="label">
                 <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
-                Employment Status
+                Technologies Used
               </label>
               <input type="text"
                     id="jd"
@@ -106,7 +106,7 @@
             <div class="col-md-4">
               <label for="projectName" class="label">
                 <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
-                Experience
+                Project
               </label>
               <input type="text"
                     id="projectName"
@@ -140,32 +140,6 @@
         <div style="margin:10px">
           <form  #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" role="form">
 
-            <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
-
-              <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
-              <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
-
-              <ng-container [nbTreeGridColumnDef]="customColumn">
-                <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(customColumn)" *nbTreeGridHeaderCellDef>
-                  {{customColumn}}
-                </th>
-                <td nbTreeGridCell *nbTreeGridCellDef="let row">
-                  <ngx-fs-icon [kind]="row.data.kind" [expanded]="row.expanded"></ngx-fs-icon>
-                  {{row.data[customColumn]}}
-                </td>
-              </ng-container>
-
-              <ng-container *ngFor="let column of defaultColumns; let index = index"
-                            [nbTreeGridColumnDef]="column"
-                            [showOn]="getShowOn(index)">
-                <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
-                  {{column}}
-                </th>
-                <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data[column] || '-'}}</td>
-              </ng-container>
-
-            </table>
-
             <!-- <div class="row">
               <div class="col-md-4" *ngFor="let q of questions"  >
                 <label class="label">{{q.concept}}</label>
@@ -179,23 +153,22 @@
                     </div>
               </div>
              </div> -->
-             <!-- <nb-accordion>
-             <div class="row" >
-              <nb-accordion-item *ngFor="let q of questions" >
-                <nb-accordion-item-header>{{q.concept}}</nb-accordion-item-header>
-                <nb-accordion-item-body>
-                  <div class="col-md-4"  *ngFor="let que of q.question" >
-                    <label class="label">{{que}}</label>
-                  <input type="number"
-                         [(ngModel)]="ratings[que]"
-                         nbInput
-                         name="que"
-                        >
-                      </div>
-                </nb-accordion-item-body>
-               </nb-accordion-item>
-             </div>
-             </nb-accordion> -->
+
+             <panel *ngFor="let c of technologies"
+             [title]="c" [opened]="c.opened" (getObject)="getObject($event)"
+             >
+            </panel>
+
+             <!-- <div ng-controller="AccordionDemoCtrl">
+              <accordion>
+                <accordion-group ng-repeat="group in groups" >
+                  <accordion-heading>
+                    <span ng-click="opened(group, $index)">{{group.title}}</span>
+                  </accordion-heading>
+                  {{group.content}}
+                </accordion-group>
+              </accordion>
+            </div> -->
 
             <div class="row">
               <div class="col-md-12">
