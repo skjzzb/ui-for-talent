@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit  {
     let obResult = this.dataService.getListOfAllRoles()
     obResult.subscribe((data)=>{
       this.roleList = data
+      console.log(this.roleList)
     })
     
   }
