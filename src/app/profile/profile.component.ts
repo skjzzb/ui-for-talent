@@ -28,18 +28,29 @@ export class ProfileComponent implements OnInit  {
   user : any
 
   ngOnInit() {
-    this.userId = JSON.parse(sessionStorage.getItem('userId_from_userlist'))
-    
-    let obResult = this.dataService.getListOfAllRoles()
-    obResult.subscribe((data)=>{
+
+    this.dataService.getListOfAllRoles()
+    .subscribe((data)=>{
       this.roleList = data
       console.log(this.roleList)
     })
     
+    this.userId = JSON.parse(sessionStorage.getItem('userId_from_userlist'))
+    this.dataService.getUserDetails(this.userId).subscribe((data)=>{
+      console.log(data)
+      var userdetails : any
+      userdetails =  data
+      this.radioGroupValue = userdetails.roles[0].id
+
+      this.roleList.forEach(element => {
+        if(element.id == this.radioGroupValue)
+           this.roleObj.name = element.name
+      });
+    })
+   
   }
 
   onSelectRole(){
-    console.log(this.radioGroupValue)
     this.roleObj.id = this.radioGroupValue
     this.roleList.forEach(element => {
       if(element.id == this.radioGroupValue)
