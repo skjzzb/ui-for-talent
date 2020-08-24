@@ -33,46 +33,30 @@ export class ProfileComponent implements OnInit  {
     let obResult = this.dataService.getListOfAllRoles()
     obResult.subscribe((data)=>{
       this.roleList = data
+      console.log(this.roleList)
     })
     
   }
 
   onSelectRole(){
+    console.log(this.radioGroupValue)
     this.roleObj.id = this.radioGroupValue
-    if(this.radioGroupValue == "1")
-     {
-       this.roleObj.name = 'ROLE_USER'
-     }
-     if(this.radioGroupValue == "2")
-     {
-      this.roleObj.name = 'ROLE_MODERATOR'
-     }
-     if (this.radioGroupValue == "3")
-     {
-      this.roleObj.name = 'ROLE_ADMIN'
-     }
-     if (this.radioGroupValue == "4")
-     {
-      this.roleObj.name = 'ROLE_HR'
-     }
-     if (this.radioGroupValue == "5")
-     {
-      this.roleObj.name = 'ROLE_PANEL'
-     }
-     console.log(this.roleObj)
-
-     let obResult = this.dataService.setRole(this.userId, this.roleObj)
-     obResult.subscribe((data)=>{
-       this.dialog.closeAll()
-       Swal.fire(
-        `${this.roleObj.name} is set successfully!`,
-        '',
-        'success'
-      )
-       //window.location.reload()
-     })
-     
-   
-    // this.router.navigate(['/pages/users']);
+    this.roleList.forEach(element => {
+      if(element.id == this.radioGroupValue)
+         this.roleObj.name = element.name
+    });
+    console.log(this.roleObj)
+    let obResult = this.dataService.setRole(this.userId, this.roleObj)
+    obResult.subscribe((data)=>{
+      this.dialog.closeAll()
+      Swal.fire(
+       `${this.roleObj.name} is set successfully!`,
+       '',
+       'success'
+     )
+      //window.location.reload()
+    })
   }
+
+  
 }
