@@ -406,7 +406,7 @@ export class ListOfCandidateComponent implements OnInit {
   }
 
   onDeleteConfirm(event): void {
-    if (Swal.fire({
+    Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
       icon: 'warning',
@@ -416,24 +416,20 @@ export class ListOfCandidateComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
+        this.service.DeteteCandidate(event.data.id)
+        .then(
+          response => {
+              console.log(response);
+              event.confirm.resolve();
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+          }
         )
+        
       }
-    })) {
-      console.log(event.data.id)
-      this.service.DeteteCandidate(event.data.id)
-      .then(
-        response => {
-            console.log(response);
-            event.confirm.resolve();
-        }
-      )
-    } else {
-      event.confirm.reject();
-    }
+    })
   }
-
 }

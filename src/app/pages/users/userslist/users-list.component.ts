@@ -173,31 +173,29 @@ export class UsersListComponent implements OnInit{
   }
 
   onDeleteConfirm(event): void {
-      if (Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.value) {
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
-        }
-      }))
-      {
-     console.log(event.data.userId)
-      let obResult1 = this.dataService.deleteUser(event.data.userId);
-      obResult1.subscribe(data=>{
-      this.userInfo = data
-      console.log(this.userInfo)
-    }) 
-    }
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        let obResult1 = this.dataService.deleteUser(event.data.userId);
+        obResult1.subscribe(data=>{
+        this.userInfo = data
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }) 
+        
+      }
+    })   
   }
   }
- // export {UsersListComponent}
+ 

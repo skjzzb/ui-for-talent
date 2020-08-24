@@ -1,4 +1,14 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'; import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+
+   
+import {  MatSortModule} from '@angular/material/sort'
+  import {MatTableModule } from '@angular/material/table';
+  import { MatSliderModule } from '@angular/material/slider';
+
 import {
   NbButtonModule,
   NbCardModule,
@@ -6,9 +16,11 @@ import {
   NbTabsetModule,
   NbUserModule,
   NbIconModule,
+  
   NbSelectModule,
   NbListModule,
   NbAccordionModule,
+  NbSpinnerModule,
   NbStepperModule
 } from '@nebular/theme';
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -69,13 +81,22 @@ import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earni
     NbSelectModule,
     NbListModule,
     ChartModule,
+    NbTabsetModule,
     NbProgressBarModule,
     NgxEchartsModule,
     NgxChartsModule,
     LeafletModule,
     CommonModule,
     NbAccordionModule,
-    NbStepperModule
+    NbStepperModule,
+    NbSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule
   ],
   exports:[CommonModule],
   declarations: [

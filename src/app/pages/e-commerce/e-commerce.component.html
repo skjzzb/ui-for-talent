@@ -1,11 +1,23 @@
 
+
   <nb-card>
-    <nb-card-header>Today Activity</nb-card-header>
+    <nb-card-header> Today Activity{{selectedItemNgModel}}
+      <span style="float: right;">
+        <nb-select  [(selected)]="selectedItemNgModel" status="primary">
+          <nb-option value="1"  (click)="acccptedStatus()">Aceepted &nbsp;&nbsp;</nb-option>
+          <nb-option value="2" (click)="notAcceptedStatus()" >Not Accepted</nb-option>
+         
+        </nb-select>
+
+
+   
+  </span> 
+  </nb-card-header>
     <nb-card-body>
-    <nb-accordion>
+    <nb-accordion *ngIf="selectedItemNgModel=='1'">
       
       <nb-accordion-item *ngFor="let list of users" [expanded]="list.expanded"  nbInfiniteList>
-          <nb-accordion-item-header>
+          <nb-accordion-item-header ng-click="display();">
               <nb-user [name]="list.name" [title]="list.title" >
               
 
@@ -14,65 +26,81 @@
               float: left;
               margin-left: 50px;
           " *ngIf="status==1">Accepted</button> 
-           <button nbButton status="danger" style="
-              float: left;
-              margin-left: 50px;
-          " *ngIf="status!=1">Not Accepted</button> 
+          
+          
           </nb-accordion-item-header>
           <nb-accordion-item-body >
-            <nb-stepper orientation="horizontal">
-              <nb-step [label]="labelOne">
-                <ng-template #labelOne>First step</ng-template>
-                <h4>Step content #1</h4>
-                <p class="lorem">
-                  Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down.
-                  Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up,
-                  gravida vizzle, dang.
-                </p>
-                <button nbButton disabled nbStepperNext>prev</button>
-                <button nbButton nbStepperNext>next</button>
-              </nb-step>
-              <nb-step [label]="labelTwo">
-                <ng-template #labelTwo>Second step</ng-template>
-                <h4>Step content #2</h4>
-                <p class="lorem">
-                  Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down.
-                  Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up,
-                  gravida vizzle, dang.
-                </p>
-                <button nbButton nbStepperPrevious>prev</button>
-                <button nbButton nbStepperNext>next</button>
-              </nb-step>
-              <nb-step label="Third step">
-                <h4>Step content #3</h4>
-                <p class="lorem">
-                  Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down.
-                  Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up,
-                  gravida vizzle, dang.
-                </p>
-                <button nbButton nbStepperPrevious>prev</button>
-                <button nbButton nbStepperNext>next</button>
-              </nb-step>
-              <nb-step [label]="labelFour">
-                <ng-template #labelFour>Fourth step</ng-template>
-                <h4>Step content #4</h4>
-                <p class="lorem">
-                  Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down.
-                  Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up,
-                  gravida vizzle, dang.
-                </p>
-                <button nbButton nbStepperPrevious>prev</button>
-                <button nbButton disabled nbStepperNext>next</button>
+            <nb-stepper orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" >
+              
+              <nb-step [label]="list" *ngFor="let list of lvl" >
+                <ng-template #list>{{list}}</ng-template>
+                
               </nb-step>
             </nb-stepper>
           </nb-accordion-item-body>
       </nb-accordion-item>
   </nb-accordion>
+  <nb-accordion *ngIf="selectedItemNgModel=='2'">
+      
+    <nb-accordion-item *ngFor="let list of notAceeppted" [expanded]="list.expanded"  nbInfiniteList>
+        <nb-accordion-item-header>
+            <nb-user [name]="list.name" [title]="list.title" >
+            
+
+            </nb-user>
+           
+         <button nbButton status="danger" style="
+            float: left;
+            margin-left: 50px;
+        " >Not Accepted</button> 
+        </nb-accordion-item-header>
+        <nb-accordion-item-body >
+          <nb-stepper orientation="horizontal" >
+            
+            <nb-step [label]="list" *ngFor="let list of lvl">
+              <ng-template #list>{{list}}</ng-template>
+              
+            </nb-step>
+          </nb-stepper>
+          <div class="card">
+            <img class="card-img-top" src="holder.js/100x180/" alt="">
+            <div class="card-body">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>
+                      <button nbButton status="primary" ghost>
+                        Candidate Status
+                    </button></th>
+                    <th> <button nbButton status="primary" ghost>
+                      Panal Status
+                  </button></th>
+                    <th><button nbButton status="primary" ghost>
+                      Action
+                  </button></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr >
+                    <td scope="row"></td>
+                    <td>Active</td>
+                    <td>Active</td>
+                  </tr>
+                
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </nb-accordion-item-body>
+    </nb-accordion-item>
+</nb-accordion>
     </nb-card-body>
   </nb-card>
   
 
-<div class="row" *ngIf="currentRole=='ROLE_ADMIN'">
+<!-- <div class="row" *ngIf="currentRole=='ROLE_ADMIN'"> -->
+  <div class="row" >
+
   <div class="col-xxl-5">
     <div class="row">
       <div class="col-md-6">
@@ -91,7 +119,9 @@
   </div>
 </div>
 
-<div class="row" *ngIf="currentRole=='ROLE_PANEL'">
+<!-- <div class="row" *ngIf="currentRole=='ROLE_PANEL'"> -->
+  <div class="row" >
+
   <div class="col-xxl-9">
     <ngx-country-orders></ngx-country-orders>
   </div>
@@ -100,8 +130,9 @@
     <ngx-progress-section></ngx-progress-section>
   </div>
 </div>
+<!-- <div class="row" *ngIf="currentRole=='ROLE_HR'"> -->
 
-<div class="row" *ngIf="currentRole=='ROLE_HR'">
+<div class="row" >
   <div class="col-xxl-9">
     <ngx-ecommerce-visitors-analytics></ngx-ecommerce-visitors-analytics>
   </div>

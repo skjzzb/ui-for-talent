@@ -3,6 +3,7 @@ import { ViewCell, DefaultEditor } from 'ng2-smart-table'
 import { DataService } from '../@core/utils/data.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ngx-profile',
@@ -62,11 +63,15 @@ export class ProfileComponent implements OnInit  {
 
      let obResult = this.dataService.setRole(this.userId, this.roleObj)
      obResult.subscribe((data)=>{
-       console.log(data)
-       alert(`${this.roleObj.name} is set successfully..`)
-       window.location.reload()
+       this.dialog.closeAll()
+       Swal.fire(
+        `${this.roleObj.name} is set successfully!`,
+        '',
+        'success'
+      )
+       //window.location.reload()
      })
-     this.dialog.closeAll()
+     
    
     // this.router.navigate(['/pages/users']);
   }

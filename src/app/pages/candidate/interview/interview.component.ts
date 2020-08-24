@@ -55,9 +55,9 @@ export class InterviewComponent implements OnInit {
        )
        {
          if(this.rowData.interviewStatus.includes("Scheduled"))
-         this.heading = 'Interview result is pending'
+          { this.heading = 'Interview result is pending'}
          if(this.rowData.interviewStatus.includes("rejected"))
-         this.heading = 'This candidated is rejected'
+        {  this.heading = 'This candidated is rejected'}
          if(this.rowData.interviewStatus == 'HR round selected')
          this.heading = 'This candidate is selected'
 
