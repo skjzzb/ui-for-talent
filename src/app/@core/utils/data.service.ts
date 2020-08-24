@@ -204,7 +204,7 @@ export class DataService {
   }
   getConceptById(name)
   {
-    return axios.get(` https://cv-processing-api.herokuapp.com/api/getAllConcept/${name}`);
+    return this.http.get(` https://cv-processing-api.herokuapp.com/api/getAllConcept/${name}`);
 
   }
 

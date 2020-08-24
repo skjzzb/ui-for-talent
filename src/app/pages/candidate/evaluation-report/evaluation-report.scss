@@ -264,4 +264,42 @@ form{
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   background-color: #aa66cc; }
 
+  .text-center{
+    text-align: center;
+  }
+  .card-img-top{
+    width: 100%;
+  }
+  /*Call to Action*/
+
+  .header-line {
+    height: 5px;
+    width: 100%;
+    content: '';
+    display: block;
+  }
+  .gradient-color-1{
+       background: -webkit-linear-gradient(left,#fc636b 0,#ff6d92 60%,#fd9a00 100%);
+      background: linear-gradient(to right,#fc636b 0,#ff6d92 60%,#fd9a00 100%);
+  }
+  .gradient-color-2{
+      background: #3be8b0;
+      background: -webkit-linear-gradient(bottom left,#3be8b0 0,#02ceff 100%);
+      background: linear-gradient(to top right,#3be8b0 0,#02ceff 100%);
+  }
+  /**/
+  /*Utility Class*/
+  .text-white{
+    color: black;
+  }
+  .no-margin{
+    margin:0;
+  }
+  .no-margin-top{
+    margin-top:0;
+  }
+  .pad-right{
+    margin-right: 0.5em;
+  }
+  /**/
 

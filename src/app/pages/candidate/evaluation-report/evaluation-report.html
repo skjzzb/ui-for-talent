@@ -96,7 +96,7 @@
             <div class="col-md-4">
               <label for="jd" class="label">
                 <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
-                Employment Status
+                Technologies Used
               </label>
               <input type="text"
                     id="jd"
@@ -110,7 +110,7 @@
             <div class="col-md-4">
               <label for="projectName" class="label">
                 <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
-                Experience
+                Project
               </label>
               <input type="text"
                     id="projectName"
@@ -142,32 +142,56 @@
       <nb-card-body>
         <div style="margin:10px">
           <form  #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" role="form">
-            <nb-accordion>
-              <nb-accordion-item>
-                <nb-accordion-item-header>
-                  Product Details
-                </nb-accordion-item-header>
-                <nb-accordion-item-body>
-                  <div ng-click="opened()">
-                    <span>{{demo}}</span>
-                  </div>
-                </nb-accordion-item-body>
-              </nb-accordion-item>
-            
-              <nb-accordion-item>
-                <nb-accordion-item-header>
-                  Reviews
-                </nb-accordion-item-header>
-                <nb-accordion-item-body>
-                  A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
-                  Originally, nebula was a name for any diffuse astronomical object,
-                  including galaxies beyond the Milky Way.
-                </nb-accordion-item-body>
-              </nb-accordion-item>
-            
-           
-            </nb-accordion>
-            
+
+            <!-- <div class="row">
+              <div class="col-md-4" *ngFor="let q of questions"  >
+                <label class="label">{{q.concept}}</label>
+                <div *ngFor="let que of q.question" >
+                  <label class="label">{{que}}</label>
+                <input type="number"
+                       [(ngModel)]="ratings[que]"
+                       nbInput
+                       name="que"
+                      >
+                    </div>
+              </div>
+             </div> -->
+
+             <panel *ngFor="let c of technologies"
+             [title]="c" [opened]="c.opened" (getObject)="getObject($event)"
+             >
+            </panel>
+
+             <!-- <div ng-controller="AccordionDemoCtrl">
+              <accordion>
+                <accordion-group ng-repeat="group in groups" >
+                  <accordion-heading>
+                    <span ng-click="opened(group, $index)">{{group.title}}</span>
+                  </accordion-heading>
+                  {{group.content}}
+                </accordion-group>
+              </accordion>
+            </div> -->
+
+            <div class="row">
+              <div class="col-md-12">
+                <label class="label">Interview Evalution Report</label>
+                <textarea id="evaluation" nbInput fullWidth name="evaluation" ngModel placeholder="Interview Evalution Report"></textarea>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="row action-btn">
+                <button nbButton status="danger">Schedule Round 1</button>
+              </div>
+            </div>
+
+            <!-- <div class="row" (click)="clickme()">
+              clickme
+              <div *ngIf="flag">
+                hello
+              </div>
+            </div> -->
+
           </form>
         </div>
       </nb-card-body>
