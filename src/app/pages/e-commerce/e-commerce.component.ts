@@ -18,7 +18,7 @@ export class ECommerceComponent {
   currentRole:String
   studentID:Number
   nStudentID:Number
-
+  indexValue:Number;
   interviewTime:string
   users: { name: string, title: string ,expanded: false }[]=[];
   notAceeppted: { name: string, title: string ,expanded: false }[]=[];
@@ -99,7 +99,7 @@ acccptedStatus()
       this.level=element.level
       this.vacancyId=element.vacancyId
       console.log(this.vacancyId)
-      this.retrieveLevelData(this.vacancyId)
+      this.retrieveLevelData(this.vacancyId,this.level)
       if(element.candidateResponseStatus=="accepted")
       {
         this.status=1;
@@ -136,6 +136,7 @@ acccptedStatus()
 
     })
     this.users=[];
+    this.lvl=[]
     console.log(this.confirmedScheduledInterview)
     console.log(this.studentName)
   })
@@ -181,6 +182,8 @@ notAcceptedStatus(){
          this.panalEmail=element.panelEmail
          this.panalResponse=element.panelResponseStatus
          this.candidatRespose=element.candidateResponseStatus
+         this.retrieveLevelData(element.vacancyId,element.level)
+
          this.scheduledInterview.push(source)
 console.log(this.scheduledInterview)
          
@@ -205,7 +208,12 @@ console.log(this.scheduledInterview)
  this.notAceeppted=[]
 
 }
-retrieveLevelData(id)
+display()
+{
+console.log("Hello Saurabh")
+
+}
+retrieveLevelData(id,level)
 {
   console.log(id)
   this.service.getVacancyById(id).subscribe(
@@ -214,9 +222,15 @@ retrieveLevelData(id)
       this.lvl = this.vacancyData.levelList.split(",")
       for (let index = 0; index < this.lvl.length; index++) {
         this.lvl[index] = this.lvl[index].trim()
+        if(this.lvl[index]==level)
+        {
+          this.indexValue=index;
+        }
         console.log(this.lvl[index]);
       }
       console.log(this.level)
+      console.log(this.indexValue+" index value is")
+
     }
   )
 

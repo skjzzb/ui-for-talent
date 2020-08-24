@@ -1,8 +1,9 @@
 
+
   <nb-card>
-    <nb-card-header>Today Activity{{selectedItemNgModel}}
+    <nb-card-header> Today Activity{{selectedItemNgModel}}
       <span style="float: right;">
-        <nb-select  [(selected)]="selectedItemNgModel">
+        <nb-select  [(selected)]="selectedItemNgModel" status="primary">
           <nb-option value="1"  (click)="acccptedStatus()">Aceepted &nbsp;&nbsp;</nb-option>
           <nb-option value="2" (click)="notAcceptedStatus()" >Not Accepted</nb-option>
          
@@ -16,7 +17,7 @@
     <nb-accordion *ngIf="selectedItemNgModel=='1'">
       
       <nb-accordion-item *ngFor="let list of users" [expanded]="list.expanded"  nbInfiniteList>
-          <nb-accordion-item-header>
+          <nb-accordion-item-header ng-click="display();">
               <nb-user [name]="list.name" [title]="list.title" >
               
 
@@ -25,6 +26,7 @@
               float: left;
               margin-left: 50px;
           " *ngIf="status==1">Accepted</button> 
+          
           
           </nb-accordion-item-header>
           <nb-accordion-item-body >
@@ -60,17 +62,35 @@
               
             </nb-step>
           </nb-stepper>
-          <nb-tabset>
-            <nb-tab tabTitle="Simple Tab #1">
-              <span> Candidate Status</span> 
-            </nb-tab>
-            <nb-tab tabTitle="Simple Tab #2">
-              <span>panal Status</span> 
-            </nb-tab>
-            <nb-tab tabTitle="Simple Tab #3">
-              <span> Action</span>
-            </nb-tab>
-          </nb-tabset>
+          <div class="card">
+            <img class="card-img-top" src="holder.js/100x180/" alt="">
+            <div class="card-body">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>
+                      <button nbButton status="primary" ghost>
+                        Candidate Status
+                    </button></th>
+                    <th> <button nbButton status="primary" ghost>
+                      Panal Status
+                  </button></th>
+                    <th><button nbButton status="primary" ghost>
+                      Action
+                  </button></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr >
+                    <td scope="row"></td>
+                    <td>Active</td>
+                    <td>Active</td>
+                  </tr>
+                
+                </tbody>
+              </table>
+            </div>
+          </div>
         </nb-accordion-item-body>
     </nb-accordion-item>
 </nb-accordion>
