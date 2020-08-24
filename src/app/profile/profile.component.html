@@ -1,14 +1,10 @@
-<nb-card status="success" >
+<nb-card status="primary" >
     <nb-card-header >Assign Role</nb-card-header>
     <nb-card-body class="checkbox-radio">
       <form  (ngSubmit)="onSelectRole()">
         <div class="demo-items">
             <nb-radio-group [(value)]="radioGroupValue">
-              <nb-radio  [value]="1">  ROLE_USER </nb-radio>
-              <nb-radio  [value]="2">  ROLE_MODERATOR </nb-radio>
-              <nb-radio  [value]="3">  ROLE_ADMIN </nb-radio>
-              <nb-radio  [value]="4">  ROLE_HR </nb-radio>
-             <nb-radio   [value]="5">  ROLE_PANEL  </nb-radio>
+              <nb-radio *ngFor="let r of roleList" value = "{{r.id}}">  {{r.name}} </nb-radio>
             </nb-radio-group>
             <br>
             <button type="submit" nbButton status="danger">Set Role</button>
