@@ -314,16 +314,16 @@ export var MENU_ITEMS: NbMenuItem[] = [
 
 export var Vacancy =
 {
-  title: 'Vacancy',
+  title: 'Opportunity',
   icon: 'bookmark',
   children: [
     {
-      title: 'Add Vacancy',
+      title: 'Create Opportunity',
       link: '/pages/vacancy/add-vacancy',
       home: true,
     },
     {
-      title: 'List of Vacancy',
+      title: 'Opportunities',
       link: '/pages/vacancy/list-of-vacancy',
     },
   ],
@@ -335,11 +335,11 @@ export var Candidate =
     icon: 'person-outline',
     children: [
       {
-        title: 'List of Candidate',
+        title: 'Candidates',
         link: '/pages/candidate/list-of-candidate',
       },
       {
-        title: 'List of Confirmed Interview',
+        title: 'Confirmed Interviews',
         link: '/pages/candidate/list-of-confirmed-interview',
       },
       {
@@ -361,7 +361,7 @@ export var Candidate =
         icon: 'people-outline',
         children: [
           {
-            title: 'List of Users',
+            title: 'Users',
             link: '/pages/users/users-list',
           },
         ],

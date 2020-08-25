@@ -1,6 +1,6 @@
 <div class="col-md-12">
   <nb-card status="primary">
-    <nb-card-header>Add Vacancy</nb-card-header>
+    <nb-card-header>Create Opportunity</nb-card-header>
     <nb-card-body>
       <div class="row">
         <div class="col-md-12">
@@ -28,7 +28,7 @@
             -->
             <div class="row">
               <div class="col-md-4 ">
-                <label for="ID" class="label">Vacancy Id</label>
+                <label for="ID" class="label">Opportunity Id</label>
                 <input type="text" ngModel name="vacancyId" nbInput  fullWidth  placeholder="0" disabled required>
               </div>
               <div class="col-md-4">
@@ -66,7 +66,7 @@
             <br>
             <div class="row">
               <div class="col-md-6">
-                <label for="No of Job Vacancy" class="label">No of Job Vacancy</label>
+                <label for="No of Job Vacancy" class="label">No of Job Opportunity</label>
                 <input type="number" ngModel  name="noOfVacancy" nbInput fullWidth  id="numberOfVacancy" placeholder="0" required> 
               </div>
 
@@ -93,7 +93,7 @@
               <br>
             <div class="row">
               <div class="col-md-12">
-                <label for="Short Summary" class="label">Selected job discrption</label>
+                <label for="Short Summary" class="label">Technology Stack</label>
                 <textarea [(ngModel)]="jd" name="jd" nbInput fullWidth placeholder="first select sub-technology" readonly required ></textarea>
               </div>
             </div>
@@ -115,14 +115,14 @@
             <br>
             <div class="row">
               <div class="col-md-12">
-                <label for="Short Summary" class="label">Short Summary</label>
+                <label for="Short Summary" class="label">Summary</label>
                 <textarea ngModel name="shortSummary" nbInput id="shortSummary" fullWidth placeholder="Short Summary" required ></textarea>
               </div>
             </div>
             <br>
             <div class="col-md-12">
               <div class="row action-btn">
-                <button type="submit" nbButton status="danger">Create New Vacancy </button>
+                <button type="submit" nbButton status="danger">Create New Opportunity </button>
               </div>
             </div>
           </form>
