@@ -211,4 +211,12 @@ export class DataService {
   getAllConfirmedScheduledInterview(){
     return this.http.get("https://cv-processing-api.herokuapp.com/interview/confirmed")
   }
+
+  getAllProject(){
+    return this.http.get("https://cv-processing-api.herokuapp.com/v1/project")
+  }
+
+  getAllPositions(){
+    
+  }
 }
