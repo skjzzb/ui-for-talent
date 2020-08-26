@@ -53,8 +53,8 @@ ngOnInit(): void {
   this.selectedCityId = this.listtype[0].id;
 
   this.logindetails =  JSON.parse(sessionStorage.getItem('user_info'))
-  console.log(this.logindetails.roles)
-  this.currentRole=this.logindetails.roles[0];
+  //console.log(this.logindetails.roles)
+  //this.currentRole=this.logindetails.roles[0];
   this.acccptedStatus();
 }
 acccptedStatus()
@@ -137,8 +137,8 @@ acccptedStatus()
     })
     this.users=[];
     this.lvl=[]
-    console.log(this.confirmedScheduledInterview)
-    console.log(this.studentName)
+   // console.log(this.confirmedScheduledInterview)
+    //console.log(this.studentName)
   })
 
 }
@@ -146,8 +146,8 @@ notAcceptedStatus(){
   this.service.getListOfInterview() 
   .then(
    response => {
-     console.log(response.data)
-       console.log (response.data[0].scheduledOn.substring(0,10))
+  //   console.log(response.data)
+    //   console.log (response.data[0].scheduledOn.substring(0,10))
        response.data.forEach(element => {
          var source = {
            "calEventId": "",
@@ -185,12 +185,12 @@ notAcceptedStatus(){
          this.retrieveLevelData(element.vacancyId,element.level)
 
          this.scheduledInterview.push(source)
-console.log(this.scheduledInterview)
+//console.log(this.scheduledInterview)
          
        let noAceepted = this.service.getCandidateById(this.nStudentID)
        noAceepted.subscribe(data   =>{
     this.candData=data
-   console.log(data)
+  // console.log(data)
       //this.users.name = data.candidateName;
     let name=this.candData.candidateName;
     
@@ -210,12 +210,12 @@ console.log(this.scheduledInterview)
 }
 display()
 {
-console.log("Hello Saurabh")
+//console.log("Hello Saurabh")
 
 }
 retrieveLevelData(id,level)
 {
-  console.log(id)
+ // console.log(id)
   this.service.getVacancyById(id).subscribe(
     data =>{
       this.vacancyData = data
@@ -226,15 +226,15 @@ retrieveLevelData(id,level)
         {
           this.indexValue=index;
         }
-        console.log(this.lvl[index]);
+       // console.log(this.lvl[index]);
       }
-      console.log(this.level)
-      console.log(this.indexValue+" index value is")
+      //console.log(this.level)
+     // console.log(this.indexValue+" index value is")
 
     }
   )
 
-  console.log(id)
+  //console.log(id)
 
 }
 

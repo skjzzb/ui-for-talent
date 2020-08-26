@@ -4,6 +4,7 @@ import { interval , Subscription } from 'rxjs';
 import { switchMap, takeWhile } from 'rxjs/operators';
 import { LiveUpdateChart, EarningData } from '../../../../@core/data/earning';
 import { DataService } from '../../../../@core/utils/data.service';
+import * as Chart from 'chart.js';
 
 @Component({
   selector: 'ngx-earning-card-front',
@@ -80,7 +81,8 @@ export class EarningCardFrontComponent implements OnDestroy, OnInit {
   }*/
   multi:any[]
   ngOnInit() {
-    this.retrieveDataOfExperience();
+    //this.retrieveDataOfExperience();
+    
   }
   
   retrieveDataOfExperience(){
