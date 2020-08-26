@@ -1,18 +1,19 @@
-<nb-card status="success">
+<nb-card status="primary">
 <nb-card-header>
-    <span>Candidate List</span>
+    <span>Candidates</span>
 </nb-card-header>
-  </nb-card>
-    <nb-select [(selected)]="type" placeholder="Select Job Title" >
-      <nb-option *ngFor="let v of vacancy" (click)="onSelectVacancy()" [value]="v.vacancyId">{{ v.jobTitle }}</nb-option>
-    </nb-select>
-  <br>
 <nb-card-body>
-  <div style = "overflow-y: scroll;">
-      <div class="smart-table-container" style = "width: 200%;">
-        <ng2-smart-table [settings]="settings" [source]="source" (editConfirm)="onUpdateRecord($event)" (deleteConfirm)="onDeleteConfirm($event)">
-        </ng2-smart-table>
-      </div>
+  <nb-select [(selected)]="type" placeholder="Select Job Title" >
+    <nb-option *ngFor="let v of vacancy" (click)="onSelectVacancy()" [value]="v.vacancyId">{{ v.jobTitle }}</nb-option>
+  </nb-select>
+  <br><br>
+<div>
+  <div class="smart-table-container" style = "width: 200%;">
+    <ng2-smart-table [settings]="settings" [source]="source" (editConfirm)="onUpdateRecord($event)" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
   </div>
+</div>
 </nb-card-body>
+</nb-card>
+    
 <!-- <div style="color: crimson;">hii</div> -->

@@ -379,7 +379,7 @@ export class ListOfCandidateComponent implements OnInit {
       this.rows.push(source)
     });
     console.log(this.source)
-  this.source.load(this.rows)
+    this.source.load(this.rows)
   }
 
   onUpdateRecord(event) {
