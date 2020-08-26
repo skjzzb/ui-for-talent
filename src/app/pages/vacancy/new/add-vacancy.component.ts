@@ -25,6 +25,7 @@ class AddVacancyComponent implements OnInit{
   jd=null;
   level:any[];
   levelList=null;
+  selectedPosition: string
   
  // description:any;
   data:any;
@@ -32,11 +33,20 @@ class AddVacancyComponent implements OnInit{
   
   constructor(private router:Router ,private service: DataService,private location: Location) {
   }
-
+  project : any
+  position : any
   ngOnInit(): void {
     this.retrieveData();
     this.retrieveLevelData();
     //this.retrieveAllSubTechnologyData();
+
+    this.service.getAllProject().subscribe((data)=>{
+      this.project = data
+    })
+
+    this.service.getAllPositions().subscribe(data =>[
+      this.position = data
+    ])
   }
 
   retrieveData()

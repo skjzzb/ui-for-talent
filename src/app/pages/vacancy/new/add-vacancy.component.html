@@ -34,14 +34,14 @@
               <div class="col-md-4">
                 <label for="Project" class="label">Project</label>
                 <nb-select placeholder="Select Project" fullWidth ngModel name="projectName" [(selected)]="selectedProject" required>
-                  <nb-option value="Cv processing">Cv processing</nb-option>
-                  <nb-option value="Smgr">Smgr</nb-option>
-                  <nb-option value="Address Book">Address Book</nb-option>
+                  <nb-option *ngFor="let p of project" value="{{p.name}}">{{p.name}}</nb-option>
                 </nb-select>
               </div>
               <div class="col-md-4">
                 <label for="Job Title" class="label">Position Name</label>
-                <input type="text" ngModel name="jobTitle" onblur="vallidate" nbInput fullWidth id="jobTitle" placeholder="Position Name" required >
+                <nb-select placeholder="Select Position" fullWidth ngModel name="jobTitle" [(selected)]="selectedPosition" required>
+                  <nb-option *ngFor="let p of position" value="{{p.name}}">{{p.name}}</nb-option>
+                </nb-select>
               </div>
             </div>
             <br>
