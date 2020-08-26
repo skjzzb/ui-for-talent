@@ -226,5 +226,10 @@ export class DataService {
 
   getCountOfCandidateByProjectName(projectName){
     return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCountOfCandidateByProjectAndVacancy/${projectName}`);
+
+  }
+  createEvaluationReport(evalObj)
+  {
+    return this.http.post("https://cv-processing-api.herokuapp.com/v1/evaluation",evalObj);
   }
 }
