@@ -217,6 +217,6 @@ export class DataService {
   }
 
   getAllPositions(){
-    
+    return this.http.get("https://cv-processing-api.herokuapp.com/v1/position")
   }
 }
