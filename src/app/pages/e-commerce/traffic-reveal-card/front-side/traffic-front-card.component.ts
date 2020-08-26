@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { takeWhile } from 'rxjs/operators';
 
@@ -98,12 +98,23 @@ export class TrafficFrontCardComponent implements OnDestroy, OnInit {
         this.currentTheme = theme.name;
     });
   }
-  
+  @Input() selectedProject: string = '';
+  @Output() projectChange = new EventEmitter<string>();
+  projects : any
+  candidates : any
+  helper : any
   ngOnInit(): void {
      this.dataService.getLevelData().subscribe((data)=>{
        this.level = data
      })
-
+     this.dataService.getAllProject().subscribe((data)=>{
+      this.projects = data;
+      this.selectedProject = this.projects[0].name
+      this.fillAllData(this.selectedProject)
+    })
+    this.dataService.getAllCandidate().subscribe(data=>{
+      this.candidates = data
+    })
      this.dataService.getAllPositions().subscribe((data)=>{
        this.positions = data
        this.positions.forEach(element => {
@@ -127,10 +138,48 @@ export class TrafficFrontCardComponent implements OnDestroy, OnInit {
      })
   }
 
+  fillAllData(projName)
+  {
+    this.dataService.getCountOfCandidateByProjectName(projName)
+    .subscribe(data =>{
+      this.helper = data
+      console.log(this.helper)
+
+      for (let index = 0; index < this.helper.positionName.length; index++) {
+        
+        this.vacancyDetails.forEach(element => {
+          if(element.position == this.helper.positionName[index])
+          {
+            element.position = this.helper.positionName[index]
+            element.aptitude = "-"
+            element.telephonic = "-"
+            element.skype = "-"
+            element.applications = this.helper.application[index]
+            element.technical_1 = this.helper.tech1[index]
+            element.technical_2 = this.helper.tech2[index]
+            element.technical_3 = this.helper.tech3[index]
+            element.manager = this.helper.manager[index]
+            element.hr = this.helper.hr[index]
+          }
+        });
+        
+      }
+    })
+
+  }
+  
+  changeProject(project): void {
+    this.selectedProject = project;
+    console.log(this.selectedProject)
+    this.projectChange.emit(project)
+    this.fillAllData(this.selectedProject); 
+  }
+
   trackByDate(_, item) {
     return item.date;
   }
 
+  
   ngOnDestroy() {
     this.alive = false;
   }
