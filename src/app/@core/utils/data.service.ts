@@ -211,4 +211,9 @@ export class DataService {
   getAllConfirmedScheduledInterview(){
     return this.http.get("https://cv-processing-api.herokuapp.com/interview/confirmed")
   }
+
+  createEvaluationReport(evalObj)
+  {
+    return this.http.post("https://cv-processing-api.herokuapp.com/v1/evaluation",evalObj);
+  }
 }
