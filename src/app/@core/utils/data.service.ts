@@ -217,6 +217,9 @@ export class DataService {
   }
 
   getAllPositions(){
-    
+
+  createEvaluationReport(evalObj)
+  {
+    return this.http.post("https://cv-processing-api.herokuapp.com/v1/evaluation",evalObj);
   }
 }
