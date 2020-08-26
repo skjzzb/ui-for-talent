@@ -29,8 +29,8 @@ import { InterviewComponent } from './interview/interview.component';
 import { ListOfInterviewComponent } from './list-of-interview/list-of-interview.component';
 import { ReScheduleInterviewComponent } from './ReScheduleInterview/re-schedule-interview.component';
 import { EvaluationReportComponent } from './evaluation-report/evaluation-report';
-import { PanelComponent } from './evaluation-report/component/panel-component';
 import { ListOfConfirmedInterviewComponent } from './list-of-confirmed-interview/list-of-confirmed-interview.component';
+import { PanelComponent } from './evaluation-report/component/panel-component';
 
 
 @NgModule({
