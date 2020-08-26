@@ -20,10 +20,12 @@ export class ECommerceComponent {
   nStudentID:Number
   indexValue:Number;
   interviewTime:string
-  users: { name: string, title: string ,expanded: false }[]=[];
-  notAceeppted: { name: string, title: string ,expanded: false }[]=[];
+  interviewID:Number
+  users: {id:Number, name: string, title: string ,expanded: false }[]=[];
+  notAceeppted: { id:Number,name: string, title: string ,expanded: false }[]=[];
 
   @ViewChild('item', { static: true }) accordion;
+
   linearMode = true;
  
 
@@ -98,8 +100,9 @@ acccptedStatus()
       this.interviewTime=element.scheduledOn
       this.level=element.level
       this.vacancyId=element.vacancyId
+      this.interviewID=element.interviewId
       console.log(this.vacancyId)
-      this.retrieveLevelData(this.vacancyId,this.level)
+    
       if(element.candidateResponseStatus=="accepted")
       {
         this.status=1;
@@ -118,10 +121,11 @@ acccptedStatus()
      //this.users.name = data.candidateName;
    let name=this.candData.candidateName;
    
-   let title=this.interviewTime.toString();
+   let title=element.scheduledOn.substring(0,10)+" "+element.scheduledOn.substring(11,19);
    let exp=false;
+   let id=element.interviewId;
   
-   this.users.push({name:name,title:title,expanded:false});
+   this.users.push({id:id,name:name,title:title,expanded:false});
    
  })
 
@@ -182,7 +186,7 @@ notAcceptedStatus(){
          this.panalEmail=element.panelEmail
          this.panalResponse=element.panelResponseStatus
          this.candidatRespose=element.candidateResponseStatus
-         this.retrieveLevelData(element.vacancyId,element.level)
+        // this.retrieveLevelData(element.vacancyId,element.level)
 
          this.scheduledInterview.push(source)
 console.log(this.scheduledInterview)
@@ -194,9 +198,10 @@ console.log(this.scheduledInterview)
       //this.users.name = data.candidateName;
     let name=this.candData.candidateName;
     
-    let title=this.interviewTime.toString();
+    let title=element.scheduledOn.substring(0,10)+" "+element.scheduledOn.substring(11,19)
+    let id=element.interviewId
    
-    this.notAceeppted.push({name:name,title:title,expanded:false});
+    this.notAceeppted.push({id:id,name:name,title:title,expanded:false});
     
   })
 
@@ -207,11 +212,50 @@ console.log(this.scheduledInterview)
  )
  this.notAceeppted=[]
 
-}
-display()
-{
-console.log("Hello Saurabh")
 
+}
+availableClick(id)
+{
+  let candidateInfo;
+console.log("Hello Saurabh")
+console.log(id)
+console.log(this.users)
+let interviewCandidate=this.service.getInterviewByInterviewId(id);
+interviewCandidate.subscribe(data =>{
+   candidateInfo =data;
+  console.log(candidateInfo)
+
+
+  console.log(candidateInfo.level)
+  this.retrieveLevelData(candidateInfo.vacancyId,candidateInfo.level)
+  console.log(this.level)
+
+  this.level=""
+
+})
+
+
+}
+not_availableClick(id)
+{
+  let candidateInfo;
+console.log("Hello not")
+console.log(id)
+console.log(this.users)
+let interviewCandidate=this.service.getInterviewByInterviewId(id);
+interviewCandidate.subscribe(data =>{
+   candidateInfo =data;
+  console.log(candidateInfo)
+
+  this.panalResponse=candidateInfo.panelResponseStatus
+  this.candidatRespose=candidateInfo.candidateResponseStatus 
+  console.log(candidateInfo.level)
+  this.retrieveLevelData(candidateInfo.vacancyId,candidateInfo.level)
+  console.log(this.level)
+
+  this.level=""
+
+})
 }
 retrieveLevelData(id,level)
 {
@@ -228,11 +272,11 @@ retrieveLevelData(id,level)
         }
         console.log(this.lvl[index]);
       }
-      console.log(this.level)
       console.log(this.indexValue+" index value is")
 
     }
   )
+  this.lvl=[]
 
   console.log(id)
 

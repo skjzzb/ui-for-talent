@@ -1,11 +1,11 @@
 
 
   <nb-card>
-    <nb-card-header> Today Activity{{selectedItemNgModel}}
+    <nb-card-header> Today Activity
       <span style="float: right;">
         <nb-select  [(selected)]="selectedItemNgModel" status="primary">
-          <nb-option value="1"  (click)="acccptedStatus()">Aceepted &nbsp;&nbsp;</nb-option>
-          <nb-option value="2" (click)="notAcceptedStatus()" >Not Accepted</nb-option>
+          <nb-option value="1"  (click)="acccptedStatus()">Available &nbsp;&nbsp;</nb-option>
+          <nb-option value="2" (click)="notAcceptedStatus()" >Not-Available</nb-option>
          
         </nb-select>
 
@@ -17,23 +17,31 @@
     <nb-accordion *ngIf="selectedItemNgModel=='1'">
       
       <nb-accordion-item *ngFor="let list of users" [expanded]="list.expanded"  nbInfiniteList>
-          <nb-accordion-item-header ng-click="display();">
+        
+        <nb-accordion-item-header (click)="availableClick(list.id)">
+          <span><nb-action  style="    display: flex;
+            ">
+           
               <nb-user [name]="list.name" [title]="list.title" >
               
-
+                
               </nb-user>
-              <button nbButton status="success" style="
-              float: left;
-              margin-left: 50px;
-          " *ngIf="status==1">Accepted</button> 
+              <button nbButton status="success" style="       float: right;
+              position: absolute;
+              margin-left: 500px;
+               
+            " *ngIf="status==1">Available</button> 
+            <span>&nbsp;</span>
+           
           
-          
-          </nb-accordion-item-header>
+        </nb-action></span>  
+          </nb-accordion-item-header>           
+
           <nb-accordion-item-body >
-            <nb-stepper orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" >
+            <nb-stepper orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" disableStepNavigation >
               
-              <nb-step [label]="list" *ngFor="let list of lvl" >
-                <ng-template #list>{{list}}</ng-template>
+              <nb-step [label]="list" *ngFor="let list of lvl"  selectedIndex=1 >
+                <ng-template #{{list}} >{{list}}</ng-template>
                 
               </nb-step>
             </nb-stepper>
@@ -43,19 +51,27 @@
   <nb-accordion *ngIf="selectedItemNgModel=='2'">
       
     <nb-accordion-item *ngFor="let list of notAceeppted" [expanded]="list.expanded"  nbInfiniteList>
-        <nb-accordion-item-header>
+      <nb-accordion-item-header (click)="not_availableClick(list.id)">
+        <span><nb-action  style="    display: flex;
+          ">
+         
             <nb-user [name]="list.name" [title]="list.title" >
             
-
+              
             </nb-user>
-           
-         <button nbButton status="danger" style="
-            float: left;
-            margin-left: 50px;
-        " >Not Accepted</button> 
-        </nb-accordion-item-header>
+            <button nbButton status="danger" style="       float: right;
+            position: absolute;
+            margin-left: 500px;
+
+             
+          " *ngIf="status==1">Not-Available</button> 
+          <span>&nbsp;</span>
+         
+        
+      </nb-action></span>  
+        </nb-accordion-item-header>          
         <nb-accordion-item-body >
-          <nb-stepper orientation="horizontal" >
+          <nb-stepper orientation="horizontal" disableStepNavigation>
             
             <nb-step [label]="list" *ngFor="let list of lvl">
               <ng-template #list>{{list}}</ng-template>
@@ -63,7 +79,6 @@
             </nb-step>
           </nb-stepper>
           <div class="card">
-            <img class="card-img-top" src="holder.js/100x180/" alt="">
             <div class="card-body">
               <table class="table table-hover">
                 <thead>
@@ -82,9 +97,9 @@
                 </thead>
                 <tbody>
                   <tr >
-                    <td scope="row"></td>
-                    <td>Active</td>
-                    <td>Active</td>
+                    <td scope="row">{{candidatRespose}}</td>
+                    <td>{{panalResponse}}</td>
+                    <td><button nbButton status="primary" > Reschedule Interview </button></td>
                   </tr>
                 
                 </tbody>
