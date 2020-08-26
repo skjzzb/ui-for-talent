@@ -36,46 +36,46 @@ export class StatsCardFrontComponent implements OnInit{
     }
   };
 
-  public barChartLabels = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+  public barChartLabels = ['Jan','Feb','March','April','May','June','July','Aug','Sep','Oct','Nov','Dec'];
 
   public barChartType = 'bar';
 
   public barChartLegend = true;
 
-   barChartData : 
+  public colors : Array<any> = [
     { 
-      data : any[],
+      backgroundColor: 'rgba(255,255,255,255)'
+    }
+   ]
+
+  /* barChartData : 
+    { 
+      data : [20,30,40,60,59,34,2,1,44,56,40],
       label : string
-    }[]=[];
-    /*barChartData =[
+    }[]=[];*/
+    barChartData =[
     { 
       data : [],
       label : " "
     }
-  ];*/
+  ];
 
   constructor(private dataService : DataService){}
   info : any;
-  arr : [];
+  arr : any;
 
   ngOnInit(): void {
     let obResult = this.dataService.getAllApplicationInMonth();
     obResult.subscribe(result=>{
       this.info = result;
       this.info = Object.entries(result);
-      console.log(this.info);
-      this.arr = this.info.sort(function(a, b){return a-b});
+      let op = this.info.sort(new Intl.Collator('en',{numeric:true, sensitivity:'accent'}).compare);
+      console.log(op);
+     this.arr=Object.values(result);
       console.log(this.arr);
-      /*this.arr=Object.values(result);
-      console.log(this.arr);
-      
       let name = []= this.arr;
-      console.log(name);*/
-     this.barChartData.push({data : name,label : 'No. Of Application'});
-
+      console.log(name);
+      this.barChartData.push({data : name,label : 'No. Of Application'});
     });
-
-    
   }
-
 }

@@ -1,14 +1,15 @@
 <nb-card-header>
   <span class="title">Vacancy</span>
 <div>
-  <div style="display : block">
+  <div>
     <canvas baseChart
       [datasets]="barChartData"
       [labels] = "barChartLabels"
       [options] = "barChartOptions"
       [legend] = "barChartLegend"
-      [chartType] = "barChartType">
-      
+      [chartType] = "barChartType"
+      [colors]="colors">
+     
     </canvas>
   </div>
 </div>
