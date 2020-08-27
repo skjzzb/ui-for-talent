@@ -21,7 +21,7 @@ import {
   NbListModule,
   NbAccordionModule,
   NbSpinnerModule,
-  NbStepperModule
+  NbStepperModule,
 } from '@nebular/theme';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -69,6 +69,7 @@ import { EarningCardBackComponent } from './earning-card/back-side/earning-card-
 import { EarningPieChartComponent } from './earning-card/back-side/earning-pie-chart.component';
 import { EarningCardFrontComponent } from './earning-card/front-side/earning-card-front.component';
 import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earning-live-update-chart.component';
+import { NgWizardModule } from '@cmdap/ng-wizard';
 
 @NgModule({
   imports: [
@@ -96,7 +97,8 @@ import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earni
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgWizardModule
   ],
   exports:[CommonModule],
   declarations: [
@@ -132,6 +134,7 @@ import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earni
     EarningCardBackComponent,
     EarningPieChartComponent,
     EarningLiveUpdateChartComponent,
+    
   ],
   providers: [
     CountryOrdersMapService,

@@ -1,5 +1,6 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
 import { DataService } from '../../@core/utils/data.service';
+import Stepper from 'bs-stepper';
 
 @Component({
   selector: 'ngx-ecommerce',
@@ -7,7 +8,7 @@ import { DataService } from '../../@core/utils/data.service';
   styleUrls: ['e-commerce.component.scss'],
 })
 
-export class ECommerceComponent {
+export class ECommerceComponent implements OnInit  {
   logindetails : any
   level:any
   status:any
@@ -24,7 +25,10 @@ export class ECommerceComponent {
   users: {id:Number, name: string, title: string ,expanded: false }[]=[];
   notAceeppted: { id:Number,name: string, title: string ,expanded: false }[]=[];
 
+
   @ViewChild('item', { static: true }) accordion;
+
+
 
   linearMode = true;
  
@@ -58,7 +62,9 @@ ngOnInit(): void {
   console.log(this.logindetails.roles)
   this.currentRole=this.logindetails.roles[0];
   this.acccptedStatus();
+
 }
+
 acccptedStatus()
 {
 
@@ -269,6 +275,7 @@ retrieveLevelData(id,level)
         if(this.lvl[index]==level)
         {
           this.indexValue=index;
+
         }
         console.log(this.lvl[index]);
       }

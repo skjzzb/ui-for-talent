@@ -38,13 +38,34 @@
           </nb-accordion-item-header>           
 
           <nb-accordion-item-body >
-            <nb-stepper orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" disableStepNavigation >
-              
-              <nb-step [label]="list" *ngFor="let list of lvl"  selectedIndex=1 >
+            <nb-stepper  [selected]="2" orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" disableStepNavigation   #stepper>
+              <nb-step  [label]="list" *ngFor="let list of lvl ;let i=index;">
                 <ng-template #{{list}} >{{list}}</ng-template>
-                
+
+                <span (click)="stepper.next();"></span>
               </nb-step>
             </nb-stepper>
+
+            <div class="card">
+              <div class="card-body">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>
+                         <button nbButton status="primary" >Start Interview</button>
+                      </th>
+                      <th>
+                        <button nbButton status="primary" >Evaluation </button>
+                     </th>
+                     <th>
+                      <button nbButton status="primary" >View CV</button>
+                   </th>
+                    </tr>
+                  </thead>
+                </table>
+
+              </div>
+            </div>
           </nb-accordion-item-body>
       </nb-accordion-item>
   </nb-accordion>
@@ -97,8 +118,10 @@
                 </thead>
                 <tbody>
                   <tr >
-                    <td scope="row">{{candidatRespose}}</td>
-                    <td>{{panalResponse}}</td>
+                    <td scope="row"><button nbButton status="success" *ngIf="candidatRespose=='accepted'" >{{candidatRespose}}</button>
+                      <button nbButton status="warning" *ngIf="candidatRespose!='accepted'" >{{candidatRespose}}</button></td>
+                    <td><button nbButton status="success" *ngIf="panalResponse=='accepted'" >{{panalResponse}}</button>
+                      <button nbButton status="warning" *ngIf="panalResponse!='accepted'" >{{panalResponse}}</button></td>
                     <td><button nbButton status="primary" > Reschedule Interview </button></td>
                   </tr>
                 
