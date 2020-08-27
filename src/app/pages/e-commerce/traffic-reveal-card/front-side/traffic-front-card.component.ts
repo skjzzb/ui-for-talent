@@ -120,15 +120,15 @@ export class TrafficFrontCardComponent implements OnDestroy, OnInit {
        this.positions.forEach(element => {
          var pos = {
           "position" : "",
-          "applications" : "-",
-          "aptitude" : "-",
-          "hr" : "-",
-          "telephonic" : "-",
-          "technical_1" : "-",
-          "technical_2" : "-",
-          "manager" : "-",
-          "skype" : "-",
-          "technical_3" : "-"
+          "applications" : "0",
+          "aptitude" : "0",
+          "hr" : "0",
+          "telephonic" : "0",
+          "technical_1" : "0",
+          "technical_2" : "0",
+          "manager" : "0",
+          "skype" : "0",
+          "technical_3" : "0"
          }
          pos.position = element.name
 
@@ -151,9 +151,9 @@ export class TrafficFrontCardComponent implements OnDestroy, OnInit {
           if(element.position == this.helper.positionName[index])
           {
             element.position = this.helper.positionName[index]
-            element.aptitude = "-"
-            element.telephonic = "-"
-            element.skype = "-"
+            element.aptitude = "0"
+            element.telephonic = "0"
+            element.skype = "0"
             element.applications = this.helper.application[index]
             element.technical_1 = this.helper.tech1[index]
             element.technical_2 = this.helper.tech2[index]
