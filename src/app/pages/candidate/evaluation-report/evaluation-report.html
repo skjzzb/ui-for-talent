@@ -1,77 +1,48 @@
-
+<!--
 <div class="alert alert-primary" role="alert">
   Content
-</div>
+</div> -->
 
-<nb-card status="success">
-  <nb-card-header>Scheduled Interview</nb-card-header>
+<nb-card status="primary">
+  <nb-card-header>Evaluation Report</nb-card-header>
   <nb-card-body>
+
+    <div class="row">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">#</th>
+            <th scope="col">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Candidate Name</td>
+            <td>Employment Status</td>
+            <td>{{candidate.employmentStatus}}</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Experience</td>
+            <td>{{candidate.yearOfExperience}}</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Skills</td>
+            <td>{{candidate.technologyStack}}</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <nb-accordion>
-      <nb-accordion-item>
-        <nb-accordion-item-header>
-          <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon>
-          Candidate Details
-        </nb-accordion-item-header>
-        <nb-accordion-item-body>
-          <div class="row">
-            <div class="col-md-4">
-              <label for="candidate Name" class="label">
-                <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
-                Candidate Name
-              </label>
-              <input type="text"
-                    id="candidateName"
-                    name="candidateName"
-                    [(ngModel)]="candidate.candidateName"
-                    readonly
-                    nbInput
-                    fullWidth
-                    >
-            </div>
-
-            <div class="col-md-4">
-              <label for="employment status" class="label">
-                <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
-                Employment Status
-              </label>
-              <input type="text"
-                    id="employmentStatus"
-                    name="employmentStatus"
-                    [(ngModel)]="candidate.employmentStatus"
-                    readonly
-                    nbInput
-                    fullWidth
-                    >
-            </div>
-            <div class="col-md-4">
-              <label for="experience" class="label">
-                <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
-                Experience
-              </label>
-              <input type="text"
-                    id="experience"
-                    name="experience"
-                    [(ngModel)]="candidate.yearOfExperience"
-                    readonly
-                    nbInput
-                    fullWidth
-                    >
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <label for="Skills" class="label" style="font-size: medium;">
-                <!-- <nb-icon icon="award-outline" status="info" style="size: 5px;"></nb-icon> -->
-                  Skills
-              </label>
-              <textarea [(ngModel)]="candidate.technologyStack" [ngModelOptions]="{standalone: true}"  nbInput fullWidth   readonly ></textarea>
-            </div>
-          </div>
-
-        </nb-accordion-item-body>
-      </nb-accordion-item>
-
       <nb-accordion-item>
         <nb-accordion-item-header>
           Vacancy Details
@@ -138,10 +109,13 @@
   </nb-accordion>
 
   <nb-card style="margin-top:20px; margin-bottom:20px">
-      <nb-card-header>Evaluation</nb-card-header>
+      <nb-card-header>{{candidate.interviewStatus}}</nb-card-header>
       <nb-card-body>
+        <h3>
+          <small class="text-muted">Pick Technology</small>
+        </h3>
         <div style="margin:10px">
-          <form  #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" role="form">
+          <form  #myForm="ngForm" (ngSubmit)="onSubmit(myForm,'selected')" role="form">
 
             <!-- <div class="row">
               <div class="col-md-4" *ngFor="let q of questions"  >
@@ -159,6 +133,7 @@
 
              <panel *ngFor="let c of technologies"
              [title]="c" [opened]="c.opened" (getObject)="getObject($event)"
+             (rating_out)="getRatings($event)"
              >
             </panel>
 
@@ -175,13 +150,15 @@
 
             <div class="row">
               <div class="col-md-12">
-                <label class="label">Interview Evalution Report</label>
+                <label class="label">Add Comments Here</label>
                 <textarea id="evaluation" nbInput fullWidth name="evaluation" ngModel placeholder="Interview Evalution Report"></textarea>
               </div>
             </div>
             <div class="col-md-12">
               <div class="row action-btn">
-                <button nbButton status="danger">Schedule Round 1</button>
+                <button type="submit" nbButton status="warning">Selected</button>
+                &nbsp;&nbsp;&nbsp;
+                <button type="button" nbButton status="danger" (click)="onSubmit(myForm,'Rejected')">Rejected</button>
               </div>
             </div>
 

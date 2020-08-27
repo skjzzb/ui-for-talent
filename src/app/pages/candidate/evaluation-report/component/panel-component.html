@@ -1,0 +1,47 @@
+<div class="card card-info" style="margin-top: 10px; margin-bottom: 10px;">
+  <div class="card-header" (click)="toggle(title)">
+    {{title}}
+  </div>
+    <div class="card-body" *ngIf="opened">
+      <form  #myForm="ngForm" (ngSubmit)="addRatings(myForm)" role="form">
+    <div class="row" *ngFor="let q of questions"  >
+              <p><strong><em>{{q.concept}}</em></strong><p>
+
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th >Key Points</th>
+                    <th >Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let que of q.question">
+                    <th scope="row"><label class="label">{{que}}</label></th>
+                    <td> <input type="number"
+                                [(ngModel)]="ratings[que]"
+                                 nbInput
+                                 name={{que}}
+                                 max="10"
+                                >&nbsp;&nbsp; /&nbsp;10</td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+      <!-- <div class="col-md-4" *ngFor="let que of q.question" >
+              <label class="label">{{que}}</label>
+            <input type="number"
+                  [ngModel]="ratings[que]"
+                   nbInput
+                   name="que"
+                  >
+                </div> -->
+        </div>
+        <div class="col-md-12" >
+          <div class="row action-btn">
+            <button type="submit" class="btn btn-primary">confirm</button>
+          </div>
+        </div>
+</form>
+  </div>
+<div>

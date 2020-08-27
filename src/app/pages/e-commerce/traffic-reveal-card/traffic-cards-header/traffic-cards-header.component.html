@@ -1,6 +1,9 @@
-<nb-card-header>
+<!-- <nb-card-header>
   <span>Project Vacancy</span>
   <nb-select [selected]="type" (selectedChange)="changePeriod($event)">
     <nb-option *ngFor="let period of types" [value]="period">{{ period }}</nb-option>
   </nb-select>
-</nb-card-header>
+  <nb-select placeholder="Select Project"  [selected]="selectedProject" [(selected)]="selectedProject" (selectedChange)="changeProject($event)">
+    <nb-option *ngFor="let p of projects" [value]="p.name">{{p.name}}</nb-option>
+  </nb-select>
+</nb-card-header> -->
