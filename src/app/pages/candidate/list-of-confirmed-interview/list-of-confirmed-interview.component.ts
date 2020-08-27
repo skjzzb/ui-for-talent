@@ -72,8 +72,11 @@ export class ListOfConfirmedInterviewComponent implements OnInit {
       },
       meetLink : {
         title:'Meeting Link',
-        type:'string',
-        filter: true,
+        type:'html',
+        valuePrepareFunction: (value) => {
+          return `<a href="${value}">Join Meeting</a>`
+        },
+        filter: false,
       }
     },
     pager:
