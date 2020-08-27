@@ -33,7 +33,7 @@ class AddVacancyComponent implements OnInit{
   
   constructor(private router:Router ,private service: DataService,private location: Location) {
   }
-  project : any
+  project = []
   position : any
   ngOnInit(): void {
     this.retrieveData();
@@ -41,7 +41,13 @@ class AddVacancyComponent implements OnInit{
     //this.retrieveAllSubTechnologyData();
 
     this.service.getAllProject().subscribe((data)=>{
-      this.project = data
+      var proj : any
+      proj = data
+      console.log(proj)
+      proj.forEach(element => {
+        if(element.status == "ACTIVE")
+          this.project.push(element)
+      });
     })
 
     this.service.getAllPositions().subscribe(data =>[
