@@ -1,115 +1,87 @@
-import { Component, OnDestroy,OnInit } from '@angular/core';
-import { StatsBarData } from '../../../../@core/data/stats-bar';
+import { Component,OnInit,TemplateRef, ViewChild} from '@angular/core';
+import {NbDialogService} from '@nebular/theme';
+import { ProfitBarAnimationChartData } from '../../../../@core/data/profit-bar-animation-chart';
 import { takeWhile } from 'rxjs/operators';
 import { DataService } from '../../../../@core/utils/data.service';
+import * as Chart from 'chart.js';
+import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
+import { ThemeService } from 'ng2-charts';
+import { NumberSymbol } from '@angular/common';
 
 @Component({
   selector: 'ngx-stats-card-back',
   styleUrls: ['./stats-card-back.component.scss'],
   templateUrl: './stats-card-back.component.html',
 })
-export class StatsCardBackComponent implements OnDestroy {
+export class StatsCardBackComponent implements OnInit {
 
-  private alive = true;
-  
-  chartData: number[];
+  public barChartOptions = {
+    scaleShowVerticalLines : true,
+    responsive : true,
 
-  constructor(private statsBarData: StatsBarData,private service: DataService) {
-    this.statsBarData.getStatsBarData()
-      .pipe(takeWhile(() => this.alive))
-      .subscribe((data) => {
-        this.chartData = data;
-      });
-  }
-
-  backenddata:any
-  
-  multi:any=[]
-  
-  ngOnInit(){
-    this.retrieveDataOfProject();
-    
-  
-    
-    
-  }
-  retrieveDataOfProject(){
-    this.service.getProjectVacancyChartData()
-    .then(
-      response => {
-         console.log(response);
-          this.multi=response.data
-          
-      }
-    )
-
-  }
-
-  ngOnDestroy() {
-    this.alive = false;
-  }
-  
-  lineChartMulti: any[] =[
-   
-   
-    {
-      "name": "April",
-      "value": 90,
-      "extra": {
-        "code": "fr"
-      }
-    },
-    {
-      "name": "May",
-      "value": 80,
-      "extra": {
-        "code": "uk"
-      }
-    },
-    {
-      "name": "June",
-      "value": 80,
-      "extra": {
-        "code": "uk"
-      }
-    },
-    {
-      "name": "July",
-      "value": 80,
-      "extra": {
-        "code": "uk"
-      }
+    scales: {
+      yAxes: [{
+          gridLines: {
+              display:false
+          },
+          display: true,
+          ticks: {
+            max : 60,
+            min: 0
+          }
+      }]
     },
 
-    {
-      "name": "August",
-      "value": 80,
-      "extra": {
-        "code": "us"
-      }
-    },
-    
-  ]
- 
-  
-
-  lineChartView: any[] = [550, 400];
-
-  // options
-  lineChartShowXAxis = true;
-  lineChartShowYAxis = true;
-  lineChartGradient = false;
-  lineChartShowLegend = false;
-  lineChartShowXAxisLabel = false;
-  lineChartXAxisLabel = 'Week';
-  lineChartShowYAxisLabel = false;
-  lineChartYAxisLabel = 'Application';
-  
-  lineChartColorScheme = {
-      domain: ['#1CBCD8', '#FF8D60', '#FF586B', '#AAAAAA']
+    display: true,
+    labels: {
+      fontColor: '#4286f4',
+      backgroundColor: '#6FC8CE'
+    }
   };
-  
-  // line, area
-  lineChartAutoScale = true;
 
+  public barChartLabels = [];
+
+  public barChartType = 'bar';
+
+  public barChartLegend = true;
+
+  public colors : Array<any> = [
+    { 
+      backgroundColor: 'rgba(255,255,255,255)'
+    }
+   ]
+
+  
+    barChartData =[
+    { 
+      data : [],
+      label : " "
+    }
+  ];
+
+  constructor(private dataService : DataService){}
+  info : any;
+  arr : any;
+  key1 : any;
+  i : any;
+  key : string;
+
+  ngOnInit(): void {
+    let obResult = this.dataService.getCountOfApplicationForProject();
+    obResult.subscribe(result=>{
+      this.info = result;
+      this.info = Object.entries(result);
+
+      this.key1 = Object.keys(result);
+      console.log(this.key1);
+      for ( this.key of this.key1) {
+        this.barChartLabels.push(this.key);
+      }
+
+      this.arr=Object.values(result);
+      let name = []= this.arr;
+      this.barChartData.push({data : name,label : 'No. Of Application for project'});
+      this.colors.push({ backgroundColor: 'rgba(0,128,128)'});
+    });
+  }
 }

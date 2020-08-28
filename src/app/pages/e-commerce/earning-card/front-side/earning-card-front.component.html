@@ -1,1 +1,25 @@
 
+<nb-card-body>
+
+<label for="select Technology" class="label"></label>
+<nb-select placeholder="Select Technology" select-min-width=5rem height = 10px [(selected)]="selectedItem">
+    <nb-option *ngFor="let d of subtechnology" (click)="onSelectTechnology()" value="{{d.subTechnologyName}}">{{d.subTechnologyName}}</nb-option>
+  </nb-select> 
+
+
+    
+
+</nb-card-body>
+<nb-card-header>
+  <!--  <span class="title">Technology</span>-->
+  
+        <canvas baseChart height="140"
+      [chartType]="'pie'"
+      [datasets]="pieChartData"
+      [labels]="pieChartLabels"
+      [options]="pieChartOptions"
+      [legend]="true"
+      [colors]="pieChartColor">
+      </canvas>
+  
+  </nb-card-header>

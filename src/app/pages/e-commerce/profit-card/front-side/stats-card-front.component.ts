@@ -1,14 +1,31 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,TemplateRef, ViewChild} from '@angular/core';
+import {NbDialogService} from '@nebular/theme';
 import { ProfitBarAnimationChartData } from '../../../../@core/data/profit-bar-animation-chart';
 import { takeWhile } from 'rxjs/operators';
 import { DataService } from '../../../../@core/utils/data.service';
 import * as Chart from 'chart.js';
 import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
+import { ThemeService } from 'ng2-charts';
 
 @Component({
   selector: 'ngx-stats-card-front',
   styleUrls: ['./stats-card-front.component.scss'],
   templateUrl: './stats-card-front.component.html',
+  styles: [`
+  nb-card {
+    /**
+     * This is the max-width value of the Bootstrap giant modal
+     * Using it here ensures the modal will properly adjust it's width to the content
+     */
+    max-width: 800px;
+    /**
+     * This is the height value of NbComponentSize 'giant'
+     * By setting max-height of the modal card to this value, we ensure the modal will properly adjust it's height
+     * to the content
+     */
+    max-height: 44.25rem;
+  }
+`],
 })
 export class StatsCardFrontComponent implements OnInit{
 
@@ -48,11 +65,7 @@ export class StatsCardFrontComponent implements OnInit{
     }
    ]
 
-  /* barChartData : 
-    { 
-      data : [20,30,40,60,59,34,2,1,44,56,40],
-      label : string
-    }[]=[];*/
+  
     barChartData =[
     { 
       data : [],
@@ -64,18 +77,23 @@ export class StatsCardFrontComponent implements OnInit{
   info : any;
   arr : any;
 
+  
+
   ngOnInit(): void {
     let obResult = this.dataService.getAllApplicationInMonth();
     obResult.subscribe(result=>{
       this.info = result;
+      
+      const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {})
+      console.log(sortObject);
+
       this.info = Object.entries(result);
-      let op = this.info.sort(new Intl.Collator('en',{numeric:true, sensitivity:'accent'}).compare);
-      console.log(op);
      this.arr=Object.values(result);
-      console.log(this.arr);
+    
       let name = []= this.arr;
-      console.log(name);
+    
       this.barChartData.push({data : name,label : 'No. Of Application'});
+      this.colors.push({ backgroundColor: 'rgba(0,128,128)'});
     });
   }
 }

@@ -1,37 +1,16 @@
 <nb-card-header>
-  <!--<i class="ion-social-usd"></i>-->
-  <span class="title">Vacancy</span>
-  
-</nb-card-header>
-<nb-card-body>
-  <!--<div class="info">
-    <div class="period">
-      <div class="caption">Jun 1 - Jun 30</div>
-      <div class="label">
-        <span class="currency">$</span>300
-      </div>
-    </div>
-    <div class="period latest">
-      <div class="caption">Jul 1 - Jul 31</div>
-      <div class="label">
-        <span class="currency">$</span>860
-      </div>
-    </div>
+  <span class="title">Project</span>
+<div>
+  <div>
+    <canvas baseChart
+      [datasets]="barChartData"
+      [labels] = "barChartLabels"
+      [options] = "barChartOptions"
+      [legend] = "barChartLegend"
+      [chartType] = "barChartType"
+      [colors]="colors">
+     
+    </canvas>
   </div>
-  <ngx-stats-ares-chart [points]="chartData"></ngx-stats-ares-chart>-->
-  <ngx-charts-bar-vertical-2d
-  [scheme]="lineChartColorScheme" 
-  [results]="multi" 
-  [gradient]="lineChartGradient" 
-  [xAxis]="lineChartShowXAxis" 
-  [yAxis]="lineChartShowYAxis" 
-  [legend]="lineChartShowLegend" 
-  [showXAxisLabel]="lineChartShowXAxisLabel" 
-  [showYAxisLabel]="lineChartShowYAxisLabel" 
-  [xAxisLabel]="lineChartXAxisLabel" 
-  [yAxisLabel]="lineChartYAxisLabel" 
-  
-  
-  
-  ></ngx-charts-bar-vertical-2d>
-</nb-card-body>
+</div>
+</nb-card-header>

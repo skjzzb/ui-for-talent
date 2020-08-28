@@ -1,248 +1,93 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input,OnInit , TemplateRef, ViewChild} from '@angular/core';
+import {NbDialogService} from '@nebular/theme';
 import { NbThemeService } from '@nebular/theme';
-import { interval , Subscription } from 'rxjs';
+import { interval } from 'rxjs';
 import { switchMap, takeWhile } from 'rxjs/operators';
 import { LiveUpdateChart, EarningData } from '../../../../@core/data/earning';
 import { DataService } from '../../../../@core/utils/data.service';
 import * as Chart from 'chart.js';
-
+import { LocalDataSource } from 'ng2-smart-table';
 @Component({
   selector: 'ngx-earning-card-front',
   styleUrls: ['./earning-card-front.component.scss'],
   templateUrl: './earning-card-front.component.html',
+  styles: [`
+    nb-card {
+      max-width: 800px;
+      max-height: 44.25rem;
+    }
+  `],
 })
-export class EarningCardFrontComponent implements OnDestroy, OnInit {
-  private alive = true;
+export class EarningCardFrontComponent implements OnInit {
+  tech : any;
+  selectedItem = '';
+  subtechnology:any[];
+  source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service:DataService){
+  pieChartOptions = {
+    responsive: true
 
-  }
+}
 
-  selectedTechnology: string = 'Java'
-  technologies: string[] =['Java', 'Angular', 'MySql'];
+pieChartLabels =  ['1-5', '6-10', '11-15', '16 Above'];
 
-  //@Input() selectedCurrency: string = 'Bitcoin';
-
-  //intervalSubscription: Subscription;
-  /*currencies: string[] = ['Java', 'Angular', 'MySql'];
-  currentTheme: string;
-  earningLiveUpdateCardData: LiveUpdateChart;
-  liveUpdateChartData: { value: [string, number] }[];
-
-  constructor(private themeService: NbThemeService,
-              private earningService: EarningData) {
-    this.themeService.getJsTheme()
-      .pipe(takeWhile(() => this.alive))
-      .subscribe(theme => {
-        this.currentTheme = theme.name;
-      });
-  }
-
-  ngOnInit() {
-    this.getEarningCardData(this.selectedCurrency);
-  }
-
-  changeCurrency(currency) {
-    if (this.selectedCurrency !== currency) {
-      this.selectedCurrency = currency;
-
-      this.getEarningCardData(this.selectedCurrency);
+// CHART COLOR.
+pieChartColor:any = [
+    {
+        backgroundColor: [
+        'rgba(30, 169, 224, 0.8)',
+        'rgba(255,165,0,0.9)',
+        'rgba(139, 136, 136, 0.9)',
+        'rgba(255, 161, 181, 0.9)'
+        ]
     }
-  }
+]
 
-  private getEarningCardData(currency) {
-    this.earningService.getEarningCardData(currency)
-      .pipe(takeWhile(() => this.alive))
-      .subscribe((earningLiveUpdateCardData: LiveUpdateChart) => {
-        this.earningLiveUpdateCardData = earningLiveUpdateCardData;
-        this.liveUpdateChartData = earningLiveUpdateCardData.liveChart;
-
-        this.startReceivingLiveData(currency);
-      });
-  }
-
-  startReceivingLiveData(currency) {
-    if (this.intervalSubscription) {
-      this.intervalSubscription.unsubscribe();
+pieChartData:any = [
+    { 
+        data: [20,30,50,30]
     }
+];
 
-    this.intervalSubscription = interval(200)
-      .pipe(
-        takeWhile(() => this.alive),
-        switchMap(() => this.earningService.getEarningLiveUpdateCardData(currency)),
-      )
-      .subscribe((liveUpdateChartData: any[]) => {
-        this.liveUpdateChartData = [...liveUpdateChartData];
-      });
+  constructor(private service: DataService){
+
+  }
+  ngOnInit(): void {
+    this.retrieveData();
   }
 
-  ngOnDestroy() {
-    this.alive = false;
-  }*/
-  multi:any[]
-  ngOnInit() {
-    //this.retrieveDataOfExperience();
-    
-  }
-  
-  retrieveDataOfExperience(){
-    this.service.getExperiece()
+  retrieveData()
+  {
+    this.service.getAllSubTechnologyData()
     .then(
       response => {
-         console.log(response);
-          this.multi=response.data;
+          this.subtechnology=response.data;
       }
     )
-
   }
 
-  changeTechnology(technology){
-    if(this.selectedTechnology !== technology)
-    {
-      this.selectedTechnology = technology
-    }
-    if(this.selectedTechnology === "Angular")
-    {
-      this.chartData = this.dataForAngular
-    }
-    if(this.selectedTechnology === "MySql")
-    {
-      this.chartData = this.dataForMySql
-    }
-    if(this.selectedTechnology === "Java")
-    {
-      this.chartData = this.dataForJava
-    }
-  }
-
-
-  ngOnDestroy() {
-    this.alive = false;
-  }
+ 
+  arr :any;
+  onSelectTechnology(){
+    console.log(this.selectedItem);
+    let ObResult = this.service.getExperienceOfCandidateFromSubtechnology(this.selectedItem);
+    ObResult.subscribe(data1=>{
+      this.tech = data1;
+    console.log(this.tech);
+    this.arr=Object.values(data1);
+    console.log(this.arr);
+    this.pieChartData.push({data : this.arr});
+    this.pieChartColor.push({ 
+      backgroundColor: [
+      'rgba(30, 169, 224, 0.8)',
+      'rgba(255,165,0,0.9)',
+      'rgba(139, 136, 136, 0.9)',
+      'rgba(255, 161, 181, 0.9)'
+      ]
+  });
   
+  })
+  }
 
-  dataForJava =[
-   
-   
-    {
-      "name": "0-5 Years",
-      "value": 90,
-      "extra": {
-        "code": "fr"
-      }
-    },
-    {
-      "name": "5-8 Years",
-      "value": 80,
-      "extra": {
-        "code": "uk"
-      }
-    },
-    {
-      "name": "8-15 Years",
-      "value": 23,
-      "extra": {
-        "code": "uk"
-      }
-    },
-    {
-      "name": "15-20 Years",
-      "value": 15,
-      "extra": {
-        "code": "uk"
-      }
-    }
-
-
-    
-  ]
-  dataForAngular =[
-   
-   
-    {
-      "name": "0-5 Years",
-      "value": 50,
-      "extra": {
-        "code": "fr"
-      }
-    },
-    {
-      "name": "5-8 Years",
-      "value": 150,
-      "extra": {
-        "code": "uk"
-      }
-    },
-    {
-      "name": "8-15 Years",
-      "value": 75,
-      "extra": {
-        "code": "uk"
-      }
-    },
-    {
-      "name": "15-20 Years",
-      "value": 45,
-      "extra": {
-        "code": "uk"
-      }
-    }
-
-
-    
-  ]
-  dataForMySql =[
-   
-   
-    {
-      "name": "0-5 Years",
-      "value": 200,
-      "extra": {
-        "code": "fr"
-      }
-    },
-    {
-      "name": "5-8 Years",
-      "value": 50,
-      "extra": {
-        "code": "uk"
-      }
-    },
-    {
-      "name": "8-15 Years",
-      "value": 225,
-      "extra": {
-        "code": "uk"
-      }
-    },
-    {
-      "name": "15-20 Years",
-      "value": 75,
-      "extra": {
-        "code": "uk"
-      }
-    }
-
-
-    
-  ]
-
-  chartData=this.dataForJava;
-
-  lineChartView: any[] = [550, 100];
-
-  // options
-  lineChartShowXAxis = true;
-  lineChartShowYAxis = true;
-  lineChartGradient = false;
-  lineChartShowLegend = false;
-  lineChartShowXAxisLabel =false;
-  lineChartXAxisLabel = 'Year';
-  lineChartShowYAxisLabel = false;
-  lineChartYAxisLabel = 'candidate';
   
-  lineChartColorScheme = {
-      domain: ['#1CBCD8', '#FF8D60', '#FF586B', '#AAAAAA']
-  };
-
 }
