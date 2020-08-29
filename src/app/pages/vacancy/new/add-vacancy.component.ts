@@ -199,13 +199,20 @@ class AddVacancyComponent implements OnInit{
   this.retrieveAllSubTechnologyData(); 
     }
 
-   
+    checked = false;
+
+    toggle(checked: boolean) {
+      this.checked = checked;
+      console.log(this.checked)
+    }
 
   addVacancy(dataFromUI:any)
   {
-    //this.ngOnInit();
   let vacancy=dataFromUI.form.value;
-  //vacancy.jd=vacancy.jd.toString()
+  if(this.checked)
+  {
+    this.shareOnFb(vacancy)
+  }
   console.log(vacancy);
    this.service.addVacancy(vacancy)
    .then(
@@ -227,6 +234,11 @@ class AddVacancyComponent implements OnInit{
     }
    )
   } 
+  shareOnFb(vacancy: any) {
+    this.service.postOnFb(vacancy).subscribe((data) => {
+      console.log(data)
+    })
+  }
   }
 
   export {AddVacancyComponent}
