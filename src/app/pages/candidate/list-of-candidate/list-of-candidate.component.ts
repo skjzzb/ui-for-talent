@@ -328,59 +328,59 @@ export class ListOfCandidateComponent implements OnInit {
         console.log(response.data)
         this.candidateData = response.data
           localStorage.setItem('vid', this.type)
-          this.copydata();
+          this.source.load(response.data)
           }
     )
     console.log(this.source)
   }
 
-  copydata()
-  {
-    this.candidateData.forEach(element => {
+  // copydata()
+  // {
+  //   this.candidateData.forEach(element => {
 
-      var source = {
-        "candidateName" : "",
-        "contactNo" : "",
-        "email" : "",
-        "employmentStatus" : "",
-        "id" : 0,
-        "interviewStatus" : "",
-        "reqMatchingPercent" : 0,
-        "shortSummaryMatchingPercent" : 0,
-        "technologyStack" : "",
-        "technologyStackMatchingPercent" : "",
-        "yearOfExperience" : "",
-        "finalStatus" : "",
-        "vacancy": null
-      }
+  //     var source = {
+  //       "candidateName" : "",
+  //       "contactNo" : "",
+  //       "email" : "",
+  //       "employmentStatus" : "",
+  //       "id" : 0,
+  //       "interviewStatus" : "",
+  //       "reqMatchingPercent" : 0,
+  //       "shortSummaryMatchingPercent" : 0,
+  //       "technologyStack" : "",
+  //       "technologyStackMatchingPercent" : "",
+  //       "yearOfExperience" : "",
+  //       "finalStatus" : "",
+  //       "vacancy": null
+  //     }
 
-      source.candidateName =  element.candidateName
-      source.contactNo = element.contactNo
-      source.email = element.email
-      source.employmentStatus = element.employmentStatus
-      source.id = element.id
-      source.interviewStatus = element.interviewStatus
-      source.reqMatchingPercent = element.reqMatchingPercent
-      source.shortSummaryMatchingPercent = element.shortSummaryMatchingPercent
-      source.technologyStack = element.technologyStack
-      source.technologyStackMatchingPercent = element.technologyStackMatchingPercent
-      source.yearOfExperience = element.yearOfExperience
-      source.finalStatus = element.finalStatus;
-      source.vacancy = element.vacancy;
+  //     source.candidateName =  element.candidateName
+  //     source.contactNo = element.contactNo
+  //     source.email = element.email
+  //     source.employmentStatus = element.employmentStatus
+  //     source.id = element.id
+  //     source.interviewStatus = element.interviewStatus
+  //     source.reqMatchingPercent = element.reqMatchingPercent
+  //     source.shortSummaryMatchingPercent = element.shortSummaryMatchingPercent
+  //     source.technologyStack = element.technologyStack
+  //     source.technologyStackMatchingPercent = element.technologyStackMatchingPercent
+  //     source.yearOfExperience = element.yearOfExperience
+  //     source.finalStatus = element.finalStatus;
+  //     source.vacancy = element.vacancy;
 
-      if(element.interviewStatus == null)
-      {
-        source.interviewStatus =  'Not scheduled any round'
-      }
-      if(element.finalStatus == null)
-      {
-        source.finalStatus = 'NOT_SELECTED'
-      }
-      this.rows.push(source)
-    });
-    console.log(this.source)
-    this.source.load(this.rows)
-  }
+  //     if(element.interviewStatus == null)
+  //     {
+  //       source.interviewStatus =  'Not scheduled any round'
+  //     }
+  //     if(element.finalStatus == null)
+  //     {
+  //       source.finalStatus = 'NOT_SELECTED'
+  //     }
+  //     this.rows.push(source)
+  //   });
+  //   console.log(this.source)
+  //   this.source.load(this.rows)
+  // }
 
   onUpdateRecord(event) {
     //this.ngOnInit();

@@ -81,6 +81,16 @@ export var MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+  {
+    title: 'CV',
+    icon: 'layers-outline',
+    children: [
+      {
+        title: 'Total CV',
+        link: '/pages/cv/list-of-cv',
+      },
+    ],
+  },
 
   {
     title: 'Layout',
@@ -351,7 +361,7 @@ export var Candidate =
 
   export var dashboard = {
       title: 'Dashboard',
-      icon: 'shopping-cart-outline',
+      icon: 'grid-outline',
       link: '/pages/dashboard',
       home: true,
     }
@@ -387,5 +397,16 @@ export var Candidate =
           title: 'Add Level',
           link: '/pages/level/add-level',
         },
-      ],
+      ],    
   }
+
+  export var cv ={
+    title: 'CV',
+    icon: 'layers-outline',
+    children: [
+      {
+        title: 'Total CV',
+        link: '/pages/cv/list-of-cv',
+      },
+    ],
+}
