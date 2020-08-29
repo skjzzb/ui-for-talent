@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Candidate } from './pages-menu';
+import { Candidate, cv } from './pages-menu';
 import { Vacancy } from './pages-menu';
 import { dashboard } from './pages-menu';
 import { users } from './pages-menu';
@@ -79,6 +79,7 @@ export class PagesComponent {
     this.MENU_ITEMS2.push(uploadResume)
     if(this.feature.Level)
     this.MENU_ITEMS2.push(Level)
+    this.MENU_ITEMS2.push(cv)
     this.menu=this.MENU_ITEMS2
   }
 

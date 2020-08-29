@@ -15,6 +15,7 @@ import { Profile2Module } from './Profile2/profile2.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { from } from 'rxjs';
 import { UsersModule } from './users/users.module';
+import { CvModule } from './cv/cv.module';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { UsersModule } from './users/users.module';
     UploadResumeModule,
     Profile2Module,
     UsersModule,
+    CvModule,
     NbWindowModule
   ],
   declarations: [
