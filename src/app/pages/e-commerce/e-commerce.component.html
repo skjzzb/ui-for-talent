@@ -38,11 +38,21 @@
           </nb-accordion-item-header>           
 
           <nb-accordion-item-body >
-            <nb-stepper  [selected]="2" orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" disableStepNavigation   #stepper>
+            <!-- <div>
+            <label *ngFor="let list of lvl" nbLable>{{list}}
+              <button nbButton shape="round" outline  status="primary">icon</button>
+
+            </label>
+  
+          </div> -->
+            <nb-stepper  orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" disableStepNavigation   #stepper>
+
               <nb-step  [label]="list" *ngFor="let list of lvl ;let i=index;">
                 <ng-template #{{list}} >{{list}}</ng-template>
 
-                <span (click)="stepper.next();"></span>
+                <span onload="stepNext();"></span>
+                <button (click)="stepNext()">nexxT</button>
+
               </nb-step>
             </nb-stepper>
 
@@ -52,7 +62,7 @@
                   <thead>
                     <tr>
                       <th>
-                         <button nbButton status="primary" >Start Interview</button>
+                         <a href="{{meetLink}}" target="_blank" nbButton status="primary" >Start Interview</a>
                       </th>
                       <th>
                         <button nbButton status="primary" >Evaluation </button>
@@ -92,7 +102,7 @@
       </nb-action></span>  
         </nb-accordion-item-header>          
         <nb-accordion-item-body >
-          <nb-stepper orientation="horizontal" disableStepNavigation>
+          <nb-stepper  orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" disableStepNavigation   #stepper>
             
             <nb-step [label]="list" *ngFor="let list of lvl">
               <ng-template #list>{{list}}</ng-template>

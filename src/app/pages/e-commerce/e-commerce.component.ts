@@ -1,6 +1,8 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
 import { DataService } from '../../@core/utils/data.service';
 import Stepper from 'bs-stepper';
+import { NbStepperComponent } from '@nebular/theme';
+import {  AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'ngx-ecommerce',
@@ -22,12 +24,14 @@ export class ECommerceComponent implements OnInit  {
   indexValue:Number;
   interviewTime:string
   interviewID:Number
+  meetLink:String
   users: {id:Number, name: string, title: string ,expanded: false }[]=[];
   notAceeppted: { id:Number,name: string, title: string ,expanded: false }[]=[];
 
 
   @ViewChild('item', { static: true }) accordion;
 
+  @ViewChild('stepper') stepperComponent: NbStepperComponent;
 
 
   linearMode = true;
@@ -44,8 +48,9 @@ export class ECommerceComponent implements OnInit  {
   panalResponse:String;
   panalEmail:String
   candidatRespose:String
-
+  selectedActivityIndex:Number
   studentName:any[]=[]
+  selectIndex:Number
 
   listtype = [
     { id: 1, name: 'Aceppted' },
@@ -53,6 +58,7 @@ export class ECommerceComponent implements OnInit  {
     //{ id: 3, name: 'Pavilnys', disabled: true }
 ];
 selectedCityId: number = null;
+
 constructor(private service : DataService)
 {}
 ngOnInit(): void {
@@ -85,6 +91,7 @@ acccptedStatus()
         "scheduledEndTime": "",
         "scheduledOn": "",
         "vacancyId": null,
+        "meetLink":"",
         "expanded" : false
 
       }
@@ -102,6 +109,8 @@ acccptedStatus()
       source.scheduledEndTime = element.scheduledEndTime
       source.scheduledOn = element.scheduledOn
       source.vacancyId = element.vacancyId
+      source.meetLink=element.meetLink
+      this.meetLink=element.meetLink
       this.studentID=element.candidateId
       this.interviewTime=element.scheduledOn
       this.level=element.level
@@ -173,6 +182,7 @@ notAcceptedStatus(){
            "scheduledEndTime": "",
            "scheduledOn": "",
            "vacancyId": 0,
+           "meetLink":""
          }
 
          source.calEventId = element.calEventId
@@ -188,6 +198,7 @@ notAcceptedStatus(){
          source.scheduledEndTime = element.scheduledEndTime.substring(12,19)
          source.scheduledOn = element.scheduledOn.substring(0,10)
          source.vacancyId = element.vacancyId
+         source.meetLink=element.meetLink
          this.nStudentID=element.candidateId
          this.panalEmail=element.panelEmail
          this.panalResponse=element.panelResponseStatus
@@ -220,8 +231,16 @@ console.log(this.scheduledInterview)
 
 
 }
+stepNext()
+{
+  setTimeout(()=>{
+    this.stepperComponent.next();
+  },4000);
+
+}
 availableClick(id)
 {
+
   let candidateInfo;
 console.log("Hello Saurabh")
 console.log(id)
@@ -233,10 +252,15 @@ interviewCandidate.subscribe(data =>{
 
 
   console.log(candidateInfo.level)
+  this.meetLink=candidateInfo.meetLink
+  console.log(this.meetLink)
   this.retrieveLevelData(candidateInfo.vacancyId,candidateInfo.level)
   console.log(this.level)
+  //this.displayStepper(candidateInfo.vacancyId,candidateInfo.level)
 
+  
   this.level=""
+ 
 
 })
 
@@ -256,12 +280,42 @@ interviewCandidate.subscribe(data =>{
   this.panalResponse=candidateInfo.panelResponseStatus
   this.candidatRespose=candidateInfo.candidateResponseStatus 
   console.log(candidateInfo.level)
+  console.log(candidateInfo.level)
+  this.meetLink=candidateInfo.meetLink
+  console.log(this.meetLink)
   this.retrieveLevelData(candidateInfo.vacancyId,candidateInfo.level)
   console.log(this.level)
+  //this.displayStepper(candidateInfo.vacancyId,candidateInfo.level) 
 
   this.level=""
+ 
 
 })
+}
+displayStepper(id,level)
+{
+  this.service.getVacancyById(id).subscribe(
+    data =>{
+      this.vacancyData = data
+      this.lvl = this.vacancyData.levelList.split(",")
+      for (let index = 0; index < this.lvl.length; index++) {
+        this.lvl[index] = this.lvl[index].trim()
+        
+        if(this.lvl[index]==level)
+        {
+          this.indexValue=index;
+          break;
+
+        }
+        console.log(this.lvl[index]);
+      }
+      console.log(this.indexValue+" index value is")
+      
+
+
+    }
+  )
+  this.lvl=[]
 }
 retrieveLevelData(id,level)
 {
@@ -272,21 +326,35 @@ retrieveLevelData(id,level)
       this.lvl = this.vacancyData.levelList.split(",")
       for (let index = 0; index < this.lvl.length; index++) {
         this.lvl[index] = this.lvl[index].trim()
+        setTimeout(()=>{
+          this.stepNext()
+        },2000);
         if(this.lvl[index]==level)
         {
           this.indexValue=index;
+          break;
 
         }
         console.log(this.lvl[index]);
       }
       console.log(this.indexValue+" index value is")
+      localStorage.setItem('index',this.indexValue.toString());
+     // this.selectedActivityIndex=this.indexValue
+
+     
+      
+
 
     }
   )
   this.lvl=[]
 
-  console.log(id)
+
 
 }
+ngAfterViewInit() {
+   this.stepperComponent.selectedIndex=3
+}
+
 
 }
