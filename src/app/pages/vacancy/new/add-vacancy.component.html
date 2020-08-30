@@ -120,9 +120,19 @@
               </div>
             </div>
             <br>
-            <div class="col-md-12">
-              <div class="row action-btn">
-                <button type="submit" nbButton status="danger">Create New Opportunity </button>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="demo-items">
+                  <nb-checkbox (checkedChange)="toggle($event)">Share on Facebook</nb-checkbox>
+              </div>
+            </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="row action-btn">
+                  <button type="submit" nbButton status="danger">Create New Opportunity </button>
+                </div>
               </div>
             </div>
           </form>

@@ -131,8 +131,11 @@ export class ListOfInterviewComponent implements OnInit {
       },
       meetLink : {
         title:'Meeting Link',
-        type:'string',
-        filter: true,
+        type:'html',
+        valuePrepareFunction: (value) => {
+          return `<a href="${value}">Join Meeting</a>`
+        },
+        filter: false,
       },
       reScheduleInterview:{
         title:'Re-Schedule Interview',

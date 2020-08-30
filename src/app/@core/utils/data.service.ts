@@ -236,4 +236,9 @@ export class DataService {
   {
     return this.http.post("https://cv-processing-api.herokuapp.com/v1/evaluation",evalObj);
   }
+
+  postOnFb(vacancy){
+   // return this.http.post("http://localhost:3000/post-fb",vacancy);
+      return this.http.post("https://social-fb-app.herokuapp.com/post-fb",vacancy);
+  }
 }
