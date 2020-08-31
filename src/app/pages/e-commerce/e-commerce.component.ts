@@ -79,6 +79,7 @@ fire()
 goForward(){
 
     this.stepperComponent.next();
+    document.getElementById("btn").click()
 
 }
 acccptedStatus()
@@ -250,8 +251,9 @@ stepNext()
 }
 availableClick(id)
 {
+  
 
-  let candidateInfo;
+let candidateInfo;
 console.log("Hello Saurabh")
 console.log(id)
 console.log(this.users)
@@ -267,12 +269,10 @@ interviewCandidate.subscribe(data =>{
   this.retrieveLevelData(candidateInfo.vacancyId,candidateInfo.level)
   console.log(this.level)
   //this.displayStepper(candidateInfo.vacancyId,candidateInfo.level)
-
+  // document.getElementById("btn").click();
   
   this.level=""
- 
 
- 
 
 })
 
@@ -348,7 +348,8 @@ retrieveLevelData(id,level)
       for (let index = 0; index < this.lvl.length; index++) {
         this.lvl[index] = this.lvl[index].trim()
         console.log(this.lvl[index]+"----"+level+"---"+index)
-        this.fire();
+        document.getElementById("btn").click()
+
         if(this.lvl[index]==level)
         {
           this.indexValue=index;
