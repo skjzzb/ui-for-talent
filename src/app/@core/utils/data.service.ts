@@ -177,6 +177,10 @@ export class DataService {
       return axios.get(`https://cv-processing-api.herokuapp.com/interview`);
 
     }
+    getInterviewByInterviewId(id)
+    {
+      return this.http.get(`https://cv-processing-api.herokuapp.com/interview/${id}`)
+    }
 
     DeteteInterview(id)
     {
