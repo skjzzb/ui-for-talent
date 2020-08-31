@@ -49,6 +49,11 @@ const routes: Routes = [{
         .then(m => m.UsersModule),
     },
     {
+      path: 'cv',
+      loadChildren: () => import('./cv/cv.module')
+        .then(m => m.CvModule),
+    },
+    {
       path: 'layout',
       loadChildren: () => import('./layout/layout.module')
         .then(m => m.LayoutModule),

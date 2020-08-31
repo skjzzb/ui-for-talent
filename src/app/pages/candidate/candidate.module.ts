@@ -35,6 +35,7 @@ import { ReportComponent } from './evaluation-report/component/reports/reports-c
 import { ResumeComponent } from './evaluation-report/component/resume/resume.component';
 
 
+
 @NgModule({
   imports: [
     CommonModule,

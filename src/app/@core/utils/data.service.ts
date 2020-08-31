@@ -177,6 +177,10 @@ export class DataService {
       return axios.get(`https://cv-processing-api.herokuapp.com/interview`);
 
     }
+    getInterviewByInterviewId(id)
+    {
+      return this.http.get(`https://cv-processing-api.herokuapp.com/interview/${id}`)
+    }
 
     DeteteInterview(id)
     {
@@ -219,14 +223,33 @@ export class DataService {
   getAllPositions(){
     return this.http.get("https://cv-processing-api.herokuapp.com/v1/position")
   }
+<<<<<<< HEAD
+=======
+
+  getAllCandidate() {
+    return this.http.get("https://cv-processing-api.herokuapp.com/v1/candidiate")
+  }
+
+  getCountOfCandidateByProjectName(projectName){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCountOfCandidateByProjectAndVacancy/${projectName}`);
+
+  }
+>>>>>>> 1141a0fb02b17e94aa4fce006f2d7f6e002690e3
   createEvaluationReport(evalObj)
   {
     return this.http.post("https://cv-processing-api.herokuapp.com/v1/evaluation",evalObj);
   }
 
+<<<<<<< HEAD
   getEvaluationBycandidateId(id)
   {
     return this.http.get(`https://cv-processing-api.herokuapp.com/v1/GetEvaluationReport/${id}`);
   }
 
+=======
+  postOnFb(vacancy){
+   // return this.http.post("http://localhost:3000/post-fb",vacancy);
+      return this.http.post("https://social-fb-app.herokuapp.com/post-fb",vacancy);
+  }
+>>>>>>> 1141a0fb02b17e94aa4fce006f2d7f6e002690e3
 }

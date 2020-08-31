@@ -25,6 +25,7 @@ class AddVacancyComponent implements OnInit{
   jd=null;
   level:any[];
   levelList=null;
+  selectedPosition: string
   
  // description:any;
   data:any;
@@ -32,11 +33,26 @@ class AddVacancyComponent implements OnInit{
   
   constructor(private router:Router ,private service: DataService,private location: Location) {
   }
-
+  project = []
+  position : any
   ngOnInit(): void {
     this.retrieveData();
     this.retrieveLevelData();
     //this.retrieveAllSubTechnologyData();
+
+    this.service.getAllProject().subscribe((data)=>{
+      var proj : any
+      proj = data
+      console.log(proj)
+      proj.forEach(element => {
+        if(element.status == "ACTIVE")
+          this.project.push(element)
+      });
+    })
+
+    this.service.getAllPositions().subscribe(data =>[
+      this.position = data
+    ])
   }
 
   retrieveData()
@@ -183,13 +199,20 @@ class AddVacancyComponent implements OnInit{
   this.retrieveAllSubTechnologyData(); 
     }
 
-   
+    checked = false;
+
+    toggle(checked: boolean) {
+      this.checked = checked;
+      console.log(this.checked)
+    }
 
   addVacancy(dataFromUI:any)
   {
-    //this.ngOnInit();
   let vacancy=dataFromUI.form.value;
-  //vacancy.jd=vacancy.jd.toString()
+  if(this.checked)
+  {
+    this.shareOnFb(vacancy)
+  }
   console.log(vacancy);
    this.service.addVacancy(vacancy)
    .then(
@@ -211,6 +234,11 @@ class AddVacancyComponent implements OnInit{
     }
    )
   } 
+  shareOnFb(vacancy: any) {
+    this.service.postOnFb(vacancy).subscribe((data) => {
+      console.log(data)
+    })
+  }
   }
 
   export {AddVacancyComponent}

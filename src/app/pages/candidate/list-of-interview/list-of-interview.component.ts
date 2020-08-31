@@ -129,6 +129,14 @@ export class ListOfInterviewComponent implements OnInit {
         type: 'string',
         filter: true,
       },
+      meetLink : {
+        title:'Meeting Link',
+        type:'html',
+        valuePrepareFunction: (value) => {
+          return `<a href="${value}">Join Meeting</a>`
+        },
+        filter: false,
+      },
       reScheduleInterview:{
         title:'Re-Schedule Interview',
         type:'custom',
@@ -172,6 +180,7 @@ export class ListOfInterviewComponent implements OnInit {
             "scheduledEndTime": "",
             "scheduledOn": "",
             "vacancyId": 0,
+            "meetLink" : ""
           }
 
           source.calEventId = element.calEventId
@@ -187,6 +196,7 @@ export class ListOfInterviewComponent implements OnInit {
           source.scheduledEndTime = element.scheduledEndTime.substring(12,19)
           source.scheduledOn = element.scheduledOn.substring(0,10)
           source.vacancyId = element.vacancyId
+          source.meetLink = element.meetLink
 
           this.scheduledInterview.push(source)
         });
