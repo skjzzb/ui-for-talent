@@ -1,9 +1,8 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
+import { Component, OnInit ,ViewChild, ElementRef} from '@angular/core';
 import { DataService } from '../../@core/utils/data.service';
-import Stepper from 'bs-stepper';
 import { NbStepperComponent } from '@nebular/theme';
 import {  AfterViewInit } from '@angular/core';
-
+import { MatStepper } from '@angular/material/stepper';
 @Component({
   selector: 'ngx-ecommerce',
   templateUrl: './e-commerce.component.html',
@@ -32,6 +31,8 @@ export class ECommerceComponent implements OnInit  {
   @ViewChild('item', { static: true }) accordion;
 
   @ViewChild('stepper') stepperComponent: NbStepperComponent;
+  @ViewChild('stepper') private myStepper: MatStepper;
+  @ViewChild('btn') fileInput: ElementRef;
 
 
   linearMode = true;
@@ -70,7 +71,16 @@ ngOnInit(): void {
   this.acccptedStatus();
 
 }
+fire()
+{
+  let inputElement: HTMLElement = this.fileInput.nativeElement as HTMLElement;
+  inputElement.click();
+}
+goForward(){
 
+    this.stepperComponent.next();
+
+}
 acccptedStatus()
 {
 
@@ -262,8 +272,9 @@ interviewCandidate.subscribe(data =>{
   this.level=""
  
 
-})
+ 
 
+})
 
 }
 not_availableClick(id)
@@ -283,9 +294,9 @@ interviewCandidate.subscribe(data =>{
   console.log(candidateInfo.level)
   this.meetLink=candidateInfo.meetLink
   console.log(this.meetLink)
+ // this.displayStepper(candidateInfo.vacancyId,candidateInfo.level) 
+  console.log(this.lvl)
   this.retrieveLevelData(candidateInfo.vacancyId,candidateInfo.level)
-  console.log(this.level)
-  //this.displayStepper(candidateInfo.vacancyId,candidateInfo.level) 
 
   this.level=""
  
@@ -295,21 +306,31 @@ interviewCandidate.subscribe(data =>{
 displayStepper(id,level)
 {
   this.service.getVacancyById(id).subscribe(
+
     data =>{
+      var ind=0
       this.vacancyData = data
       this.lvl = this.vacancyData.levelList.split(",")
+
       for (let index = 0; index < this.lvl.length; index++) {
         this.lvl[index] = this.lvl[index].trim()
-        
+        console.log("Dispaly Stepper"+this.lvl[index]+"----"+level+"---"+index)
+
         if(this.lvl[index]==level)
         {
           this.indexValue=index;
           break;
 
         }
+        ind++
+        this.myStepper.next()
+      
         console.log(this.lvl[index]);
       }
-      console.log(this.indexValue+" index value is")
+      this.myStepper.selectedIndex=ind
+      this.stepperComponent.selectedIndex=ind
+      console.log(ind+" IND in Dispaly is")
+
       
 
 
@@ -326,23 +347,26 @@ retrieveLevelData(id,level)
       this.lvl = this.vacancyData.levelList.split(",")
       for (let index = 0; index < this.lvl.length; index++) {
         this.lvl[index] = this.lvl[index].trim()
-        setTimeout(()=>{
-          this.stepNext()
-        },2000);
+        console.log(this.lvl[index]+"----"+level+"---"+index)
+        this.fire();
         if(this.lvl[index]==level)
         {
           this.indexValue=index;
           break;
 
         }
-        console.log(this.lvl[index]);
-      }
-      console.log(this.indexValue+" index value is")
-      localStorage.setItem('index',this.indexValue.toString());
-     // this.selectedActivityIndex=this.indexValue
 
      
+      //  this.myStepper.selected.completed = true;
+
+        console.log(this.lvl[index]);
+      }
+     
       
+   // this.selectedActivityIndex=this.indexValue
+
+     
+    
 
 
     }

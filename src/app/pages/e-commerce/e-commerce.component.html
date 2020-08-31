@@ -38,23 +38,36 @@
           </nb-accordion-item-header>           
 
           <nb-accordion-item-body >
-            <!-- <div>
-            <label *ngFor="let list of lvl" nbLable>{{list}}
-              <button nbButton shape="round" outline  status="primary">icon</button>
-
-            </label>
+          
+            <!-- <mat-horizontal-stepper   #stepper linear=false labelPosition="bottom">
+              <ng-template matStepperIcon="edit">
+                <mat-icon>done</mat-icon>
+              </ng-template>
+              <mat-step *ngFor="let list of lvl" >
+                <br>
+                <ng-template matStepLabel>{{list}}</ng-template>
+                
+              </mat-step>
+             
+              
+              <div>
+                <button mat-button matStepperPrevious type="button">Back</button>
+                <button mat-button matStepperNext type="button">Next</button>
+              </div>
+            </mat-horizontal-stepper>   -->
+        
   
-          </div> -->
-            <nb-stepper  orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" disableStepNavigation   #stepper>
+            <nb-stepper [selected]="level" orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" disableStepNavigation   #stepper>
 
               <nb-step  [label]="list" *ngFor="let list of lvl ;let i=index;">
-                <ng-template #{{list}} >{{list}}</ng-template>
+                <ng-template  >{{list}}</ng-template>
 
-                <span onload="stepNext();"></span>
-                <button (click)="stepNext()">nexxT</button>
+            
 
               </nb-step>
+
             </nb-stepper>
+            <button nbButton (click)="goForward()" #btn>next</button>
 
             <div class="card">
               <div class="card-body">
@@ -102,13 +115,22 @@
       </nb-action></span>  
         </nb-accordion-item-header>          
         <nb-accordion-item-body >
-          <nb-stepper  orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" disableStepNavigation   #stepper>
+          <nb-stepper selected="'HR'"  orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" disableStepNavigation   #stepper>
             
-            <nb-step [label]="list" *ngFor="let list of lvl">
-              <ng-template #list>{{list}}</ng-template>
+            <!-- <nb-step  label="{{list}}" *ngFor="let list of lvl">
+              <ng-template #HR>{{list}}</ng-template>
+              
+            </nb-step> -->
+            <nb-step  label="Technical 1" #Technical>
+              <ng-template >Technical</ng-template>
+              
+            </nb-step>
+            <nb-step  label="HR" #HR>
+              <ng-template >HR</ng-template>
               
             </nb-step>
           </nb-stepper>
+          
           <div class="card">
             <div class="card-body">
               <table class="table table-hover">
