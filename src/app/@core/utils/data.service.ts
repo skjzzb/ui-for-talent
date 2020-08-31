@@ -232,6 +232,18 @@ export class DataService {
   }
 
   getCountOfSelectedForProject(){
-    return this.http.get(`http://localhost:8080/v1/getCountOfSelectedForProject`);
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCountOfSelectedForProject`);
+  }
+
+  getNumberOfRejectedMonthly(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getNumberOfRejectedMonthly`);
+  }
+
+  getSelectedMonthly(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getSelectedMonthly`);
+  }
+
+  getTotalInterviewMonthly(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getTotalInterviewMonthly`);
   }
 }

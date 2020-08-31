@@ -102,11 +102,7 @@ export class EarningCardBackComponent implements OnInit {
   obResult1.subscribe(result1=>{
     this.info1 = result1
     this.info1 = Object.entries(result1);
-    console.log(this.info1);
-
     this.key11= Object.keys(result1);
-    console.log(this.key11);
-    
     this.arr1=Object.values(result1);
     let name1 =  this.arr1;
     this.barChartData.push({label: "Total SELECTED",

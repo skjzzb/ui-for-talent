@@ -25,7 +25,11 @@ export class EarningCardFrontComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   pieChartOptions = {
-    responsive: true
+    responsive: true,
+    animateRotate : true,
+    animateScale : false,
+    circumference : 2 * Math.PI,
+    rotation:-0.5 * Math.PI
 
 }
 

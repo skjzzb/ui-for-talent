@@ -39,7 +39,7 @@ export class StatsCardBackComponent implements OnInit {
     }
   };
 
-  public barChartLabels = [];
+  public barChartLabels = ['Jan','Feb','March','April','May','June','July','Aug','Sep','Oct','Nov','Dec'];
 
   public barChartType = 'bar';
 
@@ -67,20 +67,20 @@ export class StatsCardBackComponent implements OnInit {
   key : string;
 
   ngOnInit(): void {
-    let obResult = this.dataService.getCountOfApplicationForProject();
+    let obResult = this.dataService.getNumberOfRejectedMonthly();
     obResult.subscribe(result=>{
       this.info = result;
       this.info = Object.entries(result);
 
-      this.key1 = Object.keys(result);
+     /* this.key1 = Object.keys(result);
       console.log(this.key1);
       for ( this.key of this.key1) {
         this.barChartLabels.push(this.key);
-      }
+      }*/
 
       this.arr=Object.values(result);
       let name = []= this.arr;
-      this.barChartData.push({data : name,label : 'No. Of Application for project'});
+      this.barChartData.push({data : name,label : 'No. Of rejected '});
       this.colors.push({ backgroundColor: 'rgba(0,128,128)'});
     });
   }
