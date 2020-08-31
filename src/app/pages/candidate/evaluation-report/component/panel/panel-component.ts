@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { DataService } from '../../../../@core/utils/data.service';
+import { DataService } from '../../../../../@core/utils/data.service';
 
 @Component({
   selector: 'panel',

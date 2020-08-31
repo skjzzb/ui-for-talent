@@ -217,9 +217,16 @@ export class DataService {
   }
 
   getAllPositions(){
-
+    return this.http.get("https://cv-processing-api.herokuapp.com/v1/position")
+  }
   createEvaluationReport(evalObj)
   {
     return this.http.post("https://cv-processing-api.herokuapp.com/v1/evaluation",evalObj);
   }
+
+  getEvaluationBycandidateId(id)
+  {
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/GetEvaluationReport/${id}`);
+  }
+
 }

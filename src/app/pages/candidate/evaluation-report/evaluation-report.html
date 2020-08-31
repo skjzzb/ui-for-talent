@@ -1,3 +1,7 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <!--
 <div class="alert alert-primary" role="alert">
   Content
@@ -6,148 +10,114 @@
 <nb-card status="primary">
   <nb-card-header>Evaluation Report</nb-card-header>
   <nb-card-body>
-
-    <div class="row">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">#</th>
-            <th scope="col">Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Candidate Name</td>
-            <td>Employment Status</td>
-            <td>{{candidate.employmentStatus}}</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Experience</td>
-            <td>{{candidate.yearOfExperience}}</td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>Skills</td>
-            <td>{{candidate.technologyStack}}</td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <nb-accordion>
-      <nb-accordion-item>
-        <nb-accordion-item-header>
-          Vacancy Details
-        </nb-accordion-item-header>
-        <nb-accordion-item-body>
-          <div class="row">
-            <div class="col-md-4">
-              <label for="Vacancy" class="label">
-                <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
-                Vacancy
-              </label>
-              <input type="text"
-                    id="jobTitle"
-                    name="jobTitle"
-                    [(ngModel)]="vacancy.jobTitle"
-                    readonly
-                    nbInput
-                    fullWidth
-                    >
+    <!-- <nb-card>
+      <nb-card-body> -->
+      <section id="tabs" class="project-tab">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav>
+                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Candidate Details</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Vacancy Details</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <table class="table" cellspacing="0">
+                              <thead>
+                                <tr>
+                                  <th scope="col"></th>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Details</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row"></th>
+                                  <td>Candidate Name</td>
+                                  <td>{{candidate.candidateName}}</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row"></th>
+                                  <td>Employment Status</td>
+                                  <td>{{candidate.employmentStatus}}</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row"></th>
+                                  <td>Experience</td>
+                                  <td>{{candidate.yearOfExperience}}</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row"></th>
+                                  <td>Skills</td>
+                                  <td>{{candidate.technologyStack}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <table class="table" cellspacing="0">
+                              <thead>
+                                <tr>
+                                  <th scope="col"></th>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Details</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row"></th>
+                                  <td>Title</td>
+                                  <td>{{vacancy.jobTitle}}</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row"></th>
+                                  <td>Technologies Used</td>
+                                  <td>{{vacancy.jd}}</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row"></th>
+                                  <td>Project</td>
+                                  <td>{{vacancy.projectName}}</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row"></th>
+                                  <td>Summary</td>
+                                  <td>{{vacancy.shortSummary}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                  </div>
             </div>
-
-            <div class="col-md-4">
-              <label for="jd" class="label">
-                <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
-                Technologies Used
-              </label>
-              <input type="text"
-                    id="jd"
-                    name="jd"
-                    [(ngModel)]="vacancy.jd"
-                    readonly
-                    nbInput
-                    fullWidth
-                    >
-            </div>
-            <div class="col-md-4">
-              <label for="projectName" class="label">
-                <!-- <nb-icon icon="person-outline" status="info" style="size: 5px;"></nb-icon> -->
-                Project
-              </label>
-              <input type="text"
-                    id="projectName"
-                    name="projectName"
-                    [(ngModel)]="vacancy.projectName"
-                    readonly
-                    nbInput
-                    fullWidth
-                    >
-            </div>
-          </div>
-
-          <div class="row">
             <div class="col-md-12">
-              <label for="Skills" class="label" style="font-size: medium;">
-                <!-- <nb-icon icon="award-outline" status="info" style="size: 5px;"></nb-icon> -->
-                  Skills
-              </label>
-              <textarea [(ngModel)]="vacancy.shortSummary" [ngModelOptions]="{standalone: true}"  nbInput fullWidth   readonly ></textarea>
+              <div class="row action-btn">
+                <button type="submit" nbButton status="warning" (click)="getResume()">View Resume</button>
+                &nbsp;&nbsp;&nbsp;
+                <button type="button" nbButton status="danger" (click)="getEvaluation()">
+                  View previous Evaluation
+                </button>
+              </div>
             </div>
-          </div>
-
-        </nb-accordion-item-body>
-      </nb-accordion-item>
-  </nb-accordion>
-
+            </div>
+        </div>
+    </section>
+  <!-- </nb-card-body>
+</nb-card> -->
   <nb-card style="margin-top:20px; margin-bottom:20px">
-      <nb-card-header>{{candidate.interviewStatus}}</nb-card-header>
+      <nb-card-header>{{interview_level}} Evaluation</nb-card-header>
       <nb-card-body>
         <h3>
           <small class="text-muted">Pick Technology</small>
         </h3>
         <div style="margin:10px">
           <form  #myForm="ngForm" (ngSubmit)="onSubmit(myForm,'selected')" role="form">
-
-            <!-- <div class="row">
-              <div class="col-md-4" *ngFor="let q of questions"  >
-                <label class="label">{{q.concept}}</label>
-                <div *ngFor="let que of q.question" >
-                  <label class="label">{{que}}</label>
-                <input type="number"
-                       [(ngModel)]="ratings[que]"
-                       nbInput
-                       name="que"
-                      >
-                    </div>
-              </div>
-             </div> -->
-
              <panel *ngFor="let c of technologies"
              [title]="c" [opened]="c.opened" (getObject)="getObject($event)"
              (rating_out)="getRatings($event)"
              >
-            </panel>
-
-             <!-- <div ng-controller="AccordionDemoCtrl">
-              <accordion>
-                <accordion-group ng-repeat="group in groups" >
-                  <accordion-heading>
-                    <span ng-click="opened(group, $index)">{{group.title}}</span>
-                  </accordion-heading>
-                  {{group.content}}
-                </accordion-group>
-              </accordion>
-            </div> -->
-
+          </panel>
             <div class="row">
               <div class="col-md-12">
                 <label class="label">Add Comments Here</label>
@@ -161,14 +131,6 @@
                 <button type="button" nbButton status="danger" (click)="onSubmit(myForm,'Rejected')">Rejected</button>
               </div>
             </div>
-
-            <!-- <div class="row" (click)="clickme()">
-              clickme
-              <div *ngIf="flag">
-                hello
-              </div>
-            </div> -->
-
           </form>
         </div>
       </nb-card-body>
