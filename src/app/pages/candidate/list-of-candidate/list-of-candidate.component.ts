@@ -60,16 +60,8 @@ export class InterviewReportButtonViewComponent implements OnInit {
 
   onClick()
   {
-    //const navigationExtras: NavigationExtras = {state: {example: 'This is an example'}};
-    //this.router.navigate(['/pages/candidate/evaluation-report'], navigationExtras);
     console.log(this.rowData)
      this.router.navigate(['/pages/candidate/evaluation-report',JSON.stringify(this.rowData)]);
-  //   console.log(this.rowData)
-  //   this.CardComponent = EvaluationReportComponent;
-  //   this.dialogService.open(this.CardComponent, {context: {
-  //     rowData: this.rowData,
-  //   },
-  // });
   }
 
 }
@@ -139,8 +131,6 @@ export class ButtonViewComponent implements OnInit {
   }
 
 }
-
-
 
 @Component({
   selector: 'ngx-list-of-candidate',
@@ -299,40 +289,72 @@ export class ListOfCandidateComponent implements OnInit {
     }
   };
 
-
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private service:DataService) {
   }
+  
+  allProjects : any
+  allPositions : any
+  selectedProject : any
+  candidatesByProject : any
+  selectedPosition : any
+  candidatesByPosition : any
 
   ngOnInit(): void {
-    this.retrieveData();
+
+    this.service.getAllProject().subscribe(data =>{
+      this.allProjects = data
+    })
+    this.service.getAllPositions().subscribe(data =>{
+      this.allPositions = data
+    })
     this.color='text-danger'
   }
 
-  retrieveData()
-  {
-    this.service.getVacancyData()
-     .then(
-       response => {
-          this.vacancy=response.data
-          }
-     )
+  onSelectProject(){
+    console.log(this.selectedProject)
+    this.service.getCandidateByProjectName(this.selectedProject)
+    .subscribe( data => {
+      this.candidatesByProject = data
+      console.log(this.candidatesByProject)
+    })
   }
 
-  onSelectVacancy()
-  {
-    this.service.getCandidateByVacancyId(this.type)
-    .then(
-      response => {
-        console.log(response.data)
-        this.candidateData = response.data
-          localStorage.setItem('vid', this.type)
-          this.source.load(response.data)
-          }
-    )
-    console.log(this.source)
+  onSelectPosition() {
+    this.source = new LocalDataSource()
+    if(this.candidatesByProject != null && 
+      this.candidatesByProject[`${this.selectedPosition}`] != undefined) {
+       this.candidatesByPosition = this.candidatesByProject[`${this.selectedPosition}`]
+       this.source.load( this.candidatesByPosition)
+    }
+    console.log(this.candidatesByPosition)
+  
   }
+
+  // retrieveData()
+  // {
+  //   this.service.getVacancyData()
+  //    .then(
+  //      response => {
+  //         this.vacancy=response.data
+  //         }
+  //    )
+  // }
+
+  // onSelectVacancy()
+  // {
+  //   this.service.getCandidateByVacancyId(this.type)
+  //   .then(
+  //     response => {
+  //       console.log(response.data)
+  //       this.candidateData = response.data
+  //         localStorage.setItem('vid', this.type)
+  //         this.source.load(response.data)
+  //         }
+  //   )
+  //   console.log(this.source)
+  // }
 
   // copydata()
   // {
@@ -383,8 +405,7 @@ export class ListOfCandidateComponent implements OnInit {
   // }
 
   onUpdateRecord(event) {
-    //this.ngOnInit();
-    console.log("working...."+this.type)
+    console.log("working...."+ event.newData.vacancy.vacancyId)
       var data = {"id" : event.newData.id,
                   "candidateName" : event.newData.candidateName,
                   "contactNo" : event.newData.contactNo,
@@ -397,7 +418,7 @@ export class ListOfCandidateComponent implements OnInit {
                   "interviewStatus" :  event.newData.interviewStatus,
                   "finalStatus" : event.newData.finalStatus
                   };
-          this.service.updateCandidate(data,this.type)
+          this.service.updateCandidate(data, event.newData.vacancy.vacancyId)
           .then(
             response => {
                 event.confirm.resolve();

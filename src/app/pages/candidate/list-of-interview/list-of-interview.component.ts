@@ -121,12 +121,34 @@ export class ListOfInterviewComponent implements OnInit {
       },
       panelResponseStatus : {
         title:'Panel Response Status',
-        type: 'string',
+        type: 'html',
+        valuePrepareFunction: (value) => {
+          if(value == 'needsAction')
+             var color = 'text-warning'
+          if(value == 'accepted')
+             var color = 'text-success'
+          if(value == 'tentative')
+             var color = 'text-primary'
+          if(value == 'declined')
+             var color = 'text-danger'
+          return `<div class="`+color+`">${value}</div>`
+        },
         filter: true,
       },
       candidateResponseStatus : {
         title:'Candidate Response Status',
-        type: 'string',
+        type: 'html',
+        valuePrepareFunction: (value) => {
+          if(value == 'needsAction')
+             var color = 'text-warning'
+          if(value == 'accepted')
+             var color = 'text-success'
+          if(value == 'tentative')
+             var color = 'text-primary'
+          if(value == 'declined')
+             var color = 'text-danger'
+          return `<div class="`+color+`">${value}</div>`
+        },
         filter: true,
       },
       meetLink : {

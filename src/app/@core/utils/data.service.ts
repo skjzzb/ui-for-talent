@@ -243,7 +243,11 @@ export class DataService {
   }
 
   postOnFb(vacancy){
-   // return this.http.post("http://localhost:3000/post-fb",vacancy);
+        //return this.http.post("https://localhost:3000/post-fb",vacancy);
       return this.http.post("https://social-fb-app.herokuapp.com/post-fb",vacancy);
+  }
+
+  getCandidateByProjectName(projName){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCandidateByProject/${projName}`);
   }
 }

@@ -3,8 +3,13 @@
     <span>Candidates</span>
 </nb-card-header>
 <nb-card-body>
-  <nb-select [(selected)]="type" placeholder="Select Job Title" >
-    <nb-option *ngFor="let v of vacancy" (click)="onSelectVacancy()" [value]="v.vacancyId">{{ v.jobTitle }}</nb-option>
+  <P>First select Project and then Position</P>
+  <nb-select [(selected)]="selectedProject" placeholder="Select Project" >
+    <nb-option *ngFor="let p of allProjects" (click)="onSelectProject()" [value]="p.name">{{ p.name }}</nb-option>
+  </nb-select>
+  &nbsp;&nbsp;
+  <nb-select [(selected)]="selectedPosition" placeholder="Select Position" >
+    <nb-option *ngFor="let p of allPositions" (click)="onSelectPosition()" [value]="p.name">{{ p.name }}</nb-option>
   </nb-select>
   <br><br>
 <div>
