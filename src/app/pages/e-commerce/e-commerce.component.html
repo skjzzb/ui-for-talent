@@ -53,7 +53,7 @@
 
             <div class="card">
               <div class="card-body">
-                <table class="table table-hover">
+                <table class="table table-bordered">
                   <thead>
                     <tr>
                       <th>
@@ -76,7 +76,7 @@
   </nb-accordion>
   <nb-accordion *ngIf="selectedItemNgModel=='2'">
       
-    <nb-accordion-item *ngFor="let list of notAceeppted" [expanded]="list.expanded"  nbInfiniteList>
+    <nb-accordion-item  *ngFor="let list of notAceeppted" [expanded]="list.expanded"  nbInfiniteList>
       <nb-accordion-item-header (click)="not_availableClick(list.id)">
         <span><nb-action  style="    display: flex;
           ">
@@ -98,7 +98,7 @@
         </nb-accordion-item-header>          
         <nb-accordion-item-body >
           <nb-stepper  selectedIndex={{index}} orientation="horizontal" [nbSpinner]="true" nbSpinnerSize="large" nbSpinnerStatus="primary" disableStepNavigation   #stepper>
-            <nb-step completed="{{stat[i]}}" [label]="list" *ngFor="let list of lvl ;let i=index;">
+            <nb-step  completed="{{stat[i]}}" [label]="list" *ngFor="let list of lvl ;let i=index;">
               <ng-template  >{{list}}   </ng-template>
              
 
@@ -118,12 +118,11 @@
             </nb-step> 
 
            
-          </nb-stepper>
-          <!-- <button nbButton  (click)="goForward()" id="btn">next</button> -->
+          </nb-stepper> -->
 
           <div class="card">
             <div class="card-body">
-              <table class="table table-hover">
+              <table class="table table-bordered">
                 <thead>
                   <tr>
                     <th>
