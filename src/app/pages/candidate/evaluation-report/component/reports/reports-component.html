@@ -1,53 +1,64 @@
 
-<!-- <div class="card border-primary mb-3">
-  <div class="card-header">Header</div>
-  <div class="card-body text-primary">
-    <h5 class="card-title">Primary card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div> -->
-<div class="container" style="width: 800px;height: 900px; overflow:auto;">
-	<div class="row">
-    <div class="col-md-12">
-      <div class="card text-center" style=" overflow: hidden scroll;
-      margin-right: -5px;">
-        <div class="card-header">
-          <h6>Previous Evaluation</h6>
-          <!-- <ul class="nav nav-tabs card-header-tabs" >
-            <li class="nav-item" *ngFor="let r of report">
-              <a class="nav-link" href="#">{{r.interviewLevel}}</a>
-            </li>
-          </ul> -->
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <h6>Select Interview Level</h6>
-            <label for="Select Level" class="label">Select Level</label>
-            <nb-select placeholder="Select Level" fullWidth [(selected)]="selectedLevel"  >
-              <nb-option *ngFor="let l of report" (click)="onSelectLevel()" value="{{l.id}}">{{l.interviewLevel}}</nb-option>
-            </nb-select>
-          </div>
-          <div class="row">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th >Key Points</th>
-                  <th >Rate</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let que of questions">
-                  <th scope="row"><label class="label">{{que.question}}</label></th>
-                  <td>{{que.ratings}}&nbsp;&nbsp; /&nbsp;10</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <button id = "btn" nbButton class="btn btn-info" (click)="close()">Close Dialog</button>
-        </div>
+<div *ngIf='isReportPresent'>
+  <div class="col-md-12">
+    <nb-card   status="primary">
+      <nb-card-header>Evaluation Report
+        <button id = "btn" nbButton class="float-right" (click)="close()">
+          <nb-icon icon="close-square-outline"></nb-icon>
+        </button>
+      </nb-card-header>
+      <div style=" overflow-y:scroll; margin-left: 20px; height: 550px; width: auto;">
+          <nb-card-body>
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="Select Level" class="label">Select Level</label>
+                      <nb-select placeholder="Select Level" fullWidth [(selected)]="selectedLevel"  >
+                        <nb-option *ngFor="let l of report" (click)="onSelectLevel()" value="{{l.id}}">{{l.interviewLevel}}</nb-option>
+                      </nb-select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <label for="level" class="label">Interview Status</label>
+                      <input type="text" nbInput fullWidth name="level" [(ngModel)]="status" placeholder="Interview Status" readonly>
+                    </div>
+                    <div class="col-md-7">
+                      <label for="average" class="label">Average Rate</label>
+                      <input type="average" nbInput fullWidth id="average" name="average"  [(ngModel)]="selectedReport.averageRating"  placeholder="Ratings" readonly>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="feedback" class="label">Feedback</label>
+                      <textarea id="feedback" nbInput fullWidth id="feedback" name="feedback"  [(ngModel)]="selectedReport.feedback" placeholder="Evaluation Feedback"></textarea>
+                    </div>
+                  </div><br>
+              <div class="col-md-12">
+                <!-- <div class=" table-responsive"> -->
+                  <h4>Detail Ratings</h4>
+                  <br>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th >Key Points</th>
+                        <th >Rate</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let que of questions">
+                        <th scope="row"><label class="label">{{que.question}}</label></th>
+                        <td>{{que.ratings}}&nbsp;&nbsp; /&nbsp;10</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- </div> -->
+          </nb-card-body>
       </div>
-
-
-    </div>
+    </nb-card>
   </div>
 </div>

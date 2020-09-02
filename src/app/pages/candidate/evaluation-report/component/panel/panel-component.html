@@ -9,7 +9,7 @@
     <div class="card-body" *ngIf="opened">
       <form  #myForm="ngForm" (ngSubmit)="addRatings(myForm)" role="form">
     <div class="row" *ngFor="let q of questions"  >
-              <p><strong><em>{{q.concept}}</em></strong><p>
+              <p><strong><em>Concept &nbsp; - &nbsp;{{q.concept}}</em></strong><p>
 
               <table class="table table-striped">
                 <thead>

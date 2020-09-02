@@ -278,7 +278,7 @@ form{
     background-color: transparent;
     border-color: transparent transparent #f3f3f3;
     border-bottom: 3px solid !important;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
 }
 .project-tab .nav-link {
@@ -286,7 +286,7 @@ form{
     border-top-left-radius: .25rem;
     border-top-right-radius: .25rem;
     color: #0062cc;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
 }
 .project-tab .nav-link:hover {
@@ -295,6 +295,7 @@ form{
 .project-tab thead{
     background: #f3f3f3;
     color: #333;
+    font-size: 14px;
 }
 .project-tab a{
     text-decoration: none;

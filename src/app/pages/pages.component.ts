@@ -31,7 +31,7 @@ export class PagesComponent {
     MENU_ITEMS2: NbMenuItem[]=[];
     roles=null;
     feature
-    
+
 
   constructor(private tokenService:TokenStorageService,private dataService:DataService)
   {

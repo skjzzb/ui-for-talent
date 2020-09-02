@@ -13,8 +13,21 @@ export class ReportComponent implements OnInit {
   report: any;
   selectedLevel:any;
   questions:any;
+  selectedReport:any;
+  status:any;
+  isReportPresent:boolean = true;
 
   constructor(protected dialogRef: NbDialogRef<any>,private service:DataService) {
+
+    this.status = " ";
+    this.selectedReport = {
+      "id": 0,
+      "question": " ",
+      "averageRating": " ",
+      "interviewLevel": " ",
+      "candidateId": 0,
+      "feedback": " "
+    }
   }
 
   ngOnInit(): void {
@@ -22,7 +35,7 @@ export class ReportComponent implements OnInit {
     this.service.getEvaluationBycandidateId(this.id).subscribe
     ( result=>
       {
-        document.getElementById("btn").click();
+        // document.getElementById("btn").click();
         console.log(result);
         this.report = result;
         // this.selectedLevel = this.report.interviewLevel;
@@ -47,6 +60,19 @@ export class ReportComponent implements OnInit {
        }
      }
     console.log(report);
+    this.selectedReport = report;
+
+    //status
+    var str = this.selectedReport.interviewLevel.toUpperCase();
+    var index = 0 ;
+    if(str.includes('SELECTED'))
+         index = str.indexOf("SELECTED");
+    else
+         index = str.indexOf("REJECTED");
+    this.status = str.slice(index);
+    console.log(this.selectedReport);
+
+    //questions
     var keypoints = JSON.parse(report.question);
     console.log(keypoints);
     const objectArray = Object.entries(keypoints);
