@@ -1,7 +1,16 @@
-<ngx-legend-chart [legendItems]="chartLegend"></ngx-legend-chart>
-
-<nb-select class="period-select" [selected]="type" (selectedChange)="changePeriod($event)">
-  <nb-option *ngFor="let period of types" [value]="period">
-    {{ period }}
-  </nb-option>
-</nb-select>
+<nb-card-header>
+  <span class="title"><b>INTERVIEW</b></span><br><br>
+<div>
+  <div size="large">
+    <canvas baseChart height="400" width="850"
+      [datasets]="lineChartData"
+      [labels] = "lineChartLabels"
+      [options] = "lineChartOptions"
+      [legend] = "lineChartLegend"
+      [chartType] = "lineChartType"
+      [colors]="colors">
+     
+    </canvas>
+  </div>
+</div>
+</nb-card-header>

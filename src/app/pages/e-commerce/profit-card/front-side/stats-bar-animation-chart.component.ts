@@ -90,7 +90,7 @@ export class StatsBarAnimationChartComponent implements AfterViewInit, OnDestroy
             show: false,
           },
           axisLabel: {
-            show: false,
+            show: true,
           },
           axisTick: {
             show: false,
