@@ -92,7 +92,7 @@ export class EarningCardBackComponent implements OnInit {
       this.arr=Object.values(result);
       let name =  this.arr;
       this.barChartData.push({label: "Total Vacancy",
-      backgroundColor: "grey",
+      backgroundColor: "#6690FF",
       borderColor: "black",
       borderWidth: 1,data : name});
   });
@@ -106,7 +106,7 @@ export class EarningCardBackComponent implements OnInit {
     this.arr1=Object.values(result1);
     let name1 =  this.arr1;
     this.barChartData.push({label: "Total SELECTED",
-    backgroundColor: "red",
+    backgroundColor: "#FF7A65",
     borderColor: "black",
     borderWidth: 1,data : name1});
 });

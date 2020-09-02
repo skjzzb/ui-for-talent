@@ -24,7 +24,7 @@ export class ChartPanelHeaderComponent implements OnInit {
           },
           display: true,
           ticks: {
-            max : 60,
+            max : 30,
             min: 0
           }
       }]
@@ -94,7 +94,7 @@ export class ChartPanelHeaderComponent implements OnInit {
       this.key11= Object.values(result1);
       this.arr1=Object.values(result1);
       let name1 =  this.arr1;
-      this.lineChartData.push({label: "Total SELECTED",
+      this.lineChartData.push({label: "SELECTED",
       borderColor: "red",backgroundColor : "lightgrey",
       borderWidth: 1.5,data : name1});
   });
@@ -106,7 +106,7 @@ export class ChartPanelHeaderComponent implements OnInit {
       this.key= Object.values(result);
       this.arr=Object.values(result);
       let name =  this.arr;
-      this.lineChartData.push({label: "Total REJECTED",
+      this.lineChartData.push({label: "REJECTED",
       borderColor: "black",backgroundColor : "lightgrey",
       borderWidth: 1.5,data : name});
   });

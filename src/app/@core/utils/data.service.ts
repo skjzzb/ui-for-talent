@@ -228,7 +228,7 @@ export class DataService {
   }
 
   getCountOfVacancyForProject(str){
-    return this.http.get(`http://localhost:8080/v1/getCountOfVacancyForProject/${str}`);
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCountOfVacancyForProject/${str}`);
   }
 
   getCountOfSelectedForProject(){
