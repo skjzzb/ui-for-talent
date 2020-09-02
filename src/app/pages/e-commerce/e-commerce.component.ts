@@ -15,11 +15,8 @@ export class ECommerceComponent implements OnInit {
   status: any
   vacancyId: Number
   lvl: any[] = []
-<<<<<<< HEAD
   stat: any[] = []
-  completed = false;
-=======
->>>>>>> 6474bb8c53e44a06fa365a52918d453e9e74ecc5
+  completed=false;
   selectedLevel: any
   vacancyData: any
   currentRole: String
@@ -73,22 +70,9 @@ export class ECommerceComponent implements OnInit {
     console.log(this.logindetails.roles)
     this.currentRole = this.logindetails.roles[0];
     this.acccptedStatus();
-<<<<<<< HEAD
 
   }
 
-=======
-
-  }
-  fire() {
-    let inputElement: HTMLElement = this.fileInput.nativeElement as HTMLElement;
-    inputElement.click();
-  }
-  goForward() {
-    this.stepperComponent.next();
-    // document.getElementById("btn").click()
-  }
->>>>>>> 6474bb8c53e44a06fa365a52918d453e9e74ecc5
   acccptedStatus() {
 
     this.service.getAllConfirmedScheduledInterview().subscribe(data => {
@@ -112,7 +96,6 @@ export class ECommerceComponent implements OnInit {
           "expanded": false
 
         }
-<<<<<<< HEAD
 
         source.calEventId = element.calEventId
         source.candidateEmail = element.candidateEmail
@@ -233,198 +216,54 @@ export class ECommerceComponent implements OnInit {
   }
 
 
-  availableClick(id) {
-
-
-    let candidateInfo;
-    console.log("Hello Saurabh")
-    console.log(id)
-    console.log(this.users)
-    let interviewCandidate = this.service.getInterviewByInterviewId(id);
-    interviewCandidate.subscribe(data => {
-      candidateInfo = data;
-      console.log(candidateInfo)
-
-
-      console.log(candidateInfo.level)
-      this.meetLink = candidateInfo.meetLink
-      console.log(this.meetLink)
-      this.retrieveLevelData(candidateInfo.vacancyId, candidateInfo.level)
-      console.log(this.level)
-      //this.displayStepper(candidateInfo.vacancyId,candidateInfo.level)
-      // document.getElementById("btn").click();
-
-      this.level = ""
-
-=======
->>>>>>> 6474bb8c53e44a06fa365a52918d453e9e74ecc5
-
-        source.calEventId = element.calEventId
-        source.candidateEmail = element.candidateEmail
-        source.candidateId = element.candidateId
-        source.candidateResponseStatus = element.candidateResponseStatus
-        source.hrEmail = element.hrEmail
-        source.interviewId = element.interviewId
-        source.interviewStatus = element.interviewStatus
-        source.level = element.level
-        source.panelEmail = element.panelEmail
-        source.panelResponseStatus = element.panelResponseStatus
-        source.scheduledEndTime = element.scheduledEndTime
-        source.scheduledOn = element.scheduledOn
-        source.vacancyId = element.vacancyId
-        source.meetLink = element.meetLink
-        this.meetLink = element.meetLink
-        this.studentID = element.candidateId
-        this.interviewTime = element.scheduledOn
-        this.level = element.level
-        this.vacancyId = element.vacancyId
-        this.interviewID = element.interviewId
-        console.log(this.vacancyId)
-        if (element.candidateResponseStatus == "accepted") {
-          this.status = 1;
-        }
-        else {
-          this.status = 0;
-        }
-        //console.log(this.candidateData)
-        // console.log(typeof(this.candidateData))
-        let obResult = this.service.getCandidateById(this.studentID)
-        obResult.subscribe(data => {
-          this.candData = data
-          //this.users.name = data.candidateName;
-          let name = this.candData.candidateName;
-          let title = element.scheduledOn.substring(0, 10) + " " + element.scheduledOn.substring(11, 19);
-          let exp = false;
-          let id = element.interviewId;
-          this.users.push({ id: id, name: name, title: title, expanded: false });
-        })
-        // this.studentName=userData.glogindetails;
-        //this.users.push({name: data.candidateName,title:});
-        this.interviewTime = element.scheduledOn
-        this.confirmedScheduledInterview.push(source)
-      })
-      this.users = [];
-      this.lvl = []
-      console.log(this.confirmedScheduledInterview)
-      console.log(this.studentName)
-    })
-
+  availableClick(id)
+  {
+    
+  
+  let candidateInfo;
+  console.log("Hello Saurabh")
+  console.log(id)
+  console.log(this.users)
+  let interviewCandidate=this.service.getInterviewByInterviewId(id);
+  interviewCandidate.subscribe(data =>{
+     candidateInfo =data;
+    console.log(candidateInfo)
+  
+  
+    console.log(candidateInfo.level)
+    this.meetLink=candidateInfo.meetLink
+    console.log(this.meetLink)
+    this.retrieveLevelData(candidateInfo.vacancyId,candidateInfo.level)
+    console.log(this.level)
+    //this.displayStepper(candidateInfo.vacancyId,candidateInfo.level)
+    // document.getElementById("btn").click();
+    
+    this.level=""
+  
+  
+  })
+  
   }
-<<<<<<< HEAD
-=======
-  notAcceptedStatus() {
-    this.service.getListOfInterview()
-      .then(
-        response => {
-          console.log(response.data)
-          console.log(response.data[0].scheduledOn.substring(0, 10))
-          response.data.forEach(element => {
-            var source = {
-              "calEventId": "",
-              "candidateEmail": "",
-              "candidateId": 0,
-              "candidateResponseStatus": "",
-              "hrEmail": "",
-              "interviewId": 0,
-              "interviewStatus": "",
-              "level": "",
-              "panelEmail": "",
-              "panelResponseStatus": "",
-              "scheduledEndTime": "",
-              "scheduledOn": "",
-              "vacancyId": 0,
-              "meetLink": ""
-            }
-
-            source.calEventId = element.calEventId
-            source.candidateEmail = element.candidateEmail
-            source.candidateId = element.candidateId
-            source.candidateResponseStatus = element.candidateResponseStatus
-            source.hrEmail = element.hrEmail
-            source.interviewId = element.interviewId
-            source.interviewStatus = element.interviewStatus
-            source.level = element.level
-            source.panelEmail = element.panelEmail
-            source.panelResponseStatus = element.panelResponseStatus
-            source.scheduledEndTime = element.scheduledEndTime.substring(12, 19)
-            source.scheduledOn = element.scheduledOn.substring(0, 10)
-            source.vacancyId = element.vacancyId
-            source.meetLink = element.meetLink
-            this.nStudentID = element.candidateId
-            this.panalEmail = element.panelEmail
-            this.panalResponse = element.panelResponseStatus
-            this.candidatRespose = element.candidateResponseStatus
-            // this.retrieveLevelData(element.vacancyId,element.level)
-
-            this.scheduledInterview.push(source)
-            console.log(this.scheduledInterview)
-
-            let noAceepted = this.service.getCandidateById(this.nStudentID)
-            noAceepted.subscribe(data => {
-              this.candData = data
-              console.log(data)
-              //this.users.name = data.candidateName;
-              let name = this.candData.candidateName;
-              let title = element.scheduledOn.substring(0, 10) + " " + element.scheduledOn.substring(11, 19)
-              let id = element.interviewId
-              this.notAceeppted.push({ id: id, name: name, title: title, expanded: false });
-            })
-          });
-          // this.source=this.scheduledInterview
-        }
-      )
-    this.notAceeppted = []
-  }
-  stepNext() {
-    setTimeout(() => {
-      this.stepperComponent.next();
-    }, 4000);
-
-  }
-  availableClick(id) {
-    let candidateInfo;
-    console.log("Hello Saurabh")
-    console.log(id)
-    console.log(this.users)
-    let interviewCandidate = this.service.getInterviewByInterviewId(id);
-    interviewCandidate.subscribe(data => {
-      candidateInfo = data;
-      console.log(candidateInfo)
-      console.log(candidateInfo.level)
-      this.meetLink = candidateInfo.meetLink
-      console.log(this.meetLink)
-      this.retrieveLevelData(candidateInfo.vacancyId, candidateInfo.level)
-      console.log(this.level)
-      //this.displayStepper(candidateInfo.vacancyId,candidateInfo.level)
-      // document.getElementById("btn").click();
-      this.level = ""
-    })
-  }
->>>>>>> 6474bb8c53e44a06fa365a52918d453e9e74ecc5
-  not_availableClick(id) {
+   not_availableClick(id) {
     let candidateInfo;
     console.log("Hello not")
     console.log(id)
     console.log(this.users)
     let interviewCandidate = this.service.getInterviewByInterviewId(id);
-    interviewCandidate.subscribe(data => {
+      interviewCandidate.subscribe(data => {
       candidateInfo = data;
       console.log(candidateInfo)
-<<<<<<< HEAD
 
-=======
->>>>>>> 6474bb8c53e44a06fa365a52918d453e9e74ecc5
       this.panalResponse = candidateInfo.panelResponseStatus
       this.candidatRespose = candidateInfo.candidateResponseStatus
       console.log(candidateInfo.level)
       console.log(candidateInfo.level)
       this.meetLink = candidateInfo.meetLink
       console.log(this.meetLink)
-<<<<<<< HEAD
       console.log(this.lvl)
-      this.retrieveLevelData(candidateInfo.vacancyId, candidateInfo.level)
+     this.retrieveLevelData(candidateInfo.vacancyId, candidateInfo.level)
       // this.displayStepper(candidateInfo.vacancyId,candidateInfo.level) 
-
+    
 
 
       this.level = ""
@@ -433,61 +272,62 @@ export class ECommerceComponent implements OnInit {
     })
 
   }
-  goForward() {
+  goForward(){
 
     this.stepper.next();
-    // document.getElementById("btn").click()
+   // document.getElementById("btn").click()
 
-  }
-  retrieveLevelData(id, level) {
+}
+    retrieveLevelData(id, level) {
 
-    this.service.getVacancyById(id).subscribe(
+     this.service.getVacancyById(id).subscribe(
 
       data => {
-
+        
         this.vacancyData = data
         this.lvl = this.vacancyData.levelList.split(",")
-
+       
 
         for (let index = 0; index < this.lvl.length; index++) {
           this.lvl[index] = this.lvl[index].trim()
-
+          
           console.log("Dispaly Stepper" + this.lvl[index] + "----" + level + "---" + index)
-
-          this.completed = true;
-
+          
+          this.completed=true;
+          
           if (this.lvl[index] == level) {
             this.indexValue = index;
-            this.completed = false;
+            this.completed=false;
             //this.lvl[this.lvl.length]=index;
-            this.stat[index] = this.completed
-
-            for (let i = index + 1; i < this.lvl.length; i++) {
-              this.stat[i] = this.completed
-            }
-
-            console.log("the Complleted valus is " + this.completed + " inde is " + index)
+            this.stat[index]=this.completed
+        
+              for(let i=index+1;i<this.lvl.length;i++)
+              {
+                this.stat[i]=this.completed
+              }
+            
+            console.log("the Complleted valus is "+this.completed +" inde is "+index)
 
             break;
 
 
           }
+        
+          this.stat[index]=this.completed
+          
+         
+          console.log("the Complleted valus is "+this.completed +" inde is "+index)
 
-          this.stat[index] = this.completed
-
-
-          console.log("the Complleted valus is " + this.completed + " inde is " + index)
-
-
-
+          
+       
 
           console.log("Go forward method called" + this.lvl[index]);
         }
-        // this.lvl[this.lvl.length]=this.completed;
-        //  this.stepper.next();
-        //  this.stepper.next();
-        console.log("the Complleted valus is " + this.completed)
-
+       // this.lvl[this.lvl.length]=this.completed;
+      //  this.stepper.next();
+      //  this.stepper.next();
+        console.log("the Complleted valus is "+this.completed)
+    
         console.log(this.lvl + " LVL OBJ")
         console.log(this.stat + " Stat OBJ")
 
@@ -500,76 +340,6 @@ export class ECommerceComponent implements OnInit {
     this.lvl = []
   }
 
-=======
-      // this.displayStepper(candidateInfo.vacancyId,candidateInfo.level) 
-      console.log(this.lvl)
-      this.retrieveLevelData(candidateInfo.vacancyId, candidateInfo.level)
-      this.level = ""
-    })
-  }
 
-  displayStepper(id, level) {
-    this.service.getVacancyById(id).subscribe(
-
-      data => {
-        var ind = 0
-        this.vacancyData = data
-        this.lvl = this.vacancyData.levelList.split(",")
-
-        for (let index = 0; index < this.lvl.length; index++) {
-          this.lvl[index] = this.lvl[index].trim()
-          console.log("Dispaly Stepper" + this.lvl[index] + "----" + level + "---" + index)
-
-          if (this.lvl[index] == level) {
-            this.indexValue = index;
-            break;
-
-          }
-          ind++
-          this.myStepper.next()
-          console.log(this.lvl[index]);
-        }
-        this.myStepper.selectedIndex = ind
-        this.stepperComponent.selectedIndex = ind
-        console.log(ind + " IND in Dispaly is")
-      }
-    )
-    this.lvl = []
-    console.log(this.lvl)
-  }
-
-  retrieveLevelData(id, level) {
-    console.log(id)
-    this.service.getVacancyById(id).subscribe(
-      data => {
-        this.vacancyData = data
-        this.lvl = this.vacancyData.levelList.split(",")
-        for (let index = 0; index < this.lvl.length; index++) {
-          this.lvl[index] = this.lvl[index].trim()
-          console.log(this.lvl[index] + "----" + level + "---" + index)
-          if (this.lvl[index] == level) {
-            this.indexValue = index;
-            console.log(this.indexValue)
-            break;
-          }
-          //  this.myStepper.selected.completed = true;
-          console.log(this.lvl[index]);
-        }
-        // this.selectedActivityIndex=this.indexValue
-
-        setTimeout(() => {
-          document.getElementById('btn').click()
-        }, 5000);
-        ;
-      }
-    )
-    this.lvl = []
-    console.log(this.lvl)
-  }
->>>>>>> 6474bb8c53e44a06fa365a52918d453e9e74ecc5
-
-  ngAfterViewInit() {
-    this.stepperComponent.selectedIndex = 3
-  }
 
 }
