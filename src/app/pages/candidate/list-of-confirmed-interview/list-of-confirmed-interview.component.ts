@@ -62,12 +62,20 @@ export class ListOfConfirmedInterviewComponent implements OnInit {
       },
       panelResponseStatus : {
         title:'Panel Response Status',
-        type: 'string',
+        type: 'html',
+        valuePrepareFunction: (value) => {
+          var color = 'text-success'
+          return `<div class="`+color+`">${value}</div>`
+        },
         filter: true,
       },
       candidateResponseStatus : {
         title:'Candidate Response Status',
-        type: 'string',
+        type: 'html',
+        valuePrepareFunction: (value) => {
+          var color = 'text-success'
+          return `<div class="`+color+`">${value}</div>`
+        },
         filter: true,
       },
       meetLink : {
