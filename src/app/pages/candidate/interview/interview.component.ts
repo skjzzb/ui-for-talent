@@ -67,7 +67,7 @@ export class InterviewComponent implements OnInit {
 
   scheduleInterview(dataFromUI)
   {
-    var vacancyId = localStorage.getItem('vid')
+    var vacancyId = this.rowData.vacancy.vacancyId
     this.interview.panelEmail = dataFromUI.form.value.panel
     this.interview.candidateEmail = this.rowData.email
     this.interview.level = this.selectedLevel
@@ -145,8 +145,8 @@ export class InterviewComponent implements OnInit {
     data.yearOfExperience = this.rowData.yearOfExperience
     data.finalStatus = this.rowData.finalStatus
 
-    var vacancyId = localStorage.getItem('vid')
-    localStorage.removeItem('vid')
+    var vacancyId = this.rowData.vacancy.vacancyId
+  
     this.service.updateCandidate(data, vacancyId)
     .then(
       response =>{
@@ -164,7 +164,7 @@ export class InterviewComponent implements OnInit {
  
   retrieveLevelData()
   {
-    var vacancyId = localStorage.getItem('vid')
+    var vacancyId = this.rowData.vacancy.vacancyId;
     this.service.getVacancyById(vacancyId).subscribe(
     data =>{
       this.vacancyData = data
