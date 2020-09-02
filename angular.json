@@ -52,8 +52,10 @@
               "node_modules/tinymce/plugins/table/plugin.min.js",
               "node_modules/echarts/dist/echarts.min.js",
               "node_modules/echarts/dist/extension/bmap.min.js",
+              "node_modules/chart.js/dist/Chart.min.js",
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
               "node_modules/chart.js/dist/Chart.min.js"
-              
             ]
           },
           "configurations": {
@@ -192,3 +194,4 @@
     "analytics": false
   }
 }
+

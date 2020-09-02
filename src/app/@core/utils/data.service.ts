@@ -27,14 +27,17 @@ export class DataService {
 
 
 
-
+  getExperienceOfCandidateFromSubtechnology(subTechName){
+    console.log("data service method")
+    return this.http.get(`${API_URL}/getExperienceOfCandiatesFromSubtechnology/${subTechName}`)
+  }
 
   getExperiece(){
     return axios.get(`${API_URL1}/experienceofcandidate`,)
   }
 
   getTechnologyExperience(Technology){
-    return axios.get(`${API_URL1}/experience/${Technology}/`,)
+    return this.http.get(`${API_URL1}/experience/${Technology}/`,)
   }
 
   getVacancyChartData(){
@@ -64,6 +67,10 @@ export class DataService {
       return axios.get(`${API_URL}/subtechnology/technology/${id}/`,);
     }
 
+    getAllSubTechnologyData(){
+      return axios.get(`${API_URL}/subtechnology`);
+    }
+  
     getVacancyData() {
       return axios.get(`${API_URL}/vacancy?sort=avalible`,);
     }
@@ -249,5 +256,33 @@ export class DataService {
 
   getCandidateByProjectName(projName){
     return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCandidateByProject/${projName}`);
+  }
+  
+  getAllApplicationInMonth(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/monthapplication`);
+  }
+
+  getCountOfApplicationForProject(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCountOfApplicationForProject`);
+  }
+
+  getCountOfVacancyForProject(str){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCountOfVacancyForProject/${str}`);
+  }
+
+  getCountOfSelectedForProject(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCountOfSelectedForProject`);
+  }
+
+  getNumberOfRejectedMonthly(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getNumberOfRejectedMonthly`);
+  }
+
+  getSelectedMonthly(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getSelectedMonthly`);
+  }
+
+  getTotalInterviewMonthly(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getTotalInterviewMonthly`);
   }
 }

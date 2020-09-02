@@ -27,16 +27,4 @@
       }
     }
   }
-
-  ngx-earning-card-back,
-  ngx-earning-card-front {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  ::ng-deep nb-card-body {
-    overflow: hidden;
-    display: flex;
-  }
 }
