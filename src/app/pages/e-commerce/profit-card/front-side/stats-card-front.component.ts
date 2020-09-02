@@ -1,162 +1,99 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,TemplateRef, ViewChild} from '@angular/core';
+import {NbDialogService} from '@nebular/theme';
 import { ProfitBarAnimationChartData } from '../../../../@core/data/profit-bar-animation-chart';
 import { takeWhile } from 'rxjs/operators';
 import { DataService } from '../../../../@core/utils/data.service';
+import * as Chart from 'chart.js';
+import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
+import { ThemeService } from 'ng2-charts';
 
 @Component({
   selector: 'ngx-stats-card-front',
   styleUrls: ['./stats-card-front.component.scss'],
   templateUrl: './stats-card-front.component.html',
+  styles: [`
+  nb-card {
+    /**
+     * This is the max-width value of the Bootstrap giant modal
+     * Using it here ensures the modal will properly adjust it's width to the content
+     */
+    max-width: 800px;
+    /**
+     * This is the height value of NbComponentSize 'giant'
+     * By setting max-height of the modal card to this value, we ensure the modal will properly adjust it's height
+     * to the content
+     */
+    max-height: 44.25rem;
+  }
+`],
 })
-export class StatsCardFrontComponent {
+export class StatsCardFrontComponent implements OnInit{
 
-  private alive = true;
+  public barChartOptions = {
+    scaleShowVerticalLines : true,
+    responsive : true,
 
-  linesData: { firstLine: number[]; secondLine: number[] };
-
-  constructor(private profitBarAnimationChartService: ProfitBarAnimationChartData,private service: DataService) {
-    this.profitBarAnimationChartService.getChartData()
-      .pipe(takeWhile(() => this.alive))
-      .subscribe((linesData) => {
-        this.linesData = linesData;
-      });
-  }
-  multi:any[]
-  ngOnInit(){
-    this.retrieveDataOfVacancyChart();
-
-  }
-
-  retrieveDataOfVacancyChart(){
-    this.service.getVacancyChartData()
-    .then(
-      response => {
-         console.log(response);
-          this.multi=response.data;
-      }
-    )
-
-  }
-
- 
-
-  
-
-  
-
-  lineChartView: any[] = [550, 400];
-
-  // options
-  lineChartShowXAxis = true;
-  lineChartShowYAxis = true;
-  lineChartGradient = false;
-  lineChartShowLegend = false;
-  lineChartShowXAxisLabel = false;
-  lineChartXAxisLabel = 'Week';
-  lineChartShowYAxisLabel = false;
-  lineChartYAxisLabel = 'Vacancy';
-  
-  lineChartColorScheme = {
-      domain: ['#1CBCD8', '#FF8D60', '#FF586B', '#AAAAAA']
-  };
-  
-  // line, area
-  lineChartAutoScale = true;
-
-
-  multi1 = [
-   
-  
-    {
-      "name": "April",
-      "series": [
-        {
-          "name": "Vacancy",
-          "value": 78
-        },
-        {
-          "name": "Application",
-          "value": 120
-        },
-        {
-          "name": "Selected",
-          "value": 30
-        }
-      ]
-    },
-  
-    {
-      "name": "May",
-      "series": [
-        {
-          "name": "Vacancy",
-          "value": 50
-        },
-        {
-          "name": "Application",
-          "value": 100
-        },
-        {
-          "name": "Selected",
-          "value": 20
-        }
-      ]
+    scales: {
+      yAxes: [{
+          gridLines: {
+              display:false
+          },
+          display: true,
+          ticks: {
+            max : 60,
+            min: 0
+          }
+      }]
     },
 
-    {
-      "name": "June",
-      "series": [
-        {
-          "name": "Vacancy",
-          "value": 55
-        },
-        {
-          "name": "Application",
-          "value": 100
-        },
-        {
-          "name": "Selected",
-          "value": 20
-        }
-      ]
-    },
-
-    {
-      "name": "July",
-      "series": [
-        {
-          "name": "Vacancy",
-          "value": 50
-        },
-        {
-          "name": "Application",
-          "value": 100
-        },
-        {
-          "name": "Selected",
-          "value": 20
-        }
-      ]
-    },
-
-    {
-      "name": "August",
-      "series": [
-        {
-          "name": "Vacancy",
-          "value": 50
-        },
-        {
-          "name": "Application",
-          "value": 100
-        },
-        {
-          "name": "Selected",
-          "value": 20
-        }
-      ]
+    display: true,
+    labels: {
+      fontColor: '#4286f4',
+      backgroundColor: '#6FC8CE'
     }
-  ]
-   
+  };
 
+  public barChartLabels = ['Jan','Feb','March','April','May','June','July','Aug','Sep','Oct','Nov','Dec'];
+
+  public barChartType = 'bar';
+
+  public barChartLegend = true;
+
+  public colors : Array<any> = [
+    { 
+      backgroundColor: 'rgba(255,255,255,255)'
+    }
+   ]
+
+  
+    barChartData =[
+    { 
+      data : [],
+      label : " "
+    }
+  ];
+
+  constructor(private dataService : DataService){}
+  info : any;
+  arr : any;
+
+  
+
+  ngOnInit(): void {
+    let obResult = this.dataService.getAllApplicationInMonth();
+    obResult.subscribe(result=>{
+      this.info = result;
+      
+      const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {})
+      console.log(sortObject);
+
+      this.info = Object.entries(result);
+     this.arr=Object.values(result);
+    
+      let name = []= this.arr;
+    
+      this.barChartData.push({data : name,label : 'No. Of Application'});
+      this.colors.push({ backgroundColor: 'rgba(0,128,128)'});
+    });
+  }
 }
