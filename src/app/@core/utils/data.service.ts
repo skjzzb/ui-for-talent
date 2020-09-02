@@ -148,7 +148,7 @@ export class DataService {
 
     deleteUser(userId)
     {
-      return this.http.delete(`http://localhost:8080/api/profileDelete/${userId}`)
+      return this.http.delete(`https://authentication-api-cv.herokuapp.com/api/profileDelete/${userId}`)
     }
     getLevelData(){
        return this.http.get(`https://cv-processing-api.herokuapp.com/api/getListOfLevels`)
