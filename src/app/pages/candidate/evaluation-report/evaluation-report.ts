@@ -3,8 +3,10 @@ import { DataService } from '../../../@core/utils/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { PanelComponent } from './component/panel-component';
+import { PanelComponent } from './component/panel/panel-component';
 import { stringify } from 'querystring';
+import { NbDialogService } from '@nebular/theme';
+import { ReportComponent } from './component/reports/reports-component';
 
 
 @Component({
@@ -22,20 +24,24 @@ export class EvaluationReportComponent implements OnInit {
   ratings:any;
   evaluation : any;
   interview_level:String;
+  report:any;
 
 
   constructor( private service:DataService,
                private route :ActivatedRoute,
-              ){
-                this.ratings = [];
-                this.evaluation = {
-                  "averageRating": "string",
-                  "candidate": 0,
-                  "id": 0,
-                  "interviewLevel": "string",
-                  "question": "string"
-                }
-              }
+               private dialogService: NbDialogService
+              )
+  {
+    this.ratings = [];
+    this.evaluation = {
+      "averageRating": "string",
+      "candidateId": 0,
+      "feedback": "string",
+      "id": 0,
+      "interviewLevel": "string",
+      "question": "string"
+    }
+  }
 
   ngOnInit(): void {
     this.candidate = JSON.parse(this.route.snapshot.params["rowData"]);
@@ -72,6 +78,19 @@ export class EvaluationReportComponent implements OnInit {
     })
   }
 
+  getResume()
+  {
+
+  }
+
+  getEvaluation()
+  {
+      this.dialogService.open(ReportComponent, {context: {
+        id : this.candidate.id,
+      }}
+      );
+  }
+
   getObject($event:any)
   {
     this.questions = $event;
@@ -80,18 +99,18 @@ export class EvaluationReportComponent implements OnInit {
   {
     //cadidate data part
     this.evaluation.interviewLevel = this.interview_level.concat(" ",status);
-    this.evaluation.candidate = this.candidate.id;
+    this.evaluation.candidateId = this.candidate.id;
     this.candidate.interviewStatus = this.interview_level.concat(" ",status);
 
     //evaluation part
     this.getRatings;
-
+    this.evaluation.feedback = UIform.form.value.evaluation;
     console.log(this.ratings);
 
-    var myJSON = JSON.stringify(this.ratings).replace(/"/g, '\'');
-    console.log(myJSON);
+    // var myJSON = JSON.stringify(this.ratings).replace(/"/g, '\'');
+    // console.log(myJSON);
 
-    this.evaluation.question = myJSON;
+    this.evaluation.question = JSON.stringify(this.ratings);
     this.evaluation.averageRating = this.sum.reduce((a, b) => a + b) / this.sum.length;
 
 
@@ -106,11 +125,11 @@ export class EvaluationReportComponent implements OnInit {
       result=>
       {
         console.log(result);
-        this.service.updateCandidate(this.candidate,this.candidate.id).then(
-          result=>{
-            console.log(result);
-          }
-        )
+        // this.service.updateCandidate(this.candidate,this.candidate.id).then(
+        //   result=>{
+        //     console.log(result);
+        //   }
+        // )
       }
     );
   }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule, NbWindowModule } from '@nebular/theme';
+import { NbMenuModule, NbWindowModule, NbListModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -22,6 +22,7 @@ import { CvModule } from './cv/cv.module';
     PagesRoutingModule,
     ThemeModule,
     NbMenuModule,
+    NbListModule,
     DashboardModule,
     ECommerceModule,
     MiscellaneousModule,

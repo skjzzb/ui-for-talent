@@ -29,8 +29,11 @@ import { InterviewComponent } from './interview/interview.component';
 import { ListOfInterviewComponent } from './list-of-interview/list-of-interview.component';
 import { ReScheduleInterviewComponent } from './ReScheduleInterview/re-schedule-interview.component';
 import { EvaluationReportComponent } from './evaluation-report/evaluation-report';
+import { PanelComponent } from './evaluation-report/component/panel/panel-component';
 import { ListOfConfirmedInterviewComponent } from './list-of-confirmed-interview/list-of-confirmed-interview.component';
-import { PanelComponent } from './evaluation-report/component/panel-component';
+import { ReportComponent } from './evaluation-report/component/reports/reports-component';
+import { ResumeComponent } from './evaluation-report/component/resume/resume.component';
+
 
 
 @NgModule({
@@ -67,7 +70,9 @@ import { PanelComponent } from './evaluation-report/component/panel-component';
     ReScheduleInterviewComponent,
     EvaluationReportComponent,
     PanelComponent,
-    ListOfConfirmedInterviewComponent
+    ListOfConfirmedInterviewComponent,
+    ReportComponent,
+    ResumeComponent
   ]
 })
 export class CandidateModule { }

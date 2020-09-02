@@ -339,7 +339,7 @@ export var Vacancy =
   ],
 }
 
-export var Candidate = 
+export var Candidate =
   {
     title: 'Candidate',
     icon: 'person-outline',
@@ -397,7 +397,7 @@ export var Candidate =
           title: 'Add Level',
           link: '/pages/level/add-level',
         },
-      ],    
+      ],
   }
 
   export var cv ={
