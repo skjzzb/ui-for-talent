@@ -39,10 +39,10 @@ pieChartLabels =  ['1-5', '6-10', '11-15', '16 Above'];
 pieChartColor:any = [
     {
         backgroundColor: [
-        'rgba(30, 169, 224, 0.8)',
-        'rgba(255,165,0,0.9)',
-        'rgba(139, 136, 136, 0.9)',
-        'rgba(255, 161, 181, 0.9)'
+          'rgba(249, 71, 33, 0.8)',
+          'rgba(46,33,249,0.9)',
+          'rgba(8, 171, 40, 0.9)',
+          'rgba(247, 212, 13, 0.9)'
         ]
     }
 ]
@@ -83,10 +83,10 @@ pieChartData:any = [
     this.pieChartData.push({data : this.arr});
     this.pieChartColor.push({ 
       backgroundColor: [
-      'rgba(30, 169, 224, 0.8)',
-      'rgba(255,165,0,0.9)',
-      'rgba(139, 136, 136, 0.9)',
-      'rgba(255, 161, 181, 0.9)'
+      'rgba(249, 71, 33, 0.8)',
+      'rgba(46,33,249,0.9)',
+      'rgba(8, 171, 40, 0.9)',
+      'rgba(247, 212, 13, 0.9)'
       ]
   });
   

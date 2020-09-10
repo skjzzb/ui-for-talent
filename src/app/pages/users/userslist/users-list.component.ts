@@ -143,7 +143,7 @@ export class UsersListComponent implements OnInit{
     obResult.subscribe(data=>{
       this.userInfo = data
       console.log(this.userInfo)
-      this.copydata()
+      this.copydata();
     }) 
   }
 

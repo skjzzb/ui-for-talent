@@ -3,7 +3,11 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { DataService } from '../../../@core/utils/data.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-
+import { type } from 'os';
+import { async } from 'rxjs/internal/scheduler/async';
+import { defer } from 'rxjs';
+import { version } from 'process';
+import  Swal  from 'sweetalert2';
 
 @Component({
   selector: 'nb-add-vacancy',
@@ -206,6 +210,7 @@ class AddVacancyComponent implements OnInit{
       console.log(this.checked)
     }
 
+
   addVacancy(dataFromUI:any)
   {
   let vacancy=dataFromUI.form.value;
@@ -213,6 +218,7 @@ class AddVacancyComponent implements OnInit{
   {
     this.shareOnFb(vacancy)
   }
+  
   console.log(vacancy);
    this.service.addVacancy(vacancy)
    .then(
@@ -234,11 +240,13 @@ class AddVacancyComponent implements OnInit{
     }
    )
   } 
+ 
   shareOnFb(vacancy: any) {
     this.service.postOnFb(vacancy).subscribe((data) => {
       console.log(data)
     })
   }
+
   }
 
   export {AddVacancyComponent}
