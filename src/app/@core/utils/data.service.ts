@@ -72,7 +72,7 @@ export class DataService {
     }
   
     getVacancyData() {
-      return axios.get(`${API_URL}/vacancy?sort=avalible`,);
+      return axios.get(`${API_URL}/vacancy?sort=available`,);
     }
 
     DeteteVacancy(id) {
