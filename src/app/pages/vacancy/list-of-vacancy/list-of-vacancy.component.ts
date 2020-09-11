@@ -92,15 +92,24 @@ export class ListOfVacancyComponent implements OnInit {
       confirmDelete: true,
     },
     columns: {
-      jobTitle: {
-        title: 'Job Title',
+      projectName: {
+        title: 'Project',
         type: 'string',
         //width:'10%'
       },
-      projectName: {
-        title: 'Project Name',
+      jobTitle: {
+        title: 'Title',
         type: 'string',
         //width:'10%'
+      },
+      noOfVacancy:{
+        title:'Vacancy',
+        type:'number',
+        //width:'10%'
+      },
+      experienceRequired:{
+        title:'Experience',
+        type:'number'
       },
       posOpenDate: {
         title: 'Open Date',
@@ -117,17 +126,8 @@ export class ListOfVacancyComponent implements OnInit {
         type: 'string',
         //width:'10%'
       },
-      noOfVacancy:{
-        title:'Vacancy',
-        type:'number',
-        //width:'10%'
-      },
-      experienceRequired:{
-        title:'Experience Required',
-        type:'number'
-      },
       levelList :{
-        title:'Levels of Interview',
+        title:'Interview Levels',
         type:'string'
       },
       shortSummary:{
@@ -174,6 +174,7 @@ export class ListOfVacancyComponent implements OnInit {
     }
 
   onDeleteConfirm(event): void {
+
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
