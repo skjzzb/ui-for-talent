@@ -148,7 +148,7 @@ export class DataService {
 
     deleteUser(userId)
     {
-      return this.http.delete(`http://localhost:8080/api/profileDelete/${userId}`)
+      return this.http.delete(`https://authentication-api-cv.herokuapp.com/api/profileDelete/${userId}`)
     }
     getLevelData(){
        return this.http.get(`https://cv-processing-api.herokuapp.com/api/getListOfLevels`)
@@ -169,7 +169,7 @@ export class DataService {
     }
     addLevelData(level)
     {
-      return this.http.post(`http://localhost:8081/api/addLevel`,level);
+      return this.http.post(`https://cv-processing-api.herokuapp.com/api/addLevel`,level);
     }
 
     setMeeting(obj:any)
@@ -285,4 +285,11 @@ export class DataService {
   getTotalInterviewMonthly(){
     return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getTotalInterviewMonthly`);
   }
+
+  
+  createNewCandidate(candidateDummy)
+    {
+      return this.http.post(`http://localhost:8080/v1/createNewCandidate`,candidateDummy);
+    }
+
 }

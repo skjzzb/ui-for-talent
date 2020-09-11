@@ -43,7 +43,7 @@ export var MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Upload Resume',
+    title: 'Upload CV',
     icon: 'file-text-outline',
     children: [
       {

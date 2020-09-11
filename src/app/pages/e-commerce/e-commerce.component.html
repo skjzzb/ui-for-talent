@@ -1,7 +1,7 @@
 
 
   <nb-card>
-    <nb-card-header> Today Activity
+    <nb-card-header>Interview Updates
       <span style="float: right;">
         <nb-select  [(selected)]="selectedItemNgModel" status="primary">
           <nb-option value="1"  (click)="acccptedStatus()">Available &nbsp;&nbsp;</nb-option>
@@ -28,7 +28,7 @@
               </nb-user>
               <button nbButton status="success" style="       float: right;
               position: absolute;
-              margin-left: 500px;
+              margin-left: 700px;
                
             " *ngIf="status==1">Available</button> 
             <span>&nbsp;</span>
@@ -87,7 +87,7 @@
             </nb-user>
             <button nbButton status="danger" style="       float: right;
             position: absolute;
-            margin-left: 500px;
+            margin-left: 600px;
 
              
           " *ngIf="status==1">Not-Available</button> 
