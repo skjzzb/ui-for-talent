@@ -113,7 +113,7 @@ export class ButtonViewComponent implements OnInit {
   setButtonValue(){
     if(this.rowData.interviewStatus.includes("Scheduled") ||
     this.rowData.interviewStatus.includes("rejected")||
-    this.rowData.interviewStatus.includes("HR round selected")
+    this.rowData.interviewStatus.includes("HR")
       )
       this.interviewButton = "View Status"
   }
@@ -145,7 +145,8 @@ export class ListOfCandidateComponent implements OnInit {
   rows:any[] = []
 
   settings = {
-    actions:{add:false},
+    actions:{add:false,
+    edit:false},
      edit: {
        editButtonContent: '<i class="nb-edit"></i>',
        saveButtonContent: '<i class="nb-checkmark"></i>',
@@ -249,13 +250,6 @@ export class ListOfCandidateComponent implements OnInit {
         sortDirection:'desc',
         width:'10%'
       },
-      interviewStatus:{
-        title:'Interview Status',
-        type : 'string',
-        filter: true
-        //width:'20%'
-
-      },
       setInterview:{
         title:'Schedule Interview',
         type:'custom',
@@ -306,9 +300,7 @@ export class ListOfCandidateComponent implements OnInit {
     this.service.getAllProject().subscribe(data =>{
       this.allProjects = data
     })
-    this.service.getAllPositions().subscribe(data =>{
-      this.allPositions = data
-    })
+    
     this.color='text-danger'
   }
 
@@ -318,6 +310,10 @@ export class ListOfCandidateComponent implements OnInit {
     .subscribe( data => {
       this.candidatesByProject = data
       console.log(this.candidatesByProject)
+    })
+
+    this.service.getAllPositions().subscribe(data =>{
+      this.allPositions = data
     })
   }
 
@@ -418,6 +414,15 @@ export class ListOfCandidateComponent implements OnInit {
                   "interviewStatus" :  event.newData.interviewStatus,
                   "finalStatus" : event.newData.finalStatus
                   };
+                  Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Record is updated!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Update it!'
+                  })
           this.service.updateCandidate(data, event.newData.vacancy.vacancyId)
           .then(
             response => {
@@ -425,6 +430,34 @@ export class ListOfCandidateComponent implements OnInit {
             }
           )
   }
+
+  /*onDeleteConfirm(event): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.service.DeteteCandidate(event.data.id)
+        .then(
+          response => {
+              console.log(response);
+              event.confirm.resolve();
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+          }
+        )
+        
+      }
+    })
+  }*/
 
   onDeleteConfirm(event): void {
     Swal.fire({
@@ -452,5 +485,13 @@ export class ListOfCandidateComponent implements OnInit {
         
       }
     })
+    var info = event.data;
+    console.log(info);
+    this.service.createNewCandidate(info)
+     .subscribe(
+       response => {
+          console.log(response)
+       }
+     )
   }
 }

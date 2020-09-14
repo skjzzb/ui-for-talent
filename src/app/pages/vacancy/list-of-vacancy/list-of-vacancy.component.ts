@@ -10,12 +10,26 @@ import Swal from 'sweetalert2';
   selector: 'button-view',
   template: `
   <div>
-  <p>{{first3words}}
-  <button type="button" (click)="onClick()">
-  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-double-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
-    <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
-  </svg>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+.button {
+  background-color: #008CBA; /* Blue */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  height: 50px;
+  width: 150px;
+}
+.button2 {border-radius: 4px;}
+</style>
+  <p>
+  <button class="button button2" type="button" (click)="onClick()">
+  <i class="fa fa-file-word-o"></i> &nbsp;
+    View Summary
   </button>
   </p></div>`,
 })
@@ -92,15 +106,24 @@ export class ListOfVacancyComponent implements OnInit {
       confirmDelete: true,
     },
     columns: {
-      jobTitle: {
-        title: 'Job Title',
+      projectName: {
+        title: 'Project',
         type: 'string',
         //width:'10%'
       },
-      projectName: {
-        title: 'Project Name',
+      jobTitle: {
+        title: 'Title',
         type: 'string',
         //width:'10%'
+      },
+      noOfVacancy:{
+        title:'Vacancy',
+        type:'number',
+        //width:'10%'
+      },
+      experienceRequired:{
+        title:'Experience',
+        type:'number'
       },
       posOpenDate: {
         title: 'Open Date',
@@ -117,17 +140,8 @@ export class ListOfVacancyComponent implements OnInit {
         type: 'string',
         //width:'10%'
       },
-      noOfVacancy:{
-        title:'Vacancy',
-        type:'number',
-        //width:'10%'
-      },
-      experienceRequired:{
-        title:'Experience Required',
-        type:'number'
-      },
       levelList :{
-        title:'Levels of Interview',
+        title:'Interview Levels',
         type:'string'
       },
       shortSummary:{
@@ -174,6 +188,7 @@ export class ListOfVacancyComponent implements OnInit {
     }
 
   onDeleteConfirm(event): void {
+
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",

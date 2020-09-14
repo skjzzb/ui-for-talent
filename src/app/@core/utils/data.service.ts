@@ -27,14 +27,17 @@ export class DataService {
 
 
 
-
+  getExperienceOfCandidateFromSubtechnology(subTechName){
+    console.log("data service method")
+    return this.http.get(`${API_URL}/getExperienceOfCandiatesFromSubtechnology/${subTechName}`)
+  }
 
   getExperiece(){
     return axios.get(`${API_URL1}/experienceofcandidate`,)
   }
 
   getTechnologyExperience(Technology){
-    return axios.get(`${API_URL1}/experience/${Technology}/`,)
+    return this.http.get(`${API_URL1}/experience/${Technology}/`,)
   }
 
   getVacancyChartData(){
@@ -64,8 +67,12 @@ export class DataService {
       return axios.get(`${API_URL}/subtechnology/technology/${id}/`,);
     }
 
+    getAllSubTechnologyData(){
+      return axios.get(`${API_URL}/subtechnology`);
+    }
+  
     getVacancyData() {
-      return axios.get(`${API_URL}/vacancy?sort=avalible`,);
+      return axios.get(`${API_URL}/vacancy?sort=available`,);
     }
 
     DeteteVacancy(id) {
@@ -141,7 +148,7 @@ export class DataService {
 
     deleteUser(userId)
     {
-      return this.http.delete(`http://localhost:8080/api/profileDelete/${userId}`)
+      return this.http.delete(`https://authentication-api-cv.herokuapp.com/api/profileDelete/${userId}`)
     }
     getLevelData(){
        return this.http.get(`https://cv-processing-api.herokuapp.com/api/getListOfLevels`)
@@ -162,7 +169,7 @@ export class DataService {
     }
     addLevelData(level)
     {
-      return this.http.post(`http://localhost:8081/api/addLevel`,level);
+      return this.http.post(`https://cv-processing-api.herokuapp.com/api/addLevel`,level);
     }
 
     setMeeting(obj:any)
@@ -250,4 +257,39 @@ export class DataService {
   getCandidateByProjectName(projName){
     return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCandidateByProject/${projName}`);
   }
+  
+  getAllApplicationInMonth(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/monthapplication`);
+  }
+
+  getCountOfApplicationForProject(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCountOfApplicationForProject`);
+  }
+
+  getCountOfVacancyForProject(str){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCountOfVacancyForProject/${str}`);
+  }
+
+  getCountOfSelectedForProject(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCountOfSelectedForProject`);
+  }
+
+  getNumberOfRejectedMonthly(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getNumberOfRejectedMonthly`);
+  }
+
+  getSelectedMonthly(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getSelectedMonthly`);
+  }
+
+  getTotalInterviewMonthly(){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getTotalInterviewMonthly`);
+  }
+
+  
+  createNewCandidate(candidateDummy)
+    {
+      return this.http.post(`http://localhost:8080/v1/createNewCandidate`,candidateDummy);
+    }
+
 }

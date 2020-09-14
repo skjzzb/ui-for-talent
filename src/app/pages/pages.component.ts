@@ -6,7 +6,7 @@ import { dashboard } from './pages-menu';
 import { users } from './pages-menu';
 import { Level } from './pages-menu';
 
-import { uploadResume } from './pages-menu';
+// import { uploadResume } from './pages-menu';
 
 import { MENU_ITEMS } from './pages-menu';
 import { NbMenuItem } from '@nebular/theme';
@@ -76,7 +76,7 @@ export class PagesComponent {
     if(this.feature.userList)
     this.MENU_ITEMS2.push(users)
     if(true)
-    this.MENU_ITEMS2.push(uploadResume)
+    // this.MENU_ITEMS2.push(uploadResume)
     if(this.feature.Level)
     this.MENU_ITEMS2.push(Level)
     this.MENU_ITEMS2.push(cv)

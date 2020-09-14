@@ -31,7 +31,8 @@ export class ListOfCv implements OnInit {
 
   settings = {
     actions:{add:false,
-             edit:false},
+             edit:false,
+             delete:false},
      delete: {
        deleteButtonContent: '<i class="nb-trash"></i>',
        confirmDelete: true,
@@ -63,15 +64,16 @@ export class ListOfCv implements OnInit {
     )
   }
 
-  onDeleteConfirm(event): void {
+  /*onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();
-    }
-  }
+    }*/
 
- 
+   
+
+
   }
 
 

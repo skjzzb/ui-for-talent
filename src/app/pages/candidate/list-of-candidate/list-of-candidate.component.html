@@ -3,7 +3,7 @@
     <span>Candidates</span>
 </nb-card-header>
 <nb-card-body>
-  <P>First select Project and then Position</P>
+  <P>First select Project</P>
   <nb-select [(selected)]="selectedProject" placeholder="Select Project" >
     <nb-option *ngFor="let p of allProjects" (click)="onSelectProject()" [value]="p.name">{{ p.name }}</nb-option>
   </nb-select>
