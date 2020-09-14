@@ -3,19 +3,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <nb-card>
-  <nb-card-header>
-    <span>Project Vacancy</span>
+  <nb-card-header >
+    <span class="title">Project Vacancy</span>
     <nb-select placeholder="Select Project"  [selected]="selectedProject" [(selected)]="selectedProject" (selectedChange)="changeProject($event)">
       <nb-option *ngFor="let p of projects" [value]="p.name">{{p.name}}</nb-option>
     </nb-select>
   </nb-card-header>
   <nb-card-body>
     <div class="table-responsive">
-    <table  class="table table-striped table-hover table-borderless">
+    <table  class="table table-borderless">
       <thead>
-        <tr>
-          <th style="text-align: center;">Position</th>
-          <th style="text-align: center;">Total Applications</th>
+        <tr class="table-primary">
+          <th >Position</th>
+          <th style="text-align: center;">Applications</th>
           <th style="text-align: center;">Technical - 1</th>
           <th style="text-align: center;">Technical - 2</th>
           <th style="text-align: center;">Technical - 3</th>
@@ -25,7 +25,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of vacancyDetails">
-          <th scope="row" style="text-align: center;">{{item.position}}</th>
+          <td scope="row" >{{item.position}}</td>
           <td style="text-align: center;">{{item.applications}}</td>
           <td style="text-align: center;">{{item.technical_1}}</td>
           <td style="text-align: center;">{{item.technical_2}}</td>

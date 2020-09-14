@@ -1,12 +1,12 @@
 
-<nb-card status="success">
+<nb-card status="primary">
     <nb-card-header>
         <span>Upload Multiple Resume</span>
     </nb-card-header>
   <nb-card-body>
       <div class="row">      
       <div class="col-md-4"> <br>
-        <label for="" class="label">select vacancy</label> <br>    
+        <label for="" class="label">Select Vacancy</label> <br>    
         <nb-select [(selected)]="vacancyId" placeholder="select job title" >
           <nb-option *ngFor="let v of vacancy" [value]="v.vacancyId">{{ v.jobTitle }}</nb-option>
           <nb-option  value="0">All</nb-option>
@@ -25,8 +25,10 @@
         <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
         </ng2-smart-table>
       </div>
-
-      <div class="row action-btn"> <br><br>
+      <br><br>
+     
+      <div class="row action-btn"> 
+        &nbsp; &nbsp;
         <button type="button" nbButton status="danger" (click)="submitFile()" >Submit All Resume</button>
       </div>
 
