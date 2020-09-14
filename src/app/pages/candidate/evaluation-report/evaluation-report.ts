@@ -125,11 +125,11 @@ export class EvaluationReportComponent implements OnInit {
       result=>
       {
         console.log(result);
-        // this.service.updateCandidate(this.candidate,this.candidate.id).then(
-        //   result=>{
-        //     console.log(result);
-        //   }
-        // )
+        this.service.updateCandidate(this.candidate,this.candidate.vacancy.vacancyId).then(
+          result=>{
+            console.log(result);
+          }
+        )
       }
     );
   }
