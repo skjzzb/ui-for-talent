@@ -134,7 +134,8 @@ export class InterviewComponent implements OnInit {
       "technologyStack": "",
       "technologyStackMatchingPercent": 0,
       "yearOfExperience": 0,
-      "finalStatus": ""
+      "finalStatus": "",
+      "employmentStatus" : ""
     }
 
     data.candidateName = this.rowData.candidateName
@@ -148,6 +149,7 @@ export class InterviewComponent implements OnInit {
     data.technologyStackMatchingPercent = this.rowData.technologyStackMatchingPercent
     data.yearOfExperience = this.rowData.yearOfExperience
     data.finalStatus = this.rowData.finalStatus
+    data.employmentStatus = this.rowData.employmentStatus
 
     var vacancyId = this.rowData.vacancy.vacancyId
 
