@@ -3,6 +3,7 @@ import { DataService } from '../../@core/utils/data.service';
 import { NbStepperComponent } from '@nebular/theme';
 import { AfterViewInit } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
+import { Router } from '@angular/router';
 @Component({
   selector: 'ngx-ecommerce',
   templateUrl: './e-commerce.component.html',
@@ -26,6 +27,7 @@ export class ECommerceComponent implements OnInit {
   interviewTime: string
   interviewID: Number
   meetLink: String
+  candidateIID:Number
   users: { id: Number, name: string, title: string, expanded: false }[] = [];
   notAceeppted: { id: Number, name: string, title: string, expanded: false }[] = [];
 
@@ -62,7 +64,7 @@ export class ECommerceComponent implements OnInit {
   ];
   selectedCityId: number = null;
 
-  constructor(private service: DataService) { }
+  constructor(private service: DataService,private router:Router) { }
   ngOnInit(): void {
     this.selectedCityId = this.listtype[0].id;
 
@@ -214,7 +216,17 @@ export class ECommerceComponent implements OnInit {
 
 
   }
+  onClick()
+  {
+  //  console.log(this.rowData)
+    // this.router.navigate(['/pages/candidate/evaluation-report',JSON.stringify(this.rowData)]);
+let candData;
+    this.service.getCandidateById(this.candidateIID).subscribe(data=>{
+        candData=data;
+        this.router.navigate(['/pages/candidate/evaluation-report',JSON.stringify(candData)]);
+    })
 
+  }
 
   availableClick(id)
   {
@@ -232,6 +244,8 @@ export class ECommerceComponent implements OnInit {
   
     console.log(candidateInfo.level)
     this.meetLink=candidateInfo.meetLink
+    this.candidateIID=candidateInfo.candidateId;
+    
     console.log(this.meetLink)
     this.retrieveLevelData(candidateInfo.vacancyId,candidateInfo.level)
     console.log(this.level)
