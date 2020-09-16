@@ -93,7 +93,8 @@
             </div>
             <div class="col-md-12">
               <div class="row action-btn">
-                <button type="submit" nbButton status="warning" (click)="getResume()">View Resume</button>
+                <a target="_blank" class="btn btn-primary" href={{candidate.resumeURL}} style="color: aliceblue;margin-top: 3px;" role="button">View Resume</a>
+                <!-- <button type="submit" nbButton status="warning" (click)="getResume()">View Resume</button>                                                                                                                                                                                                                                            -->
                 &nbsp;&nbsp;&nbsp;
                 <button type="button" nbButton status="danger" (click)="getEvaluation()">
                   View previous Evaluation

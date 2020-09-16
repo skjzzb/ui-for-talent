@@ -412,7 +412,9 @@ export class ListOfCandidateComponent implements OnInit {
                   "shortSummaryMatchingPercent" : event.newData.shortSummaryMatchingPercent,
                   "technologyStackMatchingPercent" : event.newData.technologyStackMatchingPercent,
                   "interviewStatus" :  event.newData.interviewStatus,
-                  "finalStatus" : event.newData.finalStatus
+                  "finalStatus" : event.newData.finalStatus,
+                  "employmentStatus" : event.newData.employmentStatus,
+                  "resumeURL" : event.newData.resumeURL
                   };
                   Swal.fire({
                     title: 'Are you sure?',

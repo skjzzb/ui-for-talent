@@ -15,7 +15,7 @@ export class ReportComponent implements OnInit {
   questions:any;
   selectedReport:any;
   status:any;
-  isReportPresent:boolean = true;
+  isReportPresent:boolean = false;
 
   constructor(protected dialogRef: NbDialogRef<any>,private service:DataService) {
 
@@ -38,6 +38,13 @@ export class ReportComponent implements OnInit {
         // document.getElementById("btn").click();
         console.log(result);
         this.report = result;
+        if(this.report.length == 0)
+          this.isReportPresent = false;
+        else
+        {
+          this.isReportPresent = true;
+        }
+
         // this.selectedLevel = this.report.interviewLevel;
 
       })

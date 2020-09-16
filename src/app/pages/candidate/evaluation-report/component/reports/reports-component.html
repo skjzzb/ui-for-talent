@@ -62,3 +62,9 @@
     </nb-card>
   </div>
 </div>
+
+<div *ngIf='!isReportPresent'>
+  <div class="alert alert-warning" role="alert">
+    Evaluation report is not generated yet!!!
+  </div>
+</div>

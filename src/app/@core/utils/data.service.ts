@@ -70,7 +70,7 @@ export class DataService {
     getAllSubTechnologyData(){
       return axios.get(`${API_URL}/subtechnology`);
     }
-  
+
     getVacancyData() {
       return axios.get(`${API_URL}/vacancy?sort=available`,);
     }
@@ -246,7 +246,7 @@ export class DataService {
 
   getEvaluationBycandidateId(id)
   {
-    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/GetEvaluationReport/${id}`);
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/GetEvaluationReportByCandidateId/${id}`);
   }
 
   postOnFb(vacancy){
@@ -257,7 +257,7 @@ export class DataService {
   getCandidateByProjectName(projName){
     return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getCandidateByProject/${projName}`);
   }
-  
+
   getAllApplicationInMonth(){
     return this.http.get(`https://cv-processing-api.herokuapp.com/v1/monthapplication`);
   }
@@ -286,7 +286,7 @@ export class DataService {
     return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getTotalInterviewMonthly`);
   }
 
-  
+
   createNewCandidate(candidateDummy)
     {
       return this.http.post(`http://localhost:8080/v1/createNewCandidate`,candidateDummy);
