@@ -56,8 +56,8 @@ export class EvaluationReportComponent implements OnInit {
      {
        console.log(result.data)
        this.technologies = result.data;
-       this.interview_level = this.candidate.interviewStatus;
-       this.interview_level = this.interview_level.toLowerCase().replace(/selected/gi,'').replace(/scheduled/gi,'')
+       let int_lvl = this.candidate.interviewStatus;
+       this.interview_level =  int_lvl.charAt(0).toUpperCase()+ int_lvl.slice(1).toLowerCase().replace(/selected/gi,'').replace(/scheduled/gi,'')
                                          .replace('rejected ','').replace(/\s/g,'');
        console.log(this.interview_level);
        //  for( var i = 0 ; i<this.technologies.length;i++)
