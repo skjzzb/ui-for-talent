@@ -19,23 +19,25 @@
       <nb-accordion-item *ngFor="let list of users" [expanded]="list.expanded"  nbInfiniteList>
         
         <nb-accordion-item-header (click)="availableClick(list.id)">
-          <span><nb-action  style="    display: flex;
-            ">
-           
+          <nb-action  style="    display: flex;  ">
+           <div>
               <nb-user [name]="list.name" [title]="list.title" >
               
                 
-              </nb-user>
-              <button nbButton status="success" style="       float: right;
-              position: absolute;
-              margin-left: 700px;
-               
-            " *ngIf="status==1">Available</button> 
+              </nb-user></div>
+              
             <span>&nbsp;</span>
+            <div style=" position: absolute;
+            right: 50px;">
+                
+              <button nbButton status="success"              
+            *ngIf="status==1">Available</button> </div> 
            
           
-        </nb-action></span>  
-          </nb-accordion-item-header>           
+        </nb-action>
+         
+          </nb-accordion-item-header>   
+              
 
           <nb-accordion-item-body >
        
@@ -85,12 +87,10 @@
             
               
             </nb-user>
-            <button nbButton status="danger" style="       float: right;
-            position: absolute;
-            margin-left: 600px;
-
-             
-          " *ngIf="status==1">Not-Available</button> 
+            <div style=" position: absolute;
+            right: 50px;">
+            <button nbButton status="danger" style="              
+          " *ngIf="status==1">Not-Available</button> </div>
           <span>&nbsp;</span>
          
         
