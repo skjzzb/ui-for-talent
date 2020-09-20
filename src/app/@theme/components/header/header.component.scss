@@ -6,7 +6,12 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-
+  .log{
+   // width: px;
+    height: 40px;
+    font-family: Open Sans, sans-serif;
+    
+  }
   .logo-container {
     display: flex;
     align-items: center;
