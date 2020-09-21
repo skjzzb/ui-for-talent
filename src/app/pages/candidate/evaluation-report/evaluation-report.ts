@@ -119,8 +119,8 @@ export class EvaluationReportComponent implements OnInit {
     // console.log(myJSON);
 
     this.evaluation.question = JSON.stringify(this.ratings);
-    this.evaluation.averageRating = this.sum.reduce((a, b) => a + b) / this.sum.length;
-
+    let avg = this.sum.reduce((a, b) => a + b) / this.sum.length;
+    this.evaluation.averageRating = avg.toFixed(2);
 
     // console.log("str-->"+myJSON)
     // myJSON = myJSON.replace(/\s/g, '_');
@@ -137,10 +137,16 @@ export class EvaluationReportComponent implements OnInit {
           result=>{
             console.log(result);
             this.showToast(2000,'success');
+            this.refreshForm(UIform);
           }
         )
       }
     );
+  }
+  refreshForm(dataFromUI)
+  {
+    dataFromUI.reset();
+    this.ratings = null;
   }
 
   getRatings($event:any)
