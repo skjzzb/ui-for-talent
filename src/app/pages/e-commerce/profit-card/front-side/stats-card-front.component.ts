@@ -92,7 +92,7 @@ export class StatsCardFrontComponent implements OnInit{
     
       let name = []= this.arr;
     
-      this.barChartData.push({data : name,label : 'No. Of Application'});
+      this.barChartData.push({data : name,label : 'APPLICATIONS'});
       this.colors.push({ backgroundColor: 'rgba(50,136,203)'});
     });
   }
