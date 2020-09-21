@@ -389,7 +389,7 @@ export var Candidate =
     //   ],
   // }
 
-   export var Level ={
+   export var level ={
       title: 'Level',
       icon: 'file-text-outline',
       children: [
