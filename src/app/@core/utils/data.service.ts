@@ -292,4 +292,9 @@ export class DataService {
       return this.http.post(`http://localhost:8080/v1/createNewCandidate`,candidateDummy);
     }
 
+  getQuestionsForHr()
+  {
+    let pathVar = "Soft Skill"
+    return this.http.get(`https://cv-processing-api.herokuapp.com/api/getAllConcept/${pathVar}`);
+  }
 }

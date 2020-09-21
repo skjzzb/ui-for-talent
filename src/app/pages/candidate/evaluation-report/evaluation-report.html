@@ -14,7 +14,8 @@
       <nb-card-body> -->
       <section id="tabs" class="project-tab">
         <div class="container">
-            <div class="row">
+            <div class="row"  style="border: 1px solid #ccc;
+            box-shadow: 0 4px 8px 0  #ccc, 0 6px 20px 0  #ccc; padding: 15px;">
                 <div class="col-md-12">
                     <nav>
                         <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
@@ -26,32 +27,32 @@
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                             <table class="table" cellspacing="0">
                               <thead>
-                                <tr>
-                                  <th scope="col"></th>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Details</th>
+                                <tr class="d-flex">
+                                  <th scope="col" class="col-2"></th>
+                                  <th scope="col" class="col-4">#</th>
+                                  <th scope="col" class="col-6">Details</th>
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <th scope="row"></th>
-                                  <td>Candidate Name</td>
-                                  <td>{{candidate.candidateName}}</td>
+                                <tr class="d-flex">
+                                  <th scope="row"  class="col-2"></th>
+                                  <td class="col-4">Candidate Name</td>
+                                  <td class="col-6">{{candidate.candidateName}}</td>
                                 </tr>
-                                <tr>
-                                  <th scope="row"></th>
-                                  <td>Employment Status</td>
-                                  <td>{{candidate.employmentStatus}}</td>
+                                <tr class="d-flex">
+                                  <th scope="row" class="col-2"></th>
+                                  <td class="col-4">Employment Status</td>
+                                  <td class="col-6">{{candidate.employmentStatus}}</td>
                                 </tr>
-                                <tr>
-                                  <th scope="row"></th>
-                                  <td>Experience</td>
-                                  <td>{{candidate.yearOfExperience}}</td>
+                                <tr class="d-flex">
+                                  <th scope="row" class="col-2"></th>
+                                  <td class="col-4">Experience</td>
+                                  <td class="col-6">{{candidate.yearOfExperience}}</td>
                                 </tr>
-                                <tr>
-                                  <th scope="row"></th>
-                                  <td>Skills</td>
-                                  <td>{{candidate.technologyStack}}</td>
+                                <tr class="d-flex">
+                                  <th scope="row" class="col-2"></th>
+                                  <td class="col-4">Skills</td>
+                                  <td class="col-6">{{candidate.technologyStack}}</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -59,32 +60,32 @@
                         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                             <table class="table" cellspacing="0">
                               <thead>
-                                <tr>
-                                  <th scope="col"></th>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Details</th>
+                                <tr class="d-flex">
+                                  <th scope="col" class="col-2"></th>
+                                  <th scope="col" class="col-4">#</th>
+                                  <th scope="col" class="col-6">Details</th>
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <th scope="row"></th>
-                                  <td>Title</td>
-                                  <td>{{vacancy.jobTitle}}</td>
+                                <tr class="d-flex">
+                                  <th scope="row" class="col-2"></th>
+                                  <td class="col-4">Title</td>
+                                  <td class="col-6">{{vacancy.jobTitle}}</td>
                                 </tr>
-                                <tr>
-                                  <th scope="row"></th>
-                                  <td>Technologies Used</td>
-                                  <td>{{vacancy.jd}}</td>
+                                <tr class="d-flex">
+                                  <th scope="row" class="col-2"></th>
+                                  <td class="col-4">Technologies Used</td>
+                                  <td class="col-6">{{vacancy.jd}}</td>
                                 </tr>
-                                <tr>
-                                  <th scope="row"></th>
-                                  <td>Project</td>
-                                  <td>{{vacancy.projectName}}</td>
+                                <tr class="d-flex">
+                                  <th scope="row" class="col-2"></th>
+                                  <td class="col-4">Project</td>
+                                  <td class="col-6">{{vacancy.projectName}}</td>
                                 </tr>
-                                <tr>
-                                  <th scope="row"></th>
-                                  <td>Summary</td>
-                                  <td>{{vacancy.shortSummary}}</td>
+                                <tr class="d-flex">
+                                  <th scope="row" class="col-2"></th>
+                                  <td class="col-4">Summary</td>
+                                  <td class="col-6">{{vacancy.shortSummary}}</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -93,11 +94,11 @@
             </div>
             <div class="col-md-12">
               <div class="row action-btn">
-                <a target="_blank" class="btn btn-primary" href={{candidate.resumeURL}} style="color: aliceblue;margin-top: 3px;" role="button">View Resume</a>
+                <a target="_blank" class="btn btn-primary" href={{candidate.resumeURL}} style="color: aliceblue;margin-top: 3px;" role="button">View CV</a>
                 <!-- <button type="submit" nbButton status="warning" (click)="getResume()">View Resume</button>                                                                                                                                                                                                                                            -->
                 &nbsp;&nbsp;&nbsp;
                 <button type="button" nbButton status="danger" (click)="getEvaluation()">
-                  View previous Evaluation
+                  EVALUATION REPORT
                 </button>
               </div>
             </div>
@@ -108,21 +109,27 @@
 </nb-card> -->
   <nb-card style="margin-top:20px; margin-bottom:20px">
       <nb-card-header>{{interview_level}} Evaluation</nb-card-header>
-      <nb-card-body>
+      <nb-card-body >
         <h3>
           <span class="text-muted" style="font-size: 14px;">Pick Technology</span>
         </h3>
         <div style="margin:10px">
 
           <form  #myForm="ngForm" (ngSubmit)="onSubmit(myForm,'selected')" role="form">
-            <div *ngIf="!(interview_level.includes('hr') || interview_level.includes('Hr') || interview_level.includes('HR')); then thenBlock ">
+            <!-- <div *ngIf="flag; else elseBlock "> -->
              <panel *ngFor="let c of technologies"
              [title]="c" [opened]="c.opened" (getObject)="getObject($event)"
              (rating_out)="getRatings($event)"
              >
-          </panel>
-           </div>
-           <ng-template #thenBlock><h2>Content to render when condition is false.</h2></ng-template>
+            </panel>
+           <!-- </div> -->
+           <!-- <ng-template #elseBlock><h2>Content to render when condition is false.</h2>
+            <panel *ngFor="let c of technologies"
+            [title]="c" [opened]="c.opened" (getObject)="getObject($event)"
+            (rating_out)="getRatings($event)"
+            >
+           </panel>
+          </ng-template> -->
             <div class="row">
               <div class="col-md-12">
                 <label class="label">Add Comments Here</label>

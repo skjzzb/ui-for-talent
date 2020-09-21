@@ -5,8 +5,9 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { PanelComponent } from './component/panel/panel-component';
 import { stringify } from 'querystring';
-import { NbDialogService } from '@nebular/theme';
+import { NbComponentStatus, NbDialogService } from '@nebular/theme';
 import { ReportComponent } from './component/reports/reports-component';
+import { NbToastrService } from '@nebular/theme';
 
 
 @Component({
@@ -25,15 +26,17 @@ export class EvaluationReportComponent implements OnInit {
   evaluation : any;
   interview_level:String;
   report:any;
-
+  flag : boolean;
 
   constructor( private service:DataService,
                private route :ActivatedRoute,
-               private dialogService: NbDialogService
+               private dialogService: NbDialogService,
+               private toastrService: NbToastrService
               )
   {
     this.ratings = [];
     this.interview_level = "";
+    this.flag = true;
     this.evaluation = {
       "averageRating": "string",
       "candidateId": 0,
@@ -61,8 +64,18 @@ export class EvaluationReportComponent implements OnInit {
        int_lvl = int_lvl.toLowerCase().replace(/selected/gi,'').replace(/scheduled/gi,'')
                                          .replace('rejected ','').replace(/\s/g,'');
       this.interview_level = int_lvl.charAt(0).toUpperCase() + int_lvl.slice(1);
-       console.log(this.interview_level);
+      int_lvl = this.interview_level.toLowerCase();
+      this.flag = int_lvl.includes("hr")  ? false : true;
+      if(!this.flag)
+        this.technologies = ["Soft Skill"]
+       console.log(this.interview_level + " " + this.flag);
     })
+
+    this.service.getQuestionsForHr()
+    .subscribe( result =>
+      {
+        console.log(result);
+      })
   }
 
   getResume()
@@ -82,6 +95,14 @@ export class EvaluationReportComponent implements OnInit {
   {
     this.questions = $event;
   }
+
+  showToast(duration,status: NbComponentStatus) {
+    let index = 0;
+    this.toastrService.success(status,
+      'Evaluation submited successfully!!',
+      { duration });
+  }
+
   onSubmit(UIform,status)
   {
     //cadidate data part
@@ -115,6 +136,7 @@ export class EvaluationReportComponent implements OnInit {
         this.service.updateCandidate(this.candidate,this.candidate.vacancy.vacancyId).then(
           result=>{
             console.log(result);
+            this.showToast(2000,'success');
           }
         )
       }
