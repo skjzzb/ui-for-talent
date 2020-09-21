@@ -75,10 +75,12 @@ export class PagesComponent {
     this.MENU_ITEMS2.push(Candidate)
     if(this.feature.userList)
     this.MENU_ITEMS2.push(users)
-    if(true)
+    //if(true)
+   // this.MENU_ITEMS2.push(Level)
     // this.MENU_ITEMS2.push(uploadResume)
     if(this.feature.Level)
     this.MENU_ITEMS2.push(Level)
+    if(this.feature.cv) 
     this.MENU_ITEMS2.push(cv)
     this.menu=this.MENU_ITEMS2
   }
