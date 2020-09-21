@@ -118,7 +118,7 @@ export class ChartPanelHeaderComponent implements OnInit {
       this.key2= Object.values(result2);
       this.arr2=Object.values(result2);
       let name2 =  this.arr2;
-      this.lineChartData.push({label: "Total INTERVIEW",
+      this.lineChartData.push({label: "TOTAL INTERVIEW",
       borderColor: "blue",backgroundColor : "lightgrey",
       borderWidth: 1.5,data : name2});
   });

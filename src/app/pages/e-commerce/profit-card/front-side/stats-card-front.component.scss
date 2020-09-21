@@ -10,11 +10,11 @@
   }
 
   nb-card-header {
-    margin-bottom: -1px;
+    margin-bottom: -2px;
   }
 
   nb-card-body {
-    position: relative;
+    position: absolute;
     padding: 0;
     overflow: hidden;
   }
@@ -23,8 +23,8 @@
     position: relative;
 
     ::ng-deep .echart {
-      height: 70%;
-      width: 70%;
+      height: 100%;
+      width: 100%;
     }
   }
 }
