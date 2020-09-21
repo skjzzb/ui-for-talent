@@ -5,8 +5,9 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { PanelComponent } from './component/panel/panel-component';
 import { stringify } from 'querystring';
-import { NbDialogService } from '@nebular/theme';
+import { NbComponentStatus, NbDialogService } from '@nebular/theme';
 import { ReportComponent } from './component/reports/reports-component';
+import { NbToastrService } from '@nebular/theme';
 
 
 @Component({
@@ -25,14 +26,17 @@ export class EvaluationReportComponent implements OnInit {
   evaluation : any;
   interview_level:String;
   report:any;
-
+  flag : boolean;
 
   constructor( private service:DataService,
                private route :ActivatedRoute,
-               private dialogService: NbDialogService
+               private dialogService: NbDialogService,
+               private toastrService: NbToastrService
               )
   {
     this.ratings = [];
+    this.interview_level = "";
+    this.flag = true;
     this.evaluation = {
       "averageRating": "string",
       "candidateId": 0,
@@ -56,26 +60,22 @@ export class EvaluationReportComponent implements OnInit {
      {
        console.log(result.data)
        this.technologies = result.data;
-       this.interview_level = this.candidate.interviewStatus;
-       this.interview_level = this.interview_level.toLowerCase().replace(/selected/gi,'').replace(/scheduled/gi,'')
+       let int_lvl = this.candidate.interviewStatus;
+       int_lvl = int_lvl.toLowerCase().replace(/selected/gi,'').replace(/scheduled/gi,'')
                                          .replace('rejected ','').replace(/\s/g,'');
-       console.log(this.interview_level);
-       //  for( var i = 0 ; i<this.technologies.length;i++)
-      //  {
-      //    this.service.getConceptById(this.technologies[i]).then
-      //    (result=>
-      //      {
-      //        console.log(result);
-      //        this.concepts = result.data;
-      //       this.questions =  this.concepts.map(element=>
-      //         {
-      //           console.log( element.question.split(","));
-      //           return {"concept":element.concept,"question" :element.question.split(",")};
-      //         })
-      //         console.log(this.questions);
-      //      })
-      //   }
+      this.interview_level = int_lvl.charAt(0).toUpperCase() + int_lvl.slice(1);
+      int_lvl = this.interview_level.toLowerCase();
+      this.flag = int_lvl.includes("hr")  ? false : true;
+      if(!this.flag)
+        this.technologies = ["Soft Skill"]
+       console.log(this.interview_level + " " + this.flag);
     })
+
+    this.service.getQuestionsForHr()
+    .subscribe( result =>
+      {
+        console.log(result);
+      })
   }
 
   getResume()
@@ -95,6 +95,14 @@ export class EvaluationReportComponent implements OnInit {
   {
     this.questions = $event;
   }
+
+  showToast(duration,status: NbComponentStatus) {
+    let index = 0;
+    this.toastrService.success(status,
+      'Evaluation submited successfully!!',
+      { duration });
+  }
+
   onSubmit(UIform,status)
   {
     //cadidate data part
@@ -111,8 +119,8 @@ export class EvaluationReportComponent implements OnInit {
     // console.log(myJSON);
 
     this.evaluation.question = JSON.stringify(this.ratings);
-    this.evaluation.averageRating = this.sum.reduce((a, b) => a + b) / this.sum.length;
-
+    let avg = this.sum.reduce((a, b) => a + b) / this.sum.length;
+    this.evaluation.averageRating = avg.toFixed(2);
 
     // console.log("str-->"+myJSON)
     // myJSON = myJSON.replace(/\s/g, '_');
@@ -128,10 +136,17 @@ export class EvaluationReportComponent implements OnInit {
         this.service.updateCandidate(this.candidate,this.candidate.vacancy.vacancyId).then(
           result=>{
             console.log(result);
+            this.showToast(2000,'success');
+            this.refreshForm(UIform);
           }
         )
       }
     );
+  }
+  refreshForm(dataFromUI)
+  {
+    dataFromUI.reset();
+    this.ratings = null;
   }
 
   getRatings($event:any)

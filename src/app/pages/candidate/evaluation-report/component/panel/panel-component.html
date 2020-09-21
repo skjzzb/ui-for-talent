@@ -13,15 +13,15 @@
 
               <table class="table table-striped">
                 <thead>
-                  <tr>
-                    <th >Key Points</th>
-                    <th >Rate</th>
+                  <tr class="d-flex">
+                    <th class="col-6">Key Points</th>
+                    <th class="col-6">Rate</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let que of q.question">
-                    <th scope="row"><label class="label">{{que}}</label></th>
-                    <td> <input type="number"
+                  <tr *ngFor="let que of q.question" class="d-flex">
+                    <th scope="row" class="col-6"><label class="label">{{que}}</label></th>
+                    <td class="col-6"> <input type="number"
                                 [(ngModel)]="ratings[que]"
                                  nbInput
                                  name={{que}}
@@ -43,7 +43,7 @@
         </div>
         <div class="col-md-12" >
           <div class="row action-btn">
-            <button type="submit" class="btn btn-primary">confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
           </div>
         </div>
 </form>

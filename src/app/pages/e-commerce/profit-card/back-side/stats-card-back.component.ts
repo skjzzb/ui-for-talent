@@ -80,7 +80,7 @@ export class StatsCardBackComponent implements OnInit {
 
       this.arr=Object.values(result);
       let name = []= this.arr;
-      this.barChartData.push({data : name,label : 'No. Of rejected '});
+      this.barChartData.push({data : name,label : 'REJECTED'});
       this.colors.push({ backgroundColor: 'rgba(238, 61, 58)'});
     });
   }
