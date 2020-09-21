@@ -33,6 +33,7 @@ export class EvaluationReportComponent implements OnInit {
               )
   {
     this.ratings = [];
+    this.interview_level = "";
     this.evaluation = {
       "averageRating": "string",
       "candidateId": 0,
@@ -57,24 +58,10 @@ export class EvaluationReportComponent implements OnInit {
        console.log(result.data)
        this.technologies = result.data;
        let int_lvl = this.candidate.interviewStatus;
-       this.interview_level =  int_lvl.charAt(0).toUpperCase()+ int_lvl.slice(1).toLowerCase().replace(/selected/gi,'').replace(/scheduled/gi,'')
+       int_lvl = int_lvl.toLowerCase().replace(/selected/gi,'').replace(/scheduled/gi,'')
                                          .replace('rejected ','').replace(/\s/g,'');
+      this.interview_level = int_lvl.charAt(0).toUpperCase() + int_lvl.slice(1);
        console.log(this.interview_level);
-       //  for( var i = 0 ; i<this.technologies.length;i++)
-      //  {
-      //    this.service.getConceptById(this.technologies[i]).then
-      //    (result=>
-      //      {
-      //        console.log(result);
-      //        this.concepts = result.data;
-      //       this.questions =  this.concepts.map(element=>
-      //         {
-      //           console.log( element.question.split(","));
-      //           return {"concept":element.concept,"question" :element.question.split(",")};
-      //         })
-      //         console.log(this.questions);
-      //      })
-      //   }
     })
   }
 

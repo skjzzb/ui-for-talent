@@ -113,12 +113,16 @@
           <span class="text-muted" style="font-size: 14px;">Pick Technology</span>
         </h3>
         <div style="margin:10px">
+
           <form  #myForm="ngForm" (ngSubmit)="onSubmit(myForm,'selected')" role="form">
+            <div *ngIf="!(interview_level.includes('hr') || interview_level.includes('Hr') || interview_level.includes('HR')); then thenBlock ">
              <panel *ngFor="let c of technologies"
              [title]="c" [opened]="c.opened" (getObject)="getObject($event)"
              (rating_out)="getRatings($event)"
              >
           </panel>
+           </div>
+           <ng-template #thenBlock><h2>Content to render when condition is false.</h2></ng-template>
             <div class="row">
               <div class="col-md-12">
                 <label class="label">Add Comments Here</label>
