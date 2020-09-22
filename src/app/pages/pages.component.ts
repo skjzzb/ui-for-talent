@@ -4,7 +4,7 @@ import { Candidate, cv } from './pages-menu';
 import { Vacancy } from './pages-menu';
 import { dashboard } from './pages-menu';
 import { users } from './pages-menu';
-import { Level } from './pages-menu';
+import { level } from './pages-menu';
 
 // import { uploadResume } from './pages-menu';
 
@@ -75,11 +75,8 @@ export class PagesComponent {
     this.MENU_ITEMS2.push(Candidate)
     if(this.feature.userList)
     this.MENU_ITEMS2.push(users)
-    //if(true)
-   // this.MENU_ITEMS2.push(Level)
-    // this.MENU_ITEMS2.push(uploadResume)
-    if(this.feature.Level)
-    this.MENU_ITEMS2.push(Level)
+    if(this.feature.level)
+    this.MENU_ITEMS2.push(level)
     if(this.feature.cv) 
     this.MENU_ITEMS2.push(cv)
     this.menu=this.MENU_ITEMS2
