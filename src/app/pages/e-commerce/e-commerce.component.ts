@@ -1,9 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataService } from '../../@core/utils/data.service';
-import { NbStepperComponent } from '@nebular/theme';
+import { NbStepperComponent ,NbDialogService} from '@nebular/theme';
 import { AfterViewInit } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
+import { ReScheduleInterviewComponent } from '../candidate/ReScheduleInterview/re-schedule-interview.component';
+
+
+
 @Component({
   selector: 'ngx-ecommerce',
   templateUrl: './e-commerce.component.html',
@@ -30,6 +34,8 @@ export class ECommerceComponent implements OnInit {
   candidateIID:Number
   users: { id: Number, name: string, title: string, expanded: false }[] = [];
   notAceeppted: { id: Number, name: string, title: string, expanded: false }[] = [];
+  rowData:any
+
 
 
   @ViewChild('item', { static: true }) accordion;
@@ -63,8 +69,9 @@ export class ECommerceComponent implements OnInit {
     //{ id: 3, name: 'Pavilnys', disabled: true }
   ];
   selectedCityId: number = null;
+  CardComponent
 
-  constructor(private service: DataService,private router:Router) { }
+  constructor(private service: DataService,private router:Router,private dialogService: NbDialogService) { }
   ngOnInit(): void {
     this.selectedCityId = this.listtype[0].id;
 
@@ -227,6 +234,17 @@ let candData;
     })
 
   }
+  onReschedule()
+  {
+    console.log('Reschedule clicked')
+    console.log(this.rowData)
+    //let rowData;
+    this.CardComponent = ReScheduleInterviewComponent;
+    this.dialogService.open(this.CardComponent, {context: {
+      rowData: this.rowData,
+    }
+  })
+}
 
   availableClick(id)
   {
@@ -266,6 +284,7 @@ let candData;
     let interviewCandidate = this.service.getInterviewByInterviewId(id);
       interviewCandidate.subscribe(data => {
       candidateInfo = data;
+      this.rowData=candidateInfo
       console.log(candidateInfo)
 
       this.panalResponse = candidateInfo.panelResponseStatus
