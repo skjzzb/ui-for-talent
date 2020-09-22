@@ -223,27 +223,41 @@ class AddVacancyComponent implements OnInit{
    this.service.addVacancy(vacancy)
    .then(
      Response => {
-      if (window.confirm("vacancy is added. do you want to add more record ?"))
-      {
-        this.selectedItem=null;
-        //this.selectedtechnology=null;
-        this.ClickedSubtechnology=null;
-        this.ClickedLevel=null;
-        dataFromUI.form.reset();
-      }else
-      {
-        this.router.navigate(['/pages/vacancy/list-of-vacancy']);
-      }
-      //this.ngOnDestroy()
-      //this.ngOnInit()
-      //window.location.reload()
+      // if (window.confirm("vacancy is added. do you want to add more record ?"))
+      // {
+      //   this.selectedItem=null;
+      //   //this.selectedtechnology=null;
+      //   this.ClickedSubtechnology=null;
+      //   this.ClickedLevel=null;
+      //   dataFromUI.form.reset();
+      // }else
+      // {
+      //   this.router.navigate(['/pages/vacancy/list-of-vacancy']);
+      // }
+      
+      Swal.fire({
+        title: 'Opportunity is created. Do you want to add more record ?',
+        showCancelButton: true,
+        confirmButtonText: `Yes`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          this.selectedItem=null;
+          this.ClickedSubtechnology=null;
+          this.ClickedLevel=null;
+          dataFromUI.form.reset();
+        } 
+        else{
+          this.router.navigate(['/pages/vacancy/list-of-vacancy']);
+        }
+      })
     }
    )
   } 
  
   shareOnFb(vacancy: any) {
     this.service.postOnFb(vacancy).subscribe((data) => {
-      console.log(data)
+      // console.log(data)
     })
   }
 
