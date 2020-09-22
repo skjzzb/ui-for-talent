@@ -156,7 +156,7 @@ export class DataService {
     }
     addMultipleResume(vacancyId,listOfFiles)
     {
-      return axios.put(`${API_URL}/${vacancyId}`,listOfFiles)
+      return axios.post(`https://application-form-processing.herokuapp.com/uploadmultipleprofiles/`,listOfFiles)
     }
     getAllhr()
     {
