@@ -60,10 +60,7 @@
 </div>
 
 <div *ngIf="checkIfInterviewIsScheduled()" style="background-color: white;">
-  <nb-card status="primary">
-    <nb-card-header>Interview Status</nb-card-header>
-  </nb-card>
-  <nb-card-body>
-    <h6> &nbsp;&nbsp;&nbsp;&nbsp; {{heading}}  &nbsp;&nbsp;&nbsp;&nbsp;</h6>
-  </nb-card-body>
+    <div class="alert alert-warning" role="alert">
+      &nbsp;&nbsp;&nbsp;&nbsp; {{heading}}  &nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
 </div>

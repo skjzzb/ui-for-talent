@@ -149,7 +149,7 @@
                       <button nbButton status="warning" *ngIf="candidatRespose!='accepted'" >{{candidatRespose}}</button></td>
                     <td><button nbButton status="success" *ngIf="panalResponse=='accepted'" >{{panalResponse}}</button>
                       <button nbButton status="warning" *ngIf="panalResponse!='accepted'" >{{panalResponse}}</button></td>
-                    <td><button nbButton status="primary" > Reschedule Interview </button></td>
+                    <td><button nbButton status="primary" (click)="onReschedule()" > Reschedule Interview </button></td>
                   </tr>
 
                 </tbody>

@@ -154,6 +154,7 @@ item=[];
 
        this.uname=localStorage.getItem('email');
   this.nam=localStorage.getItem('name');
+
   this.photo=localStorage.getItem('profile');
       
 
@@ -164,6 +165,7 @@ item=[];
     this.nam=localStorage.getItem('name');
     console.log(this.email);
     console.log(this.nam);
+  
 this.dataService.getGUserDetails(this.email).toPromise().then(data=>{
    console.log(data)
 });
@@ -195,7 +197,9 @@ if(!this.dataService.getGUserDetails(this.email).toPromise().then(data=>{ return
     ///End
     this.user =  JSON.parse(sessionStorage.getItem('user_info'))
     if(!localStorage.getItem(this.key))
-    { this.role=this.user.roles[0];}
+    { this.role=this.user.roles[0];
+   
+    }
     // this.userService
     //   .getUsers()
     //   .pipe(takeUntil(this.destroy$))
@@ -256,6 +260,7 @@ if(!this.dataService.getGUserDetails(this.email).toPromise().then(data=>{ return
               timer: 3500,
               
             })
+
           }
         }   
       });
@@ -297,6 +302,11 @@ if(!this.dataService.getGUserDetails(this.email).toPromise().then(data=>{ return
     this.tokenStorageService.signOut();
     window.sessionStorage.clear();
     window.location.reload();
+   // setTimeout(function(){window.location.reload(); }, 3000);
+
+    
+
+
 
   }
   lgout() {

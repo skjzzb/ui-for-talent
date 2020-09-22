@@ -12,7 +12,7 @@ export class UploadMultipleResumeComponent implements OnInit {
   vacancyId
   listOfFileName:any[]=[];
 
-  listOfFiles:any[]=[];
+  listOfFiles:File[]=[];
   resume:{
     fileName:any
   }
@@ -47,6 +47,7 @@ export class UploadMultipleResumeComponent implements OnInit {
      .then(
        response => {
           this.vacancy=response.data
+          console.log(this.vacancy)
           }
      )
     }
@@ -61,10 +62,13 @@ export class UploadMultipleResumeComponent implements OnInit {
        var temp = {
         "name" : ""
       }
-        temp.name=file.name;
+      let id=this.vacancyId;
+        temp.name=id + "_"+file.name;
         this.listOfFileName.push(temp)
         this.source.load(this.listOfFileName)
         console.log(this.source)
+        console.log(temp.name);
+
        
     }
 
@@ -82,6 +86,7 @@ export class UploadMultipleResumeComponent implements OnInit {
         var temp = {
           "name" : ""
         }
+        
           temp.name=element.name;
           newListOfName.push(temp)
       }

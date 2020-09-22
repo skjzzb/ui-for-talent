@@ -322,7 +322,232 @@ export var MENU_ITEMS: NbMenuItem[] = [
   },
 ];
 
-export var Vacancy =
+
+let use=sessionStorage.getItem('user_info');
+let arr=use.split('["');
+arr=arr[1].split('"]');
+use=arr[0];
+
+console.log(use);
+console.log("User Information");
+
+var vac,can,c,lvl,dash,usr;
+
+if(use==='ROLE_HR')
+{
+  vac =
+  {
+    title: 'Opportunity',
+    icon: 'bookmark',
+    children: [
+
+      {
+        title: 'Opportunities',
+        link: '/pages/vacancy/list-of-vacancy',
+      },
+    ],
+  }
+  
+   can =
+    {
+      title: 'Candidate',
+      icon: 'person-outline',
+      children: [
+        {
+          title: 'Candidates',
+          link: '/pages/candidate/list-of-candidate',
+        },
+        {
+          title: 'Confirmed Interviews',
+          link: '/pages/candidate/list-of-confirmed-interview',
+        },
+        {
+          title: 'Interview Needs to Re-schedule',
+          link: '/pages/candidate/list-of-interview',
+        },
+      ],
+    }
+  
+    dash = {
+        title: 'Dashboard',
+        icon: 'grid-outline',
+        link: '/pages/dashboard',
+        home: true,
+      }
+  
+
+  
+  
+      // export var uploadResume ={
+      //   title: 'Upload Resume',
+      //   icon: 'file-text-outline',
+      //   children: [
+      //     {
+      //       title: 'Upload Resume',
+      //       link: '/pages/uploadResume/upload-resume',
+      //     },
+      //   ],
+    // }
+  
+     lvl ={
+        title: 'Level',
+        icon: 'file-text-outline',
+        children: [
+          {
+            title: 'Add Level',
+            link: '/pages/level/add-level',
+          },
+        ],
+    }
+  
+     c ={
+      title: 'Resume',
+      icon: 'layers-outline',
+      children: [
+        {
+          title: 'Total Resume',
+          link: '/pages/cv/list-of-cv',
+        },
+        {
+          title: 'Upload Resume',
+          link: '/pages/uploadResume/upload-resume',
+        }
+      ],
+  }
+}
+else if(use==='ROLE_PANEL')
+{
+  vac =
+  {
+    title: 'Opportunity',
+    icon: 'bookmark',
+    children: [
+     
+      {
+        title: 'Opportunities',
+        link: '/pages/vacancy/list-of-vacancy',
+      },
+    ],
+  }
+  
+   can =
+    {
+      title: 'Candidate',
+      icon: 'person-outline',
+      children: [
+        {
+          title: 'Candidates',
+          link: '/pages/candidate/list-of-candidate',
+        },
+        {
+          title: 'Confirmed Interviews',
+          link: '/pages/candidate/list-of-confirmed-interview',
+        },
+        
+      ],
+    }
+  
+    dash = {
+        title: 'Dashboard',
+        icon: 'grid-outline',
+        link: '/pages/dashboard',
+        home: true,
+      }
+  
+      
+  
+  
+      // export var uploadResume ={
+      //   title: 'Upload Resume',
+      //   icon: 'file-text-outline',
+      //   children: [
+      //     {
+      //       title: 'Upload Resume',
+      //       link: '/pages/uploadResume/upload-resume',
+      //     },
+      //   ],
+    // }
+  
+  
+  
+   
+  
+ 
+
+}
+else if(use==='ROLE_MODERATOR')
+{
+  vac =
+  {
+    title: 'Opportunity',
+    icon: 'bookmark',
+    children: [
+      {
+        title: 'Create Opportunity',
+        link: '/pages/vacancy/add-vacancy',
+        home: true,
+      },
+      {
+        title: 'Opportunities',
+        link: '/pages/vacancy/list-of-vacancy',
+      },
+    ],
+  }
+  
+   can =
+    {
+      title: 'Candidate',
+      icon: 'person-outline',
+      children: [
+        {
+          title: 'Candidates',
+          link: '/pages/candidate/list-of-candidate',
+        },
+        {
+          title: 'Confirmed Interviews',
+          link: '/pages/candidate/list-of-confirmed-interview',
+        },
+        
+      ],
+    }
+  
+    dash = {
+        title: 'Dashboard',
+        icon: 'grid-outline',
+        link: '/pages/dashboard',
+        home: true,
+      }
+  
+   
+  
+  
+      // export var uploadResume ={
+      //   title: 'Upload Resume',
+      //   icon: 'file-text-outline',
+      //   children: [
+      //     {
+      //       title: 'Upload Resume',
+      //       link: '/pages/uploadResume/upload-resume',
+      //     },
+      //   ],
+    // }
+  
+     lvl ={
+        title: 'Level',
+        icon: 'file-text-outline',
+        children: [
+          {
+            title: 'Add Level',
+            link: '/pages/level/add-level',
+          },
+        ],
+    }
+
+   
+
+}
+else if(use==='ROLE_ADMIN'){
+ vac =
 {
   title: 'Opportunity',
   icon: 'bookmark',
@@ -339,7 +564,7 @@ export var Vacancy =
   ],
 }
 
-export var Candidate =
+ can =
   {
     title: 'Candidate',
     icon: 'person-outline',
@@ -359,14 +584,14 @@ export var Candidate =
     ],
   }
 
-  export var dashboard = {
+  dash = {
       title: 'Dashboard',
       icon: 'grid-outline',
       link: '/pages/dashboard',
       home: true,
     }
 
-    export var users ={
+    usr ={
         title: 'Users',
         icon: 'people-outline',
         children: [
@@ -389,7 +614,7 @@ export var Candidate =
     //   ],
   // }
 
-   export var Level ={
+   lvl ={
       title: 'Level',
       icon: 'file-text-outline',
       children: [
@@ -400,7 +625,7 @@ export var Candidate =
       ],
   }
 
-  export var cv ={
+   c ={
     title: 'Resume',
     icon: 'layers-outline',
     children: [
@@ -414,3 +639,12 @@ export var Candidate =
       }
     ],
 }
+}
+export var Vacancy=vac;
+
+export var Candidate=can;
+export var cv=c;
+export var level=lvl;
+export var dashboard=dash;
+export var users=usr;
+
