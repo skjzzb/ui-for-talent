@@ -136,8 +136,9 @@ export class ECommerceComponent implements OnInit {
         }
         // console.log(typeof(this.candidateData))
         let obResult = this.service.getCandidateById(this.studentID)
-        obResult.subscribe(data => {
-          this.candData = data
+        obResult.subscribe(data1 => {
+          this.candData = data1
+          console.log(this.candData)
 
           //this.users.name = data.candidateName;
           let name = this.candData.candidateName;
