@@ -4,17 +4,15 @@
   </nb-card-header>
   <nb-card-body>
     <div class="row">
-      <div class="col-md-2">
+     
         <nb-select [(selected)]="selectedProject" placeholder="Select Project">
           <nb-option *ngFor="let p of allProjects" (click)="onSelectProject()" [value]="p.name">{{ p.name }}</nb-option>
-        </nb-select>
-      </div>
-      <div class="col-md-2">
+        </nb-select> &nbsp;&nbsp;
+      
         <nb-select *ngIf='isProjectSelected' [(selected)]="selectedPosition" placeholder="Select Position">
           <nb-option *ngFor="let p of allPositions" (click)="onSelectPosition()" [value]="p.name">{{ p.name }}
           </nb-option>
         </nb-select>
-      </div>
     </div>
     <br><br>
     <div class="col-md-2">
