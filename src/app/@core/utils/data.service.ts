@@ -297,4 +297,8 @@ export class DataService {
     let pathVar = "Soft Skill"
     return this.http.get(`https://cv-processing-api.herokuapp.com/api/getAllConcept/${pathVar}`);
   }
+
+  getVacancyByProjectAndPosition(projectName, positionName){
+    return this.http.get(`http://localhost:8080/v1/getVacancyByProjectAndPosition/${projectName}/${positionName}`)
+  }
 }
