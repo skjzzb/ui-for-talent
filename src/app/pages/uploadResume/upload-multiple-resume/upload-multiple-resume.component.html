@@ -4,19 +4,23 @@
   </nb-card-header>
   <nb-card-body>
     <div class="row">
-      <nb-select [(selected)]="selectedProject" placeholder="Select Project">
-        <nb-option *ngFor="let p of allProjects" (click)="onSelectProject()" [value]="p.name">{{ p.name }}</nb-option>
-      </nb-select>
-      &nbsp;&nbsp;
-      <nb-select *ngIf='isProjectSelected' [(selected)]="selectedPosition" placeholder="Select Position">
-        <nb-option *ngFor="let p of allPositions" (click)="onSelectPosition()" [value]="p.name">{{ p.name }}</nb-option>
-      </nb-select>
-      <div class="col-md-4"> <br><br>
-        <label for="" class="label">Add multiple resume</label> <br>
-        <input type="file" name="resume" (change)="onFileSelect($event.target.files)">
+      <div class="col-md-2">
+        <nb-select [(selected)]="selectedProject" placeholder="Select Project">
+          <nb-option *ngFor="let p of allProjects" (click)="onSelectProject()" [value]="p.name">{{ p.name }}</nb-option>
+        </nb-select>
+      </div>
+      <div class="col-md-2">
+        <nb-select *ngIf='isProjectSelected' [(selected)]="selectedPosition" placeholder="Select Position">
+          <nb-option *ngFor="let p of allPositions" (click)="onSelectPosition()" [value]="p.name">{{ p.name }}
+          </nb-option>
+        </nb-select>
       </div>
     </div>
-
+    <br><br>
+    <div class="col-md-2">
+      <label for="" class="label">Add multiple resume</label> 
+      <input type="file" name="resume" (change)="onFileSelect($event.target.files)">
+    </div>
     <br><br>
 
     <div class="smart-table-container">
