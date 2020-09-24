@@ -299,6 +299,6 @@ export class DataService {
   }
 
   getVacancyByProjectAndPosition(projectName, positionName){
-    return this.http.get(`http://localhost:8080/v1/getVacancyByProjectAndPosition/${projectName}/${positionName}`)
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getVacancyByProjectAndPosition/${projectName}/${positionName}`)
   }
 }
