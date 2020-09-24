@@ -3,12 +3,11 @@
     <span>Candidates</span>
 </nb-card-header>
 <nb-card-body>
-  <P>First select Project</P>
   <nb-select [(selected)]="selectedProject" placeholder="Select Project" >
     <nb-option *ngFor="let p of allProjects" (click)="onSelectProject()" [value]="p.name">{{ p.name }}</nb-option>
   </nb-select>
   &nbsp;&nbsp;
-  <nb-select [(selected)]="selectedPosition" placeholder="Select Position" >
+  <nb-select *ngIf='isProjectSelected' [(selected)]="selectedPosition" placeholder="Select Position" >
     <nb-option *ngFor="let p of allPositions" (click)="onSelectPosition()" [value]="p.name">{{ p.name }}</nb-option>
   </nb-select>
   <br><br>
