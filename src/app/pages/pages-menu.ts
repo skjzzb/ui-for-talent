@@ -577,10 +577,10 @@ else if(use==='ROLE_ADMIN'){
         title: 'Confirmed Interviews',
         link: '/pages/candidate/list-of-confirmed-interview',
       },
-      // {
-      //   title: 'Interview Needs to Re-schedule',
-      //   link: '/pages/candidate/list-of-interview',
-      // },
+      {
+        title: 'Interview Needs to Re-schedule',
+        link: '/pages/candidate/list-of-interview',
+      },
     ],
   }
 
