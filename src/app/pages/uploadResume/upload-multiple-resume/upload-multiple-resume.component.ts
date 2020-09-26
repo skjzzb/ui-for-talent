@@ -11,7 +11,7 @@ export class UploadMultipleResumeComponent implements OnInit {
   vacancy
   vacancyId
   listOfFileName:any[]=[];
-
+  formData = new FormData();
   listOfFiles:File[]=[];
   resume:{
     fileName:any
@@ -47,7 +47,7 @@ export class UploadMultipleResumeComponent implements OnInit {
      .then(
        response => {
           this.vacancy=response.data
-          console.log(this.vacancy)
+          console.log("vacancy: ",this.vacancy)
           }
      )
     }
@@ -56,9 +56,10 @@ export class UploadMultipleResumeComponent implements OnInit {
     {
        var file:File;
        file=files.item(0)
+       console.log("file"+files.item(0));
        this.listOfFiles.push(file)
-       console.log(this.listOfFiles)
-       
+       console.log("list",this.listOfFiles)
+
        var temp = {
         "name" : ""
       }
@@ -66,10 +67,10 @@ export class UploadMultipleResumeComponent implements OnInit {
         temp.name=id + "_"+file.name;
         this.listOfFileName.push(temp)
         this.source.load(this.listOfFileName)
-        console.log(this.source)
-        console.log(temp.name);
+        // console.log(this.source)
+        // console.log(temp.name);
 
-       
+
     }
 
     onDeleteConfirm(event): void {
@@ -80,13 +81,13 @@ export class UploadMultipleResumeComponent implements OnInit {
       let n=element.name;
       if(n==data.name)
       {
-      
+
       }else{
         newList.push(element)
         var temp = {
           "name" : ""
         }
-        
+
           temp.name=element.name;
           newListOfName.push(temp)
       }
@@ -100,8 +101,14 @@ export class UploadMultipleResumeComponent implements OnInit {
     submitFile()
     {
       console.log(this.vacancyId)
-      console.log(this.listOfFiles)
-      this.service.addMultipleResume(this.vacancyId,this.listOfFiles)
+      // console.log(this.listOfFiles)
+      // this.formData.append('files',this.listOfFiles)
+      for (let i = 0; i < this.listOfFiles.length; i++) {
+        this.formData.append(this.listOfFiles[i].name, this.listOfFiles[i])
+        console.log(this.listOfFiles[i])
+      }
+      console.log("formdata",this.formData)
+      this.service.addMultipleResume(this.vacancyId,this.formData)
     }
 
   }
