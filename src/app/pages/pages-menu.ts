@@ -322,7 +322,8 @@ export var MENU_ITEMS: NbMenuItem[] = [
   },
 ];
 
-
+if(sessionStorage.getItem('user_info'))
+{
 let use=sessionStorage.getItem('user_info');
 let arr=use.split('["');
 arr=arr[1].split('"]');
@@ -638,6 +639,7 @@ else if(use==='ROLE_ADMIN'){
         link: '/pages/uploadResume/upload-resume',
       }
     ],
+}
 }
 }
 export var Vacancy=vac;
