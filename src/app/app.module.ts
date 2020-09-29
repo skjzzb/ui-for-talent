@@ -21,6 +21,7 @@ import {
   NbDialogModule,
   NbMenuModule,
   NbSidebarModule,
+  NbSpinnerModule,
   NbToastrModule,
   NbWindowModule,
 } from "@nebular/theme";
@@ -96,6 +97,8 @@ import { LevelModule } from './pages/level/level.module';
     NbInputModule,
     NbRadioModule,
     NbSelectModule,
+    NbSpinnerModule,
+
     NbUserModule,
     CoreModule.forRoot(),
     ThemeModule.forRoot(),

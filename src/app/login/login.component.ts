@@ -13,10 +13,13 @@ export class LoginComponent  implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  loading = false;
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService,private router: Router) { }
 
   ngOnInit() {
+   // document.body.style.zoom = "90%" 
+
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
@@ -42,8 +45,11 @@ export class LoginComponent  implements OnInit {
   }
 
   onSubmit() {
+   
+    this.loading = true;
     this.authService.login(this.form).subscribe(
       data => {
+        this.loading = true;
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
 

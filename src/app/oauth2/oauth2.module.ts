@@ -35,7 +35,8 @@ import { Oauth2RoutingModule } from './oauth2-routing.module';
       strategies: [
         NbOAuth2AuthStrategy.setup({
           name: 'google',
-          clientId: '689963141476-573mvrd35ton237lq542r820dgasaa9r.apps.googleusercontent.com',
+          
+          clientId: '1879259481-7u1q7hj8gnh8mmbt9qvfvvruraka953h.apps.googleusercontent.com',
          // clientId: '689963141476-qt0n0dprne6m88lukfu4a6l4jlb7fhuc.apps.googleusercontent.com',//google Login
 
           clientSecret: '',
