@@ -1,13 +1,18 @@
-<h1 id="title" class="title">Login</h1>
-<p class="sub-title">Hello! Log in with your Email.</p>
-<!-- <nb-card status="success">
-  <nb-card-header>Login Here</nb-card-header>
-  <nb-card-body> -->
+<h2 id="title" class="title">Login</h2>
+<p class="sub-title">Welcome to GSHiring..! </p>
+<!-- <p class="sub-title"><img src="../../assets/images/hiring001.png" style=" height: 60px;" alt=""></p> -->
+
+<nb-card status="primary"
+[nbSpinner]="loading" nbSpinnerSize="giant" nbSpinnerStatus="primary"
+style="    border: none;"
+>
+  <!-- <nb-card-header style="text-align: center; "><h2  style="color: white;">Login Here</h2></nb-card-header> -->
+  <nb-card-body>
     <div class="form-control-group">
       <div>
         <img
           id="profile-img"
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          src="../../favicon.png"
           class="profile-img-card"
         />
 
@@ -83,12 +88,21 @@
             [class.btn-pulse]="submitted">
               Login
             </button>
-            <div class="row" style="padding-top: 25px;">
+            <!-- <div class="row" style="padding-top: 25px;">
               <div class="col-md-6">
-                <a href="/auth/register"  routerLink="/auth/register">SignUp</a>
+              
+                
               </div>
-            </div>
-            <div class="row" style="padding-top: 25px; padding-left: 45%; ">
+        
+            </div> -->
+            
+            <section class="another-action" aria-label="Register">
+              Don't have an account? <a href="/auth/register"  routerLink="/auth/register">SignUp</a>
+            </section>
+            <div class="divider">
+              <hr class="left"/>OR<hr class="right" />
+          </div>
+            <div class="row" style="padding-top: 30px; padding-left: 45%; ">
 
             <div class="col-md-6">
              <a href="#"  status="primary" routerLink="/oauth2"><img style="text-align: center; width: 50px;" src="../../assets/images/google-icon.svg" alt=""></a>
@@ -96,6 +110,7 @@
           </div>
 
         </form>
+       
         <!-- <div class="alert alert-success" *ngIf="isLoggedIn">
           Logged in as {{ roles }}.
           <li class="">
@@ -104,7 +119,8 @@
         </div> -->
       </div>
     </div>
-  <!-- </nb-card-body>
-</nb-card> -->
+  </nb-card-body>
+</nb-card>
+
 
 

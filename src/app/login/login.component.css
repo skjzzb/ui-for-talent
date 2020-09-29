@@ -30,3 +30,27 @@ label {
     -webkit-border-radius: 50%;
     border-radius: 50%;
   }
+
+  .divider {
+    padding-top: 15px;
+    /* width:500px; */
+    text-align:center;
+  }
+  
+  .divider hr {
+    margin-left:auto;
+    margin-right:auto;
+    width:40%;
+  
+  }
+  
+  .left {
+    float:left;
+  }
+  
+  .right {
+    float:right;
+  }
+  ::ng-deep .navigation .link nb-icon {
+    display: none !important;
+  }
