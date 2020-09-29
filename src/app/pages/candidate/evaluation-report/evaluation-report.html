@@ -110,9 +110,9 @@
   <nb-card style="margin-top:20px; margin-bottom:20px" *ngIf="!this.generated">
       <nb-card-header>{{interview_level}} Evaluation</nb-card-header>
       <nb-card-body >
-        <h3>
+        <!-- <h3>
           <span class="text-muted" style="font-size: 14px;">Pick Technology</span>
-        </h3>
+        </h3> -->
         <div style="margin:10px">
 
           <form  #myForm="ngForm" (ngSubmit)="onSubmit(myForm,'selected')" role="form">
@@ -131,6 +131,12 @@
            </panel>
           </ng-template> -->
             <div class="row">
+
+              <div class="col-md-4" *ngIf = "this.isAvgRateUsed">
+                <label for="avg-Rating" class="label">Average Rate</label>
+                <input type="number" ngModel  name="rate" nbInput fullWidth  id="rate" placeholder="0" required>
+              </div>
+
               <div class="col-md-12">
                 <label class="label">Add Comments Here</label>
                 <textarea id="evaluation" nbInput fullWidth name="evaluation" ngModel placeholder="Interview Evalution Report"></textarea>

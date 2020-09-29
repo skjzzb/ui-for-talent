@@ -4,8 +4,11 @@ import { HttpClient } from '@angular/common/http';
 
 
 //http://authentication-api-cv.herokuapp.com/api/user/10
-const API_URL = 'http://localhost:9990/v1';
-const API_URL1 = "http://localhost:8081/v1";
+const API_URL = "http://localhost:8080/v1";
+// const API_URL = "https://cv-processing-api.herokuapp.com/v1"
+const AUTH_API_URL = "https://authentication-api-cv.herokuapp.com"
+// const AUTH_API_URL = "http://localhost:8080/login/google"
+
 
 
 @Injectable({
@@ -26,7 +29,7 @@ export class DataService {
   }
 
   public uploadFile(formData) {
-    return this.http.post<any>("http://localhost:8080/uploadprofile", formData, {
+    return this.http.post<any>("https://application-form-processing.herokuapp.com/uploadprofile", formData, {
         reportProgress: true,
         observe: 'events'
       });
@@ -39,18 +42,18 @@ export class DataService {
   }
 
   getExperiece(){
-    return axios.get(`${API_URL1}/experienceofcandidate`,)
+    return axios.get(`${API_URL}/experienceofcandidate`,)
   }
 
   getTechnologyExperience(Technology){
-    return this.http.get(`${API_URL1}/experience/${Technology}/`,)
+    return this.http.get(`${API_URL}/experience/${Technology}/`,)
   }
 
   getVacancyChartData(){
-    return axios.get(`${API_URL1}/monthvacancy`,)
+    return axios.get(`${API_URL}/monthvacancy`,)
   }
   getProjectVacancyChartData(){
-    return axios.get(`${API_URL1}/projectvacancy`,)
+    return axios.get(`${API_URL}/projectvacancy`,)
   }
 
   getData() {
@@ -110,33 +113,33 @@ export class DataService {
     }
     getUserDetails(userId)
     {
-      return this.http.get(`http://localhost:8880/api/user/${userId}`)
+      return this.http.get(`${AUTH_API_URL}/api/user/${userId}`)
     }
     getGUserDetails(userName)
     {
-      return this.http.get(`http://localhost:8880/gapi/user/${userName}`)
+      return this.http.get(`${AUTH_API_URL}/gapi/user/${userName}`)
     }
 
      addOrEditProfile(profObj, userId)
     {
-      return this.http.put(`http://localhost:8880/api/profile/${userId}`, profObj)
+      return this.http.put(`${AUTH_API_URL}/api/profile/${userId}`, profObj)
     }
     gaddOrEditProfile(profObj, userId)
     {
-      return this.http.put(`http://localhost:8880/gapi/profile/${userId}`, profObj)
+      return this.http.put(`${AUTH_API_URL}/gapi/profile/${userId}`, profObj)
     }
     getListOfUsers()
     {
-      return this.http.get(`http://localhost:8880/api/user/`)
+      return this.http.get(`${AUTH_API_URL}/api/user/`)
     }
 
     editProfilePhoto(profObj, userId)
     {
-      return this.http.put(`http://localhost:8880/api/upload/${userId}`, profObj)
+      return this.http.put(`${AUTH_API_URL}/api/upload/${userId}`, profObj)
     }
     getUserProfilePhoto(profId)
     {
-      return axios.get(`http://localhost:8880/api/image/${profId}`)
+      return axios.get(`${AUTH_API_URL}/api/image/${profId}`)
     }
 
     getFeatureByRole(name:any)
@@ -145,117 +148,117 @@ export class DataService {
     }
     getListOfAllRoles()
     {
-      return this.http.get(`http://localhost:8880/api/roles`)
+      return this.http.get(`${AUTH_API_URL}/api/roles`)
     }
     setRole(userId, roleObj)
     {
-      return this.http.post(`http://localhost:8880/api/set-role/${userId}`, roleObj)
+      return this.http.post(`${AUTH_API_URL}/api/set-role/${userId}`, roleObj)
     }
 
     deleteUser(userId)
     {
-      return this.http.delete(`http://localhost:8880/api/profileDelete/${userId}`)
+      return this.http.delete(`${AUTH_API_URL}/api/profileDelete/${userId}`)
     }
     getLevelData(){
-       return this.http.get(`http://localhost:9990/api/getListOfLevels`)
+       return this.http.get(`${API_URL}/getListOfLevels`)
 
     }
     addMultipleResume(vacancyId,listOfFiles)
     {
       // return axios.post(`https://application-form-processing.herokuapp.com/uploadmultipleprofiles/`,listOfFiles)
-      return axios.post(`https://localhost:8080/uploadmultipleprofiles/`,listOfFiles)
+      return axios.post(`${API_URL}/uploadmultipleprofiles/`,listOfFiles)
 
     }
 
     getAllhr()
     {
-      return this.http.get("http://localhost:8880/api/get-all-users/hr")
+      return this.http.get(`${AUTH_API_URL}/api/get-all-users/hr`)
     }
     getAllPanel()
     {
-      return this.http.get("http://localhost:8880/api/get-all-users/panel")
+      return this.http.get(`${AUTH_API_URL}/api/get-all-users/panel`)
 
     }
     addLevelData(level)
     {
-      return this.http.post(`http://localhost:9990/api/addLevel`,level);
+      return this.http.post(`${API_URL}/addLevel`,level);
     }
 
     setMeeting(obj:any)
     {
       //return axios.post(`http://localhost:8080/setMeeting`,obj);
-      return axios.post(`http://localhost:9990/setMeeting`,obj);
+      return axios.post(`${API_URL}/setMeeting`,obj);
     }
 
     getListOfInterview()
     {
       //return axios.get(`http://localhost:8080/interview`);
-      return axios.get(`http://localhost:9990/interview`);
+      return axios.get(`${API_URL}/interview`);
 
     }
     getInterviewByInterviewId(id)
     {
-      return this.http.get(`http://localhost:9990/interview/${id}`)
+      return this.http.get(`${API_URL}/interview/${id}`)
     }
 
     DeteteInterview(id)
     {
       //return axios.delete(`http://localhost:8080/deleteMeeting/${id}`);
-      return axios.delete(`http://localhost:9990/deleteMeeting/${id}`);
+      return axios.delete(`${API_URL}/deleteMeeting/${id}`);
     }
 
     rescheduledMeeting(obj,reason)
   {
-    return axios.post(`http://localhost:9990/rescheduledMeeting?reason=${reason}`,obj);
+    return axios.post(`${API_URL}/rescheduledMeeting?reason=${reason}`,obj);
     //return axios.post(`http://localhost:8080/rescheduledMeeting?reason=${reason}`,obj);
   }
   getVacancyById(vacancyId){
-    return this.http.get(`http://localhost:9990/v1/vacancy/${vacancyId}`)
+    return this.http.get(`${API_URL}/vacancy/${vacancyId}`)
   }
 
   getTechnologyForPanel(list)
   {
-    return axios.get(`http://localhost:9990/v1/getTechnologyFromSubtechnology//${list}`);
+    return axios.get(`${API_URL}/getTechnologyFromSubtechnology//${list}`);
   }
   getTechnologyById(id)
   {
-    return axios.get(`http://localhost:9990/v1/technology/${id}`);
+    return axios.get(`${API_URL}/technology/${id}`);
 
   }
   getConceptById(name)
   {
-    return this.http.get(` http://localhost:9990/api/getAllConcept/${name}`);
+    return this.http.get(` ${API_URL}/getAllConcept/${name}`);
 
   }
 
   getAllConfirmedScheduledInterview(){
-    return this.http.get("http://localhost:9990/interview/confirmed")
+    return this.http.get(`${API_URL}/interview/confirmed`)
   }
 
   getAllProject(){
-    return this.http.get("http://localhost:9990/v1/project")
+    return this.http.get(`${API_URL}/project`)
   }
 
   getAllPositions(){
-    return this.http.get("http://localhost:9990/v1/position")
+    return this.http.get(`${API_URL}/position`)
   }
 
   getAllCandidate() {
-    return this.http.get("http://localhost:9990/v1/candidiate")
+    return this.http.get(`${API_URL}/candidiate`)
   }
 
   getCountOfCandidateByProjectName(projectName){
-    return this.http.get(`http://localhost:9990/v1/getCountOfCandidateByProjectAndVacancy/${projectName}`);
+    return this.http.get(`${API_URL}/getCountOfCandidateByProjectAndVacancy/${projectName}`);
 
   }
   createEvaluationReport(evalObj)
   {
-    return this.http.post("http://localhost:9990/v1/evaluation",evalObj);
+    return this.http.post(`${API_URL}/evaluation`,evalObj);
   }
 
   getEvaluationBycandidateId(id)
   {
-    return this.http.get(`http://localhost:9990/v1/GetEvaluationReportByCandidateId/${id}`);
+    return this.http.get(`${API_URL}/GetEvaluationReportByCandidateId/${id}`);
   }
 
   postOnFb(vacancy){
@@ -264,50 +267,50 @@ export class DataService {
   }
 
   getCandidateByProjectName(projName){
-    return this.http.get(`http://localhost:9990/v1/getCandidateByProject/${projName}`);
+    return this.http.get(`${API_URL}/getCandidateByProject/${projName}`);
   }
 
   getAllApplicationInMonth(){
-    return this.http.get(`http://localhost:9990/v1/monthapplication`);
+    return this.http.get(`${API_URL}/monthapplication`);
   }
 
   getCountOfApplicationForProject(){
-    return this.http.get(`http://localhost:9990/v1/getCountOfApplicationForProject`);
+    return this.http.get(`${API_URL}/getCountOfApplicationForProject`);
   }
 
   getCountOfVacancyForProject(str){
-    return this.http.get(`http://localhost:9990/v1/getCountOfVacancyForProject/${str}`);
+    return this.http.get(`${API_URL}/getCountOfVacancyForProject/${str}`);
   }
 
   getCountOfSelectedForProject(){
-    return this.http.get(`http://localhost:9990/v1/getCountOfSelectedForProject`);
+    return this.http.get(`${API_URL}/getCountOfSelectedForProject`);
   }
 
   getNumberOfRejectedMonthly(){
-    return this.http.get(`http://localhost:9990/v1/getNumberOfRejectedMonthly`);
+    return this.http.get(`${API_URL}/getNumberOfRejectedMonthly`);
   }
 
   getSelectedMonthly(){
-    return this.http.get(`http://localhost:9990/v1/getSelectedMonthly`);
+    return this.http.get(`${API_URL}/getSelectedMonthly`);
   }
 
   getTotalInterviewMonthly(){
-    return this.http.get(`http://localhost:9990/v1/getTotalInterviewMonthly`);
+    return this.http.get(`${API_URL}/getTotalInterviewMonthly`);
   }
 
 
   createNewCandidate(candidateDummy)
     {
-      return this.http.post(`http://localhost:8080/v1/createNewCandidate`,candidateDummy);
+      return this.http.post(`${API_URL}/createNewCandidate`,candidateDummy);
     }
 
   getQuestionsForHr()
   {
     let pathVar = "Soft Skill"
-    return this.http.get(`http://localhost:9990/api/getAllConcept/${pathVar}`);
+    return this.http.get(`${API_URL}/getAllConcept/${pathVar}`);
   }
 
   getVacancyByProjectAndPosition(projectName, positionName){
-    return this.http.get(`http://localhost:9990/v1/getVacancyByProjectAndPosition/${projectName}/${positionName}`)
+    return this.http.get(`${API_URL}/getVacancyByProjectAndPosition/${projectName}/${positionName}`)
   }
 }
