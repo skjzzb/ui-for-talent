@@ -107,7 +107,7 @@
     </section>
   <!-- </nb-card-body>
 </nb-card> -->
-  <nb-card style="margin-top:20px; margin-bottom:20px">
+  <nb-card style="margin-top:20px; margin-bottom:20px" *ngIf="!this.generated">
       <nb-card-header>{{interview_level}} Evaluation</nb-card-header>
       <nb-card-body >
         <h3>

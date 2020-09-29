@@ -8,16 +8,15 @@ import { LocalDataSource } from 'ng2-smart-table';
   styleUrls: ['./upload-multiple-resume.component.scss']
 })
 export class UploadMultipleResumeComponent implements OnInit {
-  vacancy
-  vacancyId
-  listOfFileName:any[]=[];
-  formData = new FormData();
-  listOfFiles:File[]=[];
-  resume:{
-    fileName:any
+  vacancy : any
+  listOfFileName: any[] = [];
+
+  listOfFiles: File[] = [];
+  resume: {
+    fileName: any
   }
   settings = {
-    actions:{edit:false,add:false},
+    actions: { edit: false, add: false },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
       confirmDelete: true,
@@ -27,7 +26,7 @@ export class UploadMultipleResumeComponent implements OnInit {
       name: {
         title: 'File Name',
         type: 'text',
-        filter:false,
+        filter: false,
         width: "80%"
       }
     },
@@ -35,10 +34,25 @@ export class UploadMultipleResumeComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service:DataService) { }
+  allProjects: any
+  allPositions: any
+  selectedProject: any
+  selectedPosition: any
+  isProjectSelected = false
+
+  constructor(private service: DataService) { }
 
   ngOnInit(): void {
-    this.retrieveData();
+    this.service.getAllProject().subscribe(data => {
+      this.allProjects = data
+    })
+  }
+
+  onSelectProject() {
+    this.service.getAllPositions().subscribe(data => {
+      this.allPositions = data
+    })
+    this.isProjectSelected = true
   }
 
   retrieveData()
@@ -52,64 +66,76 @@ export class UploadMultipleResumeComponent implements OnInit {
      )
     }
 
-    onFileSelect(files:FileList)
-    {
-       var file:File;
-       file=files.item(0)
-       console.log("file"+files.item(0));
-       this.listOfFiles.push(file)
-       console.log("list",this.listOfFiles)
-
-       var temp = {
-        "name" : ""
-      }
-      let id=this.vacancyId;
-        temp.name=id + "_"+file.name;
-        this.listOfFileName.push(temp)
-        this.source.load(this.listOfFileName)
-        // console.log(this.source)
-        // console.log(temp.name);
 
 
+  onSelectPosition() {
+    console.log(`Selected Project ${this.selectedProject}, Selected Position ${this.selectedPosition}`)
+    this.service.getVacancyByProjectAndPosition(this.selectedProject, this.selectedPosition)
+    .subscribe(data=>{
+      this.vacancy = data
+    })
+  }
+
+  onFileSelect(files: FileList) {
+    var file: File;
+    file = files.item(0)
+    this.listOfFiles.push(file)
+    console.log(this.listOfFiles)
+
+    var temp = {
+      "name": ""
     }
+    let id = this.vacancy.vacancyId;
+    temp.name = id + "_" + file.name;
+    this.listOfFileName.push(temp)
+    this.source.load(this.listOfFileName)
+    console.log(this.source)
+    console.log(temp.name);
 
-    onDeleteConfirm(event): void {
-      var data = {"name" : event.data.name};
-      let newList:any[]=[];
-      let newListOfName:any[]=[];
-     this.listOfFiles.forEach(element => {
-      let n=element.name;
-      if(n==data.name)
-      {
-
-      }else{
-        newList.push(element)
-        var temp = {
-          "name" : ""
-        }
-
-          temp.name=element.name;
-          newListOfName.push(temp)
-      }
-     })
-
-     this.listOfFiles=newList
-     this.listOfFileName=newListOfName
-     this.source.load(this.listOfFileName)
-    }
-
-    submitFile()
-    {
-      console.log(this.vacancyId)
-      // console.log(this.listOfFiles)
-      // this.formData.append('files',this.listOfFiles)
-      for (let i = 0; i < this.listOfFiles.length; i++) {
-        this.formData.append(this.listOfFiles[i].name, this.listOfFiles[i])
-        console.log(this.listOfFiles[i])
-      }
-      console.log("formdata",this.formData)
-      this.service.addMultipleResume(this.vacancyId,this.formData)
-    }
 
   }
+
+  onDeleteConfirm(event): void {
+    var data = { "name": event.data.name };
+    let newList: any[] = [];
+    let newListOfName: any[] = [];
+    this.listOfFiles.forEach(element => {
+      let n = element.name;
+      if (n == data.name) {
+
+      } else {
+        newList.push(element)
+        var temp = {
+          "name": ""
+        }
+
+        temp.name = element.name;
+        newListOfName.push(temp)
+      }
+    })
+
+    this.listOfFiles = newList
+    this.listOfFileName = newListOfName
+    this.source.load(this.listOfFileName)
+  }
+
+  submitFile() {
+    console.log(this.vacancy.vacancyId)
+    console.log(this.listOfFiles)
+
+    let formData = new FormData();
+    this.listOfFiles.forEach(file => {
+      formData.set('file',file);
+      this.service.uploadFile(formData).subscribe(
+        result =>
+        {
+          console.log(result)
+        }
+      );
+    });
+
+    // this.service.addMultipleResume(this.vacancy.vacancyId, this.listOfFiles)
+  }
+
+}
 

@@ -25,6 +25,12 @@ export class DataService {
     }
   }
 
+  public uploadFile(formData) {
+    return this.http.post<any>("http://localhost:8080/uploadprofile", formData, {
+        reportProgress: true,
+        observe: 'events'
+      });
+  }
 
 
   getExperienceOfCandidateFromSubtechnology(subTechName){
@@ -299,5 +305,9 @@ export class DataService {
   {
     let pathVar = "Soft Skill"
     return this.http.get(`https://cv-processing-api.herokuapp.com/api/getAllConcept/${pathVar}`);
+  }
+
+  getVacancyByProjectAndPosition(projectName, positionName){
+    return this.http.get(`https://cv-processing-api.herokuapp.com/v1/getVacancyByProjectAndPosition/${projectName}/${positionName}`)
   }
 }

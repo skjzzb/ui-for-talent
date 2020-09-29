@@ -136,8 +136,9 @@ export class ECommerceComponent implements OnInit {
         }
         // console.log(typeof(this.candidateData))
         let obResult = this.service.getCandidateById(this.studentID)
-        obResult.subscribe(data => {
-          this.candData = data
+        obResult.subscribe(data1 => {
+          this.candData = data1
+          console.log(this.candData)
 
           //this.users.name = data.candidateName;
           let name = this.candData.candidateName;
@@ -230,7 +231,8 @@ export class ECommerceComponent implements OnInit {
 let candData;
     this.service.getCandidateById(this.candidateIID).subscribe(data=>{
         candData=data;
-        this.router.navigate(['/pages/candidate/evaluation-report',JSON.stringify(candData)]);
+        this.router.navigate(['/pages/candidate/evaluation-report',JSON.stringify(candData)],
+        { queryParams: { page: 1 } });
     })
 
   }
@@ -248,8 +250,8 @@ let candData;
 
   availableClick(id)
   {
-    
-  
+
+
   let candidateInfo;
   console.log("Hello Saurabh")
   console.log(id)
@@ -258,23 +260,23 @@ let candData;
   interviewCandidate.subscribe(data =>{
      candidateInfo =data;
     console.log(candidateInfo)
-  
-  
+
+
     console.log(candidateInfo.level)
     this.meetLink=candidateInfo.meetLink
     this.candidateIID=candidateInfo.candidateId;
-    
+
     console.log(this.meetLink)
     this.retrieveLevelData(candidateInfo.vacancyId,candidateInfo.level)
     console.log(this.level)
     //this.displayStepper(candidateInfo.vacancyId,candidateInfo.level)
     // document.getElementById("btn").click();
-    
+
     this.level=""
-  
-  
+
+
   })
-  
+
   }
    not_availableClick(id) {
     let candidateInfo;
@@ -295,8 +297,8 @@ let candData;
       console.log(this.meetLink)
       console.log(this.lvl)
      this.retrieveLevelData(candidateInfo.vacancyId, candidateInfo.level)
-      // this.displayStepper(candidateInfo.vacancyId,candidateInfo.level) 
-    
+      // this.displayStepper(candidateInfo.vacancyId,candidateInfo.level)
+
 
 
       this.level = ""
@@ -316,43 +318,43 @@ let candData;
      this.service.getVacancyById(id).subscribe(
 
       data => {
-        
+
         this.vacancyData = data
         this.lvl = this.vacancyData.levelList.split(",")
-       
+
 
         for (let index = 0; index < this.lvl.length; index++) {
           this.lvl[index] = this.lvl[index].trim()
-          
+
           console.log("Dispaly Stepper" + this.lvl[index] + "----" + level + "---" + index)
-          
+
           this.completed=true;
-          
+
           if (this.lvl[index] == level) {
             this.indexValue = index;
             this.completed=false;
             //this.lvl[this.lvl.length]=index;
             this.stat[index]=this.completed
-        
+
               for(let i=index+1;i<this.lvl.length;i++)
               {
                 this.stat[i]=this.completed
               }
-            
+
             console.log("the Complleted valus is "+this.completed +" inde is "+index)
 
             break;
 
 
           }
-        
+
           this.stat[index]=this.completed
-          
-         
+
+
           console.log("the Complleted valus is "+this.completed +" inde is "+index)
 
-          
-       
+
+
 
           console.log("Go forward method called" + this.lvl[index]);
         }
@@ -360,7 +362,7 @@ let candData;
       //  this.stepper.next();
       //  this.stepper.next();
         console.log("the Complleted valus is "+this.completed)
-    
+
         console.log(this.lvl + " LVL OBJ")
         console.log(this.stat + " Stat OBJ")
 

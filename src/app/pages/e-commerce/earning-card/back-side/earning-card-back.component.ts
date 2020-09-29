@@ -91,7 +91,7 @@ export class EarningCardBackComponent implements OnInit {
       }
       this.arr=Object.values(result);
       let name =  this.arr;
-      this.barChartData.push({label: "Total Vacancy",
+      this.barChartData.push({label: "TOTAL Vacancy",
       backgroundColor: "#FF5733",
       borderColor: "black",
       borderWidth: 1,data : name});
@@ -105,7 +105,7 @@ export class EarningCardBackComponent implements OnInit {
     this.key11= Object.keys(result1);
     this.arr1=Object.values(result1);
     let name1 =  this.arr1;
-    this.barChartData.push({label: "Total SELECTED",
+    this.barChartData.push({label: "TOTAL SELECTED",
     backgroundColor: "#FFC300",
     borderColor: "black",
     borderWidth: 1,data : name1});

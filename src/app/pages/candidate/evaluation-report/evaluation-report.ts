@@ -26,7 +26,7 @@ export class EvaluationReportComponent implements OnInit {
   evaluation : any;
   interview_level:String;
   report:any;
-  flag : boolean;
+  generated : boolean;
 
   constructor( private service:DataService,
                private route :ActivatedRoute,
@@ -36,7 +36,7 @@ export class EvaluationReportComponent implements OnInit {
   {
     this.ratings = [];
     this.interview_level = "";
-    this.flag = true;
+    this.generated = false;
     this.evaluation = {
       "averageRating": "string",
       "candidateId": 0,
@@ -52,7 +52,15 @@ export class EvaluationReportComponent implements OnInit {
     this.vacancy = this.candidate.vacancy;
     console.log(this.candidate);
 
+    let page;
+     this.route
+    .queryParams
+    .subscribe(params => {
+      console.log("params"+params['page'])
+      page = params['page'];
+    });
 
+    console.log("page"+page.toString())
     var list = this.vacancy.jd.replace(/\s/g, '').split(",");
     console.log("list"+list);
     this.service.getTechnologyForPanel(list)
@@ -61,14 +69,21 @@ export class EvaluationReportComponent implements OnInit {
        console.log(result.data)
        this.technologies = result.data;
        let int_lvl = this.candidate.interviewStatus;
+       if( page==0 || int_lvl.toLowerCase().includes("selected") || int_lvl.toLowerCase().includes("rejected")
+             )
+       {
+        this.generated = true;
+       }
        int_lvl = int_lvl.toLowerCase().replace(/selected/gi,'').replace(/scheduled/gi,'')
                                          .replace('rejected ','').replace(/\s/g,'');
       this.interview_level = int_lvl.charAt(0).toUpperCase() + int_lvl.slice(1);
       int_lvl = this.interview_level.toLowerCase();
-      this.flag = int_lvl.includes("hr")  ? false : true;
-      if(!this.flag)
+      // let flag = int_lvl.includes("hr")  ? false : true;
+      if(int_lvl.includes("hr"))
         this.technologies = ["Soft Skill"]
-       console.log(this.interview_level + " " + this.flag);
+       console.log(this.interview_level + " " + int_lvl.includes("hr"));
+      if( int_lvl.includes("manager") || int_lvl.includes("technical-2"))
+       this.technologies = []
     })
 
     this.service.getQuestionsForHr()
@@ -119,8 +134,16 @@ export class EvaluationReportComponent implements OnInit {
     // console.log(myJSON);
 
     this.evaluation.question = JSON.stringify(this.ratings);
+    if( this.ratings.length > 0){
+
     let avg = this.sum.reduce((a, b) => a + b) / this.sum.length;
     this.evaluation.averageRating = avg.toFixed(2);
+  }
+  else
+  {
+    this.evaluation.question = null;
+    this.evaluation.averageRating = null;
+  }
 
     // console.log("str-->"+myJSON)
     // myJSON = myJSON.replace(/\s/g, '_');
