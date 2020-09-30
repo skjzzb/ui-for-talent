@@ -187,29 +187,29 @@ export class DataService {
     setMeeting(obj:any)
     {
       //return axios.post(`http://localhost:8080/setMeeting`,obj);
-      return axios.post(`${API_URL}/setMeeting`,obj);
+      return axios.post(`http://localhost:8080/setMeeting`,obj);
     }
 
     getListOfInterview()
     {
       //return axios.get(`http://localhost:8080/interview`);
-      return axios.get(`${API_URL}/interview`);
+      return axios.get(`http://localhost:8080/interview`);
 
     }
     getInterviewByInterviewId(id)
     {
-      return this.http.get(`${API_URL}/interview/${id}`)
+      return this.http.get(`http://localhost:8080/interview/${id}`)
     }
 
     DeteteInterview(id)
     {
       //return axios.delete(`http://localhost:8080/deleteMeeting/${id}`);
-      return axios.delete(`${API_URL}/deleteMeeting/${id}`);
+      return axios.delete(`http://localhost:8080/deleteMeeting/${id}`);
     }
 
     rescheduledMeeting(obj,reason)
   {
-    return axios.post(`${API_URL}/rescheduledMeeting?reason=${reason}`,obj);
+    return axios.post(`http://localhost:8080/rescheduledMeeting?reason=${reason}`,obj);
     //return axios.post(`http://localhost:8080/rescheduledMeeting?reason=${reason}`,obj);
   }
   getVacancyById(vacancyId){
@@ -232,7 +232,7 @@ export class DataService {
   }
 
   getAllConfirmedScheduledInterview(){
-    return this.http.get(`${API_URL}/interview/confirmed`)
+    return this.http.get(`http://localhost:8080/interview/confirmed`)
   }
 
   getAllProject(){
