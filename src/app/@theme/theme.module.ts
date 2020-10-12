@@ -88,8 +88,8 @@ const PIPES = [
             endpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
             responseType: NbOAuth2ResponseType.TOKEN,
             scope: 'https://www.googleapis.com/auth/userinfo.profile',
-            redirectUri: 'http://localhost:4200/oauth2/callback',
-            //redirectUri: 'https://cvprocessing-007.web.app/oauth2/callback',//google login
+            //redirectUri: 'http://localhost:4200/oauth2/callback',
+            redirectUri: 'https://cvprocessing-007.web.app/oauth2/callback',//google login
           },
 
           redirect: {

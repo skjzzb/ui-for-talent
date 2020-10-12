@@ -4,10 +4,10 @@ import { HttpClient } from '@angular/common/http';
 
 
 //http://authentication-api-cv.herokuapp.com/api/user/10
-const API_URL = "http://localhost:8080/v1";
-// const API_URL = "https://cv-processing-api.herokuapp.com/v1"
-const AUTH_API_URL = "http://localhost:8880"
-//const AUTH_API_URL = "https://authentication-api-cv.herokuapp.com"
+//const API_URL = "http://localhost:8080/v1";
+ const API_URL = "https://cv-processing-api.herokuapp.com/v1"
+//const AUTH_API_URL = "http://localhost:8880"
+const AUTH_API_URL = "https://authentication-api-cv.herokuapp.com"
 // const AUTH_API_URL = "http://localhost:8080/login/google"
 
 
