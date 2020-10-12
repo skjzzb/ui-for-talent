@@ -58,7 +58,9 @@
               </div>
               <div class=""><button nbButton status="primary" (click)="onClick()" >Evaluation </button>
               </div>
-              <div class=""><button nbButton status="primary" >View Resume</button>
+              <div class="">
+                <!-- <button nbButton status="primary" >View Resume</button> -->
+                <a target="_blank" nbButton status="primary"  href={{candData.resumeURL}} >View Resume</a>
               </div></div>
 
                 <!-- <table class="table table-bordered">
