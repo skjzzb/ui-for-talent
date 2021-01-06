@@ -51,7 +51,7 @@
     "@syncfusion/ej2-angular-dropdowns": "^18.2.54",
     "angular-material": "^1.2.0",
     "angular2-chartjs": "0.4.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.2",
     "chart.js": "^2.9.3",
     "ckeditor": "4.7.3",
